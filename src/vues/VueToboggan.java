@@ -27,4 +27,10 @@ public class VueToboggan extends Vue {
 		// TODO Auto-generated method stub
 
 	}
+
+	@Override
+	void clic(int x, int y) {
+		// TODO Auto-generated method stub
+		
+	}
 }
