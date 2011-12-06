@@ -70,8 +70,20 @@ public class Chariot {
 	 * 
 	 * @return La nouvelle position.
 	 */
-	public Point calculerNouvPos() {
-		return coordonnees;
+	public Point calculerNouvPos(Point depart, Point arrivee) {
+		
+		int nouvY = arrivee.y - coordonnees.y;
+		int nouvX = arrivee.x - coordonnees.x;
+		
+		double norm = Math.sqrt(nouvX*nouvX + nouvY*nouvY);
+		
+		nouvY = (int)(nouvY/norm);
+		nouvX = (int)(nouvX/norm);
+		
+		nouvX = (nouvX + 2)*vitesse;
+		nouvY = (nouvY + 2)*vitesse;
+		
+		return new Point(nouvX+coordonnees.x, nouvY+coordonnees.y);
 	}
 	
 	/**

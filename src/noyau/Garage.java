@@ -1,5 +1,6 @@
 package noyau;
 
+import java.awt.Point;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -35,10 +36,11 @@ public class Garage extends ES {
 	 * @param noeud Noeud de l'ES.
 	 * @param listChariotsVides Liste des chariots vides.
 	 * @param listChariotsPourPartir Liste des chariots en attente.
+	 * @param coordonnees Coordonnées de l'ES.
 	 */
 	public Garage(Noeud noeud, LinkedList<Chariot> listChariotsVides,
-			LinkedList<Chariot> listChariotsPourPartir) {
-		super(noeud);
+			LinkedList<Chariot> listChariotsPourPartir, Point coordonnees) {
+		super(noeud, coordonnees);
 		this.listChariotsVides = listChariotsVides;
 		this.listChariotsPourPartir = listChariotsPourPartir;
 	}

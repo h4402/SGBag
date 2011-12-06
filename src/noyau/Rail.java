@@ -58,10 +58,11 @@ public class Rail {
 		Iterator<Chariot> it = listChariots.iterator();
 		while ( it.hasNext() ) {
 		    Chariot c = it.next();
+		    
 			/*
 			 * TODO Envoyer la direction du rail... 
 			 */
-			Point p = c.calculerNouvPos();
+			Point p = c.calculerNouvPos(noeudEntree.getCoordoonees(), noeudSortie.getCoordoonees());
 			
 			/*
 			 * TODO Vérifier que p depasse le chariot précédent.

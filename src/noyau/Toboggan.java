@@ -1,5 +1,6 @@
 package noyau;
 
+import java.awt.Point;
 import java.util.List;
 
 /**
@@ -21,9 +22,10 @@ public class Toboggan extends ES {
 	 * 
 	 * @param noeud Noeud associé à l'ES.
 	 * @param listBagages Liste des bagages acheminés.
+	 * @param coordonnees Coordonnées de l'ES.
 	 */
-	public Toboggan(Noeud noeud, List<Bagage> listBagages) {
-		super(noeud);
+	public Toboggan(Noeud noeud, List<Bagage> listBagages, Point coordonnees) {
+		super(noeud, coordonnees);
 		this.listBagages = listBagages;
 	}
 	

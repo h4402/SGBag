@@ -1,5 +1,7 @@
 package noyau;
 
+import java.awt.Point;
+
 /**
  * Un tapis est une file de bagage
  * qui arrive d'un guichet
@@ -43,9 +45,11 @@ public class Tapis extends ES {
 	 * @param listBagages File de bagage.
 	 * @param vitesse Vitesse du tapis.
 	 * @param topCourant Nombre de topCourant actuel.
+	 * @param coordonnees Coordonnées de l'ES.
 	 */
-	public Tapis(Noeud noeud, Bagage listBagages[], int vitesse, int topCourant) {
-		super(noeud);
+	public Tapis(Noeud noeud, Bagage listBagages[], int vitesse, 
+			int topCourant, Point coordonnees) {
+		super(noeud, coordonnees);
 		this.listBagages = listBagages;
 		this.vitesse = vitesse;
 		this.topCourant = topCourant;
