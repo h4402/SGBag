@@ -1,5 +1,6 @@
 package noyau;
 
+import java.awt.Point;
 import java.util.LinkedList;
 
 /**
@@ -20,6 +21,11 @@ public class Guichet {
 	private Tapis tapis;
 	
 	/**
+	 * Coordonnées du Guichet.
+	 */
+	private Point coordonnees;
+	
+	/**
 	 * Liste des bagages qu'on ne peut 
 	 * mettre sur le tapis (on peut considéré
 	 * que c'est une file de voyageur).
@@ -34,11 +40,14 @@ public class Guichet {
 	 * 
 	 * @param tapis Tapis sur lequel on dépose les bagages.
 	 * @param listBagages Liste des bagages en attente d'etre déposés.
+	 * @param coordonnees Coordonnées du guichet.
 	 */
-	public Guichet(Tapis tapis, LinkedList<Bagage> listBagages) {
+	public Guichet(Tapis tapis, LinkedList<Bagage> listBagages,
+		Point coordonnees) {
 		super();
 		this.tapis = tapis;
 		this.listBagages = listBagages;
+		this.coordonnees = coordonnees;
 	}
 
 	/**
@@ -66,6 +75,15 @@ public class Guichet {
 			}
 		}
 		
+	}
+	
+	/**
+	 * Retourne les coordonnées du Guichet
+	 * 
+	 * @return Coordonnées du guichet.
+	 */
+	public Point getCoordoonees() {
+		return coordonnees;
 	}
 
 }
