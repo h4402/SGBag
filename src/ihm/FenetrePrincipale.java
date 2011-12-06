@@ -15,10 +15,12 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
+import javax.swing.KeyStroke;
 import javax.swing.Timer;
 
 import vues.VueAeroport;
 
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
@@ -46,7 +48,7 @@ public class FenetrePrincipale extends JFrame {
 	 */
 	private JPanel container = new JPanel();
 	private JPanel bandeauParametres = new JPanel();
-	private VueAeroport vueAeroport = new VueAeroport();
+	private TestDessins testDessins = new TestDessins();
 	private JPanel panelBas = new JPanel();
 	
 	
@@ -141,14 +143,24 @@ public class FenetrePrincipale extends JFrame {
 		// Menu Fichier
 		menuBar.add(fileMenu);
 		menuItemOuvrir.addActionListener(ouvrirListener);
+		menuItemOuvrir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,
+                KeyEvent.CTRL_MASK));
 		fileMenu.add(menuItemOuvrir);
+		menuItemQuitter.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q,
+                KeyEvent.CTRL_MASK));
 		menuItemQuitter.addActionListener(quitterListener);
 		fileMenu.add(menuItemQuitter);
 		
 		// Menu Affichage
 		menuBar.add(affichageMenu);
+		menuItemZoom100.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_0,
+                KeyEvent.CTRL_MASK));
 		affichageMenu.add(menuItemZoom100);
+		menuItemZoomArriere.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_MINUS,
+                KeyEvent.CTRL_MASK));
 		affichageMenu.add(menuItemZoomArriere);
+		menuItemZoomAvant.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_PLUS,
+                KeyEvent.CTRL_MASK));
 		affichageMenu.add(menuItemZoomAvant);
 		
 		// Menu Aide
@@ -167,7 +179,7 @@ public class FenetrePrincipale extends JFrame {
 		// Ajout des panels
 		container.setBackground(Color.white);
 		container.setLayout(new BorderLayout());
-		container.add(vueAeroport, BorderLayout.CENTER);
+		container.add(testDessins, BorderLayout.CENTER);
 		container.add(panelBas, BorderLayout.SOUTH);
 		container.add(bandeauParametres, BorderLayout.NORTH);
 		
