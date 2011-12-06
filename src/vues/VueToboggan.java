@@ -1,5 +1,8 @@
 package vues;
 
+import java.awt.Point;
+import java.awt.Rectangle;
+
 import noyau.Toboggan;
 
 public class VueToboggan extends Vue {
@@ -9,7 +12,17 @@ public class VueToboggan extends Vue {
 	public VueToboggan(VueAeroport uneVueAeroport, Toboggan unToboggan) {
 		vueAeroport = uneVueAeroport;
 		toboggan = unToboggan;
+		posPixel = new Point(toboggan.getCoordoonees().x * vueAeroport.getEchelle()
+				, toboggan.getCoordoonees().y * vueAeroport.getEchelle());
+		rectangle = new Rectangle(posPixel.x-25, posPixel.y-25, 50, 50);
 		//TODO Suite
+	}
+	
+	private void updatePos(){
+		posPixel.x = toboggan.getCoordoonees().x * vueAeroport.getEchelle();
+		posPixel.y = toboggan.getCoordoonees().y * vueAeroport.getEchelle();
+		rectangle.x = posPixel.x - 25;
+		rectangle.y = posPixel.y - 25;
 	}
 	
 	@Override
@@ -21,7 +34,7 @@ public class VueToboggan extends Vue {
 	@Override
 	void action() {
 		this.selectionner();
-		if(vueAeroport.guichetCourant != null){
+		if(vueAeroport.getGuichetCourant() != null){
 				vueAeroport.afficherBandeau();
 		}
 		// TODO Auto-generated method stub
@@ -29,8 +42,9 @@ public class VueToboggan extends Vue {
 	}
 
 	@Override
-	void clic(int x, int y) {
-		// TODO Auto-generated method stub
-		
+	boolean clic(int x, int y) {
+		Point p = new Point(x, y);
+		updatePos();
+		return dansRectangle(p);
 	}
 }

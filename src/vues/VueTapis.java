@@ -25,9 +25,8 @@ public class VueTapis extends Vue {
 	}
 
 	@Override
-	void clic(int x, int y) {
-		// TODO Auto-generated method stub
-		
+	boolean clic(int x, int y) {
+		return false;
 	}
 
 }
