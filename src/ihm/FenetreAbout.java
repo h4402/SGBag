@@ -23,7 +23,7 @@ public class FenetreAbout extends JPanel {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    } 
 
     private void jbInit() throws Exception {
         this.setLayout( layoutMain );
