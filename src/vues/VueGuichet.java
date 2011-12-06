@@ -34,13 +34,7 @@ public class VueGuichet extends Vue {
 	@Override
 	void action() {
 		this.selectionner();
-		if(guichet.placeDisponible()){
-			vueAeroport.setGuichetCourant(this.guichet);
-		}
-		else{
-			vueAeroport.zoneInfo("Guichet Saturé");			
-		}
-		// TODO Auto-generated method stub
+		vueAeroport.setGuichetCourant(this.guichet);
 	}
 
 	@Override

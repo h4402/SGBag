@@ -3,6 +3,7 @@ package vues;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+
 public abstract class Vue {
 	
 	protected VueAeroport vueAeroport; //En fait VueAeroport n'est pas une vue (changer de nom ?)
