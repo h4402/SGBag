@@ -1,4 +1,4 @@
-package ihm;
+package vues;
 
 import noyau.Toboggan;
 

@@ -1,4 +1,4 @@
-package ihm;
+package vues;
 
 public abstract class Vue {
 	
