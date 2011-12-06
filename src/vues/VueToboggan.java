@@ -6,10 +6,16 @@ public class VueToboggan extends Vue {
 
 	private Toboggan toboggan;
 		
-	public VueToboggan(Toboggan unToboggan, VueAeroport uneVueAeroport) {
-		toboggan = unToboggan;
+	public VueToboggan(VueAeroport uneVueAeroport, Toboggan unToboggan) {
 		vueAeroport = uneVueAeroport;
+		toboggan = unToboggan;
 		//TODO Suite
+	}
+	
+	@Override
+	void dessin() {
+		// TODO Auto-generated method stub
+
 	}
 	
 	@Override

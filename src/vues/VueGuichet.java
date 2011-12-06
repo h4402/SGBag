@@ -6,12 +6,18 @@ public class VueGuichet extends Vue {
 
 	private Guichet guichet;
 	
-	public VueGuichet(Guichet unGuichet, VueAeroport uneVueAeroport) {
-		guichet = unGuichet;
+	public VueGuichet(VueAeroport uneVueAeroport, Guichet unGuichet) {
 		vueAeroport = uneVueAeroport;
+		guichet = unGuichet;
 		//TODO Suite
 	}
 
+	@Override
+	void dessin() {
+		// TODO Auto-generated method stub
+
+	}
+	
 	@Override
 	void action() {
 		this.selectionner();
