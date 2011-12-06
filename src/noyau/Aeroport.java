@@ -27,6 +27,8 @@ public class Aeroport {
 	 */
 	public static Mode mode; 
 	
+	private int essaigit;
+	
 	/**
 	 * Il n'y a qu'un garage qui est commun à tous 
 	 * les objets.
