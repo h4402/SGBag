@@ -1,17 +1,17 @@
 package vues;
 
+import java.awt.Point;
+import java.awt.Rectangle;
+
 public abstract class Vue {
 	
 	protected VueAeroport vueAeroport; //En fait VueAeroport n'est pas une vue (changer de nom ?)
-	protected int hauteur;
-	protected int largeur;
-	protected int alpha;
+	protected Rectangle rectangle;
+	protected Point posPixel;
 	protected boolean selection;
 	
-	//A faire ici partiellement puis rappel dans les heritiers ou totalement abstract?
-	boolean clic(int x, int y){
-		//TODO: How to detect a clic
-		return true;
+	boolean dansRectangle(Point posClic){
+		return rectangle.contains(posClic);
 	}
 	
 	void selectionner(){
@@ -22,6 +22,7 @@ public abstract class Vue {
 		selection = false;
 	}
 	
+	abstract boolean clic(int x, int y);
 	abstract void dessin();
 	abstract void action(); //Effectue l'action consécutive au clic sur l'objet
 	

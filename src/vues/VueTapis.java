@@ -1,8 +1,14 @@
 package vues;
 
+import noyau.Tapis;
+
 public class VueTapis extends Vue {
 
-	public VueTapis() {
+	private Tapis tapis;
+	
+	public VueTapis(VueAeroport uneVueAeroport, Tapis unTapis) {
+		vueAeroport = uneVueAeroport;
+		tapis = unTapis;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -16,6 +22,11 @@ public class VueTapis extends Vue {
 	void action() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	boolean clic(int x, int y) {
+		return false;
 	}
 
 }
