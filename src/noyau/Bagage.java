@@ -14,6 +14,11 @@ public class Bagage {
 	private Toboggan toboggan;
 
 	/**
+	 * Taille d'un bagage en mètres
+	 */
+	public static final int TAILLE_BAGAGE = 1;
+	
+	/**
 	 * Constructeur pour GreenUML.
 	 * 
 	 * @param toboggan

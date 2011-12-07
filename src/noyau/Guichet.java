@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.util.LinkedList;
 
 import org.w3c.dom.Element;
+import java.lang.Object;
 
 /**
  * Objet représentant un guichet,
@@ -107,12 +108,19 @@ public class Guichet {
         int posY = Integer.parseInt(guichetElement.getAttribute("posY"));
         this.coordonnees = new Point(posX, posY);
         
-        // On récupère le noeud associé
-        int idNoeud = Integer.parseInt(guichetElement.getAttribute("idNoeud"));
-        this.tapis.noeud = aeroport.getNoeud(idNoeud);
-
         LinkedList<Bagage> liste = new LinkedList<Bagage>();
         this.listBagages = liste;
+        
+        // On récupère le noeud associé
+        int idNoeud = Integer.parseInt(guichetElement.getAttribute("idNoeud"));
+        Noeud noeudTapis = aeroport.getNoeud(idNoeud);
+        this.tapis.setNoeud(noeudTapis);
+
+        int longueurTapis = (int) Math.sqrt(Math.pow((noeudTapis.getCoordoonees().getX() - posX),2)
+        		+ Math.pow((noeudTapis.getCoordoonees().getY() - posY),2));
+        int nbBagages = Math.round(longueurTapis/Bagage.TAILLE_BAGAGE);
+        Tapis tapis = new Tapis(aeroport.getNoeud(idNoeud), new Bagage[nbBagages] , 0, 0, longueurTapis);
+        aeroport.ajouterTapis(tapis);
         
         return Aeroport.PARSE_OK;
     }

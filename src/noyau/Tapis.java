@@ -13,7 +13,7 @@ public class Tapis extends ES {
 	/**
 	 * Taille d'un tapis définie par le systeme.
 	 */
-	public static final int TAILLE_TAPIS = 10;
+	private final int tailleTapis;
 	
 	/**
 	 * File de bagage.
@@ -21,7 +21,7 @@ public class Tapis extends ES {
 	 * 
 	 * @uml.property  name="listBagages"
 	 */
-	private Bagage[] listBagages = new Bagage[TAILLE_TAPIS];
+	private Bagage[] listBagages;
 	
 	/**
 	 * Vitesse en nombre de top quand faire avancer un bagage.
@@ -43,14 +43,14 @@ public class Tapis extends ES {
 	 * @param listBagages File de bagage.
 	 * @param vitesse Vitesse du tapis.
 	 * @param topCourant Nombre de topCourant actuel.
-	 * @param coordonnees Coordonnées de l'ES.
 	 */
 	public Tapis(Noeud noeud, Bagage listBagages[], int vitesse, 
-			int topCourant) {
+			int topCourant, int tailleTapis) {
 		super(noeud);
 		this.listBagages = listBagages;
 		this.vitesse = vitesse;
 		this.topCourant = topCourant;
+		this.tailleTapis = tailleTapis;
 	}
 
 	/**
@@ -60,14 +60,14 @@ public class Tapis extends ES {
 	public void avancerBagages() {
 		topCourant = ++topCourant % vitesse;
 		if(topCourant == 0) {
-			Bagage b = listBagages[TAILLE_TAPIS-1];
+			Bagage b = listBagages[tailleTapis-1];
 			if(b != null) {
 				Chariot c = ((NoeudTapis)(this.getNoeud())).getChariotVide();
 				if(c != null) {
 					c.mettreBagage(this.getNoeud(), b);
 				}
 			}
-			for(int i = TAILLE_TAPIS; i > 0; i--) {
+			for(int i = tailleTapis; i > 0; i--) {
 				listBagages[i] = listBagages[i-1];
 			}
 		}
