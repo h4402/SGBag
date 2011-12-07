@@ -13,8 +13,9 @@ public abstract class Vue {
 	protected Point posPixel;
 	protected boolean selection;
 	
-	public Vue(VueGeneral vueGeneral){
+	public Vue(VueGeneral vueGeneral, Image image){
 		this.vueGeneral = vueGeneral;
+		this.image = image;
 	}
 	boolean dansRectangle(Point posClic){
 		return rectangle.contains(posClic);

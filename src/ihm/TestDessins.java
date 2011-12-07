@@ -70,8 +70,11 @@ public class TestDessins extends JPanel {
          * Voir g2D.hit()
          */
         
-        
+	}
+	
+	private void dessinerRond(int x, int y) {
 		
 	}
+	
 	
 }

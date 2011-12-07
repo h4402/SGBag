@@ -11,6 +11,12 @@ import javax.swing.JPanel;
 import noyau.Guichet;
 import noyau.Toboggan;
 
+/**
+ * 
+ * @author jeremy
+ *
+ */
+
 public class BandeauAjoutBagages extends JPanel {
 
 	/**
@@ -30,16 +36,16 @@ public class BandeauAjoutBagages extends JPanel {
 	 */
 	private ActionListener ajouterListener = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			// TODO
+			// TODO : appeler Ajout bagage de vueGeneral
 		}
 	};
 	
-	public BandeauAjoutBagages(Guichet guichet, Toboggan toboggan) {
-		// TODO : get num guichet et toboggan
-		int numGuichet = 0;
-		int numToboggan = 0;
 
-		labelBagage.setText("Du guichet " + numGuichet + " au toboggan " + numToboggan);
+	/**
+	 * Construit le bandeau sans valeur à mettre dedans
+	 */
+	public BandeauAjoutBagages() {
+		labelBagage.setText("");
 		boutonAjouter.setText("Ajouter");
 		boutonAjouter.addActionListener(ajouterListener);
 		
@@ -48,5 +54,13 @@ public class BandeauAjoutBagages extends JPanel {
 		
 	}
 
+	/**
+	 * Ecrit dans le label d'ajout de bagages
+	 * @param numGuichet : id du guichet (départ)
+	 * @param numToboggan : id du toboggan (fin)
+	 */
+	public void setNumeros(int numGuichet, int numToboggan) {
+		labelBagage.setText("Du guichet " + numGuichet + " au toboggan " + numToboggan + " : ");
+	}
 	
 }

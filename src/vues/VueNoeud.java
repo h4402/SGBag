@@ -1,9 +1,14 @@
 package vues;
+import java.awt.Image;
 
+import noyau.*;
 public class VueNoeud extends Vue{
 
-	public VueNoeud(VueGeneral vueGeneral) {
-		super(vueGeneral);
+	private Noeud noeud;
+	
+	public VueNoeud(VueGeneral vueGeneral, Image image,Noeud noeud) {
+		super(vueGeneral, image);
+		this.noeud = noeud;
 		// TODO Auto-generated constructor stub
 	}
 
