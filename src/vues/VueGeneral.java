@@ -1,20 +1,27 @@
 package vues;
 
+import java.util.List;
+
 import javax.swing.JPanel;
 
-import org.w3c.dom.Document;
+import noyau.*;
 
-import noyau.Aeroport;
-import noyau.Guichet;
-import noyau.Toboggan;
-
-public class VueAeroport extends JPanel {
+public class VueGeneral extends JPanel {
 	
 		private Guichet guichetCourant;
 		private Toboggan tobogganCourant;
 		private Aeroport aeroport;
+		private Noeud noeud;
+		private Rail rail;
 		private int echelle;
 
+		public VueGeneral(){
+			List<Vue> listVues;
+			List<Guichet> listGuichet = aeroport.getListGuichets();
+			for(Guichet g: listGuichet){
+				listVues.add(new VueGuichet(this, g));
+			}
+		}
 		public int getEchelle() {
 			return echelle;
 		}
@@ -32,7 +39,8 @@ public class VueAeroport extends JPanel {
 		}
 				
 		public void ajouterBagage(){
-			aeroport.ajouterBagage(guichetCourant, tobogganCourant);
+			//aeroport.ajouterBagage(guichetCourant, tobogganCourant);
 		}
-		
+
+
 }

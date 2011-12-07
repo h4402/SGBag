@@ -6,11 +6,14 @@ import java.awt.Rectangle;
 
 public abstract class Vue {
 	
-	protected VueAeroport vueAeroport; //En fait VueAeroport n'est pas une vue (changer de nom ?)
+	protected VueGeneral vueGeneral; //name changed
 	protected Rectangle rectangle;
 	protected Point posPixel;
 	protected boolean selection;
 	
+	public Vue(VueGeneral vueGeneral){
+		this.vueGeneral = vueGeneral;
+	}
 	boolean dansRectangle(Point posClic){
 		return rectangle.contains(posClic);
 	}

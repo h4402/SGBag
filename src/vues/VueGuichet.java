@@ -7,20 +7,19 @@ import noyau.Guichet;
 
 public class VueGuichet extends Vue {
 
-	private Guichet guichet;
-	
-	public VueGuichet(VueAeroport uneVueAeroport, Guichet unGuichet) {
-		vueAeroport = uneVueAeroport;
-		guichet = unGuichet;
-		posPixel = new Point(guichet.getCoordoonees().x * vueAeroport.getEchelle()
-				, guichet.getCoordoonees().y * vueAeroport.getEchelle());
+	private Guichet Guichet;
+	public VueGuichet(VueGeneral vueGeneral, Guichet Guichet) {
+		super(vueGeneral);
+		this.Guichet = Guichet;
+		posPixel = new Point(this.Guichet.getCoordoonees().x * this.vueGeneral.getEchelle()
+				, Guichet.getCoordoonees().y * this.vueGeneral.getEchelle());
 		rectangle = new Rectangle(posPixel.x-25, posPixel.y-25, 50, 50);
 		//TODO Suite
 	}
 
 	private void updatePos(){
-		posPixel.x = guichet.getCoordoonees().x * vueAeroport.getEchelle();
-		posPixel.y = guichet.getCoordoonees().y * vueAeroport.getEchelle();
+		posPixel.x = this.Guichet.getCoordoonees().x * vueGeneral.getEchelle();
+		posPixel.y = this.Guichet.getCoordoonees().y * vueGeneral.getEchelle();
 		rectangle.x = posPixel.x - 25;
 		rectangle.y = posPixel.y - 25;
 	}
@@ -34,7 +33,7 @@ public class VueGuichet extends Vue {
 	@Override
 	void action() {
 		this.selectionner();
-		vueAeroport.setGuichetCourant(this.guichet);
+		vueGeneral.setGuichetCourant(this.Guichet);
 	}
 
 	@Override
