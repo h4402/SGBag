@@ -6,8 +6,8 @@ public class VueTapis extends Vue {
 
 	private Tapis tapis;
 	
-	public VueTapis(VueAeroport uneVueAeroport, Tapis unTapis) {
-		vueAeroport = uneVueAeroport;
+	public VueTapis(VueGeneral vueGeneral, Tapis unTapis) {
+		super(vueGeneral);
 		tapis = unTapis;
 		// TODO Auto-generated constructor stub
 	}

@@ -2,19 +2,20 @@ package vues;
 
 import javax.swing.JPanel;
 
-import org.w3c.dom.Document;
-
 import noyau.Aeroport;
 import noyau.Guichet;
 import noyau.Toboggan;
 
-public class VueAeroport extends JPanel {
+public class VueGeneral extends JPanel {
 	
 		private Guichet guichetCourant;
 		private Toboggan tobogganCourant;
 		private Aeroport aeroport;
 		private int echelle;
 
+		public VueGeneral(){
+			
+		}
 		public int getEchelle() {
 			return echelle;
 		}
@@ -32,7 +33,8 @@ public class VueAeroport extends JPanel {
 		}
 				
 		public void ajouterBagage(){
-			aeroport.ajouterBagage(guichetCourant, tobogganCourant);
+			//aeroport.ajouterBagage(guichetCourant, tobogganCourant);
 		}
-		
+
+
 }
