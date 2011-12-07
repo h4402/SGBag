@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -25,10 +26,34 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.IOException;
+
 import javax.swing.JLabel;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.xml.sax.SAXException;
+
+import bibliotheques.ExampleFileFilter;
 
 
 public class FenetrePrincipale extends JFrame {
+	/**
+	 * Fichiers
+	 */
+	private JFileChooser jFileChooserXML;
+	
 	/**
 	 * Menu
 	 */
@@ -73,11 +98,20 @@ public class FenetrePrincipale extends JFrame {
 
 	
 	/**
+	 * Enumérations
+	 */
+	private enum etatsLecture {
+        LECTURE, STOP
+    }
+	
+	
+	/**
 	 * Clic sur Ouvrir : charge le fichier de configuration
 	 */
 	private ActionListener ouvrirListener = new ActionListener() {
 		public void actionPerformed(ActionEvent actionEvent) {
 			// TODO : charger fichier XML de configuration
+			chargerConfiguration();
 		}
 	};
 	
@@ -86,7 +120,7 @@ public class FenetrePrincipale extends JFrame {
 	 */
 	private ActionListener aboutListener = new ActionListener() {
 		public void actionPerformed(ActionEvent actionEvent) {
-			helpAbout_ActionPerformed(actionEvent);
+			aboutActionPerformed(actionEvent);
 		}
 	};
 	
@@ -183,6 +217,8 @@ public class FenetrePrincipale extends JFrame {
 		container.add(panelBas, BorderLayout.SOUTH);
 		container.add(bandeauParametres, BorderLayout.NORTH);
 		
+		labelInfo.setText("Bienvenue dans le système de gestion de bagages SGBag");
+		
 		this.setContentPane(container);
 		
 		
@@ -192,10 +228,55 @@ public class FenetrePrincipale extends JFrame {
 	 * Clic sur A Propos
 	 * @param e : actionEvent
 	 */
-	void helpAbout_ActionPerformed(ActionEvent e) {
+	void aboutActionPerformed(ActionEvent ae) {
         JOptionPane.showMessageDialog(this, new FenetreAbout(), "A Propos", JOptionPane.PLAIN_MESSAGE);
     }
 	
+	
+	void chargerConfiguration() {
+		jFileChooserXML = new JFileChooser();
+        ExampleFileFilter filter = new ExampleFileFilter();
+        filter.addExtension("xml");
+        filter.setDescription("Fichier XML");
+        jFileChooserXML.setFileFilter(filter);
+        jFileChooserXML.setFileSelectionMode(JFileChooser.FILES_ONLY);
+
+        int returnVal = jFileChooserXML.showOpenDialog(null);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            System.out.println("nom de fichier " +
+                    jFileChooserXML.getSelectedFile().getAbsolutePath());
+            try {
+                DocumentBuilderFactory fabrique = DocumentBuilderFactory.newInstance();
+                DocumentBuilder constructeur = fabrique.newDocumentBuilder();
+                File xml = new File(jFileChooserXML.getSelectedFile().getAbsolutePath());
+                Document document = constructeur.parse(xml);
+
+                Element racine = document.getDocumentElement();
+
+                if (racine.getNodeName().equals("cadre")) {
+                	/* TODO : construire depuis le document XML
+                	int resultatConstruction = laVueCadrePanel.ConstruireToutAPartirDeDOMXML(racine);
+                    if (resultatConstruction != Cadre.PARSE_OK) {
+                    //erreur de parsiong!
+                    } else {
+                        leCadre = laVueCadrePanel.GetVueCadre().GetCadre();
+                    }
+                    */
+                }
+            // TODO : traiter les erreurs
+                
+            } catch (ParserConfigurationException pce) {
+                System.out.println("Erreur de configuration du parseur DOM");
+                System.out.println("lors de l'appel a fabrique.newDocumentBuilder();");
+            } catch (SAXException se) {
+                System.out.println("Erreur lors du parsing du document");
+                System.out.println("lors de l'appel a construteur.parse(xml)");
+            } catch (IOException ioe) {
+                System.out.println("Erreur d'entree/sortie");
+                System.out.println("lors de l'appel a construteur.parse(xml)");
+            }
+        }  
+	}
 	
 	/**
 	 * Launch the application.
