@@ -1,9 +1,12 @@
 package vues;
-
+import noyau.*;
 public class VueNoeud extends Vue{
 
-	public VueNoeud(VueGeneral vueGeneral) {
+	private Noeud noeud;
+	
+	public VueNoeud(VueGeneral vueGeneral,Noeud noeud) {
 		super(vueGeneral);
+		this.noeud = noeud;
 		// TODO Auto-generated constructor stub
 	}
 

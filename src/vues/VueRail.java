@@ -1,9 +1,10 @@
 package vues;
-
+import noyau.*;
 public class VueRail extends Vue {
-
-	public VueRail(VueGeneral vueGeneral) {
+	private Rail rail;
+	public VueRail(VueGeneral vueGeneral, Rail rail) {
 		super(vueGeneral);
+		this.rail = rail;
 		// TODO Auto-generated constructor stub
 	}
 
