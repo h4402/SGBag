@@ -49,7 +49,11 @@ import org.xml.sax.SAXException;
 
 import bibliotheques.SGBagFileFilter;
 
-
+/**
+ * 
+ * @author jeremy
+ *
+ */
 public class FenetrePrincipale extends JFrame {
 	/**
 	 * Vue générale
@@ -219,9 +223,9 @@ public class FenetrePrincipale extends JFrame {
 		
 		// Panel Parametres
 		// TODO
-		//bandeauParametres = new BandeauAjoutBagages(null, null);
-		bandeauParametres = new BandeauVitesseChariot(null);
-		
+		//bandeauParametres = new BandeauAjoutBagages();
+		bandeauParametres = new BandeauVitesseChariot();
+
 		// Panel général
 		// Test
 		testDessins.addMouseListener(new MouseAdapter() {
