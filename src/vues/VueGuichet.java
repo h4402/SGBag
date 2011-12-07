@@ -14,7 +14,7 @@ public class VueGuichet extends Vue {
 		this.guichet = guichet;
 		posPixel = new Point(this.guichet.getCoordoonees().x * this.vueGeneral.getEchelle()
 				, this.guichet.getCoordoonees().y * this.vueGeneral.getEchelle());
-		rectangle = new Rectangle(posPixel.x-25, posPixel.y-25, 50, 50);
+		rectangle = new Rectangle(posPixel.x - 25, posPixel.y-25, 50, 50);
 		//TODO Suite
 	}
 
