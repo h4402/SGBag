@@ -9,7 +9,11 @@ import java.util.List;
  * @author H4402
  */
 public class Toboggan extends ES {
-
+	/**
+	 * Identifiant d'un rail
+	 */
+	protected int id;
+	
 	/**
 	 * Liste des bagages bien acheminés.
 	 * 

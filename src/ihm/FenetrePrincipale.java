@@ -41,6 +41,8 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import noyau.Aeroport;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
@@ -232,7 +234,38 @@ public class FenetrePrincipale extends JFrame {
         JOptionPane.showMessageDialog(this, new FenetreAbout(), "A Propos", JOptionPane.PLAIN_MESSAGE);
     }
 	
+	/**
+	 * 
+	 * @param vueCadreDOMElement
+	 * @return
+	 */
+	public int construireToutAPartirDeXML(Element vueAeroportElement)
+	{
+		// On crée l'élément Aéroport et la vue qui lui est associée
+        Aeroport unAeroport = new Aeroport(null, null, null, null, null);
+        VueAeroport vueAeroport = null;
+        if (unAeroport.construireAPartirDeXML(vueAeroportElement) != Aeroport.PARSE_OK) {
+            return Cadre.PARSE_ERROR;
+        }
+        VueCadre nouvelleVueCadre = new VueCadre(leCadre, this.getWidth(), this.getHeight());
+        laVueCadre = nouvelleVueCadre;
+
+        //construire les VueBoules
+        Vector lesBoules = leCadre.getBoules();
+        for (int i = 0; i < lesBoules.size(); i++)
+		{
+            Boule laBoule = (Boule) lesBoules.elementAt(i);
+            VueBoule vueBoule = new VueBoule(laBoule, laVueCadre);
+            laVueCadre.AjouterVueBoule(vueBoule);
+        }
+     
+
+        return Cadre.PARSE_OK;
+    }
 	
+	/**
+	 * Chargement de la configuration
+	 */
 	void chargerConfiguration() {
 		jFileChooserXML = new JFileChooser();
         ExampleFileFilter filter = new ExampleFileFilter();
@@ -253,13 +286,13 @@ public class FenetrePrincipale extends JFrame {
 
                 Element racine = document.getDocumentElement();
 
-                if (racine.getNodeName().equals("cadre")) {
+                if (racine.getNodeName().equals("Aeroport")) {
                 	/* TODO : construire depuis le document XML
-                	int resultatConstruction = laVueCadrePanel.ConstruireToutAPartirDeDOMXML(racine);
-                    if (resultatConstruction != Cadre.PARSE_OK) {
-                    //erreur de parsiong!
+                	int resultatConstruction = container.construireToutAPartirDeXML(racine);
+                    if (resultatConstruction != Aeroport.PARSE_OK) {
+                    //erreur de parsing!
                     } else {
-                        leCadre = laVueCadrePanel.GetVueCadre().GetCadre();
+                        leCadre = container.GetVueCadre().GetCadre();
                     }
                     */
                 }

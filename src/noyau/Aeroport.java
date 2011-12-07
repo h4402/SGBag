@@ -1,7 +1,13 @@
 package noyau;
 
+import java.awt.Point;
 import java.util.List;
 import java.util.Random;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 /**
  * La classe principale du noyau, celle qui connait
@@ -19,6 +25,12 @@ public class Aeroport {
 		AUTO,
 		MANUEL
 	};
+	
+	/**
+	 * Indicateur de réussite du parsing
+	 */
+	final static int PARSE_OK = 1;
+	final static int PARSE_ERROR = 0;
 	
 	/**
 	 * Le mode indique si l'on est en mode
@@ -65,6 +77,16 @@ public class Aeroport {
 	 * Liste des tapis pour les faire avancer.
 	 */
 	private List<Tapis> listTapis;
+	
+	/**
+	 * Longueur de l'aéroport en mètres
+	 */
+	private int longueur;
+	
+	/**
+	 * Largeur de l'aéroport en mètres
+	 */
+	private int largeur;
 	
 	/**
 	 * Générateur de nombre aléatoire.
@@ -138,6 +160,14 @@ public class Aeroport {
 	}
 	
 	/**
+	 * 	Retourne la liste des rails de l'application
+	 * @return Liste de rails
+	 */
+	public List<Rail> getListeRails() {
+		return listRails;
+	}
+
+	/**
 	 * Retourne un noeud à partir de son id
 	 * 
 	 * @param id Identifiant du noeud
@@ -146,6 +176,52 @@ public class Aeroport {
 	public Noeud getNoeud(int id)
 	{
 		return this.listNoeuds.get(id);
+	}
+	
+	public int construireAPartirDeXML(Element aeroportElement)
+	{
+		// On récupère les attributs de l'aéroports
+        this.longueur = Integer.parseInt(aeroportElement.getAttribute("longueur"));
+        this.largeur = Integer.parseInt(aeroportElement.getAttribute("largeur"));
+
+        //création des Rails/Chariots/...
+        NodeList listeNoeuds = aeroportElement.getElementsByTagName("Noeud"); // on récupère la liste des éléments "boule"
+        //lesBoules.removeAllElements(); // on supprime la config existante et on la remplace par la nouvelle
+        NodeList listeRails = aeroportElement.getElementsByTagName("Rail");
+        NodeList listeGuichets = aeroportElement.getElementsByTagName("Guichet");
+        NodeList listeToboggans = aeroportElement.getElementsByTagName("Toboggan");
+        NodeList listeChariots = aeroportElement.getElementsByTagName("Chariots");
+        
+		// On parcourt la liste des noeuds récupérés pour créer les objets correspondants
+		for (int i = 0; i < listeNoeuds.getLength(); i++)
+		{
+            Element noeudElement = (Element) listeNoeuds.item(i);
+            Noeud noeud = new Noeud(null, null);
+			
+			// On vérifie que la création du noeud à partir du XML n'a pas échoué
+            if (noeud.construireAPartirDeXML(noeudElement, this)!= Aeroport.PARSE_OK){
+                return Aeroport.PARSE_ERROR;
+            }
+            
+            //ajout des éléments créés dans la structure objet
+            //AjouterNoeud(noeud);
+        }
+		
+		// On parcourt la liste des rails récupérés pour créer les objets correspondants
+		for (int i = 0; i < listeRails.getLength(); i++)
+		{
+            Element railElement = (Element) listeRails.item(i);
+            Rail rail = new Rail(null, null, null);
+			
+			// On vérifie que la création du noeud à partir du XML n'a pas échoué
+            if (rail.construireAPartirDeXML(railElement, this)!= Aeroport.PARSE_OK){
+                return Aeroport.PARSE_ERROR;
+            }
+            
+            //ajout des éléments créés dans la structure objet
+            //AjouterNoeud(noeud);
+        }
+        return PARSE_OK;
 	}
 
 }

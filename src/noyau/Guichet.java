@@ -11,7 +11,11 @@ import java.util.LinkedList;
  * @author H4402
  */
 public class Guichet {
-
+	/**
+	 * Identifiant d'un guichet
+	 */
+	protected int id;
+	
 	/**
 	 * Tapis sur lequel le guichet dépose les bagages.
 	 * 
