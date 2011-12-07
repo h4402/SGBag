@@ -11,6 +11,46 @@ import java.util.Random;
  */
 public class Aeroport {
 	
+	public List<Noeud> getListNoeuds() {
+		return listNoeuds;
+	}
+
+	public void setListNoeuds(List<Noeud> listNoeuds) {
+		this.listNoeuds = listNoeuds;
+	}
+
+	public List<Rail> getListRails() {
+		return listRails;
+	}
+
+	public void setListRails(List<Rail> listRails) {
+		this.listRails = listRails;
+	}
+
+	public List<Guichet> getListGuichets() {
+		return listGuichets;
+	}
+
+	public void setListGuichets(List<Guichet> listGuichets) {
+		this.listGuichets = listGuichets;
+	}
+
+	public List<Toboggan> getListToboggans() {
+		return listToboggans;
+	}
+
+	public void setListToboggans(List<Toboggan> listToboggans) {
+		this.listToboggans = listToboggans;
+	}
+
+	public List<Tapis> getListTapis() {
+		return listTapis;
+	}
+
+	public void setListTapis(List<Tapis> listTapis) {
+		this.listTapis = listTapis;
+	}
+
 	/**
 	 * Le mode sera choisi
 	 * dans un autre espace.

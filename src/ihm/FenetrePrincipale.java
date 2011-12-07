@@ -19,7 +19,7 @@ import javax.swing.JScrollPane;
 import javax.swing.KeyStroke;
 import javax.swing.Timer;
 
-import vues.VueAeroport;
+import vues.VueGeneral;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
