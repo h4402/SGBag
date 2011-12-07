@@ -52,6 +52,11 @@ import bibliotheques.SGBagFileFilter;
 
 public class FenetrePrincipale extends JFrame {
 	/**
+	 * Vue générale
+	 */
+	private VueGeneral vueGeneral = new VueGeneral();
+	
+	/**
 	 * Fichiers
 	 */
 	private JFileChooser jFileChooserXML;
@@ -214,7 +219,21 @@ public class FenetrePrincipale extends JFrame {
 		
 		// Panel Parametres
 		// TODO
-		bandeauParametres = new BandeauAjoutBagages(null, null);
+		//bandeauParametres = new BandeauAjoutBagages(null, null);
+		bandeauParametres = new BandeauVitesseChariot(null);
+		
+		// Panel général
+		// Test
+		testDessins.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+                testDessinsMouseclicked(e);
+            }
+		
+		});
+		/* TODO : remplacer par VueGeneral
+		 
+		 
+		*/
 		
 		// Ajout des panels
 		container.setBackground(Color.white);
@@ -234,9 +253,22 @@ public class FenetrePrincipale extends JFrame {
 	 * Clic sur A Propos
 	 * @param e : actionEvent
 	 */
-	void aboutActionPerformed(ActionEvent ae) {
+	private void aboutActionPerformed(ActionEvent ae) {
         JOptionPane.showMessageDialog(this, new FenetreAbout(), "A Propos", JOptionPane.PLAIN_MESSAGE);
     }
+	
+	
+	/**
+	 * Clic sur le panel VueGenerale
+	 */
+	private void testDessinsMouseclicked(MouseEvent me) {
+        if (me.getX() < testDessins.getWidth()/2) {
+        	
+        } else {
+        	
+        }
+	}
+	
 	
 	/**
 	 * 
@@ -247,8 +279,8 @@ public class FenetrePrincipale extends JFrame {
 	{
 		// On crée l'élément Aéroport et la vue qui lui est associée
         Aeroport unAeroport = new Aeroport(null, null, null, null, null);
-        VueAeroport vueAeroport = null;
-        if (unAeroport.construireAPartirDeXML(vueAeroportElement) != Aeroport.PARSE_OK) {
+        VueGeneral vueGenerale = null;
+        /*if (unAeroport.construireAPartirDeXML(vueAeroportElement) != Aeroport.PARSE_OK) {
             return Cadre.PARSE_ERROR;
         }
         VueCadre nouvelleVueCadre = new VueCadre(leCadre, this.getWidth(), this.getHeight());
@@ -262,9 +294,9 @@ public class FenetrePrincipale extends JFrame {
             VueBoule vueBoule = new VueBoule(laBoule, laVueCadre);
             laVueCadre.AjouterVueBoule(vueBoule);
         }
-     
+     */
 
-        return Cadre.PARSE_OK;
+        return Aeroport.PARSE_OK;
     }
 	
 	/**
@@ -290,15 +322,14 @@ public class FenetrePrincipale extends JFrame {
 
                 Element racine = document.getDocumentElement();
 
-                if (racine.getNodeName().equals("Aeroport")) {
-                	/* TODO : construire depuis le document XML
-                	int resultatConstruction = container.construireToutAPartirDeXML(racine);
-                    if (resultatConstruction != Aeroport.PARSE_OK) {
-                    //erreur de parsing!
-                    } else {
-                        leCadre = container.GetVueCadre().GetCadre();
-                    }
-                    */
+                if (racine.getNodeName().equals("Aeroport"))
+                {
+                	/*if (this.construireToutAPartirDeXML(racine) != Aeroport.PARSE_OK) {
+                //erreur de parsing!
+                } else {
+                    leCadre = container.GetVueCadre().GetCadre();
+                }
+                   */ 
                 }
             // TODO : traiter les erreurs
                 

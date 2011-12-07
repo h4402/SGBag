@@ -1,12 +1,12 @@
 package vues;
-import noyau.*;
-public class VueNoeud extends Vue{
 
-	private Noeud noeud;
+import noyau.Chariot;
+public class VueChariot extends Vue {
+	private Chariot chariot;
 	
-	public VueNoeud(VueGeneral vueGeneral,Noeud noeud) {
+	public VueChariot(VueGeneral vueGeneral,Chariot chariot) {
 		super(vueGeneral);
-		this.noeud = noeud;
+		this.chariot = chariot;
 		// TODO Auto-generated constructor stub
 	}
 

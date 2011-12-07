@@ -1,6 +1,5 @@
 package noyau;
 
-import java.awt.Point;
 import java.util.List;
 import java.util.Random;
 
@@ -17,6 +16,54 @@ import org.xml.sax.SAXException;
  */
 public class Aeroport {
 	
+	public List<Noeud> getListNoeuds() {
+		return listNoeuds;
+	}
+
+	public void setListNoeuds(List<Noeud> listNoeuds) {
+		this.listNoeuds = listNoeuds;
+	}
+
+	public List<Rail> getListRails() {
+		return listRails;
+	}
+
+	public void setListRails(List<Rail> listRails) {
+		this.listRails = listRails;
+	}
+
+	public List<Guichet> getListGuichets() {
+		return listGuichets;
+	}
+
+	public List<Chariot> getListChariots() {
+		return listChariots;
+	}
+
+	public void setListChariots(List<Chariot> listChariots) {
+		this.listChariots = listChariots;
+	}
+
+	public void setListGuichets(List<Guichet> listGuichets) {
+		this.listGuichets = listGuichets;
+	}
+
+	public List<Toboggan> getListToboggans() {
+		return listToboggans;
+	}
+
+	public void setListToboggans(List<Toboggan> listToboggans) {
+		this.listToboggans = listToboggans;
+	}
+
+	public List<Tapis> getListTapis() {
+		return listTapis;
+	}
+
+	public void setListTapis(List<Tapis> listTapis) {
+		this.listTapis = listTapis;
+	}
+
 	/**
 	 * Le mode sera choisi
 	 * dans un autre espace.
@@ -29,8 +76,8 @@ public class Aeroport {
 	/**
 	 * Indicateur de réussite du parsing
 	 */
-	final static int PARSE_OK = 1;
-	final static int PARSE_ERROR = 0;
+	public final static int PARSE_OK = 1;
+	public final static int PARSE_ERROR = 0;
 	
 	/**
 	 * Le mode indique si l'on est en mode
@@ -77,6 +124,11 @@ public class Aeroport {
 	 * Liste des tapis pour les faire avancer.
 	 */
 	private List<Tapis> listTapis;
+	
+	/**
+	 * Liste des chariots pour les faire avancer.
+	 */
+	private List<Chariot> listChariots;
 	
 	/**
 	 * Longueur de l'aéroport en mètres
@@ -221,6 +273,54 @@ public class Aeroport {
             //ajout des éléments créés dans la structure objet
             //AjouterNoeud(noeud);
         }
+		
+		// On parcourt la liste des guichets récupérés pour créer les objets correspondants
+		for (int i = 0; i < listeGuichets.getLength(); i++)
+		{
+            Element guichetElement = (Element) listeGuichets.item(i);
+            Guichet guichet = new Guichet(null, null, null);
+			
+			// On vérifie que la création du noeud à partir du XML n'a pas échoué
+            if (guichet.construireAPartirDeXML(guichetElement, this)!= Aeroport.PARSE_OK){
+                return Aeroport.PARSE_ERROR;
+            }
+            
+            //ajout des éléments créés dans la structure objet
+            //AjouterNoeud(noeud);
+        }
+		
+		// On parcourt la liste des toboggans récupérés pour créer les objets correspondants
+		for (int i = 0; i < listeToboggans.getLength(); i++)
+		{
+            Element tobogganElement = (Element) listeToboggans.item(i);
+            Toboggan toboggan = new Toboggan(null, null);
+			
+			// On vérifie que la création du noeud à partir du XML n'a pas échoué
+            if (toboggan.construireAPartirDeXML(tobogganElement, this)!= Aeroport.PARSE_OK){
+                return Aeroport.PARSE_ERROR;
+            }
+            
+            //ajout des éléments créés dans la structure objet
+            //AjouterNoeud(noeud);
+        }
+
+		// On parcourt la liste des toboggans récupérés pour créer les objets correspondants
+		for (int i = 0; i < listeChariots.getLength(); i++)
+		{
+            Element chariotElement = (Element) listeChariots.item(i);
+            Chariot chariot= new Chariot(i, null, null, 0, null);
+			
+			// On vérifie que la création du noeud à partir du XML n'a pas échoué
+            if (chariot.construireAPartirDeXML(chariotElement, this)!= Aeroport.PARSE_OK){
+                return Aeroport.PARSE_ERROR;
+            }
+            //TODO: Ajouter les chariots à l'aéroport et au garage via NoeudGarage
+            //ajout des éléments créés dans la structure objet
+            //AjouterNoeud(noeud);
+        }
+		
+		
+		
         return PARSE_OK;
 	}
 

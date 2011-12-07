@@ -12,7 +12,6 @@ public class VueRail extends Vue {
 	public VueRail(VueGeneral vueGeneral, Image image, Rail rail) {
 		super(vueGeneral, image);
 		this.rail = rail;
-		
 		// TODO Auto-generated constructor stub
 	}
 
