@@ -1,5 +1,6 @@
 package vues;
 
+import java.awt.Image;
 import java.util.List;
 
 import javax.swing.JPanel;
@@ -13,41 +14,42 @@ public class VueGeneral extends JPanel {
 		private Aeroport aeroport;
 		private Noeud noeud;
 		private Rail rail;
-		private int echelle;
+		private double echelle;
+		private Image image;
 
 		@SuppressWarnings("null")
-		public VueGeneral(){
+		public VueGeneral(Image imageChariot, Image imageNode,Image imageGuichet,Image imageToboggan, Image imageTapis,Image imageRail){
 			List<Vue> listVues = null;
 			
 			List<Chariot> listChariot = aeroport.getListChariots();
 			for(Chariot c: listChariot){
-				listVues.add(new VueChariot(this,c));
+				listVues.add(new VueChariot(this,imageChariot,c));
 			}
 			
 			
 			List<Guichet> listGuichet = aeroport.getListGuichets();
 			for(Guichet g: listGuichet){
-				listVues.add(new VueGuichet(this, g));
+				listVues.add(new VueGuichet(this,image,g));
 			}
 			
 			List<Toboggan> listToboggan = aeroport.getListToboggans();
 			for(Toboggan t: listToboggan){
-				listVues.add(new VueToboggan(this,t));
+				listVues.add(new VueToboggan(this,imageToboggan,t));
 			}
 			
 			List<Tapis> listTapis = aeroport.getListTapis();
 			for(Tapis p : listTapis){
-				listVues.add(new VueTapis(this,p));
+				listVues.add(new VueTapis(this,imageTapis,p));
 			}
 			
 			List<Noeud> listNoeuds = aeroport.getListNoeuds();
 			for(Noeud n: listNoeuds){
-				listVues.add(new VueNoeud(this,n));
+				listVues.add(new VueNoeud(this,imageNode,n));
 			}
 			
 			List<Rail> listRail = aeroport.getListRails();
 			for(Rail r : listRail){
-				listVues.add(new VueRail(this,r));
+				listVues.add(new VueRail(this,imageRail,r));
 			}
 			
 		}
