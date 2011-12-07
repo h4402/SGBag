@@ -1,7 +1,5 @@
 package noyau;
 
-import java.awt.Point;
-
 /**
  * Un tapis est une file de bagage
  * qui arrive d'un guichet

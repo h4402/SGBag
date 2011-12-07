@@ -4,6 +4,8 @@ import java.awt.Point;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.w3c.dom.Element;
+
 /**
  * Composante de l'application qui se déplace
  * d'un noeud à l'autre sur des rails et qui 
@@ -12,6 +14,10 @@ import java.util.List;
  * @author H4402
  */
 public class Chariot {
+	/**
+	 * Identifiant d'un noeud
+	 */
+	protected int id;
 	
 	/**
 	 * Coordonnées actuelles du chariot sur le rail.
@@ -52,9 +58,10 @@ public class Chariot {
 	 * @param vitesse Vitesse initiale du chariot.
 	 * @param chemin Liste des noeud avant la destination.
 	 */
-	public Chariot(Point coordonnees, Bagage bagage, int vitesse,
+	public Chariot(int id, Point coordonnees, Bagage bagage, int vitesse,
 			LinkedList<Noeud> chemin) {
 		super();
+		this.id = id;
 		this.coordonnees = coordonnees;
 		this.bagage = bagage;
 		this.vitesse = vitesse;
@@ -201,5 +208,25 @@ public class Chariot {
 		bagage = b;
 		calculerChemin(depart, b.getTogobban().getNoeud());
 	}
-
+	
+	/**
+	 * Permet de compléter un objet vide à partir du XML
+	 * 
+	 * @param chariotElement Element XML Chariot
+	 * @param aeroport Aeroport
+	 * @return Résultat du parsing
+	 */
+	public int construireAPartirDeXML(Element chariotElement, Aeroport aeroport)
+	{
+		// On récupère les coordonnées du noeud associé
+        int idNoeudGarage = Integer.parseInt(chariotElement.getAttribute("noeudParDefaut"));
+        this.coordonnees = aeroport.getNoeud(idNoeudGarage).getCoordoonees();
+        
+        // On récupère la vitesse par défaut
+        this.vitesse = Integer.parseInt(chariotElement.getAttribute("vitesseParDefaut"));;
+        
+        LinkedList<Noeud> liste = new LinkedList<Noeud>();
+        this.chemin = liste;
+        return Aeroport.PARSE_OK;
+    }
 }

@@ -1,6 +1,5 @@
 package noyau;
 
-import java.awt.Point;
 import java.util.Iterator;
 import java.util.LinkedList;
 

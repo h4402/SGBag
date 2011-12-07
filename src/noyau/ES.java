@@ -1,7 +1,5 @@
 package noyau;
 
-import java.awt.Point;
-
 /**
  * Classe abstraite qui définit la "forme"
  * de tous les objets par lesquels vont entrer ou sortir des
