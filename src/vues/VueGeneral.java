@@ -53,7 +53,7 @@ public class VueGeneral extends JPanel {
 			}
 			
 		}
-		public int getEchelle() {
+		public double getEchelle() {
 			return echelle;
 		}
 
