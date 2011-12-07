@@ -1,14 +1,14 @@
 package vues;
+
 import java.awt.Image;
 
-import noyau.*;
-public class VueNoeud extends Vue{
-
-	private Noeud noeud;
+import noyau.Chariot;
+public class VueChariot extends Vue {
+	private Chariot chariot;
 	
-	public VueNoeud(VueGeneral vueGeneral, Image image,Noeud noeud) {
+	public VueChariot(VueGeneral vueGeneral, Image image, Chariot chariot) {
 		super(vueGeneral, image);
-		this.noeud = noeud;
+		this.chariot = chariot;
 		// TODO Auto-generated constructor stub
 	}
 

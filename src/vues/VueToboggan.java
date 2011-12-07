@@ -1,5 +1,6 @@
 package vues;
 
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
 
@@ -9,8 +10,8 @@ public class VueToboggan extends Vue {
 
 	private Toboggan toboggan;
 		
-	public VueToboggan(VueGeneral vueGeneral, Toboggan toboggan) {
-		super(vueGeneral);
+	public VueToboggan(VueGeneral vueGeneral, Image image, Toboggan toboggan) {
+		super(vueGeneral, image);
 		this.toboggan = toboggan;
 		posPixel = new Point(this.toboggan.getCoordoonees().x * this.vueGeneral.getEchelle()
 				, this.toboggan.getCoordoonees().y * this.vueGeneral.getEchelle());

@@ -1,5 +1,6 @@
 package vues;
 
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
 
@@ -8,12 +9,12 @@ import noyau.Guichet;
 public class VueGuichet extends Vue {
 
 	private Guichet guichet;
-	public VueGuichet(VueGeneral vueGeneral, Guichet guichet) {
-		super(vueGeneral);
+	public VueGuichet(VueGeneral vueGeneral, Image image, Guichet guichet) {
+		super(vueGeneral, image);
 		this.guichet = guichet;
 		posPixel = new Point(this.guichet.getCoordoonees().x * this.vueGeneral.getEchelle()
 				, this.guichet.getCoordoonees().y * this.vueGeneral.getEchelle());
-		rectangle = new Rectangle(posPixel.x-25, posPixel.y-25, 50, 50);
+		rectangle = new Rectangle(posPixel.x - 25, posPixel.y-25, 50, 50);
 		//TODO Suite
 	}
 
