@@ -227,6 +227,8 @@ public class Chariot {
         
         LinkedList<Noeud> liste = new LinkedList<Noeud>();
         this.chemin = liste;
+        aeroport.ajouterChariot(this);
+        
         return Aeroport.PARSE_OK;
     }
 }

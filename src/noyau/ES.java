@@ -38,4 +38,12 @@ public abstract class ES {
 		return noeud;
 	}
 	
+	/**
+	 * Modifie le noeud associé à l'ES.
+	 * 
+	 */
+	public void setNoeud(Noeud noeud) {
+		this.noeud = noeud;
+	}
+	
 }

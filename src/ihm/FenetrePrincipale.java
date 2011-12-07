@@ -49,12 +49,16 @@ import org.xml.sax.SAXException;
 
 import bibliotheques.SGBagFileFilter;
 
-
+/**
+ * 
+ * @author jeremy
+ *
+ */
 public class FenetrePrincipale extends JFrame {
 	/**
 	 * Vue générale
 	 */
-	private VueGeneral vueGeneral = new VueGeneral();
+	private VueGeneral vueGeneral;
 	
 	/**
 	 * Fichiers
@@ -85,10 +89,10 @@ public class FenetrePrincipale extends JFrame {
 	
 	
 	/**
-	 * Bouton de lecture
+	 * Boutons
 	 */
 	private JButton boutonLecture = new JButton();
-	
+	private JButton boutonArretUrgence = new JButton();
 	
 	/**
 	 * Label d'info
@@ -153,6 +157,16 @@ public class FenetrePrincipale extends JFrame {
 		}
 	};
 	
+	
+	/**
+	 * Clic sur arret d'urgence
+	 */
+	private ActionListener arretUrgenceListener = new ActionListener() {
+		public void actionPerformed(ActionEvent actionEvent) {
+			// TODO : vueGeneral.arretUrgence();
+		}
+	};
+	
 	/**
 	 * Timer
 	 */
@@ -214,14 +228,20 @@ public class FenetrePrincipale extends JFrame {
 		boutonLecture.addActionListener(playPauseListener);
 		boutonLecture.setAlignmentX(LEFT_ALIGNMENT);
 
+		// Bouton d'arret d'urgence
+		boutonArretUrgence.setText("STOP!");
+		boutonArretUrgence.addActionListener(arretUrgenceListener);
+		
+		// Panel du bas
+		panelBas.add(boutonArretUrgence);
 		panelBas.add(boutonLecture);
 		panelBas.add(labelInfo);
 		
 		// Panel Parametres
-		// TODO
-		//bandeauParametres = new BandeauAjoutBagages(null, null);
-		bandeauParametres = new BandeauVitesseChariot(null);
-		
+		// TODO : 
+		//bandeauParametres = new BandeauAjoutBagages();
+		bandeauParametres = new BandeauVitesseChariot();
+
 		// Panel général
 		// Test
 		testDessins.addMouseListener(new MouseAdapter() {
@@ -231,8 +251,8 @@ public class FenetrePrincipale extends JFrame {
 		
 		});
 		/* TODO : remplacer par VueGeneral
-		 
-		 
+		VueGeneral = new VueGeneral(bandeauVitesseChariot, bandeauAjoutBagages,
+		 						    labelInfo);
 		*/
 		
 		// Ajout des panels
