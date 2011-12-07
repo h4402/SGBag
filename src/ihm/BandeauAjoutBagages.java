@@ -45,7 +45,7 @@ public class BandeauAjoutBagages extends JPanel {
 	 * Construit le bandeau sans valeur à mettre dedans
 	 */
 	public BandeauAjoutBagages() {
-		labelBagage.setText("");
+		labelBagage.setText("Du guichet .. au toboggan .. : ");
 		boutonAjouter.setText("Ajouter");
 		boutonAjouter.addActionListener(ajouterListener);
 		

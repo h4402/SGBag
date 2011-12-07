@@ -52,7 +52,7 @@ public class BandeauVitesseChariot extends JPanel {
 	 * Construit le bandeau vide
 	 */
 	public BandeauVitesseChariot() {
-		labelVitesse.setText("");
+		labelVitesse.setText("Vitesse chariot : ");
 		boutonModifier.setText("Modifier");
 		boutonModifier.addActionListener(modifierListener);
 		

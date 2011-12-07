@@ -83,7 +83,9 @@ public class FenetrePrincipale extends JFrame {
 	 * Panels
 	 */
 	private JPanel container = new JPanel();
-	private JPanel bandeauParametres = new JPanel();
+	private JPanel bandeauGeneral = new JPanel();
+	private BandeauAjoutBagages bandeauAjoutBagages = new BandeauAjoutBagages();
+	private BandeauVitesseChariot bandeauVitesseChariot = new BandeauVitesseChariot();
 	private TestDessins testDessins = new TestDessins();
 	private JPanel panelBas = new JPanel();
 	
@@ -239,9 +241,14 @@ public class FenetrePrincipale extends JFrame {
 		
 		// Panel Parametres
 		// TODO : 
-		//bandeauParametres = new BandeauAjoutBagages();
-		bandeauParametres = new BandeauVitesseChariot();
-
+		bandeauAjoutBagages = new BandeauAjoutBagages();
+		bandeauVitesseChariot = new BandeauVitesseChariot();
+		bandeauAjoutBagages.setVisible(false);
+		bandeauVitesseChariot.setVisible(false);
+		
+		bandeauGeneral.add(bandeauAjoutBagages, BorderLayout.NORTH);
+		bandeauGeneral.add(bandeauVitesseChariot, BorderLayout.SOUTH);
+		
 		// Panel général
 		// Test
 		testDessins.addMouseListener(new MouseAdapter() {
@@ -260,7 +267,7 @@ public class FenetrePrincipale extends JFrame {
 		container.setLayout(new BorderLayout());
 		container.add(testDessins, BorderLayout.CENTER);
 		container.add(panelBas, BorderLayout.SOUTH);
-		container.add(bandeauParametres, BorderLayout.NORTH);
+		container.add(bandeauGeneral, BorderLayout.NORTH);
 		
 		labelInfo.setText("Bienvenue dans le système de gestion de bagages SGBag");
 		
@@ -283,9 +290,11 @@ public class FenetrePrincipale extends JFrame {
 	 */
 	private void testDessinsMouseclicked(MouseEvent me) {
         if (me.getX() < testDessins.getWidth()/2) {
-        	
+        	bandeauAjoutBagages.setVisible(true);
+        	bandeauVitesseChariot.setVisible(false);
         } else {
-        	
+        	bandeauAjoutBagages.setVisible(false);
+        	bandeauVitesseChariot.setVisible(true);
         }
 	}
 	
