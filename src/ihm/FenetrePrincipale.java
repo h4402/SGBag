@@ -286,15 +286,14 @@ public class FenetrePrincipale extends JFrame {
 
                 Element racine = document.getDocumentElement();
 
-                if (racine.getNodeName().equals("Aeroport")) {
-                	/* TODO : construire depuis le document XML
-                	int resultatConstruction = container.construireToutAPartirDeXML(racine);
-                    if (resultatConstruction != Aeroport.PARSE_OK) {
-                    //erreur de parsing!
-                    } else {
-                        leCadre = container.GetVueCadre().GetCadre();
-                    }
-                    */
+                if (racine.getNodeName().equals("Aeroport"))
+                {
+                	/*if (this.construireToutAPartirDeXML(racine) != Aeroport.PARSE_OK) {
+                //erreur de parsing!
+                } else {
+                    leCadre = container.GetVueCadre().GetCadre();
+                }
+                   */ 
                 }
             // TODO : traiter les erreurs
                 

@@ -221,6 +221,41 @@ public class Aeroport {
             //ajout des éléments créés dans la structure objet
             //AjouterNoeud(noeud);
         }
+		
+		// On parcourt la liste des guichets récupérés pour créer les objets correspondants
+		for (int i = 0; i < listeGuichets.getLength(); i++)
+		{
+            Element guichetElement = (Element) listeGuichets.item(i);
+            Guichet guichet = new Guichet(null, null, null);
+			
+			// On vérifie que la création du noeud à partir du XML n'a pas échoué
+            if (guichet.construireAPartirDeXML(guichetElement, this)!= Aeroport.PARSE_OK){
+                return Aeroport.PARSE_ERROR;
+            }
+            
+            //ajout des éléments créés dans la structure objet
+            //AjouterNoeud(noeud);
+        }
+		
+		// On parcourt la liste des toboggans récupérés pour créer les objets correspondants
+		for (int i = 0; i < listeToboggans.getLength(); i++)
+		{
+            Element tobogganElement = (Element) listeToboggans.item(i);
+            Toboggan toboggan = new Toboggan(null, null, null);
+			
+			// On vérifie que la création du noeud à partir du XML n'a pas échoué
+            if (toboggan.construireAPartirDeXML(tobogganElement, this)!= Aeroport.PARSE_OK){
+                return Aeroport.PARSE_ERROR;
+            }
+            
+            //ajout des éléments créés dans la structure objet
+            //AjouterNoeud(noeud);
+        }
+
+		
+		
+		
+		
         return PARSE_OK;
 	}
 
