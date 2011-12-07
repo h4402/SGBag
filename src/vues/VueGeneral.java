@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
-import noyau.*;
 
+import noyau.*;
 public class VueGeneral extends JPanel {
 	
 		private Guichet guichetCourant;
@@ -18,6 +18,12 @@ public class VueGeneral extends JPanel {
 		@SuppressWarnings("null")
 		public VueGeneral(){
 			List<Vue> listVues = null;
+			
+			List<Chariot> listChariot = aeroport.getListChariots();
+			for(Chariot c: listChariot){
+				listVues.add(new VueChariot(this,c));
+			}
+			
 			
 			List<Guichet> listGuichet = aeroport.getListGuichets();
 			for(Guichet g: listGuichet){
@@ -43,6 +49,7 @@ public class VueGeneral extends JPanel {
 			for(Rail r : listRail){
 				listVues.add(new VueRail(this,r));
 			}
+			
 		}
 		public int getEchelle() {
 			return echelle;

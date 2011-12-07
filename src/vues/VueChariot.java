@@ -1,16 +1,12 @@
 package vues;
 
-import java.awt.geom.AffineTransform;
-
-import noyau.Rail;
-
-public class VueRail extends Vue {
+import noyau.Chariot;
+public class VueChariot extends Vue {
+	private Chariot chariot;
 	
-	private Rail rail;
-
-	public VueRail(VueGeneral vueGeneral, Rail rail) {
+	public VueChariot(VueGeneral vueGeneral,Chariot chariot) {
 		super(vueGeneral);
-		this.rail = rail;
+		this.chariot = chariot;
 		// TODO Auto-generated constructor stub
 	}
 

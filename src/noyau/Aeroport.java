@@ -36,6 +36,14 @@ public class Aeroport {
 		return listGuichets;
 	}
 
+	public List<Chariot> getListChariots() {
+		return listChariots;
+	}
+
+	public void setListChariots(List<Chariot> listChariots) {
+		this.listChariots = listChariots;
+	}
+
 	public void setListGuichets(List<Guichet> listGuichets) {
 		this.listGuichets = listGuichets;
 	}
