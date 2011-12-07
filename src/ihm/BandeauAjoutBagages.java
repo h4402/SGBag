@@ -39,7 +39,7 @@ public class BandeauAjoutBagages extends JPanel {
 		int numGuichet = 0;
 		int numToboggan = 0;
 
-		labelBagage.setText("Du guichet " + numGuichet + " au toboggan " + numToboggan);
+		labelBagage.setText("Du guichet " + numGuichet + " au toboggan " + numToboggan + " : ");
 		boutonAjouter.setText("Ajouter");
 		boutonAjouter.addActionListener(ajouterListener);
 		
