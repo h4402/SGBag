@@ -1,9 +1,17 @@
 package vues;
 
-public class VueRail extends Vue {
+import java.awt.geom.AffineTransform;
 
-	public VueRail(VueGeneral vueGeneral) {
+import noyau.Rail;
+
+public class VueRail extends Vue {
+	
+	private Rail rail;
+
+	public VueRail(VueGeneral vueGeneral, Rail rail) {
 		super(vueGeneral);
+		this.rail = rail;
+		
 		// TODO Auto-generated constructor stub
 	}
 
