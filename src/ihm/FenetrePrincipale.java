@@ -19,7 +19,7 @@ import javax.swing.JScrollPane;
 import javax.swing.KeyStroke;
 import javax.swing.Timer;
 
-import vues.VueAeroport;
+import vues.VueGeneral;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -202,13 +202,17 @@ public class FenetrePrincipale extends JFrame {
 		menuItemAPropos.addActionListener(aboutListener);
 		aideMenu.add(menuItemAPropos);
 		
-		// Boutons de lecture
+		// Bouton de lecture
 		boutonLecture.setText("Play");
 		boutonLecture.addActionListener(playPauseListener);
 		boutonLecture.setAlignmentX(LEFT_ALIGNMENT);
 
 		panelBas.add(boutonLecture);
 		panelBas.add(labelInfo);
+		
+		// Panel Parametres
+		// TODO
+		bandeauParametres = new BandeauAjoutBagages(null, null);
 		
 		// Ajout des panels
 		container.setBackground(Color.white);
