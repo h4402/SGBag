@@ -13,6 +13,12 @@ import noyau.Chariot;
 import noyau.Guichet;
 import noyau.Toboggan;
 
+/**
+ * 
+ * @author jeremy
+ *
+ */
+
 public class BandeauVitesseChariot extends JPanel {
 
 	/**
@@ -37,16 +43,16 @@ public class BandeauVitesseChariot extends JPanel {
 	 */
 	private ActionListener modifierListener = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			// TODO
+			// TODO : appeler changerBagage de vueGeneral
 			
 		}
 	};
 	
-	public BandeauVitesseChariot(Chariot chariot) {
-		// TODO : get num chariot
-		int numChariot = 0;
-
-		labelVitesse.setText("Vitesse du chariot n°" + numChariot + " (m/s) : ");
+	/**
+	 * Construit le bandeau vide
+	 */
+	public BandeauVitesseChariot() {
+		labelVitesse.setText("");
 		boutonModifier.setText("Modifier");
 		boutonModifier.addActionListener(modifierListener);
 		
@@ -57,6 +63,23 @@ public class BandeauVitesseChariot extends JPanel {
 		this.add(textFieldVitesse, BorderLayout.CENTER);
 		this.add(boutonModifier, BorderLayout.EAST);
 		
+	}
+	
+	/**
+	 * Remplit le label du bandeau avec le bon id de chariot
+	 * @param numChariot : id du chariot cliqué
+	 */
+	public void setNumChariot(int numChariot) {
+		labelVitesse.setText("Vitesse du chariot n°" + numChariot + " (m/s) : ");
+	}
+	
+	/**
+	 * Remplit le textField du bandeau avec la vitesse du chariot
+	 * @param vitesseChariot : vitesse du chariot
+	 */
+	
+	public void setVitesseChariot(int vitesseChariot) {
+		textFieldVitesse.setText(String.valueOf(vitesseChariot));
 	}
 	
 }
