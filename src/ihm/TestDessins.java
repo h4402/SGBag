@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 
 import javax.swing.JPanel;
@@ -39,6 +40,8 @@ public class TestDessins extends JPanel {
 		image = getToolkit().getImage("res/img/bagage.png");
 		// G2D c'est mieux
         Graphics2D g2d = (Graphics2D)g;
+        g2d.drawImage(image, 50, 100, this);
+        /*
         // Sauvegarde de l'ancienne configuration
         // On peut aussi mettre setToIdentity à la fin de la transform
         AffineTransform transform = g2d.getTransform();
@@ -54,7 +57,7 @@ public class TestDessins extends JPanel {
         g2d.drawImage(image, x, y, this);
         // Retour à l'ancienne transformation
         g2d.setTransform(transform);
-        	
+        */
         
         /*
          * Méthode à essayer pour récupérer le clic sur une image tournée :
