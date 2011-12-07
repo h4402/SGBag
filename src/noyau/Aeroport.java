@@ -165,6 +165,16 @@ public class Aeroport {
 		this.listNoeuds = listNoeuds;
 		genRan = new Random();
 	}
+	
+	public void ajouterChariot(Chariot chariot)
+	{
+		this.listChariots.add(chariot);
+	}
+	
+	public void ajouterTapis(Tapis tapis)
+	{
+		this.listTapis.add(tapis);
+	}
 
 	/**
 	 * Méthode à appeler à chaque top horloge.
