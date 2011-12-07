@@ -1,13 +1,15 @@
 package vues;
 
+import java.awt.Image;
+
 import noyau.Tapis;
 
 public class VueTapis extends Vue {
 
 	private Tapis tapis;
 	
-	public VueTapis(VueGeneral vueGeneral, Tapis tapis) {
-		super(vueGeneral);
+	public VueTapis(VueGeneral vueGeneral, Image image, Tapis tapis) {
+		super(vueGeneral, image);
 		this.tapis = tapis;
 		// TODO Auto-generated constructor stub
 	}
