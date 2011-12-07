@@ -41,6 +41,8 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import noyau.Aeroport;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
@@ -202,13 +204,17 @@ public class FenetrePrincipale extends JFrame {
 		menuItemAPropos.addActionListener(aboutListener);
 		aideMenu.add(menuItemAPropos);
 		
-		// Boutons de lecture
+		// Bouton de lecture
 		boutonLecture.setText("Play");
 		boutonLecture.addActionListener(playPauseListener);
 		boutonLecture.setAlignmentX(LEFT_ALIGNMENT);
 
 		panelBas.add(boutonLecture);
 		panelBas.add(labelInfo);
+		
+		// Panel Parametres
+		// TODO
+		bandeauParametres = new BandeauAjoutBagages(null, null);
 		
 		// Ajout des panels
 		container.setBackground(Color.white);
@@ -232,7 +238,38 @@ public class FenetrePrincipale extends JFrame {
         JOptionPane.showMessageDialog(this, new FenetreAbout(), "A Propos", JOptionPane.PLAIN_MESSAGE);
     }
 	
+	/**
+	 * 
+	 * @param vueCadreDOMElement
+	 * @return
+	 */
+	public int construireToutAPartirDeXML(Element vueAeroportElement)
+	{
+		// On crée l'élément Aéroport et la vue qui lui est associée
+        Aeroport unAeroport = new Aeroport(null, null, null, null, null);
+        VueGeneral vueGenerale = null;
+        /*if (unAeroport.construireAPartirDeXML(vueAeroportElement) != Aeroport.PARSE_OK) {
+            return Cadre.PARSE_ERROR;
+        }
+        VueCadre nouvelleVueCadre = new VueCadre(leCadre, this.getWidth(), this.getHeight());
+        laVueCadre = nouvelleVueCadre;
+
+        //construire les VueBoules
+        Vector lesBoules = leCadre.getBoules();
+        for (int i = 0; i < lesBoules.size(); i++)
+		{
+            Boule laBoule = (Boule) lesBoules.elementAt(i);
+            VueBoule vueBoule = new VueBoule(laBoule, laVueCadre);
+            laVueCadre.AjouterVueBoule(vueBoule);
+        }
+     */
+
+        return Aeroport.PARSE_OK;
+    }
 	
+	/**
+	 * Chargement de la configuration
+	 */
 	void chargerConfiguration() {
 		jFileChooserXML = new JFileChooser();
         SGBagFileFilter filter = new SGBagFileFilter();
@@ -253,15 +290,14 @@ public class FenetrePrincipale extends JFrame {
 
                 Element racine = document.getDocumentElement();
 
-                if (racine.getNodeName().equals("cadre")) {
-                	/* TODO : construire depuis le document XML
-                	int resultatConstruction = laVueCadrePanel.ConstruireToutAPartirDeDOMXML(racine);
-                    if (resultatConstruction != Cadre.PARSE_OK) {
-                    //erreur de parsiong!
-                    } else {
-                        leCadre = laVueCadrePanel.GetVueCadre().GetCadre();
-                    }
-                    */
+                if (racine.getNodeName().equals("Aeroport"))
+                {
+                	/*if (this.construireToutAPartirDeXML(racine) != Aeroport.PARSE_OK) {
+                //erreur de parsing!
+                } else {
+                    leCadre = container.GetVueCadre().GetCadre();
+                }
+                   */ 
                 }
             // TODO : traiter les erreurs
                 

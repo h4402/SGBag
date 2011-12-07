@@ -4,6 +4,8 @@ import java.awt.Point;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import org.w3c.dom.Element;
+
 /**
  * Classe représentant un rail dans l'application.
  * Un rail possèdent des chariots
@@ -13,7 +15,11 @@ import java.util.LinkedList;
  * @author H4402
  */
 public class Rail {
-
+	/**
+	 * Identifiant d'un rail
+	 */
+	protected int id;
+	
 	/**
 	 * Liste des chariots roulant actuellement
 	 * sur le rail, où étant bloqué.
@@ -140,5 +146,36 @@ public class Rail {
 		return noeudSortie;
 	}
 	
+	/**
+	 * Retourne le noeud d'entrée d'un rail.
+	 * 
+	 * @return Noeud d'entrée du rail.
+	 */
+	public Noeud getNoeudEntree() {
+		return noeudEntree;
+	}
+	
+	/**
+	 * Permet de compléter un objet vide à partir du XML
+	 * 
+	 * @param railElement Element XML Rail
+	 * @param aeroport Aeroport
+	 * @return Résultat du parsing
+	 */
+	public int construireAPartirDeXML(Element railElement, Aeroport aeroport)
+	{
+		//lecture des attributs
+		this.id = Integer.parseInt(railElement.getAttribute("id"));
+		
+		int idNoeudEntree = Integer.parseInt(railElement.getAttribute("noeudEntree"));
+		int idNoeudSortie = Integer.parseInt(railElement.getAttribute("noeudSortie"));
+		this.noeudEntree = aeroport.getNoeud(idNoeudEntree);
+		this.noeudEntree = aeroport.getNoeud(idNoeudSortie);
+        
+		LinkedList<Chariot> liste = new LinkedList<Chariot>();
+		this.listChariots = liste;
+		
+		return Aeroport.PARSE_OK;
+    }
 }
 

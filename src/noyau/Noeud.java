@@ -3,6 +3,8 @@ package noyau;
 import java.awt.Point;
 import java.util.List;
 
+import org.w3c.dom.Element;
+
 /**
  * Un Noeud correspond au noeud d'un graphe.
  * Un noeud possède des coordonnées, et connait 
@@ -11,6 +13,10 @@ import java.util.List;
  * @author H4402
  */
 public class Noeud {
+	/**
+	 * Identifiant d'un noeud
+	 */
+	protected int id;
 	
 	/**
 	 * Liste des rails auquels mènent le noeud.
@@ -55,5 +61,33 @@ public class Noeud {
 	public Point getCoordoonees() {
 		return coordonnees;
 	}
+	
+	/**
+	 * Permet de compléter un objet vide à partir du XML
+	 * 
+	 * @param noeudElement Element XML Noeud
+	 * @param aeroport Aeroport
+	 * @return Résultat du parsing
+	 */
+	public int construireAPartirDeXML(Element noeudElement, Aeroport aeroport)
+	{
+        // On récupère l'id et les coordonnées
+		this.id = Integer.parseInt(noeudElement.getAttribute("id"));
+		int posX = Integer.parseInt(noeudElement.getAttribute("posX"));
+        int posY = Integer.parseInt(noeudElement.getAttribute("posY"));
+        this.coordonnees = new Point(posX, posY);
+        
+        // On récupère les rails de sortie du noeud
+        List<Rail> listeRails = aeroport.getListeRails();
+        for ( Rail rail : listeRails)
+        {
+        	if (this.id == rail.getNoeudEntree().id)
+        	{
+        		this.listRailsSortie.add(rail);
+        	}
+        }
 
+        return Aeroport.PARSE_OK;
+    }
+	
 }
