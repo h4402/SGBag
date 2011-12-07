@@ -1,7 +1,9 @@
 package noyau;
 
-import java.awt.Point;
+import java.util.LinkedList;
 import java.util.List;
+
+import org.w3c.dom.Element;
 
 /**
  * Toboggan permettant la fin de transfert des bagages.
@@ -28,8 +30,8 @@ public class Toboggan extends ES {
 	 * @param listBagages Liste des bagages acheminés.
 	 * @param coordonnees Coordonnées de l'ES.
 	 */
-	public Toboggan(Noeud noeud, List<Bagage> listBagages, Point coordonnees) {
-		super(noeud, coordonnees);
+	public Toboggan(Noeud noeud, List<Bagage> listBagages) {
+		super(noeud);
 		this.listBagages = listBagages;
 	}
 	
@@ -41,5 +43,26 @@ public class Toboggan extends ES {
 	public void ajouterBagage(Bagage b) {
 		listBagages.add(b);
 	}
+	
+	/**
+	 * Permet de compléter un objet vide à partir du XML
+	 * 
+	 * @param tobogganElement Element XML Toboggan
+	 * @param aeroport Aeroport
+	 * @return Résultat du parsing
+	 */
+	public int construireAPartirDeXML(Element tobogganElement, Aeroport aeroport)
+	{
+        // On récupère l'id
+		this.id = Integer.parseInt(tobogganElement.getAttribute("id"));
+		
+		// On récupère le noeud associé
+        int idNoeud = Integer.parseInt(tobogganElement.getAttribute("idNoeud"));
+        this.noeud = aeroport.getNoeud(idNoeud);
 
+        LinkedList<Bagage> liste = new LinkedList<Bagage>();
+        this.listBagages = liste;
+        
+        return Aeroport.PARSE_OK;
+    }
 }

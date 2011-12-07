@@ -3,6 +3,8 @@ package noyau;
 import java.awt.Point;
 import java.util.LinkedList;
 
+import org.w3c.dom.Element;
+
 /**
  * Objet représentant un guichet,
  * par lequel on va ajouter des bagages 
@@ -90,4 +92,28 @@ public class Guichet {
 		return coordonnees;
 	}
 
+	/**
+	 * Permet de compléter un objet vide à partir du XML
+	 * 
+	 * @param guichetElement Element XML Guichet
+	 * @param aeroport Aeroport
+	 * @return Résultat du parsing
+	 */
+	public int construireAPartirDeXML(Element guichetElement, Aeroport aeroport)
+	{
+        // On récupère l'id et les coordonnées
+		this.id = Integer.parseInt(guichetElement.getAttribute("id"));
+		int posX = Integer.parseInt(guichetElement.getAttribute("posX"));
+        int posY = Integer.parseInt(guichetElement.getAttribute("posY"));
+        this.coordonnees = new Point(posX, posY);
+        
+        // On récupère le noeud associé
+        int idNoeud = Integer.parseInt(guichetElement.getAttribute("idNoeud"));
+        this.tapis.noeud = aeroport.getNoeud(idNoeud);
+
+        LinkedList<Bagage> liste = new LinkedList<Bagage>();
+        this.listBagages = liste;
+        
+        return Aeroport.PARSE_OK;
+    }
 }

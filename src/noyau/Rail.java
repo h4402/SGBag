@@ -147,9 +147,19 @@ public class Rail {
 	}
 	
 	/**
+	 * Retourne le noeud d'entrée d'un rail.
+	 * 
+	 * @return Noeud d'entrée du rail.
+	 */
+	public Noeud getNoeudEntree() {
+		return noeudEntree;
+	}
+	
+	/**
 	 * Permet de compléter un objet vide à partir du XML
 	 * 
 	 * @param railElement Element XML Rail
+	 * @param aeroport Aeroport
 	 * @return Résultat du parsing
 	 */
 	public int construireAPartirDeXML(Element railElement, Aeroport aeroport)

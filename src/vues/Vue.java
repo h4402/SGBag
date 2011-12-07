@@ -1,5 +1,6 @@
 package vues;
 
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
 
@@ -8,6 +9,7 @@ public abstract class Vue {
 	
 	protected VueGeneral vueGeneral; //name changed
 	protected Rectangle rectangle;
+	protected Image image;
 	protected Point posPixel;
 	protected boolean selection;
 	
