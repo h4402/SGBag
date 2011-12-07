@@ -52,6 +52,11 @@ import bibliotheques.SGBagFileFilter;
 
 public class FenetrePrincipale extends JFrame {
 	/**
+	 * Vue générale
+	 */
+	private VueGeneral vueGeneral = new VueGeneral();
+	
+	/**
 	 * Fichiers
 	 */
 	private JFileChooser jFileChooserXML;
@@ -214,7 +219,21 @@ public class FenetrePrincipale extends JFrame {
 		
 		// Panel Parametres
 		// TODO
-		bandeauParametres = new BandeauAjoutBagages(null, null);
+		//bandeauParametres = new BandeauAjoutBagages(null, null);
+		bandeauParametres = new BandeauVitesseChariot(null);
+		
+		// Panel général
+		// Test
+		testDessins.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+                testDessinsMouseclicked(e);
+            }
+		
+		});
+		/* TODO : remplacer par VueGeneral
+		 
+		 
+		*/
 		
 		// Ajout des panels
 		container.setBackground(Color.white);
@@ -234,9 +253,22 @@ public class FenetrePrincipale extends JFrame {
 	 * Clic sur A Propos
 	 * @param e : actionEvent
 	 */
-	void aboutActionPerformed(ActionEvent ae) {
+	private void aboutActionPerformed(ActionEvent ae) {
         JOptionPane.showMessageDialog(this, new FenetreAbout(), "A Propos", JOptionPane.PLAIN_MESSAGE);
     }
+	
+	
+	/**
+	 * Clic sur le panel VueGenerale
+	 */
+	private void testDessinsMouseclicked(MouseEvent me) {
+        if (me.getX() < testDessins.getWidth()/2) {
+        	
+        } else {
+        	
+        }
+	}
+	
 	
 	/**
 	 * 
