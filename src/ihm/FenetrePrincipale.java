@@ -45,7 +45,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
-import bibliotheques.ExampleFileFilter;
+import bibliotheques.SGBagFileFilter;
 
 
 public class FenetrePrincipale extends JFrame {
@@ -235,7 +235,7 @@ public class FenetrePrincipale extends JFrame {
 	
 	void chargerConfiguration() {
 		jFileChooserXML = new JFileChooser();
-        ExampleFileFilter filter = new ExampleFileFilter();
+        SGBagFileFilter filter = new SGBagFileFilter();
         filter.addExtension("xml");
         filter.setDescription("Fichier XML");
         jFileChooserXML.setFileFilter(filter);
