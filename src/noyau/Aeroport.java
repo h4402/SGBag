@@ -34,6 +34,11 @@ public class Aeroport {
 	public static Garage garage;
 
 	/**
+	 * Liste des noeuds de l'application
+	 */
+	private List<Noeud> listNoeuds;
+	
+	/**
 	 * Liste des rails de l'application.
 	 * 
 	 * @uml.property  name="listRails"
@@ -74,14 +79,16 @@ public class Aeroport {
 	 * @param listGuichets Liste des guichets de l'application.
 	 * @param listTapis Liste des tapis de l'application.
 	 * @param listToboggans Liste des toboggans de l'application.
+	 * @param listNoeuds Liste des noeuds de l'application
 	 */
 	public Aeroport(List<Rail> listRails, List<Guichet> listGuichets,
-			List<Toboggan> listToboggans, List<Tapis> listTapis) {
+			List<Toboggan> listToboggans, List<Tapis> listTapis, List<Noeud> listNoeuds) {
 		super();
 		this.listRails = listRails;
 		this.listGuichets = listGuichets;
 		this.listToboggans = listToboggans;
 		this.listTapis = listTapis;
+		this.listNoeuds = listNoeuds;
 		genRan = new Random();
 	}
 
@@ -128,6 +135,17 @@ public class Aeroport {
 		 */
 		garage.faireSortirAttente();
 		
+	}
+	
+	/**
+	 * Retourne un noeud à partir de son id
+	 * 
+	 * @param id Identifiant du noeud
+	 * @return Noeud
+	 */
+	public Noeud getNoeud(int id)
+	{
+		return this.listNoeuds.get(id);
 	}
 
 }
