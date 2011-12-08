@@ -74,6 +74,19 @@ public class Rail {
 				noeudSortie.getCoordonnees().y - noeudEntree.getCoordonnees().y);
 		longueur = (float) Math.sqrt(direction.x*direction.x + direction.y*direction.y);
 	}
+	
+	/**
+	 * Constructeur par défaut
+	 * 
+	 */
+	public Rail() {
+		super();
+		this.listChariots = new LinkedList<Chariot>();
+		this.noeudEntree = null;
+		this.noeudSortie = null;
+		direction = null;
+		longueur = 0;
+	}
 
 	/**
 	 * Avancer les chariots du rail lors d'un top horloge.
@@ -230,6 +243,11 @@ public class Rail {
 		this.listChariots = new LinkedList<Chariot>();
 		
 		aeroport.ajouterRail(this);
+		
+		direction = new Point(noeudSortie.getCoordonnees().x - noeudEntree.getCoordonnees().x,
+				noeudSortie.getCoordonnees().y - noeudEntree.getCoordonnees().y);
+		longueur = (float) Math.sqrt(direction.x*direction.x + direction.y*direction.y);
+		
 		return Aeroport.PARSE_OK;
     }
 	

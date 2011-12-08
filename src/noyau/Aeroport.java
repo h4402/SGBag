@@ -399,7 +399,7 @@ public class Aeroport {
 		for (int i = 0; i < listeRails.getLength(); i++)
 		{
             Element railElement = (Element) listeRails.item(i);
-            Rail rail = new Rail(null, null, null);
+            Rail rail = new Rail();
 			
 			// On vérifie que la création du rail à partir du XML n'a pas échoué
             if (rail.construireAPartirDeXML(railElement, this)!= Aeroport.PARSE_OK){

@@ -1,6 +1,7 @@
 package noyau;
 
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.w3c.dom.Element;
@@ -46,6 +47,7 @@ public class Noeud {
 	
 	public Noeud(Point coordonnees) {
 		this.coordonnees = coordonnees;
+		this.listRailsSortie = new ArrayList<Rail>();
 	}
 	
 	/**
@@ -80,7 +82,7 @@ public class Noeud {
 		int posX = Integer.parseInt(noeudElement.getAttribute("posX"));
         int posY = Integer.parseInt(noeudElement.getAttribute("posY"));
         this.coordonnees = new Point(posX, posY);
-        
+        this.listRailsSortie = new ArrayList<Rail>();
         
         //TODO : c'est juste pas possible de faire ça là, les rails n'existent pas
         // On récupère les rails de sortie du noeud
