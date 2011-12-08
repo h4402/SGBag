@@ -15,9 +15,9 @@ public class VueNoeud extends Vue{
 		super(vueGeneral, image);
 		this.noeud = noeud;
 		this.imageGarage = imageGarage;
-		posPixel = new Point((int)Math.round(this.noeud.getCoordonnees().x * this.vueGenerale.getEchelle() - image.getHeight(vueGenerale)/2)
-				, (int)Math.round(this.noeud.getCoordonnees().y * this.vueGenerale.getEchelle() - image.getWidth(vueGenerale)/2));
-		rectangle = new Rectangle(posPixel.x, posPixel.y, image.getHeight(vueGenerale), image.getWidth(vueGenerale));
+		posPixel = new Point((int)Math.round(this.noeud.getCoordonnees().x * this.vueGenerale.getEchelle() - image.getWidth(vueGenerale)/2)
+				, (int)Math.round(this.noeud.getCoordonnees().y * this.vueGenerale.getEchelle() - image.getHeight(vueGenerale)/2));
+		rectangle = new Rectangle(posPixel.x, posPixel.y, image.getWidth(vueGenerale), image.getHeight(vueGenerale));
 		// TODO Auto-generated constructor stub
 	}
 

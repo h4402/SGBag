@@ -15,9 +15,9 @@ public class VueToboggan extends Vue {
 	public VueToboggan(VueGenerale vueGenerale, Image image, Toboggan toboggan) {
 		super(vueGenerale, image);
 		this.toboggan = toboggan;
-		posPixel = new Point((int)Math.round(this.toboggan.getCoordonnees().x * this.vueGenerale.getEchelle() - image.getHeight(vueGenerale)/2)
-				, (int)Math.round(this.toboggan.getCoordonnees().y * this.vueGenerale.getEchelle() - image.getWidth(vueGenerale)/2));
-		rectangle = new Rectangle(posPixel.x, posPixel.y, image.getHeight(vueGenerale), image.getWidth(vueGenerale));
+		posPixel = new Point((int)Math.round(this.toboggan.getCoordonnees().x * this.vueGenerale.getEchelle() - image.getWidth(vueGenerale)/2)
+				, (int)Math.round(this.toboggan.getCoordonnees().y * this.vueGenerale.getEchelle() - image.getHeight(vueGenerale)/2));
+		rectangle = new Rectangle(posPixel.x, posPixel.y, image.getWidth(vueGenerale), image.getHeight(vueGenerale));
 	}
 	
 	@Override
