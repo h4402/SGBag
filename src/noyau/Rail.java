@@ -195,6 +195,15 @@ public class Rail {
 	}
 	
 	/**
+	 * Retourne la longueur du rail.
+	 * 
+	 * @return Longueur du rail.
+	 */
+	public float getLongueur() {
+		return longueur;
+	}
+	
+	/**
 	 * Permet de compléter un objet vide à partir du XML
 	 * 
 	 * @param railElement Element XML Rail

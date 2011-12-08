@@ -3,6 +3,8 @@ package noyau;
 import java.awt.Point;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map.Entry;
+import java.util.TreeMap;
 
 import org.w3c.dom.Element;
 
@@ -215,12 +217,15 @@ public class Chariot {
 			24  end Dijkstra.
 			*/
 			
-			//TreeMap<Rail, DijPair> graph = new
+			TreeMap<Noeud, DijStuff> graph = new TreeMap<Noeud, DijStuff>();
 			
 			LinkedList<Noeud> noeudsGraph = new LinkedList<Noeud>();
 			LinkedList<Rail> arretesGraph = new LinkedList<Rail>();
 			
+			
+			
 			Noeud noeudCourant = depart;
+			/*
 			for(int i = 0;; i++) {
 				if(!noeudsGraph.contains(noeudCourant) && noeudCourant != arrivee) {
 					noeudsGraph.add(noeudCourant);
@@ -232,17 +237,42 @@ public class Chariot {
 				}
 				
 				if(i >= arretesGraph.size()) {
-					/*
-					 * Plus d'arrete à visiter...
-					 */
 					break;
 				}
 				noeudCourant = arretesGraph.get(i).getNoeudSortie();
 			}
+			*/
 			
-			
+			graph.put(depart, new DijStuff(0, null));
+			for(;;) {
+				Noeud courant = minNoeud(graph);
+				graph.get(courant).visited = true;
+				
+				for(Rail r : courant.getListeRails()) {
+					r.getNoeudSortie();
+					graph.put(r.getNoeudSortie(), new DijStuff());
+					float distance = graph.get(courant).dist + r.getLongueur();
+					if(graph.get(r.getNoeudSortie()).dist > distance) {
+						graph.get(r.getNoeudSortie()).dist = distance;
+						graph.get(r.getNoeudSortie()).pred = courant;
+					}
+				}
+			}
 		}
+	}
+	
+	private Noeud minNoeud(TreeMap<Noeud, DijStuff> graph) {
 		
+		float x = Integer.MAX_VALUE;
+		Noeud y = null;
+		for (Entry<Noeud, DijStuff> entree : graph.entrySet()) {
+			
+			if(!entree.getValue().visited && entree.getValue().dist < x) {
+				y = entree.getKey();
+				x = entree.getValue().dist;
+			}
+		}
+		return y;
 	}
 
 	/**
@@ -383,4 +413,24 @@ public class Chariot {
         
         return Aeroport.PARSE_OK;
     }
+}
+
+class DijStuff {
+	
+	public float dist;
+	public Noeud pred;
+	public boolean visited;
+	
+	public DijStuff() {
+		dist = Integer.MAX_VALUE;
+		pred = null;
+		visited = false;
+	}
+	
+	public DijStuff(float i, Noeud n) {
+		dist = i;
+		pred = n;
+		visited = false;
+	}
+	
 }
