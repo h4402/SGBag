@@ -36,6 +36,9 @@ public class VueRail extends Vue {
 
 	@Override
 	void action() {
+		this.selectionner();
+		vueGenerale.setGuichetCourant(null);
+		vueGenerale.setTobogganCourant(null);
 		// TODO Auto-generated method stub
 		
 	}

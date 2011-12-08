@@ -20,6 +20,8 @@ public class VueGenerale extends JPanel {
 	
 		private Guichet guichetCourant;
 		private Toboggan tobogganCourant;
+		private Chariot chariotCourant;
+		private Rail railCourant;
 		private Aeroport aeroport;
 		private BandeauAjoutBagages bandeauAjoutBagages;
 		private BandeauVitesseChariot bandeauVitesseChariot;
@@ -108,6 +110,14 @@ public class VueGenerale extends JPanel {
 		public void setGuichetCourant(Guichet guichetCourant) {
 			this.guichetCourant = guichetCourant;
 		}
+		
+		public Chariot getChariotCourant() {
+			return chariotCourant;
+		}
+
+		public void setChariotCourant(Chariot chariotCourant) {
+			this.chariotCourant = chariotCourant;
+		}
 				
 		public void redessiner(){
 			for (int i = listVues.size(); i >= 0; i--) {
@@ -121,6 +131,8 @@ public class VueGenerale extends JPanel {
 			bandeauAjoutBagages.setVisible(false);
 			bandeauVitesseChariot.setVisible(false);
 			zoneInfo.setText("");
+			chariotCourant = null;
+			railCourant = null;
 			for (Vue v : listVues ){
 				v.deselectionner();
 			}
@@ -130,10 +142,16 @@ public class VueGenerale extends JPanel {
 			if(trouve){
 				listVues.get(i-1).action();
 			}
+			else{
+				guichetCourant = null;
+				tobogganCourant = null;
+			}
 		}
 		
 		public void ajouterBagage(){
-			//aeroport.ajouterBagage(guichetCourant, tobogganCourant);
+			aeroport.ajouterBagage(guichetCourant, tobogganCourant);
+			guichetCourant = null;
+			tobogganCourant = null;
 		}
 		
 		/**
@@ -169,5 +187,12 @@ public class VueGenerale extends JPanel {
 */
 	        return Aeroport.PARSE_OK;
 	    }
-
+		public void setVitesseChariot(float vitesse){
+			chariotCourant.setVitesse(vitesse);
+			chariotCourant = null;
+		}
+		
+		public void avancerTemps(){
+			aeroport.avancerTemps();
+		}
 }

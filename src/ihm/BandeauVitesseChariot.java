@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import vues.VueGenerale;
+
 import noyau.Chariot;
 import noyau.Guichet;
 import noyau.Toboggan;
@@ -21,6 +23,11 @@ import noyau.Toboggan;
 
 public class BandeauVitesseChariot extends JPanel {
 
+	/**
+	 * La vue générale
+	 */
+	VueGenerale vueGenerale = null;
+	
 	/**
 	 * Label
 	 */
@@ -43,8 +50,9 @@ public class BandeauVitesseChariot extends JPanel {
 	 */
 	private ActionListener modifierListener = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			// TODO : appeler changerBagage de vueGeneral
-			
+			// TODO : securiser la saisie
+			if (vueGenerale != null)
+				vueGenerale.setVitesseChariot(Float.valueOf(textFieldVitesse.getText()));
 		}
 	};
 	
@@ -63,6 +71,11 @@ public class BandeauVitesseChariot extends JPanel {
 		this.add(textFieldVitesse, BorderLayout.CENTER);
 		this.add(boutonModifier, BorderLayout.EAST);
 		
+	}
+	
+	
+	public void setVueGenerale(VueGenerale vueGenerale) {
+		this.vueGenerale = vueGenerale;
 	}
 	
 	/**

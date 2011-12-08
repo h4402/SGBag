@@ -44,11 +44,12 @@ public class VueChariot extends Vue {
 	@Override
 	void action() {
 		this.selectionner();
+		vueGenerale.setChariotCourant(this.chariot);
+		vueGenerale.setGuichetCourant(null);
+		vueGenerale.setTobogganCourant(null);
 		vueGenerale.getBandeauVitesseChariot().setNumChariot(this.chariot.getId());
 		vueGenerale.getBandeauVitesseChariot().setVitesseChariot(this.chariot.getVitesse());
 		vueGenerale.getBandeauVitesseChariot().setVisible(true);
-		// TODO Auto-generated method stub
-		
 	}
 	
 

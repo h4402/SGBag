@@ -47,11 +47,6 @@ import bibliotheques.SGBagFileFilter;
 public class FenetrePrincipale extends JFrame {
 	
 	/**
-	 * L'Aéroport 
-	 */
-	private Aeroport unAeroport;
-	
-	/**
 	 * Vue générale
 	 */
 	private VueGenerale vueGenerale;
@@ -169,10 +164,14 @@ public class FenetrePrincipale extends JFrame {
 	 */
 	private MouseAdapter clicVueGenerale = new MouseAdapter() {
 		public void mouseClicked(MouseEvent e) {
-			// TODO : appeler methode de vueGenerale pour gestion des clics.
 			clicSurVueGenerale(e);
 		}
 	};
+	
+	/**
+	 * Listener sur Bandeaux
+	 */
+	
 	
 	/**
 	 * Timer
@@ -181,7 +180,7 @@ public class FenetrePrincipale extends JFrame {
 
         public void actionPerformed(ActionEvent evt) {
         	// TODO : a chaque tick d'horloge
-        	unAeroport.avancerTemps();
+        	vueGenerale.avancerTemps();
         	vueGenerale.redessiner();
         	
         }
@@ -279,11 +278,8 @@ public class FenetrePrincipale extends JFrame {
 		
 		// Panel Parametres
 		// TODO : 
-		bandeauAjoutBagages = new BandeauAjoutBagages();
-		bandeauVitesseChariot = new BandeauVitesseChariot();
 		bandeauAjoutBagages.setVisible(false);
 		bandeauVitesseChariot.setVisible(false);
-		
 		bandeauGeneral.add(bandeauAjoutBagages, BorderLayout.NORTH);
 		bandeauGeneral.add(bandeauVitesseChariot, BorderLayout.SOUTH);
 		
@@ -339,6 +335,47 @@ public class FenetrePrincipale extends JFrame {
         	bandeauVitesseChariot.setVisible(true);
         }
 	}
+	
+	/**
+	 * 
+	 * @param vueCadreDOMElement
+	 * @return
+	 */
+	public int construireToutAPartirDeXML(Element aeroportElement)
+	{
+		// On crée l'élément Aéroport et la vue qui lui est associée
+		Aeroport aeroport = new Aeroport(null, null, null, null, null);
+		
+		/* TODO
+		 * Créer la vue generale avec le constructeur complet de VueGeneral
+		 * Après avoir tout chargé depuis le fichier XML
+		 * 
+		vueGeneral = new VueGeneral(bandeauAjoutBagages,bandeauVitesseChariot,
+		 						    labelInfo, ....., ...., .....);
+		
+		vueGenerale.addMouseListener(clicVueGenerale);
+		*/
+		
+        this.vueGenerale = null;
+
+        if (aeroport.construireAPartirDeXML(aeroportElement) != Aeroport.PARSE_OK)
+        {
+            return Aeroport.PARSE_ERROR;
+        }
+        
+        VueGenerale vueGenerale = new VueGenerale(aeroport, null, null, null, null, null, null);
+        // création des bandeaux qui ont besoin de la vue générale
+        bandeauAjoutBagages.setVueGenerale(vueGenerale);
+        bandeauVitesseChariot.setVueGenerale(vueGenerale);
+        // par sécurité
+        bandeauAjoutBagages.setVisible(false);
+		bandeauVitesseChariot.setVisible(false);
+        
+        vueGenerale.addMouseListener(clicVueGenerale);
+        this.vueGenerale = vueGenerale;
+
+        return Aeroport.PARSE_OK;
+    }
 	
 	/**
 	 * Chargement de la configuration
