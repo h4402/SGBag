@@ -337,6 +337,7 @@ public class FenetrePrincipale extends JFrame {
 	public int construireToutAPartirDeXML(Element aeroportElement)
 	{
 		// On crée l'élément Aéroport et la vue qui lui est associée
+		
 		Aeroport aeroport = new Aeroport(null, null, null, null, null, null);
 		
 		/* TODO
