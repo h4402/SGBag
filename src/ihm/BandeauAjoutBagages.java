@@ -44,7 +44,8 @@ public class BandeauAjoutBagages extends JPanel {
 	 */
 	private ActionListener ajouterListener = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			vueGenerale.ajouterBagage();
+			if (vueGenerale != null)
+				vueGenerale.ajouterBagage();
 		}
 	};
 	
@@ -52,8 +53,7 @@ public class BandeauAjoutBagages extends JPanel {
 	/**
 	 * Construit le bandeau sans valeur à mettre dedans
 	 */
-	public BandeauAjoutBagages(VueGenerale vueGenerale) {
-		this.vueGenerale = vueGenerale;
+	public BandeauAjoutBagages() {
 		labelBagage.setText("Du guichet .. au toboggan .. : ");
 		boutonAjouter.setText("Ajouter");
 		boutonAjouter.addActionListener(ajouterListener);
@@ -63,6 +63,10 @@ public class BandeauAjoutBagages extends JPanel {
 		
 	}
 
+	public void setVueGenerale(VueGenerale vueGenerale) {
+		this.vueGenerale = vueGenerale;
+	}
+	
 	/**
 	 * Ecrit dans le label d'ajout de bagages
 	 * @param numGuichet : id du guichet (départ)
