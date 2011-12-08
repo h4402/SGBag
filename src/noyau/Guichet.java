@@ -18,7 +18,7 @@ public class Guichet {
 	 * Identifiant d'un guichet
 	 */
 	protected int id;
-	
+
 	/**
 	 * Tapis sur lequel le guichet dépose les bagages.
 	 * 
@@ -92,6 +92,11 @@ public class Guichet {
 	public Point getCoordoonees() {
 		return coordonnees;
 	}
+	
+
+	public int getId() {
+		return id;
+	}
 
 	/**
 	 * Permet de compléter un objet vide à partir du XML
@@ -121,6 +126,7 @@ public class Guichet {
         int nbBagages = Math.round(longueurTapis/Bagage.TAILLE_BAGAGE);
         Tapis tapis = new Tapis(aeroport.getNoeud(idNoeud), new Bagage[nbBagages] , 0, 0, longueurTapis);
         aeroport.ajouterTapis(tapis);
+        aeroport.ajouterGuichet(this);
         
         return Aeroport.PARSE_OK;
     }

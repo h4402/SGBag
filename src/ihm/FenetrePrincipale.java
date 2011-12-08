@@ -3,6 +3,7 @@ package ihm;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Image;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -44,8 +45,6 @@ import bibliotheques.SGBagFileFilter;
  *
  */
 public class FenetrePrincipale extends JFrame {
-	
-	private Aeroport unAeroport;
 	
 	/**
 	 * Vue générale
@@ -165,10 +164,14 @@ public class FenetrePrincipale extends JFrame {
 	 */
 	private MouseAdapter clicVueGenerale = new MouseAdapter() {
 		public void mouseClicked(MouseEvent e) {
-			// TODO : appeler methode de vueGenerale pour gestion des clics.
-			
+			clicSurVueGenerale(e);
 		}
 	};
+	
+	/**
+	 * Listener sur Bandeaux
+	 */
+	
 	
 	/**
 	 * Timer
@@ -177,14 +180,38 @@ public class FenetrePrincipale extends JFrame {
 
         public void actionPerformed(ActionEvent evt) {
         	// TODO : a chaque tick d'horloge
-        	unAeroport.avancerTemps();
+        	vueGenerale.avancerTemps();
         	vueGenerale.redessiner();
         	
         }
     };
 
+    
+    
+    /**
+     * Le Timer pour faire avancer la simulation
+     */
     private Timer horloge = new Timer(Aeroport.lapsTemps, taskPerformer);
 
+    
+    /**
+     * Les fichiers images
+     */
+    private Image imgChariot = null;
+    private Image imgNode = null;
+    private Image imgGuichet = null;
+    private Image imgToboggan = null;
+    private Image imgTapis = null;
+    private Image imgRail = null;
+    
+    final String PATH_IMAGE = "res/img/";
+    final String IMG_CHARIOT = PATH_IMAGE+"chariot.png";
+    final String IMG_NODE = PATH_IMAGE+"node.png";
+    final String IMG_GUICHET = PATH_IMAGE+"node.png";
+    final String IMG_TOBOGGAN = PATH_IMAGE+"toboggan.png";
+    final String IMG_TAPIS = PATH_IMAGE+"tapis.png";
+    final String IMG_RAIL = PATH_IMAGE+"rail.png";
+    
 	/**
 	 * Create the frame.
 	 */
@@ -198,6 +225,14 @@ public class FenetrePrincipale extends JFrame {
         this.setLocationRelativeTo(null);
 		this.setBounds(100, 100, 800, 600);
 		this.setJMenuBar(menuBar);
+		
+		// Chargement des images
+		imgChariot = getToolkit().getImage(IMG_CHARIOT);
+		imgNode = getToolkit().getImage(IMG_NODE);
+	    imgGuichet = getToolkit().getImage(IMG_GUICHET);
+	    imgToboggan = getToolkit().getImage(IMG_TOBOGGAN);
+	    imgTapis = getToolkit().getImage(IMG_TAPIS);
+	    imgRail = getToolkit().getImage(IMG_RAIL);
 		
 		// Menu Fichier
 		menuBar.add(fileMenu);
@@ -243,11 +278,8 @@ public class FenetrePrincipale extends JFrame {
 		
 		// Panel Parametres
 		// TODO : 
-		bandeauAjoutBagages = new BandeauAjoutBagages();
-		bandeauVitesseChariot = new BandeauVitesseChariot();
 		bandeauAjoutBagages.setVisible(false);
 		bandeauVitesseChariot.setVisible(false);
-		
 		bandeauGeneral.add(bandeauAjoutBagages, BorderLayout.NORTH);
 		bandeauGeneral.add(bandeauVitesseChariot, BorderLayout.SOUTH);
 		
@@ -267,9 +299,7 @@ public class FenetrePrincipale extends JFrame {
 		container.add(bandeauGeneral, BorderLayout.NORTH);
 		
 		labelInfo.setText("Bienvenue dans le système de gestion de bagages SGBag");
-		
 		this.setContentPane(container);
-		
 		
 	}
 	
@@ -281,9 +311,20 @@ public class FenetrePrincipale extends JFrame {
         JOptionPane.showMessageDialog(this, new FenetreAbout(), "A Propos", JOptionPane.PLAIN_MESSAGE);
     }
 	
+	/**
+	 * Clic sur le panem vueGenerale
+	 * @param e : mouseEvent pour récupérer la position du clic
+	 */
+	
+	private void clicSurVueGenerale(MouseEvent e) {
+		vueGenerale.clic(e.getX(), e.getY());
+	}
+	
 	
 	/**
-	 * Clic sur le panel VueGenerale
+	 * Test de dessins
+	 * TODO : a supprimer
+	 * @param me : mouseEvent
 	 */
 	private void testDessinsMouseclicked(MouseEvent me) {
         if (me.getX() < testDessins.getWidth()/2) {
@@ -295,16 +336,16 @@ public class FenetrePrincipale extends JFrame {
         }
 	}
 	
-	
 	/**
 	 * 
 	 * @param vueCadreDOMElement
 	 * @return
 	 */
-	public int construireToutAPartirDeXML(Element vueAeroportElement)
+	public int construireToutAPartirDeXML(Element aeroportElement)
 	{
 		// On crée l'élément Aéroport et la vue qui lui est associée
-
+		Aeroport aeroport = new Aeroport(null, null, null, null, null);
+		
 		/* TODO
 		 * Créer la vue generale avec le constructeur complet de VueGeneral
 		 * Après avoir tout chargé depuis le fichier XML
@@ -315,24 +356,23 @@ public class FenetrePrincipale extends JFrame {
 		vueGenerale.addMouseListener(clicVueGenerale);
 		*/
 		
-        unAeroport = new Aeroport(null, null, null, null, null);
-        vueGenerale = null;
+        this.vueGenerale = null;
 
-        /*if (unAeroport.construireAPartirDeXML(vueAeroportElement) != Aeroport.PARSE_OK) {
-            return Cadre.PARSE_ERROR;
+        if (aeroport.construireAPartirDeXML(aeroportElement) != Aeroport.PARSE_OK)
+        {
+            return Aeroport.PARSE_ERROR;
         }
-        VueCadre nouvelleVueCadre = new VueCadre(leCadre, this.getWidth(), this.getHeight());
-        laVueCadre = nouvelleVueCadre;
-
-        //construire les VueBoules
-        Vector lesBoules = leCadre.getBoules();
-        for (int i = 0; i < lesBoules.size(); i++)
-		{
-            Boule laBoule = (Boule) lesBoules.elementAt(i);
-            VueBoule vueBoule = new VueBoule(laBoule, laVueCadre);
-            laVueCadre.AjouterVueBoule(vueBoule);
-        }
-     */
+        
+        VueGenerale vueGenerale = new VueGenerale(aeroport, null, null, null, null, null, null);
+        // création des bandeaux qui ont besoin de la vue générale
+        bandeauAjoutBagages.setVueGenerale(vueGenerale);
+        bandeauVitesseChariot.setVueGenerale(vueGenerale);
+        // par sécurité
+        bandeauAjoutBagages.setVisible(false);
+		bandeauVitesseChariot.setVisible(false);
+        
+        vueGenerale.addMouseListener(clicVueGenerale);
+        this.vueGenerale = vueGenerale;
 
         return Aeroport.PARSE_OK;
     }
@@ -340,7 +380,8 @@ public class FenetrePrincipale extends JFrame {
 	/**
 	 * Chargement de la configuration
 	 */
-	void chargerConfiguration() {
+	public void chargerConfiguration()
+	{
 		jFileChooserXML = new JFileChooser();
         SGBagFileFilter filter = new SGBagFileFilter();
         filter.addExtension("xml");
@@ -362,12 +403,11 @@ public class FenetrePrincipale extends JFrame {
 
                 if (racine.getNodeName().equals("Aeroport"))
                 {
-                	/*if (this.construireToutAPartirDeXML(racine) != Aeroport.PARSE_OK) {
-                //erreur de parsing!
-                } else {
-                    leCadre = container.GetVueCadre().GetCadre();
-                }
-                   */ 
+                	if (vueGenerale.construireToutAPartirDeXML(racine) == Aeroport.PARSE_OK)
+                	{
+                		// unAeroport = vueGenerale.
+                		/*leCadre = container.GetVueCadre().GetCadre();*/ /*WTF ?*/
+                	}
                 }
             // TODO : traiter les erreurs
                 

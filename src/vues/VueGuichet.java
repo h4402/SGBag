@@ -1,5 +1,6 @@
 package vues;
 
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -28,7 +29,7 @@ public class VueGuichet extends Vue {
 	}
 	
 	@Override
-	void dessin() {
+	void dessin(Graphics g) {
 		// TODO Auto-generated method stub
 
 	}
@@ -37,6 +38,15 @@ public class VueGuichet extends Vue {
 	void action() {
 		this.selectionner();
 		vueGenerale.setGuichetCourant(guichet);
+		if(vueGenerale.getTobogganCourant() != null){
+			vueGenerale.getZoneInfo().setText("Pour ajouter un bagage cliquez sur Valider");
+			vueGenerale.getBandeauAjoutBagages().setNumeros(vueGenerale.getGuichetCourant().getId(), 
+					vueGenerale.getTobogganCourant().getId());
+			vueGenerale.getBandeauAjoutBagages().setVisible(true);
+		}
+		else{
+			vueGenerale.getZoneInfo().setText("Veuillez sélectionner un toboggan");
+		}
 	}
 
 	@Override

@@ -1,4 +1,5 @@
 package vues;
+import java.awt.Graphics;
 import java.awt.Image;
 
 import noyau.*;
@@ -19,7 +20,7 @@ public class VueNoeud extends Vue{
 	}
 
 	@Override
-	void dessin() {
+	void dessin(Graphics g) {
 		// TODO Auto-generated method stub
 		
 	}

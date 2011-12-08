@@ -1,5 +1,6 @@
 package vues;
 
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -13,21 +14,21 @@ public class VueToboggan extends Vue {
 	public VueToboggan(VueGenerale vueGenerale, Image image, Toboggan toboggan) {
 		super(vueGenerale, image);
 		this.toboggan = toboggan;
-		posPixel = new Point(this.toboggan.getCoordonnees().x * this.vueGenerale.getEchelle()
-				, this.toboggan.getCoordonnees().y * this.vueGenerale.getEchelle());
+		posPixel = new Point((int)Math.round(this.toboggan.getCoordonnees().x * this.vueGenerale.getEchelle())
+				, (int)Math.round(this.toboggan.getCoordonnees().y * this.vueGenerale.getEchelle()));
 		rectangle = new Rectangle(posPixel.x-25, posPixel.y-25, 50, 50);
 		//TODO Suite
 	}
 	
 	private void updatePos(){
-		posPixel.x = toboggan.getCoordonnees().x * vueGenerale.getEchelle();
-		posPixel.y = toboggan.getCoordonnees().y * vueGenerale.getEchelle();
+		posPixel.x = (int)Math.round(toboggan.getCoordonnees().x * vueGenerale.getEchelle());
+		posPixel.y = (int)Math.round(toboggan.getCoordonnees().y * vueGenerale.getEchelle());
 		rectangle.x = posPixel.x - 25;
 		rectangle.y = posPixel.y - 25;
 	}
 	
 	@Override
-	void dessin() {
+	void dessin(Graphics g) {
 		// TODO Auto-generated method stub
 
 	}
@@ -35,11 +36,16 @@ public class VueToboggan extends Vue {
 	@Override
 	void action() {
 		this.selectionner();
+		vueGenerale.setTobogganCourant(this.toboggan);
 		if(vueGenerale.getGuichetCourant() != null){
-			vueGenerale.afficherBandeau();
+			vueGenerale.getZoneInfo().setText("Pour ajouter un bagage cliquez sur Valider");
+			vueGenerale.getBandeauAjoutBagages().setNumeros(vueGenerale.getGuichetCourant().getId(), 
+					vueGenerale.getTobogganCourant().getId());
+			vueGenerale.getBandeauAjoutBagages().setVisible(true);
 		}
-		// TODO Auto-generated method stub
-
+		else{
+			vueGenerale.getZoneInfo().setText("Veuillez selectionner un Guichet");
+		}
 	}
 
 	@Override

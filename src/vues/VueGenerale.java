@@ -1,10 +1,18 @@
 package vues;
 
+import ihm.BandeauAjoutBagages;
+import ihm.BandeauVitesseChariot;
+
 import java.awt.Image;
+import java.beans.BeanDescriptor;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Generated;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import org.w3c.dom.Element;
 
 
 import noyau.*;
@@ -12,16 +20,27 @@ public class VueGenerale extends JPanel {
 	
 		private Guichet guichetCourant;
 		private Toboggan tobogganCourant;
+		private Chariot chariotCourant;
+		private Rail railCourant;
 		private Aeroport aeroport;
+		private BandeauAjoutBagages bandeauAjoutBagages;
+		private BandeauVitesseChariot bandeauVitesseChariot;
+		private JLabel zoneInfo;
 		private double echelle;
 		private Image image;
+		private ArrayList<Vue> listVues;
 
 		@SuppressWarnings("null")
-		public VueGenerale(Aeroport aeroport, Image imageChariot, Image imageNode,Image imageGuichet,Image imageToboggan, Image imageTapis,Image imageRail){
+		public VueGenerale(BandeauAjoutBagages bandeauAjoutBagages, BandeauVitesseChariot bandeauVitesseChariot, 
+				JLabel zoneInfo, Aeroport aeroport, Image imageChariot, Image imageNode, Image imageGuichet, 
+				Image imageToboggan, Image imageTapis, Image imageRail){
 			
 			this.aeroport = aeroport;
+			this.bandeauAjoutBagages = bandeauAjoutBagages;
+			this.bandeauVitesseChariot = bandeauVitesseChariot;
+			this.zoneInfo = zoneInfo;			
 			
-			List<Vue> listVues = null;
+			listVues = new ArrayList<Vue>();
 			
 			List<Chariot> listChariot = aeroport.getListChariots();
 			for(Chariot c: listChariot){
@@ -56,8 +75,32 @@ public class VueGenerale extends JPanel {
 			
 		}
 		
-		public void redessiner(){
-			
+		public Toboggan getTobogganCourant() {
+			return tobogganCourant;
+		}
+
+		public Rail getRailCourant() {
+			return railCourant;
+		}
+
+		public void setRailCourant(Rail railCourant) {
+			this.railCourant = railCourant;
+		}
+
+		public void setTobogganCourant(Toboggan tobogganCourant) {
+			this.tobogganCourant = tobogganCourant;
+		}
+
+		public BandeauAjoutBagages getBandeauAjoutBagages() {
+			return bandeauAjoutBagages;
+		}
+
+		public BandeauVitesseChariot getBandeauVitesseChariot() {
+			return bandeauVitesseChariot;
+		}
+
+		public JLabel getZoneInfo() {
+			return zoneInfo;
 		}
 		
 		public double getEchelle() {
@@ -75,10 +118,89 @@ public class VueGenerale extends JPanel {
 		public void setGuichetCourant(Guichet guichetCourant) {
 			this.guichetCourant = guichetCourant;
 		}
-				
-		public void ajouterBagage(){
-			//aeroport.ajouterBagage(guichetCourant, tobogganCourant);
+		
+		public Chariot getChariotCourant() {
+			return chariotCourant;
 		}
 
+		public void setChariotCourant(Chariot chariotCourant) {
+			this.chariotCourant = chariotCourant;
+		}
+				
+		public void redessiner(){
+			for (int i = listVues.size(); i >= 0; i--) {
+				listVues.get(i).dessin(this.getGraphics());
+			}			
+		}
+		
+		public void clic(int x, int y){
+			int i = 0;
+			boolean trouve = false;
+			bandeauAjoutBagages.setVisible(false);
+			bandeauVitesseChariot.setVisible(false);
+			zoneInfo.setText("");
+			chariotCourant = null;
+			railCourant = null;
+			for (Vue v : listVues ){
+				v.deselectionner();
+			}
+			while (i < listVues.size() && !trouve) {
+				trouve = listVues.get(i++).clic(x, y);
+			}
+			if(trouve){
+				listVues.get(i-1).action();
+			}
+			else{
+				guichetCourant = null;
+				tobogganCourant = null;
+			}
+		}
+		
+		public void ajouterBagage(){
+			aeroport.ajouterBagage(guichetCourant, tobogganCourant);
+			guichetCourant = null;
+			tobogganCourant = null;
+		}
+		
+		/**
+		 * 
+		 * @param vueCadreDOMElement
+		 * @return
+		 */
+		public int construireToutAPartirDeXML(Element aeroportElement)
+		{
+			// On crée l'élément Aéroport et la vue qui lui est associée
+			//Aeroport aeroport = new Aeroport(null, null, null, null, null);
+			
+			/* TODO
+			 * Créer la vue generale avec le constructeur complet de VueGeneral
+			 * Après avoir tout chargé depuis le fichier XML
+			 * 
+			vueGeneral = new VueGeneral(bandeauAjoutBagages,bandeauVitesseChariot,
+			 						    labelInfo, ....., ...., .....);
+			
+			vueGenerale.addMouseListener(clicVueGenerale);
+			*/
+			
+	        /*this.vueGenerale = null;
 
+	        if (aeroport.construireAPartirDeXML(aeroportElement) != Aeroport.PARSE_OK)
+	        {
+	            return Aeroport.PARSE_ERROR;
+	        }
+	        
+	        VueGenerale vueGenerale = new VueGenerale(aeroport, null, null, null, null, null, null);
+	        vueGenerale.addMouseListener(clicVueGenerale);
+	        this.vueGenerale = vueGenerale;
+*/
+	        return Aeroport.PARSE_OK;
+	    }
+		public void setVitesseChariot(float vitesse){
+			chariotCourant.setVitesse(vitesse);
+			chariotCourant = null;
+		}
+		
+		public void avancerTemps(){
+			aeroport.avancerTemps();
+		}
 }

@@ -44,6 +44,10 @@ public class Toboggan extends ES {
 		listBagages.add(b);
 	}
 	
+	public int getId() {
+		return id;
+	}
+
 	/**
 	 * Permet de compléter un objet vide à partir du XML
 	 * 
@@ -62,6 +66,8 @@ public class Toboggan extends ES {
 
         LinkedList<Bagage> liste = new LinkedList<Bagage>();
         this.listBagages = liste;
+        
+        aeroport.ajouterToboggan(this);
         
         return Aeroport.PARSE_OK;
     }

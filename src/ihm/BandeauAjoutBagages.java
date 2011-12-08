@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import vues.VueGenerale;
+
 import noyau.Guichet;
 import noyau.Toboggan;
 
@@ -19,6 +21,12 @@ import noyau.Toboggan;
 
 public class BandeauAjoutBagages extends JPanel {
 
+	
+	/**
+	 * La vue Générale
+	 */
+	VueGenerale vueGenerale = null;
+	
 	/**
 	 * Label
 	 */
@@ -36,8 +44,8 @@ public class BandeauAjoutBagages extends JPanel {
 	 */
 	private ActionListener ajouterListener = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			// TODO : appeler Ajout bagage de vueGeneral
-			
+			if (vueGenerale != null)
+				vueGenerale.ajouterBagage();
 		}
 	};
 	
@@ -55,6 +63,10 @@ public class BandeauAjoutBagages extends JPanel {
 		
 	}
 
+	public void setVueGenerale(VueGenerale vueGenerale) {
+		this.vueGenerale = vueGenerale;
+	}
+	
 	/**
 	 * Ecrit dans le label d'ajout de bagages
 	 * @param numGuichet : id du guichet (départ)

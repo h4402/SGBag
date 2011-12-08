@@ -86,7 +86,8 @@ public class Noeud {
         		this.listRailsSortie.add(rail);
         	}
         }
-
+        
+        aeroport.ajouterNoeud(this);
         return Aeroport.PARSE_OK;
     }
 
