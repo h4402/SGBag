@@ -27,7 +27,6 @@ public class TestDessins extends JPanel {
 		g.drawRect(200, 50, 200, 200);
 		Rectangle rect = new Rectangle(100, 100, 50, 50);
 		
-		
 		Graphics2D g2d = (Graphics2D)g;
 		AffineTransform transform = g2d.getTransform();
         AffineTransform newTransform = (AffineTransform)(transform.clone());
