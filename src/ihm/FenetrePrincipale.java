@@ -2,6 +2,7 @@ package ihm;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Image;
 
@@ -220,11 +221,15 @@ public class FenetrePrincipale extends JFrame {
 	}
 
 	private void jInit() {
+		Dimension dimBandeau = new Dimension(this.getWidth(), 50);
 		this.setTitle("SGBag - Simulation");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
-		this.setBounds(100, 100, 800, 600);
+		this.setBounds(100, 100, 1024, 768);
+		this.setResizable(false);
 		this.setJMenuBar(menuBar);
+		bandeauGeneral.setVisible(true);
+		bandeauGeneral.setPreferredSize(dimBandeau);
 		
 		// Chargement des images
 		imgChariot = getToolkit().getImage(IMG_CHARIOT);

@@ -35,7 +35,6 @@ public class BandeauAjoutBagages extends JPanel {
 	 */
 	private JButton boutonAjouter = new JButton();
 	
-	
 	/**
 	 * Clic sur ajouter bagage
 	 */
