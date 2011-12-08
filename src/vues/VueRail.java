@@ -14,7 +14,7 @@ public class VueRail extends Vue {
 	private Point pointA;
 	private Point pointB;
 
-	public VueRail(VueGeneral vueGeneral, Image image, Rail rail) {
+	public VueRail(VueGenerale vueGeneral, Image image, Rail rail) {
 		super(vueGeneral, image);
 		this.rail = rail;
 		constructionRectangle(this.rail,vueGeneral);
@@ -43,7 +43,7 @@ public class VueRail extends Vue {
 	 * On fait la construction du rectangle
 	 * @param r rail que on va utiliser pour la construction du rectangle
 	 */
-	private void constructionRectangle(Rail r,VueGeneral vueGeneral){
+	private void constructionRectangle(Rail r,VueGenerale vueGeneral){
 		pointA = r.getNoeudEntree().getCoordoonees();
 		pointB = r.getNoeudSortie().getCoordoonees();
 		pointA.x = (int) Math.round(pointA.getX()*vueGeneral.getEchelle());

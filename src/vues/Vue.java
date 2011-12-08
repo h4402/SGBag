@@ -7,14 +7,14 @@ import java.awt.Rectangle;
 
 public abstract class Vue {
 	
-	protected VueGeneral vueGeneral; //name changed
+	protected VueGenerale vueGenerale; //name changed
 	protected Rectangle rectangle;
 	protected Image image;
 	protected Point posPixel;
 	protected boolean selection;
 	
-	public Vue(VueGeneral vueGeneral, Image image){
-		this.vueGeneral = vueGeneral;
+	public Vue(VueGenerale vueGeneral, Image image){
+		this.vueGenerale = vueGeneral;
 		this.image = image;
 	}
 	boolean dansRectangle(Point posClic){

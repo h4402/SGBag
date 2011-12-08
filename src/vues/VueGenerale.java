@@ -7,18 +7,19 @@ import javax.swing.JPanel;
 
 
 import noyau.*;
-public class VueGeneral extends JPanel {
+public class VueGenerale extends JPanel {
 	
 		private Guichet guichetCourant;
 		private Toboggan tobogganCourant;
 		private Aeroport aeroport;
-		private Noeud noeud;
-		private Rail rail;
 		private double echelle;
 		private Image image;
 
 		@SuppressWarnings("null")
-		public VueGeneral(Image imageChariot, Image imageNode,Image imageGuichet,Image imageToboggan, Image imageTapis,Image imageRail){
+		public VueGenerale(Aeroport aeroport, Image imageChariot, Image imageNode,Image imageGuichet,Image imageToboggan, Image imageTapis,Image imageRail){
+			
+			this.aeroport = aeroport;
+			
 			List<Vue> listVues = null;
 			
 			List<Chariot> listChariot = aeroport.getListChariots();

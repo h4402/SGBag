@@ -8,22 +8,22 @@ import noyau.Chariot;
 public class VueChariot extends Vue {
 	private Chariot chariot;
 	
-	public VueChariot(VueGeneral vueGeneral, Image image, Chariot chariot) {
-		super(vueGeneral, image);
+	public VueChariot(VueGenerale vueGenerale, Image image, Chariot chariot) {
+		super(vueGenerale, image);
 		this.chariot = chariot;
-		posPixel = new Point(this.chariot.getCoordoonees().x * this.vueGeneral.getEchelle()
-				, this.chariot.getCoordoonees().y * this.vueGeneral.getEchelle());
-		rectangle = new Rectangle(posPixel.x - image.getHeight(vueGeneral)/2, 
-				posPixel.y - image.getWidth(vueGeneral)/2, image.getHeight(vueGeneral),
-				image.getWidth(vueGeneral));
+		posPixel = new Point(this.chariot.getCoordoonees().x * this.vueGenerale.getEchelle()
+				, this.chariot.getCoordoonees().y * this.vueGenerale.getEchelle());
+		rectangle = new Rectangle(posPixel.x - image.getHeight(vueGenerale)/2, 
+				posPixel.y - image.getWidth(vueGenerale)/2, image.getHeight(vueGenerale),
+				image.getWidth(vueGenerale));
 		// TODO Auto-generated constructor stub
 	}
 
 	private void updatePos(){
-		posPixel.x = chariot.getCoordoonees().x * vueGeneral.getEchelle();
-		posPixel.y = chariot.getCoordoonees().y * vueGeneral.getEchelle();
-		rectangle.x = posPixel.x - image.getHeight(vueGeneral)/2;
-		rectangle.y = posPixel.y - image.getWidth(vueGeneral)/2;
+		posPixel.x = chariot.getCoordoonees().x * vueGenerale.getEchelle();
+		posPixel.y = chariot.getCoordoonees().y * vueGenerale.getEchelle();
+		rectangle.x = posPixel.x - image.getHeight(vueGenerale)/2;
+		rectangle.y = posPixel.y - image.getWidth(vueGenerale)/2;
 	}
 	
 	@Override

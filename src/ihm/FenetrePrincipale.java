@@ -19,7 +19,7 @@ import javax.swing.JScrollPane;
 import javax.swing.KeyStroke;
 import javax.swing.Timer;
 
-import vues.VueGeneral;
+import vues.VueGenerale;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -58,7 +58,7 @@ public class FenetrePrincipale extends JFrame {
 	/**
 	 * Vue générale
 	 */
-	private VueGeneral vueGeneral;
+	private VueGenerale vueGeneral;
 	
 	/**
 	 * Fichiers
@@ -299,7 +299,7 @@ public class FenetrePrincipale extends JFrame {
 	{
 		// On crée l'élément Aéroport et la vue qui lui est associée
         Aeroport unAeroport = new Aeroport(null, null, null, null, null);
-        VueGeneral vueGenerale = null;
+        VueGenerale vueGenerale = null;
         /*if (unAeroport.construireAPartirDeXML(vueAeroportElement) != Aeroport.PARSE_OK) {
             return Cadre.PARSE_ERROR;
         }
