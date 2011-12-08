@@ -81,15 +81,18 @@ public class Noeud {
         int posY = Integer.parseInt(noeudElement.getAttribute("posY"));
         this.coordonnees = new Point(posX, posY);
         
+        
+        //TODO : c'est juste pas possible de faire ça là, les rails n'existent pas
         // On récupère les rails de sortie du noeud
-        List<Rail> listeRails = aeroport.getListeRails();
+        /*List<Rail> listeRails = aeroport.getListeRails();
         for ( Rail rail : listeRails)
         {
         	if (this.id == rail.getNoeudEntree().id)
         	{
         		this.listRailsSortie.add(rail);
         	}
-        }
+        }*/
+
         
         aeroport.ajouterNoeud(this);
         return Aeroport.PARSE_OK;
