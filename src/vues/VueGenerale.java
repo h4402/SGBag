@@ -77,6 +77,14 @@ public class VueGenerale extends JPanel {
 			return tobogganCourant;
 		}
 
+		public Rail getRailCourant() {
+			return railCourant;
+		}
+
+		public void setRailCourant(Rail railCourant) {
+			this.railCourant = railCourant;
+		}
+
 		public void setTobogganCourant(Toboggan tobogganCourant) {
 			this.tobogganCourant = tobogganCourant;
 		}
