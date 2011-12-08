@@ -12,11 +12,14 @@ public class VueTapis extends Vue {
 
 	private Tapis tapis;
 	private Image imageAvecBagage;
+	private Image imageAvecBagageSel;
 	
-	public VueTapis(VueGenerale vueGeneral, Image image, Image imageAvecBagage, Tapis tapis) {
-		super(vueGeneral, image);
+	public VueTapis(VueGenerale vueGeneral, Image image, Image imageSel, 
+			Image imageAvecBagage, Image imageAvecBagageSel, Tapis tapis) {
+		super(vueGeneral, image, imageSel);
 		this.tapis = tapis;
 		this.imageAvecBagage = imageAvecBagage;
+		this.imageAvecBagageSel = imageAvecBagageSel;
 		// TODO Auto-generated constructor stub
 	}
 

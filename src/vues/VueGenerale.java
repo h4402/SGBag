@@ -39,33 +39,36 @@ public class VueGenerale extends JPanel {
 			
 			List<Chariot> listChariot = aeroport.getListChariots();
 			for(Chariot c: listChariot){
-				listVues.add(new VueChariot(this, imagesManager.getImgChariot(), imagesManager.getImgChariotB(), c));
+				listVues.add(new VueChariot(this, imagesManager.getImgChariot(), imagesManager.getImgChariotSel(),
+						imagesManager.getImgChariotB(), imagesManager.getImgChariotBSel(), c));
 			}
 			
 			
 			List<Guichet> listGuichet = aeroport.getListGuichets();
 			for(Guichet g: listGuichet){
-				listVues.add(new VueGuichet(this, imagesManager.getImgGuichet(),g));
+				listVues.add(new VueGuichet(this, imagesManager.getImgGuichet(), imagesManager.getImgGuichetSel(), g));
 			}
 			
 			List<Toboggan> listToboggan = aeroport.getListToboggans();
 			for(Toboggan t: listToboggan){
-				listVues.add(new VueToboggan(this, imagesManager.getImgToboggan(),t));
+				listVues.add(new VueToboggan(this, imagesManager.getImgToboggan(), imagesManager.getImgTobogganSel(), t));
 			}
 			
 			List<Tapis> listTapis = aeroport.getListTapis();
 			for(Tapis p : listTapis){
-				listVues.add(new VueTapis(this, imagesManager.getImgTapis(), imagesManager.getImgTapisB(), p));
+				listVues.add(new VueTapis(this, imagesManager.getImgTapis(), imagesManager.getImgTapisSel(), 
+						imagesManager.getImgTapisB(), imagesManager.getImgTapisBSel(), p));
 			}
 			
 			List<Noeud> listNoeuds = aeroport.getListNoeuds();
 			for(Noeud n: listNoeuds){
-				listVues.add(new VueNoeud(this, imagesManager.getImgNode(), imagesManager.getImgNodeGarage(), n));
+				listVues.add(new VueNoeud(this, imagesManager.getImgNode(), imagesManager.getImgNodeSel(),
+						imagesManager.getImgNodeGarage(), imagesManager.getImgNodeGarageSel(), n));
 			}
 			
 			List<Rail> listRail = aeroport.getListRails();
 			for(Rail r : listRail){
-				listVues.add(new VueRail(this,imagesManager.getImgRail(),r));
+				listVues.add(new VueRail(this,imagesManager.getImgRail(), imagesManager.getImgRailSel(), r));
 			}
 			
 		}
@@ -128,7 +131,7 @@ public class VueGenerale extends JPanel {
 			}			
 		}
 		
-		public void clic(int x, int y){
+		public void clic(int x, int y) {
 			int i = 0;
 			boolean trouve = false;
 			bandeauAjoutBagages.setVisible(false);

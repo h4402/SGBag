@@ -287,7 +287,7 @@ public class FenetrePrincipale extends JFrame {
 		// Ajout des panels
 		container.setBackground(Color.white);
 		container.setLayout(new BorderLayout());
-		container.add(testDessins, BorderLayout.CENTER);
+		//container.add(testDessins, BorderLayout.CENTER);
 		//container.add(vueGenerale, BorderLayout.CENTER);
 		container.add(panelBas, BorderLayout.SOUTH);
 		container.add(bandeauGeneral, BorderLayout.NORTH);
@@ -339,27 +339,15 @@ public class FenetrePrincipale extends JFrame {
 	public int construireToutAPartirDeXML(Element aeroportElement)
 	{
 		// On crée l'élément Aéroport et la vue qui lui est associée
-		
 		Aeroport aeroport = new Aeroport();
-		
-		/* TODO
-		 * Créer la vue generale avec le constructeur complet de VueGeneral
-		 * Après avoir tout chargé depuis le fichier XML
-		 * 
-		vueGeneral = new VueGeneral(bandeauAjoutBagages,bandeauVitesseChariot,
-		 						    labelInfo, ....., ...., .....);
-		
-		vueGenerale.addMouseListener(clicVueGenerale);
-		*/
-		
-        this.vueGenerale = null;
+        vueGenerale = null;
 
         if (aeroport.construireAPartirDeXML(aeroportElement) != Aeroport.PARSE_OK)
         {
             return Aeroport.PARSE_ERROR;
         }
         
-        this.vueGenerale = new VueGenerale(bandeauAjoutBagages, 
+        vueGenerale = new VueGenerale(bandeauAjoutBagages, 
         		bandeauVitesseChariot, labelInfo, aeroport, imagesManager);
         // création des bandeaux qui ont besoin de la vue générale
         bandeauAjoutBagages.setVueGenerale(vueGenerale);
