@@ -44,6 +44,10 @@ public class Noeud {
 		this.coordonnees = coordonnees;
 	}
 	
+	public Noeud(Point coordonnees) {
+		this.coordonnees = coordonnees;
+	}
+	
 	/**
 	 * Retourne la liste des rails auquels mène le noeud.
 	 * 
