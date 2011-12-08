@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.Image;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -160,7 +159,7 @@ public class FenetrePrincipale extends JFrame {
 	 */
 	private ActionListener arretUrgenceListener = new ActionListener() {
 		public void actionPerformed(ActionEvent actionEvent) {
-			// TODO : vueGeneral.arretUrgence();
+			// TODO : vueGenerale.arretUrgence();
 		}
 	};
 	
@@ -193,7 +192,6 @@ public class FenetrePrincipale extends JFrame {
      */
     private Timer horloge = new Timer(Aeroport.lapsTemps, taskPerformer);
 
-    
     
 	/**
 	 * Create the frame.
@@ -299,7 +297,8 @@ public class FenetrePrincipale extends JFrame {
 	 */
 	
 	private void clicSurVueGenerale(MouseEvent e) {
-		vueGenerale.clic(e.getX(), e.getY());
+		if (vueGenerale != null)
+			vueGenerale.clic(e.getX(), e.getY());
 	}
 	
 	
@@ -345,7 +344,8 @@ public class FenetrePrincipale extends JFrame {
             return Aeroport.PARSE_ERROR;
         }
         
-        VueGenerale vueGenerale = new VueGenerale(null, null, null, aeroport, null, null, null, null, null, null);
+        this.vueGenerale = new VueGenerale(bandeauAjoutBagages, 
+        		bandeauVitesseChariot, labelInfo, aeroport, imagesManager);
         // création des bandeaux qui ont besoin de la vue générale
         bandeauAjoutBagages.setVueGenerale(vueGenerale);
         bandeauVitesseChariot.setVueGenerale(vueGenerale);
