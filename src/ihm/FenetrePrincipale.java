@@ -54,7 +54,7 @@ public class FenetrePrincipale extends JFrame {
 	/**
 	 * Fichiers
 	 */
-	private JFileChooser jFileChooserXML;
+	private JFileChooser jFileChooserXML = new JFileChooser();
 	
 	/**
 	 * Menu
@@ -201,6 +201,17 @@ public class FenetrePrincipale extends JFrame {
 	}
 
 	private void jInit() {
+		
+		/*
+		jFileChooserXML.setFileSelectionMode(JFileChooser.FILES_ONLY);
+		int returnVal = jFileChooserXML.showOpenDialog(this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+        	if (jFileChooserXML.getSelectedFile() == null) {
+        		System.exit(0);
+        	}
+        }
+	    */
+		
 		Dimension dimBandeau = new Dimension(this.getWidth(), 50);
 		this.setTitle("SGBag - Simulation");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -274,7 +285,8 @@ public class FenetrePrincipale extends JFrame {
 		// Ajout des panels
 		container.setBackground(Color.white);
 		container.setLayout(new BorderLayout());
-		container.add(testDessins, BorderLayout.CENTER);
+		//container.add(testDessins, BorderLayout.CENTER);
+		//container.add(vueGenerale, BorderLayout.CENTER);
 		container.add(panelBas, BorderLayout.SOUTH);
 		container.add(bandeauGeneral, BorderLayout.NORTH);
 		
@@ -364,7 +376,6 @@ public class FenetrePrincipale extends JFrame {
 	 */
 	public void chargerConfiguration()
 	{
-		jFileChooserXML = new JFileChooser();
         SGBagFileFilter filter = new SGBagFileFilter();
         filter.addExtension("xml");
         filter.setDescription("Fichier XML");
