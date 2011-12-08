@@ -36,13 +36,16 @@ public class VueToboggan extends Vue {
 	@Override
 	void action() {
 		this.selectionner();
+		vueGenerale.setTobogganCourant(this.toboggan);
 		if(vueGenerale.getGuichetCourant() != null){
-			vueGenerale.getZoneInfo().setText("Ajouter un bagage?");
-			vueGenerale.setTobogganCourant(this.toboggan);
+			vueGenerale.getZoneInfo().setText("Pour ajouter un bagage cliquez sur Valider");
+			vueGenerale.getBandeauAjoutBagages().setNumeros(vueGenerale.getGuichetCourant().getId(), 
+					vueGenerale.getTobogganCourant().getId());
 			vueGenerale.getBandeauAjoutBagages().setVisible(true);
 		}
-		// TODO Auto-generated method stub
-
+		else{
+			vueGenerale.getZoneInfo().setText("Veuillez selectionner un Guichet");
+		}
 	}
 
 	@Override

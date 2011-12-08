@@ -18,7 +18,7 @@ public class Guichet {
 	 * Identifiant d'un guichet
 	 */
 	protected int id;
-	
+
 	/**
 	 * Tapis sur lequel le guichet dépose les bagages.
 	 * 
@@ -91,6 +91,11 @@ public class Guichet {
 	 */
 	public Point getCoordoonees() {
 		return coordonnees;
+	}
+	
+
+	public int getId() {
+		return id;
 	}
 
 	/**
