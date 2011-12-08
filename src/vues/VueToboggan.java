@@ -16,15 +16,10 @@ public class VueToboggan extends Vue {
 		this.toboggan = toboggan;
 		posPixel = new Point((int)Math.round(this.toboggan.getCoordonnees().x * this.vueGenerale.getEchelle())
 				, (int)Math.round(this.toboggan.getCoordonnees().y * this.vueGenerale.getEchelle()));
-		rectangle = new Rectangle(posPixel.x-25, posPixel.y-25, 50, 50);
+		rectangle = new Rectangle(posPixel.x - image.getHeight(vueGenerale)/2, 
+				posPixel.y - image.getWidth(vueGenerale)/2, image.getHeight(vueGenerale),
+				image.getWidth(vueGenerale));
 		//TODO Suite
-	}
-	
-	private void updatePos(){
-		posPixel.x = (int)Math.round(toboggan.getCoordonnees().x * vueGenerale.getEchelle());
-		posPixel.y = (int)Math.round(toboggan.getCoordonnees().y * vueGenerale.getEchelle());
-		rectangle.x = posPixel.x - 25;
-		rectangle.y = posPixel.y - 25;
 	}
 	
 	@Override
@@ -52,7 +47,6 @@ public class VueToboggan extends Vue {
 	@Override
 	boolean clic(int x, int y) {
 		Point p = new Point(x, y);
-		updatePos();
 		return dansRectangle(p);
 	}
 }

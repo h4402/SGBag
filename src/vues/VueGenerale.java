@@ -4,16 +4,11 @@ import ihm.BandeauAjoutBagages;
 import ihm.BandeauVitesseChariot;
 
 import java.awt.Image;
-import java.beans.BeanDescriptor;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Generated;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import org.w3c.dom.Element;
-
 
 import noyau.*;
 public class VueGenerale extends JPanel {

@@ -20,13 +20,6 @@ public class VueGuichet extends Vue {
 				image.getWidth(vueGeneral));
 		//TODO Suite
 	}
-
-	private void updatePos(){
-		posPixel.x = (int)Math.round(guichet.getCoordoonees().x * vueGenerale.getEchelle());
-		posPixel.y = (int)Math.round(guichet.getCoordoonees().y * vueGenerale.getEchelle());
-		rectangle.x = posPixel.x - image.getHeight(vueGenerale)/2;
-		rectangle.y = posPixel.y - image.getWidth(vueGenerale)/2;
-	}
 	
 	@Override
 	void dessin(Graphics g) {
@@ -53,7 +46,6 @@ public class VueGuichet extends Vue {
 	@Override
 	boolean clic(int x, int y) {
 		Point p = new Point(x, y);
-		updatePos();
 		return dansRectangle(p);
 	}
 
