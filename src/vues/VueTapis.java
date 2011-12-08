@@ -8,7 +8,7 @@ public class VueTapis extends Vue {
 
 	private Tapis tapis;
 	
-	public VueTapis(VueGeneral vueGeneral, Image image, Tapis tapis) {
+	public VueTapis(VueGenerale vueGeneral, Image image, Tapis tapis) {
 		super(vueGeneral, image);
 		this.tapis = tapis;
 		// TODO Auto-generated constructor stub

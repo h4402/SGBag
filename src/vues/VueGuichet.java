@@ -9,11 +9,11 @@ import noyau.Guichet;
 public class VueGuichet extends Vue {
 
 	private Guichet guichet;
-	public VueGuichet(VueGeneral vueGeneral, Image image, Guichet guichet) {
+	public VueGuichet(VueGenerale vueGeneral, Image image, Guichet guichet) {
 		super(vueGeneral, image);
 		this.guichet = guichet;
-		posPixel = new Point(this.guichet.getCoordoonees().x * this.vueGeneral.getEchelle()
-				, this.guichet.getCoordoonees().y * this.vueGeneral.getEchelle());
+		posPixel = new Point((int)Math.round(this.guichet.getCoordoonees().x * this.vueGenerale.getEchelle())
+				, (int)Math.round(this.guichet.getCoordoonees().y * this.vueGenerale.getEchelle()));
 		rectangle = new Rectangle(posPixel.x - image.getHeight(vueGeneral)/2, 
 				posPixel.y - image.getWidth(vueGeneral)/2, image.getHeight(vueGeneral),
 				image.getWidth(vueGeneral));
@@ -21,10 +21,10 @@ public class VueGuichet extends Vue {
 	}
 
 	private void updatePos(){
-		posPixel.x = guichet.getCoordoonees().x * vueGeneral.getEchelle();
-		posPixel.y = guichet.getCoordoonees().y * vueGeneral.getEchelle();
-		rectangle.x = posPixel.x - image.getHeight(vueGeneral)/2;
-		rectangle.y = posPixel.y - image.getWidth(vueGeneral)/2;
+		posPixel.x = (int)Math.round(guichet.getCoordoonees().x * vueGenerale.getEchelle());
+		posPixel.y = (int)Math.round(guichet.getCoordoonees().y * vueGenerale.getEchelle());
+		rectangle.x = posPixel.x - image.getHeight(vueGenerale)/2;
+		rectangle.y = posPixel.y - image.getWidth(vueGenerale)/2;
 	}
 	
 	@Override
@@ -36,7 +36,7 @@ public class VueGuichet extends Vue {
 	@Override
 	void action() {
 		this.selectionner();
-		vueGeneral.setGuichetCourant(guichet);
+		vueGenerale.setGuichetCourant(guichet);
 	}
 
 	@Override
