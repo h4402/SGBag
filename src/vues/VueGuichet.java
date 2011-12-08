@@ -1,5 +1,6 @@
 package vues;
 
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -28,7 +29,7 @@ public class VueGuichet extends Vue {
 	}
 	
 	@Override
-	void dessin() {
+	void dessin(Graphics g) {
 		// TODO Auto-generated method stub
 
 	}

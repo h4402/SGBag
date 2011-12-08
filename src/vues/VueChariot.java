@@ -1,5 +1,6 @@
 package vues;
 
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -34,7 +35,7 @@ public class VueChariot extends Vue {
 	}
 
 	@Override
-	void dessin() {
+	void dessin(Graphics g) {
 		this.selectionner();
 		// TODO Auto-generated method stub
 		

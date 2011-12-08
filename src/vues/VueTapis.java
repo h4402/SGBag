@@ -1,5 +1,6 @@
 package vues;
 
+import java.awt.Graphics;
 import java.awt.Image;
 
 import noyau.Tapis;
@@ -15,7 +16,7 @@ public class VueTapis extends Vue {
 	}
 
 	@Override
-	void dessin() {
+	void dessin(Graphics g) {
 		// TODO Auto-generated method stub
 
 	}
