@@ -75,28 +75,25 @@ public class Chariot {
 	}	
 	
 	/**
-	 * TODO Prendre une direction et faire le calcul.
-	 * 
-	 * Calcule la nouvelle position du chariot
-	 * selon ses coordonnées actuelles, sa vitesse
-	 * et la direction en parametre.
-	 * 
-	 * @return La nouvelle position.
+	 * Calcul la nouvelle distance sur le meme rail
+	 * après un top horloge.
 	 */
-	public Point calculerNouvPos(Point vectUnitaire) {
-		
-		distanceDepuisNoeudDepart += vitesse;
-		
-		return new Point();
+	public float calculerNouvPos() {
+		return (float)(distanceDepuisNoeudDepart + vitesse*Aeroport.lapsTemps);
 	}
 	
 	/**
-	 * Met à jour la position du chariot.
-	 *
-	 * @param p Nouvelle position du chariot.
+	 * Calcul les nouveau coordonnées en fonction
+	 * d'un rail et d'une distance sur ce rail.
+	 * 
+	 * @param entree Noeud d'entrée du rail.
+	 * @param vectUnitaire Vecteur unitaire du rail.
+	 * @param nouvDist Nouvelle distance du chariot sur le rail.
 	 */
-	public void majPos(Point p) {
-		this.coordonnees.setLocation(p);
+	public void majPos(Noeud entree, Point vectUnitaire, float nouvDist) {
+		distanceDepuisNoeudDepart = nouvDist;
+		coordonnees.x = (int)(entree.getCoordoonees().x + distanceDepuisNoeudDepart*vectUnitaire.x);
+		coordonnees.y = (int)(entree.getCoordoonees().y + distanceDepuisNoeudDepart*vectUnitaire.y);
 	}
 
 	/**
@@ -213,6 +210,15 @@ public class Chariot {
 	 */
 	public Point getCoordonnees() {
 		return coordonnees;
+	}
+	
+	/**
+	 * Distance sur le rail depuis le noeud de départ.
+	 * 
+	 * @return Distance depuis le noeud de départ.
+	 */
+	public float getDistance() {
+		return distanceDepuisNoeudDepart;
 	}
 	
 	/**
