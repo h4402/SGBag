@@ -23,9 +23,8 @@ public class VueRail extends Vue {
 
 	@Override
 	boolean clic(int x, int y) {
-		// TODO Auto-generated method stub
-		
-		return false;
+		Point p = new Point(x, y);
+		return dansRectangle(p);
 	}
 
 	@Override
@@ -39,9 +38,9 @@ public class VueRail extends Vue {
 		this.selectionner();
 		vueGenerale.setGuichetCourant(null);
 		vueGenerale.setTobogganCourant(null);
-		// TODO Auto-generated method stub
-		
+		vueGenerale.setRailCourant(this.rail);
 	}
+	
 	/**
 	 * On fait la construction du rectangle
 	 * @param r rail que on va utiliser pour la construction du rectangle
