@@ -196,6 +196,7 @@ public class Rail {
 		LinkedList<Chariot> liste = new LinkedList<Chariot>();
 		this.listChariots = liste;
 		
+		aeroport.ajouterRail(this);
 		return Aeroport.PARSE_OK;
     }
 }

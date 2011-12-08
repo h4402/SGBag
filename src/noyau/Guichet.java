@@ -121,6 +121,7 @@ public class Guichet {
         int nbBagages = Math.round(longueurTapis/Bagage.TAILLE_BAGAGE);
         Tapis tapis = new Tapis(aeroport.getNoeud(idNoeud), new Bagage[nbBagages] , 0, 0, longueurTapis);
         aeroport.ajouterTapis(tapis);
+        aeroport.ajouterGuichet(this);
         
         return Aeroport.PARSE_OK;
     }
