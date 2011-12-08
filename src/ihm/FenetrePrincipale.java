@@ -337,6 +337,7 @@ public class FenetrePrincipale extends JFrame {
 	public int construireToutAPartirDeXML(Element aeroportElement)
 	{
 		// On crée l'élément Aéroport et la vue qui lui est associée
+		
 		Aeroport aeroport = new Aeroport(null, null, null, null, null, null);
 		
 		/* TODO
@@ -366,8 +367,7 @@ public class FenetrePrincipale extends JFrame {
 		bandeauVitesseChariot.setVisible(false);
         
         vueGenerale.addMouseListener(clicVueGenerale);
-        this.vueGenerale = vueGenerale;
-
+        
         return Aeroport.PARSE_OK;
     }
 	
@@ -396,11 +396,14 @@ public class FenetrePrincipale extends JFrame {
 
                 if (racine.getNodeName().equals("Aeroport"))
                 {
+                	/*
                 	if (vueGenerale.construireToutAPartirDeXML(racine) == Aeroport.PARSE_OK)
                 	{
                 		// unAeroport = vueGenerale.
-                		/*leCadre = container.GetVueCadre().GetCadre();*/ /*WTF ?*/
+                		//leCadre = container.GetVueCadre().GetCadre();
                 	}
+                	*/
+                	construireToutAPartirDeXML(racine);
                 }
             // TODO : traiter les erreurs
                 
