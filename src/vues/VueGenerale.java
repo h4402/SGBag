@@ -28,14 +28,14 @@ public class VueGenerale extends JPanel {
 		private ArrayList<Vue> listVues;
 
 		public VueGenerale(BandeauAjoutBagages bandeauAjoutBagages, BandeauVitesseChariot bandeauVitesseChariot, 
-				JLabel zoneInfo, Aeroport aeroport, ImagesManager imagesManager, double echelle){
+				JLabel zoneInfo, Aeroport aeroport, ImagesManager imagesManager){
 			
 			this.aeroport = aeroport;
 			this.bandeauAjoutBagages = bandeauAjoutBagages;
 			this.bandeauVitesseChariot = bandeauVitesseChariot;
 			this.zoneInfo = zoneInfo;
-			this.echelle =echelle;
-			
+			this.echelle = Math.max(this.getWidth()/this.aeroport.getLongueur(),
+					this.getHeight()/this.aeroport.getLargeur());
 			coefImage = Bagage.TAILLE_BAGAGE*echelle;
 			
 			listVues = new ArrayList<Vue>();
