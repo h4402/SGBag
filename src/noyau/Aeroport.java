@@ -248,8 +248,7 @@ public class Aeroport {
 	 */
 	public void ajouterNoeud(Noeud noeud)
 	{
-		//important de spécifier l'id du noeud car sinon le getbyId ne fonctionne pas
-		this.listNoeuds.add(noeud.id,noeud);
+		this.listNoeuds.add(noeud);
 	}
 	
 	/**
@@ -343,11 +342,27 @@ public class Aeroport {
 	 */
 	public Noeud getNoeud(int id)
 	{
-		//TODO:verifier que c'est bien ce qu'on veut faire
+		//Si la liste est rangée, on est directement au bon index
+		if(listNoeuds.size()>id&&listNoeuds.get(id).id==id) {
+			return listNoeuds.get(id);
+		}
+		
+		//Sinon on le cherche dans la liste
+		for (Noeud unNoeud : listNoeuds) {
+			if(unNoeud.id==id) {
+				return unNoeud;
+			}
+		}
+		
+		//Si on est ici c'est qu'il est introuvable.
+		return null;
+		
+		
+		//TODO:trouver une meilleure solution, initialement :
 		//ici on retourne le noeud à la position id dans la liste, ce n'est
 		//pas forcément le noeud ayant pour id "id". J'ai modifié le add pour
 		//que ce soit le cas mais il faut faire gaffe.
-		return this.listNoeuds.get(id);
+		//return this.listNoeuds.get(id);
 	}
 	
 	public int construireAPartirDeXML(Element aeroportElement)
@@ -384,7 +399,7 @@ public class Aeroport {
 		for (int i = 0; i < listeRails.getLength(); i++)
 		{
             Element railElement = (Element) listeRails.item(i);
-            Rail rail = new Rail(null, null, null);
+            Rail rail = new Rail();
 			
 			// On vérifie que la création du rail à partir du XML n'a pas échoué
             if (rail.construireAPartirDeXML(railElement, this)!= Aeroport.PARSE_OK){

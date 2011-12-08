@@ -35,6 +35,7 @@ public class Tapis extends ES {
 	 * Compte le nombre de top passé en rapport à la vitesse;
 	 */
 	private int topCourant;
+	
 
 	/**
 	 * Constructeur pratique pour GreenUML.
@@ -51,6 +52,15 @@ public class Tapis extends ES {
 		this.vitesse = vitesse;
 		this.topCourant = topCourant;
 		this.tailleTapis = tailleTapis;
+	}
+	
+	public Tapis(Noeud noeud, Guichet guichet) {
+		super(noeud);
+		this.listBagages = null;//TODO : faire autre chose ça ne peut pas marcher
+		this.vitesse = 1;//TODO : faire autre chose en statique c'est moche
+		this.topCourant = 0;
+		this.tailleTapis = (int) Math.round(guichet.getCoordonnees().distance(
+								 noeud.getCoordonnees())/Bagage.TAILLE_BAGAGE);
 	}
 
 	/**

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 
@@ -24,19 +25,28 @@ public class TestDessins extends JPanel {
 		g.drawOval(50, 50, 50, 50);
 		g.fillOval(150, 150, 50, 50);
 		g.drawRect(200, 50, 200, 200);
-
-		/*
+		Rectangle rect = new Rectangle(100, 100, 50, 50);
+		
+		
 		Graphics2D g2d = (Graphics2D)g;
+		AffineTransform transform = g2d.getTransform();
+        AffineTransform newTransform = (AffineTransform)(transform.clone());
+        int xRot = this.getWidth()/2;
+        int yRot = this.getHeight()/2;
+        newTransform.rotate(Math.PI/4, xRot, yRot);
+		
 		g2d.setColor(new Color(150, 150, 150));
         g2d.fillRect(20, 20, 80, 50);
         g2d.translate(150, 50);
         g2d.fillRect(20, 20, 80, 50);
-        g2d.rotate(Math.PI/4);
+        g2d.setTransform(newTransform);
         g2d.fillRect(20, 20, 80, 50);
         g2d.fillRect(100, 100, 80, 50);
         g2d.fillRect(300, 100, 80, 50);
-        */
+        g2d.setTransform(transform);
+        g2d.draw(rect);
 		
+        /*
 		image = getToolkit().getImage("res/img/bagage.png");
 		// G2D c'est mieux
         Graphics2D g2d = (Graphics2D)g;

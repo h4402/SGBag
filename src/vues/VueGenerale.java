@@ -131,7 +131,7 @@ public class VueGenerale extends JPanel {
 			}			
 		}
 		
-		public void clic(int x, int y){
+		public void clic(int x, int y) {
 			int i = 0;
 			boolean trouve = false;
 			bandeauAjoutBagages.setVisible(false);
