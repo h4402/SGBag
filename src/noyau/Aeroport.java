@@ -293,9 +293,16 @@ public class Aeroport {
 	 * @return Liste de rails
 	 */
 	public List<Rail> getListeRails() {
-		return listRails;
+		return this.listRails;
 	}
 	
+	/**
+	 * Retourne la liste des noeuds de l'application
+	 * @return Liste de noeuds
+	 */
+	public List<Noeud> getListeNoeuds() {
+		return this.listNoeuds;
+	}
 
 	/**
 	 * Retourne un noeud à partir de son id
@@ -391,8 +398,6 @@ public class Aeroport {
                 return Aeroport.PARSE_ERROR;
             }
             //TODO: Ajouter les chariots à l'aéroport et au garage via NoeudGarage
-            //ajout des éléments créés dans la structure objet
-            //AjouterNoeud(noeud);
         }
 		
 		
