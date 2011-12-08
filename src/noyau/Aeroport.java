@@ -248,7 +248,8 @@ public class Aeroport {
 	 */
 	public void ajouterNoeud(Noeud noeud)
 	{
-		this.listNoeuds.add(noeud);
+		//important de spécifier l'id du noeud car sinon le getbyId ne fonctionne pas
+		this.listNoeuds.add(noeud.id,noeud);
 	}
 	
 	/**
@@ -344,7 +345,8 @@ public class Aeroport {
 	{
 		//TODO:verifier que c'est bien ce qu'on veut faire
 		//ici on retourne le noeud à la position id dans la liste, ce n'est
-		//pas forcément le noeud ayant pour id "id".
+		//pas forcément le noeud ayant pour id "id". J'ai modifié le add pour
+		//que ce soit le cas mais il faut faire gaffe.
 		return this.listNoeuds.get(id);
 	}
 	
