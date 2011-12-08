@@ -12,6 +12,8 @@ import javax.annotation.Generated;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import org.w3c.dom.Element;
+
 
 import noyau.*;
 public class VueGenerale extends JPanel {
@@ -133,6 +135,39 @@ public class VueGenerale extends JPanel {
 		public void ajouterBagage(){
 			//aeroport.ajouterBagage(guichetCourant, tobogganCourant);
 		}
+		
+		/**
+		 * 
+		 * @param vueCadreDOMElement
+		 * @return
+		 */
+		public int construireToutAPartirDeXML(Element aeroportElement)
+		{
+			// On crée l'élément Aéroport et la vue qui lui est associée
+			//Aeroport aeroport = new Aeroport(null, null, null, null, null);
+			
+			/* TODO
+			 * Créer la vue generale avec le constructeur complet de VueGeneral
+			 * Après avoir tout chargé depuis le fichier XML
+			 * 
+			vueGeneral = new VueGeneral(bandeauAjoutBagages,bandeauVitesseChariot,
+			 						    labelInfo, ....., ...., .....);
+			
+			vueGenerale.addMouseListener(clicVueGenerale);
+			*/
+			
+	        /*this.vueGenerale = null;
 
+	        if (aeroport.construireAPartirDeXML(aeroportElement) != Aeroport.PARSE_OK)
+	        {
+	            return Aeroport.PARSE_ERROR;
+	        }
+	        
+	        VueGenerale vueGenerale = new VueGenerale(aeroport, null, null, null, null, null, null);
+	        vueGenerale.addMouseListener(clicVueGenerale);
+	        this.vueGenerale = vueGenerale;
+*/
+	        return Aeroport.PARSE_OK;
+	    }
 
 }
