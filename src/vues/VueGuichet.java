@@ -16,20 +16,20 @@ public class VueGuichet extends Vue {
 	public VueGuichet(VueGenerale vueGeneral, Image image, Image imageSel, Guichet guichet) {
 		super(vueGeneral, image, imageSel);
 		this.guichet = guichet;
-		posPixel = new Point((int)Math.round(this.guichet.getCoordonnees().x * this.vueGenerale.getEchelle() - image.getWidth(vueGenerale)/2)
-				, (int)Math.round(this.guichet.getCoordonnees().y * this.vueGenerale.getEchelle() - image.getHeight(vueGenerale)/2));
-		rectangle = new Rectangle(posPixel.x, posPixel.y, image.getWidth(vueGenerale), image.getHeight(vueGenerale));
+		posPixel = new Point((int)Math.round(this.guichet.getCoordonnees().x * this.vueGenerale.getEchelle() - imageWidth/2)
+				, (int)Math.round(this.guichet.getCoordonnees().y * this.vueGenerale.getEchelle() - imageHeight/2));
+		rectangle = new Rectangle(posPixel.x, posPixel.y, imageWidth, imageHeight);
 	}
 	
 	@Override
 	void dessin(Graphics g) {
 		if(selection){
 			Graphics2D g2d = (Graphics2D)g;
-			g2d.drawImage(imageSel, posPixel.x, posPixel.y, vueGenerale);
+			g2d.drawImage(imageSel, posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
 		}
 		else{
 			Graphics2D g2d = (Graphics2D)g;
-			g2d.drawImage(image, posPixel.x, posPixel.y, vueGenerale);
+			g2d.drawImage(image, posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
 		}
 	}
 	

@@ -20,9 +20,9 @@ public class VueNoeud extends Vue{
 			this.imageSel = imageGarageSel;
 		}
 		this.noeud = noeud;
-		posPixel = new Point((int)Math.round(this.noeud.getCoordonnees().x * this.vueGenerale.getEchelle() - image.getWidth(vueGenerale)/2)
-				, (int)Math.round(this.noeud.getCoordonnees().y * this.vueGenerale.getEchelle() - image.getHeight(vueGenerale)/2));
-		rectangle = new Rectangle(posPixel.x, posPixel.y, image.getWidth(vueGenerale), image.getHeight(vueGenerale));
+		posPixel = new Point((int)Math.round(this.noeud.getCoordonnees().x * this.vueGenerale.getEchelle() - imageWidth/2)
+				, (int)Math.round(this.noeud.getCoordonnees().y * this.vueGenerale.getEchelle() - imageHeight/2));
+		rectangle = new Rectangle(posPixel.x, posPixel.y, imageWidth, imageHeight);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -36,11 +36,11 @@ public class VueNoeud extends Vue{
 	void dessin(Graphics g) {
 		if(selection){
 			Graphics2D g2d = (Graphics2D)g;
-			g2d.drawImage(imageSel, posPixel.x, posPixel.y, vueGenerale);
+			g2d.drawImage(imageSel, posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
 		}
 		else{
 			Graphics2D g2d = (Graphics2D)g;
-			g2d.drawImage(image, posPixel.x, posPixel.y, vueGenerale);
+			g2d.drawImage(image, posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
 		}	
 	}
 

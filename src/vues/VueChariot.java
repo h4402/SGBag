@@ -30,9 +30,9 @@ public class VueChariot extends Vue {
 		this.imageAvecBagage = imageAvecBagage;
 		this.imageAvecBagageSel = imageAvecBagageSel;
 		this.chariot = chariot;
-		posPixel = new Point((int)Math.round(this.chariot.getCoordonnees().x * this.vueGenerale.getEchelle() - image.getWidth(vueGenerale)/2)
-				, (int)Math.round(this.chariot.getCoordonnees().y * this.vueGenerale.getEchelle() - image.getHeight(vueGenerale)/2));
-		rectangle = new Rectangle(posPixel.x, posPixel.y, image.getHeight(vueGenerale), image.getWidth(vueGenerale));
+		posPixel = new Point((int)Math.round(this.chariot.getCoordonnees().x * this.vueGenerale.getEchelle() - imageWidth/2)
+				, (int)Math.round(this.chariot.getCoordonnees().y * this.vueGenerale.getEchelle() - imageHeight/2));
+		rectangle = new Rectangle(posPixel.x, posPixel.y, imageHeight, imageWidth);
 	}
 
 	/**
@@ -40,8 +40,8 @@ public class VueChariot extends Vue {
 	 * en fonction de la position de l'objet du noyau
 	 */
 	private void updatePos(){
-		posPixel.x = (int)Math.round(chariot.getCoordonnees().x * vueGenerale.getEchelle() - image.getWidth(vueGenerale)/2);
-		posPixel.y = (int)Math.round(chariot.getCoordonnees().y * vueGenerale.getEchelle() - image.getHeight(vueGenerale)/2);
+		posPixel.x = (int)Math.round(chariot.getCoordonnees().x * vueGenerale.getEchelle() - imageWidth/2);
+		posPixel.y = (int)Math.round(chariot.getCoordonnees().y * vueGenerale.getEchelle() - imageHeight/2);
 		rectangle.x = posPixel.x;
 		rectangle.y = posPixel.y;
 	}
@@ -58,18 +58,18 @@ public class VueChariot extends Vue {
 		Graphics2D g2d = (Graphics2D)g;
 		if(selection){
 			if(chariot.getBagage() == null){
-				g2d.drawImage(imageSel, posPixel.x, posPixel.y, vueGenerale);
+				g2d.drawImage(imageSel, posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
 			}
 			else{
-				g2d.drawImage(imageAvecBagageSel, posPixel.x, posPixel.y, vueGenerale);
+				g2d.drawImage(imageAvecBagageSel, posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
 			}
 		}
 		else{
 			if(chariot.getBagage() == null){
-				g2d.drawImage(image, posPixel.x, posPixel.y, vueGenerale);
+				g2d.drawImage(image, posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
 			}
 			else{
-				g2d.drawImage(imageAvecBagage, posPixel.x, posPixel.y, vueGenerale);
+				g2d.drawImage(imageAvecBagage, posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
 			}
 		}
 	}

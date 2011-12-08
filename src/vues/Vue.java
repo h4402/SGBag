@@ -12,6 +12,8 @@ public abstract class Vue {
 	protected Rectangle rectangle;
 	protected Image image;
 	protected Image imageSel;
+	protected int imageWidth;
+	protected int imageHeight;
 	protected Point posPixel;
 	protected boolean selection;
 	
@@ -24,6 +26,9 @@ public abstract class Vue {
 		this.vueGenerale = vueGeneral;
 		this.image = image;
 		this.imageSel = imageSel;
+		this.imageWidth = (int)Math.round(vueGeneral.getCoefImage());
+		this.imageHeight = (int)Math.round(vueGeneral.getCoefImage()*this.image.getHeight(vueGeneral)/this.image.getWidth(vueGeneral)/2);
+		this.selection = false;
 	}
 	
 	/**
