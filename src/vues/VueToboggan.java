@@ -10,18 +10,18 @@ public class VueToboggan extends Vue {
 
 	private Toboggan toboggan;
 		
-	public VueToboggan(VueGeneral vueGeneral, Image image, Toboggan toboggan) {
-		super(vueGeneral, image);
+	public VueToboggan(VueGenerale vueGenerale, Image image, Toboggan toboggan) {
+		super(vueGenerale, image);
 		this.toboggan = toboggan;
-		posPixel = new Point(this.toboggan.getCoordoonees().x * this.vueGeneral.getEchelle()
-				, this.toboggan.getCoordoonees().y * this.vueGeneral.getEchelle());
+		posPixel = new Point(this.toboggan.getCoordoonees().x * this.vueGenerale.getEchelle()
+				, this.toboggan.getCoordoonees().y * this.vueGenerale.getEchelle());
 		rectangle = new Rectangle(posPixel.x-25, posPixel.y-25, 50, 50);
 		//TODO Suite
 	}
 	
 	private void updatePos(){
-		posPixel.x = toboggan.getCoordoonees().x * vueGeneral.getEchelle();
-		posPixel.y = toboggan.getCoordoonees().y * vueGeneral.getEchelle();
+		posPixel.x = toboggan.getCoordoonees().x * vueGenerale.getEchelle();
+		posPixel.y = toboggan.getCoordoonees().y * vueGenerale.getEchelle();
 		rectangle.x = posPixel.x - 25;
 		rectangle.y = posPixel.y - 25;
 	}
@@ -35,8 +35,8 @@ public class VueToboggan extends Vue {
 	@Override
 	void action() {
 		this.selectionner();
-		if(vueGeneral.getGuichetCourant() != null){
-			vueGeneral.afficherBandeau();
+		if(vueGenerale.getGuichetCourant() != null){
+			vueGenerale.afficherBandeau();
 		}
 		// TODO Auto-generated method stub
 
