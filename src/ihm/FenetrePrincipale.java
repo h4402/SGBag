@@ -100,6 +100,10 @@ public class FenetrePrincipale extends JFrame {
 	String playString = "Play";
 	String pauseString = "Pause";
 
+	/**
+	 * ImageManager
+	 */
+	private ImagesManager imagesManager = null;
 	
 	/**
 	 * Enumérations
@@ -169,10 +173,6 @@ public class FenetrePrincipale extends JFrame {
 		}
 	};
 	
-	/**
-	 * Listener sur Bandeaux
-	 */
-	
 	
 	/**
 	 * Timer
@@ -188,30 +188,12 @@ public class FenetrePrincipale extends JFrame {
     };
 
     
-    
     /**
      * Le Timer pour faire avancer la simulation
      */
     private Timer horloge = new Timer(Aeroport.lapsTemps, taskPerformer);
 
     
-    /**
-     * Les fichiers images
-     */
-    private Image imgChariot = null;
-    private Image imgNode = null;
-    private Image imgGuichet = null;
-    private Image imgToboggan = null;
-    private Image imgTapis = null;
-    private Image imgRail = null;
-    
-    final String PATH_IMAGE = "res/img/";
-    final String IMG_CHARIOT = PATH_IMAGE+"chariot.png";
-    final String IMG_NODE = PATH_IMAGE+"node.png";
-    final String IMG_GUICHET = PATH_IMAGE+"node.png";
-    final String IMG_TOBOGGAN = PATH_IMAGE+"toboggan.png";
-    final String IMG_TAPIS = PATH_IMAGE+"tapis.png";
-    final String IMG_RAIL = PATH_IMAGE+"rail.png";
     
 	/**
 	 * Create the frame.
@@ -232,12 +214,7 @@ public class FenetrePrincipale extends JFrame {
 		bandeauGeneral.setPreferredSize(dimBandeau);
 		
 		// Chargement des images
-		imgChariot = getToolkit().getImage(IMG_CHARIOT);
-		imgNode = getToolkit().getImage(IMG_NODE);
-	    imgGuichet = getToolkit().getImage(IMG_GUICHET);
-	    imgToboggan = getToolkit().getImage(IMG_TOBOGGAN);
-	    imgTapis = getToolkit().getImage(IMG_TAPIS);
-	    imgRail = getToolkit().getImage(IMG_RAIL);
+		imagesManager = new ImagesManager();
 		
 		// Menu Fichier
 		menuBar.add(fileMenu);
