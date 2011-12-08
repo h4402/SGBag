@@ -43,6 +43,10 @@ public class VueChariot extends Vue {
 
 	@Override
 	void action() {
+		this.selectionner();
+		vueGenerale.getBandeauVitesseChariot().setNumChariot(this.chariot.getId());
+		vueGenerale.getBandeauVitesseChariot().setVitesseChariot(this.chariot.getVitesse());
+		vueGenerale.getBandeauVitesseChariot().setVisible(true);
 		// TODO Auto-generated method stub
 		
 	}
