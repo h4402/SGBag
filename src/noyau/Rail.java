@@ -75,30 +75,25 @@ public class Rail {
 	 */
 	public void avancerChariots() {
 		Iterator<Chariot> it = listChariots.iterator();
+		Chariot prev = null;
 		while ( it.hasNext() ) {
 		    Chariot c = it.next();
 		    
-			/*
-			 * TODO Envoyer la direction du rail... 
+			float distChariot = c.calculerNouvPos();
+
+			/* 
+			 * Si il n'y a pas de chariot précédent, ou si on ne le dépasse pas.
 			 */
-			Point p = c.calculerNouvPos(getVectUnitaire());
-			
-			/*
-			 * TODO Vérifier que p depasse le chariot précédent.
-			 * On il faut faire un calcul avec le sens et la direction
-			 * du vecteur de rail, et les deux points.
-			 */
-			{
+			if(prev == null || distChariot < prev.getDistance()) {
+				
 				/*
-				 * TODO Vérifier que p est toujours dans le rail.
+				 * Si le chariot est toujours dans le rail,
+				 * on l'avance.
 				 */
-				{
-					c.majPos(p);
+				if(distChariot < longueur) {
+					c.majPos(noeudEntree, getVectUnitaire(), distChariot);
 				}
-				/*
-				 * TODO Si p est sorti du rail 
-				 */
-				{
+				else {
 					
 					if(noeudSortie == c.getDestination()) {
 						
@@ -131,6 +126,8 @@ public class Rail {
 					}
 				}
 			}
+			
+			prev = c;
 		}
 	}
 
@@ -144,10 +141,16 @@ public class Rail {
 	public boolean ajoutChariot(Chariot c) {
 		
 		/*
-		 * TODO Vérifier que les coordonnées du chariot 
-		 * ne dépasse pas le dernier chariot de la liste.
+		 * Si il n'y a pas de bagage qui vient d'arriver sur le rail,
+		 * je l'ajoute.
 		 */
-		return false;
+		if(listChariots.getLast().getDistance() > 0) {
+			c.majPos(noeudEntree, getVectUnitaire(), 0);
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	
 	/**

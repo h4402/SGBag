@@ -277,7 +277,19 @@ public class Aeroport {
 	}
 	
 	/**
-	 * 	Retourne la liste des rails de l'application
+	 * Ajoute un bagage dans un guichet,
+	 * avec un destination.
+	 * 
+	 * @param g Guichet où ajouter le bagage.
+	 * @param t Destination du bagage.
+	 */
+	public void ajouterBagage(Guichet g, Toboggan t) {
+		Bagage b = new Bagage(t);
+		g.ajoutBagage(b);
+	}
+	
+	/**
+	 * Retourne la liste des rails de l'application
 	 * @return Liste de rails
 	 */
 	public List<Rail> getListeRails() {
