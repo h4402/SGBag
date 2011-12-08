@@ -108,9 +108,10 @@ public class FenetrePrincipale extends JFrame {
 	 * Enumérations
 	 */
 	private enum etatsLecture {
-        LECTURE, STOP
+        PLAY, STOP
     }
 	
+	private etatsLecture etat = etatsLecture.STOP;
 	
 	/**
 	 * Clic sur Ouvrir : charge le fichier de configuration
@@ -145,11 +146,7 @@ public class FenetrePrincipale extends JFrame {
 	 */
 	private ActionListener playPauseListener = new ActionListener() {
 		public void actionPerformed(ActionEvent actionEvent) {
-			if (boutonLecture.getText().equals(playString)) {
-				boutonLecture.setText(pauseString);
-			} else if (boutonLecture.getText().equals(pauseString)) {
-				boutonLecture.setText(playString);
-			}
+			playPauseActionPerformed();
 		}
 	};
 	
@@ -179,10 +176,9 @@ public class FenetrePrincipale extends JFrame {
 	private ActionListener taskPerformer = new ActionListener() {
 
         public void actionPerformed(ActionEvent evt) {
-        	// TODO : a chaque tick d'horloge
         	vueGenerale.avancerTemps();
         	vueGenerale.redessiner();
-        	
+        	// TODO : mises a jour des panels ? a voir
         }
     };
 
@@ -201,16 +197,6 @@ public class FenetrePrincipale extends JFrame {
 	}
 
 	private void jInit() {
-		
-		/*
-		jFileChooserXML.setFileSelectionMode(JFileChooser.FILES_ONLY);
-		int returnVal = jFileChooserXML.showOpenDialog(this);
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-        	if (jFileChooserXML.getSelectedFile() == null) {
-        		System.exit(0);
-        	}
-        }
-	    */
 		
 		Dimension dimBandeau = new Dimension(this.getWidth(), 50);
 		this.setTitle("SGBag - Simulation");
@@ -304,6 +290,18 @@ public class FenetrePrincipale extends JFrame {
 	private void aboutActionPerformed(ActionEvent ae) {
         JOptionPane.showMessageDialog(this, new FenetreAbout(), "A Propos", JOptionPane.PLAIN_MESSAGE);
     }
+	
+	private void playPauseActionPerformed() {
+		if (etat == etatsLecture.PLAY) {
+			horloge.stop();
+			etat = etatsLecture.STOP;
+			boutonLecture.setText(pauseString);
+		} else if (etat == etatsLecture.STOP) {
+			horloge.start();
+			etat = etatsLecture.PLAY;
+			boutonLecture.setText(playString);
+		}
+	}
 	
 	/**
 	 * Clic sur le panem vueGenerale

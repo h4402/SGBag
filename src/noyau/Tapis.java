@@ -53,14 +53,19 @@ public class Tapis extends ES {
 		this.topCourant = topCourant;
 		this.tailleTapis = tailleTapis;
 	}
-	
+	/**
+	 * Constructeur utilisable :
+	 * 
+	 * @param noeud
+	 * @param guichet
+	 */
 	public Tapis(Noeud noeud, Guichet guichet) {
 		super(noeud);
-		this.listBagages = null;//TODO : faire autre chose ça ne peut pas marcher
+		this.tailleTapis = (int) Math.round(guichet.getCoordonnees().distance(
+								 noeud.getCoordonnees())/Bagage.TAILLE_BAGAGE);		
+		this.listBagages = new Bagage[tailleTapis];//TODO : ça marche ça ?
 		this.vitesse = 1;//TODO : faire autre chose en statique c'est moche
 		this.topCourant = 0;
-		this.tailleTapis = (int) Math.round(guichet.getCoordonnees().distance(
-								 noeud.getCoordonnees())/Bagage.TAILLE_BAGAGE);
 	}
 
 	/**
