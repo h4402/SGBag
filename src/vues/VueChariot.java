@@ -5,6 +5,7 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+import noyau.Aeroport.Mode;
 import noyau.Chariot;
 public class VueChariot extends Vue {
 	private Chariot chariot;
@@ -50,6 +51,9 @@ public class VueChariot extends Vue {
 		vueGenerale.getBandeauVitesseChariot().setNumChariot(this.chariot.getId());
 		vueGenerale.getBandeauVitesseChariot().setVitesseChariot(this.chariot.getVitesse());
 		vueGenerale.getBandeauVitesseChariot().setVisible(true);
+		if(vueGenerale.getAeroport().getMode() == Mode.MANUEL){
+			vueGenerale.getZoneInfo().setText("Veuillez selectionner la destination suivante du chariot.");
+		}
 	}
 	
 

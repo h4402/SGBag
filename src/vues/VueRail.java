@@ -7,6 +7,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import noyau.Rail;
+import noyau.Aeroport.Mode;
+
 import java.lang.Math;
 public class VueRail extends Vue {
 	
@@ -23,8 +25,13 @@ public class VueRail extends Vue {
 
 	@Override
 	boolean clic(int x, int y) {
-		Point p = new Point(x, y);
-		return dansRectangle(p);
+		if(vueGenerale.getAeroport().getMode() == Mode.MANUEL){
+			Point p = new Point(x, y);
+			return dansRectangle(p);	
+		}
+		else{
+			return false;
+		}
 	}
 
 	@Override
@@ -38,7 +45,7 @@ public class VueRail extends Vue {
 		this.selectionner();
 		vueGenerale.setGuichetCourant(null);
 		vueGenerale.setTobogganCourant(null);
-		vueGenerale.setRailCourant(this.rail);
+		vueGenerale.getChariotCourant().ajouterNoeud(this.rail.getNoeudSortie());
 	}
 	
 	/**

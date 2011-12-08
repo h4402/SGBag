@@ -21,7 +21,6 @@ public class VueGenerale extends JPanel {
 		private Guichet guichetCourant;
 		private Toboggan tobogganCourant;
 		private Chariot chariotCourant;
-		private Rail railCourant;
 		private Aeroport aeroport;
 		private BandeauAjoutBagages bandeauAjoutBagages;
 		private BandeauVitesseChariot bandeauVitesseChariot;
@@ -79,14 +78,6 @@ public class VueGenerale extends JPanel {
 			return tobogganCourant;
 		}
 
-		public Rail getRailCourant() {
-			return railCourant;
-		}
-
-		public void setRailCourant(Rail railCourant) {
-			this.railCourant = railCourant;
-		}
-
 		public void setTobogganCourant(Toboggan tobogganCourant) {
 			this.tobogganCourant = tobogganCourant;
 		}
@@ -97,6 +88,14 @@ public class VueGenerale extends JPanel {
 
 		public BandeauVitesseChariot getBandeauVitesseChariot() {
 			return bandeauVitesseChariot;
+		}
+
+		public Aeroport getAeroport() {
+			return aeroport;
+		}
+
+		public void setAeroport(Aeroport aeroport) {
+			this.aeroport = aeroport;
 		}
 
 		public JLabel getZoneInfo() {
@@ -139,8 +138,6 @@ public class VueGenerale extends JPanel {
 			bandeauAjoutBagages.setVisible(false);
 			bandeauVitesseChariot.setVisible(false);
 			zoneInfo.setText("");
-			chariotCourant = null;
-			railCourant = null;
 			for (Vue v : listVues ){
 				v.deselectionner();
 			}
@@ -153,6 +150,7 @@ public class VueGenerale extends JPanel {
 			else{
 				guichetCourant = null;
 				tobogganCourant = null;
+				chariotCourant = null;
 			}
 		}
 		

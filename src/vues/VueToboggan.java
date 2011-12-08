@@ -36,6 +36,7 @@ public class VueToboggan extends Vue {
 	@Override
 	void action() {
 		this.selectionner();
+		vueGenerale.setChariotCourant(null);
 		vueGenerale.setTobogganCourant(this.toboggan);
 		if(vueGenerale.getGuichetCourant() != null){
 			vueGenerale.getZoneInfo().setText("Pour ajouter un bagage cliquez sur Valider");

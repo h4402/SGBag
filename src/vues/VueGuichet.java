@@ -37,6 +37,7 @@ public class VueGuichet extends Vue {
 	@Override
 	void action() {
 		this.selectionner();
+		vueGenerale.setChariotCourant(null);
 		vueGenerale.setGuichetCourant(guichet);
 		if(vueGenerale.getTobogganCourant() != null){
 			vueGenerale.getZoneInfo().setText("Pour ajouter un bagage cliquez sur Valider");

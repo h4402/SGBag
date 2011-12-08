@@ -62,6 +62,14 @@ public class Aeroport {
 		this.listTapis = listTapis;
 	}
 	
+	public static Mode getMode() {
+		return mode;
+	}
+
+	public static void setMode(Mode mode) {
+		Aeroport.mode = mode;
+	}
+
 	/**
 	 * Temps entre chaque tick en millisecondes.
 	 */
