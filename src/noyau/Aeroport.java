@@ -3,12 +3,8 @@ package noyau;
 import java.util.List;
 import java.util.Random;
 
-import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
-import sun.org.mozilla.javascript.internal.annotations.JSGetter;
 
 /**
  * La classe principale du noyau, celle qui connait
@@ -163,24 +159,76 @@ public class Aeroport {
 	 * @param listNoeuds Liste des noeuds de l'application
 	 */
 	public Aeroport(List<Rail> listRails, List<Guichet> listGuichets,
-			List<Toboggan> listToboggans, List<Tapis> listTapis, List<Noeud> listNoeuds) {
+			List<Toboggan> listToboggans, List<Tapis> listTapis,
+			List<Noeud> listNoeuds, List<Chariot> listChariots) {
 		super();
 		this.listRails = listRails;
 		this.listGuichets = listGuichets;
 		this.listToboggans = listToboggans;
 		this.listTapis = listTapis;
 		this.listNoeuds = listNoeuds;
+		this.listChariots= listChariots; 
 		genRan = new Random();
 	}
 	
+	/**
+	 * Permet d'ajouter un chariot à l'aéroport
+	 * 
+	 * @param chariot Chariot à ajouter
+	 */
 	public void ajouterChariot(Chariot chariot)
 	{
 		this.listChariots.add(chariot);
 	}
 	
+	/**
+	 * Permet d'ajouter un tapis à l'aéroport
+	 * 
+	 * @param tapis Tapis à ajouter
+	 */
 	public void ajouterTapis(Tapis tapis)
 	{
 		this.listTapis.add(tapis);
+	}
+	
+	/**
+	 * Permet d'ajouter un toboggan à l'aéroport
+	 * 
+	 * @param toboggan Toboggan à ajouter
+	 */
+	public void ajouterToboggan(Toboggan toboggan)
+	{
+		this.listToboggans.add(toboggan);
+	}
+	
+	/**
+	 * Permet d'ajouter un rail à l'aéroport
+	 * 
+	 * @param rail Rail à ajouter
+	 */
+	public void ajouterRail(Rail rail)
+	{
+		this.listRails.add(rail);
+	}
+	
+	/**
+	 * Permet d'ajouter un noeud à l'aéroport
+	 * 
+	 * @param noeud Noeud à ajouter
+	 */
+	public void ajouterNoeud(Noeud noeud)
+	{
+		this.listNoeuds.add(noeud);
+	}
+	
+	/**
+	 * Permet d'ajouter un guichet à l'aéroport
+	 * 
+	 * @param guichet Guichet à ajouter
+	 */
+	public void ajouterGuichet(Guichet guichet)
+	{
+		this.listGuichets.add(guichet);
 	}
 
 	/**
@@ -229,7 +277,19 @@ public class Aeroport {
 	}
 	
 	/**
-	 * 	Retourne la liste des rails de l'application
+	 * Ajoute un bagage dans un guichet,
+	 * avec un destination.
+	 * 
+	 * @param g Guichet où ajouter le bagage.
+	 * @param t Destination du bagage.
+	 */
+	public void ajouterBagage(Guichet g, Toboggan t) {
+		Bagage b = new Bagage(t);
+		g.ajoutBagage(b);
+	}
+	
+	/**
+	 * Retourne la liste des rails de l'application
 	 * @return Liste de rails
 	 */
 	public List<Rail> getListeRails() {
@@ -254,9 +314,10 @@ public class Aeroport {
         this.longueur = Integer.parseInt(aeroportElement.getAttribute("longueur"));
         this.largeur = Integer.parseInt(aeroportElement.getAttribute("largeur"));
 
+        //lesBoules.removeAllElements(); // on supprime la config existante et on la remplace par la nouvelle
+        
         //création des Rails/Chariots/...
         NodeList listeNoeuds = aeroportElement.getElementsByTagName("Noeud"); // on récupère la liste des éléments "boule"
-        //lesBoules.removeAllElements(); // on supprime la config existante et on la remplace par la nouvelle
         NodeList listeRails = aeroportElement.getElementsByTagName("Rail");
         NodeList listeGuichets = aeroportElement.getElementsByTagName("Guichet");
         NodeList listeToboggans = aeroportElement.getElementsByTagName("Toboggan");
@@ -272,9 +333,6 @@ public class Aeroport {
             if (noeud.construireAPartirDeXML(noeudElement, this)!= Aeroport.PARSE_OK){
                 return Aeroport.PARSE_ERROR;
             }
-            
-            //ajout des éléments créés dans la structure objet
-            //AjouterNoeud(noeud);
         }
 		
 		// On parcourt la liste des rails récupérés pour créer les objets correspondants

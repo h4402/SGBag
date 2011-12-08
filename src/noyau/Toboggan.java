@@ -63,6 +63,8 @@ public class Toboggan extends ES {
         LinkedList<Bagage> liste = new LinkedList<Bagage>();
         this.listBagages = liste;
         
+        aeroport.ajouterToboggan(this);
+        
         return Aeroport.PARSE_OK;
     }
 }

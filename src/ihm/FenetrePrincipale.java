@@ -346,10 +346,11 @@ public class FenetrePrincipale extends JFrame {
 	 * @param vueCadreDOMElement
 	 * @return
 	 */
-	public int construireToutAPartirDeXML(Element vueAeroportElement)
+	public int construireToutAPartirDeXML(Element aeroportElement)
 	{
 		// On crée l'élément Aéroport et la vue qui lui est associée
-
+		Aeroport aeroport = new Aeroport(null, null, null, null, null);
+		
 		/* TODO
 		 * Créer la vue generale avec le constructeur complet de VueGeneral
 		 * Après avoir tout chargé depuis le fichier XML
@@ -360,24 +361,16 @@ public class FenetrePrincipale extends JFrame {
 		vueGenerale.addMouseListener(clicVueGenerale);
 		*/
 		
-        unAeroport = new Aeroport(null, null, null, null, null);
-        vueGenerale = null;
+        this.vueGenerale = null;
 
-        /*if (unAeroport.construireAPartirDeXML(vueAeroportElement) != Aeroport.PARSE_OK) {
-            return Cadre.PARSE_ERROR;
+        if (aeroport.construireAPartirDeXML(aeroportElement) != Aeroport.PARSE_OK)
+        {
+            return Aeroport.PARSE_ERROR;
         }
-        VueCadre nouvelleVueCadre = new VueCadre(leCadre, this.getWidth(), this.getHeight());
-        laVueCadre = nouvelleVueCadre;
-
-        //construire les VueBoules
-        Vector lesBoules = leCadre.getBoules();
-        for (int i = 0; i < lesBoules.size(); i++)
-		{
-            Boule laBoule = (Boule) lesBoules.elementAt(i);
-            VueBoule vueBoule = new VueBoule(laBoule, laVueCadre);
-            laVueCadre.AjouterVueBoule(vueBoule);
-        }
-     */
+        
+        VueGenerale vueGenerale = new VueGenerale(aeroport, null, null, null, null, null, null);
+        vueGenerale.addMouseListener(clicVueGenerale);
+        this.vueGenerale = vueGenerale;
 
         return Aeroport.PARSE_OK;
     }
@@ -385,7 +378,8 @@ public class FenetrePrincipale extends JFrame {
 	/**
 	 * Chargement de la configuration
 	 */
-	void chargerConfiguration() {
+	public void chargerConfiguration()
+	{
 		jFileChooserXML = new JFileChooser();
         SGBagFileFilter filter = new SGBagFileFilter();
         filter.addExtension("xml");
@@ -407,12 +401,10 @@ public class FenetrePrincipale extends JFrame {
 
                 if (racine.getNodeName().equals("Aeroport"))
                 {
-                	/*if (this.construireToutAPartirDeXML(racine) != Aeroport.PARSE_OK) {
-                //erreur de parsing!
-                } else {
-                    leCadre = container.GetVueCadre().GetCadre();
-                }
-                   */ 
+                	if (this.construireToutAPartirDeXML(racine) == Aeroport.PARSE_OK)
+                	{
+                		/*leCadre = container.GetVueCadre().GetCadre();*/ /*WTF ?*/
+                	}
                 }
             // TODO : traiter les erreurs
                 

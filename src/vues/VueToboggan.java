@@ -1,5 +1,6 @@
 package vues;
 
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -27,7 +28,7 @@ public class VueToboggan extends Vue {
 	}
 	
 	@Override
-	void dessin() {
+	void dessin(Graphics g) {
 		// TODO Auto-generated method stub
 
 	}
@@ -36,7 +37,9 @@ public class VueToboggan extends Vue {
 	void action() {
 		this.selectionner();
 		if(vueGenerale.getGuichetCourant() != null){
-			vueGenerale.afficherBandeau();
+			vueGenerale.getZoneInfo().setText("Ajouter un bagage?");
+			vueGenerale.setTobogganCourant(this.toboggan);
+			vueGenerale.getBandeauAjoutBagages().setVisible(true);
 		}
 		// TODO Auto-generated method stub
 

@@ -1,5 +1,6 @@
 package vues;
 
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -30,7 +31,7 @@ public abstract class Vue {
 	}
 	
 	abstract boolean clic(int x, int y);
-	abstract void dessin();
+	abstract void dessin(Graphics g);
 	abstract void action(); //Effectue l'action consécutive au clic sur l'objet
 	
 	
