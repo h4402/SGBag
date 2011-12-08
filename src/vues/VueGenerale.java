@@ -4,6 +4,7 @@ import ihm.BandeauAjoutBagages;
 import ihm.BandeauVitesseChariot;
 
 import java.awt.Image;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Generated;
@@ -22,6 +23,7 @@ public class VueGenerale extends JPanel {
 		private JLabel zoneInfo;
 		private double echelle;
 		private Image image;
+		private ArrayList<Vue> listVues;
 
 		@SuppressWarnings("null")
 		public VueGenerale(BandeauAjoutBagages bandeauAjoutBagages, BandeauVitesseChariot bandeauVitesseChariot, 
@@ -33,7 +35,7 @@ public class VueGenerale extends JPanel {
 			this.bandeauVitesseChariot = bandeauVitesseChariot;
 			this.zoneInfo = zoneInfo;			
 			
-			List<Vue> listVues = null;
+			listVues = new ArrayList<Vue>();
 			
 			List<Chariot> listChariot = aeroport.getListChariots();
 			for(Chariot c: listChariot){
@@ -105,11 +107,20 @@ public class VueGenerale extends JPanel {
 		}
 				
 		public void redessiner(){
-			
+			for (int i = listVues.size(); i >= 0; i--) {
+				listVues.get(i).dessin(this.getGraphics());
+			}			
 		}
 		
 		public void clic(int x, int y){
-			
+			int i = 0;
+			boolean trouve = false;
+			while (i < listVues.size() && !trouve) {
+				trouve = listVues.get(i++).clic(x, y);
+			}
+			if(trouve){
+				listVues.get(i-1).action();
+			}
 		}
 		
 		public void ajouterBagage(){
