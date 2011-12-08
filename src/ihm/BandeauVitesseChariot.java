@@ -78,7 +78,7 @@ public class BandeauVitesseChariot extends JPanel {
 	 * @param vitesseChariot : vitesse du chariot
 	 */
 	
-	public void setVitesseChariot(int vitesseChariot) {
+	public void setVitesseChariot(float vitesseChariot) {
 		textFieldVitesse.setText(String.valueOf(vitesseChariot));
 	}
 	

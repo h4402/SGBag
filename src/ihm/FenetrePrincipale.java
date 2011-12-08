@@ -3,6 +3,7 @@ package ihm;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Image;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -45,6 +46,9 @@ import bibliotheques.SGBagFileFilter;
  */
 public class FenetrePrincipale extends JFrame {
 	
+	/**
+	 * L'Aéroport 
+	 */
 	private Aeroport unAeroport;
 	
 	/**
@@ -166,7 +170,7 @@ public class FenetrePrincipale extends JFrame {
 	private MouseAdapter clicVueGenerale = new MouseAdapter() {
 		public void mouseClicked(MouseEvent e) {
 			// TODO : appeler methode de vueGenerale pour gestion des clics.
-			
+			clicSurVueGenerale(e);
 		}
 	};
 	
@@ -183,8 +187,32 @@ public class FenetrePrincipale extends JFrame {
         }
     };
 
+    
+    
+    /**
+     * Le Timer pour faire avancer la simulation
+     */
     private Timer horloge = new Timer(Aeroport.lapsTemps, taskPerformer);
 
+    
+    /**
+     * Les fichiers images
+     */
+    private Image imgChariot = null;
+    private Image imgNode = null;
+    private Image imgGuichet = null;
+    private Image imgToboggan = null;
+    private Image imgTapis = null;
+    private Image imgRail = null;
+    
+    final String PATH_IMAGE = "res/img/";
+    final String IMG_CHARIOT = PATH_IMAGE+"chariot.png";
+    final String IMG_NODE = PATH_IMAGE+"node.png";
+    final String IMG_GUICHET = PATH_IMAGE+"node.png";
+    final String IMG_TOBOGGAN = PATH_IMAGE+"toboggan.png";
+    final String IMG_TAPIS = PATH_IMAGE+"tapis.png";
+    final String IMG_RAIL = PATH_IMAGE+"rail.png";
+    
 	/**
 	 * Create the frame.
 	 */
@@ -198,6 +226,14 @@ public class FenetrePrincipale extends JFrame {
         this.setLocationRelativeTo(null);
 		this.setBounds(100, 100, 800, 600);
 		this.setJMenuBar(menuBar);
+		
+		// Chargement des images
+		imgChariot = getToolkit().getImage(IMG_CHARIOT);
+		imgNode = getToolkit().getImage(IMG_NODE);
+	    imgGuichet = getToolkit().getImage(IMG_GUICHET);
+	    imgToboggan = getToolkit().getImage(IMG_TOBOGGAN);
+	    imgTapis = getToolkit().getImage(IMG_TAPIS);
+	    imgRail = getToolkit().getImage(IMG_RAIL);
 		
 		// Menu Fichier
 		menuBar.add(fileMenu);
@@ -267,9 +303,7 @@ public class FenetrePrincipale extends JFrame {
 		container.add(bandeauGeneral, BorderLayout.NORTH);
 		
 		labelInfo.setText("Bienvenue dans le système de gestion de bagages SGBag");
-		
 		this.setContentPane(container);
-		
 		
 	}
 	
@@ -281,9 +315,20 @@ public class FenetrePrincipale extends JFrame {
         JOptionPane.showMessageDialog(this, new FenetreAbout(), "A Propos", JOptionPane.PLAIN_MESSAGE);
     }
 	
+	/**
+	 * Clic sur le panem vueGenerale
+	 * @param e : mouseEvent pour récupérer la position du clic
+	 */
+	
+	private void clicSurVueGenerale(MouseEvent e) {
+		vueGenerale.clic(e.getX(), e.getY());
+	}
+	
 	
 	/**
-	 * Clic sur le panel VueGenerale
+	 * Test de dessins
+	 * TODO : a supprimer
+	 * @param me : mouseEvent
 	 */
 	private void testDessinsMouseclicked(MouseEvent me) {
         if (me.getX() < testDessins.getWidth()/2) {
