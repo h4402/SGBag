@@ -9,10 +9,12 @@ import noyau.*;
 public class VueNoeud extends Vue{
 
 	private Noeud noeud;
+	private Image imageGarage;
 	
-	public VueNoeud(VueGenerale vueGeneral, Image image,Noeud noeud) {
+	public VueNoeud(VueGenerale vueGeneral, Image image, Image imageGarage, Noeud noeud) {
 		super(vueGeneral, image);
 		this.noeud = noeud;
+		this.imageGarage = imageGarage;
 		posPixel = new Point((int)Math.round(this.noeud.getCoordonnees().x * this.vueGenerale.getEchelle() - image.getHeight(vueGenerale)/2)
 				, (int)Math.round(this.noeud.getCoordonnees().y * this.vueGenerale.getEchelle() - image.getWidth(vueGenerale)/2));
 		rectangle = new Rectangle(posPixel.x, posPixel.y, image.getHeight(vueGenerale), image.getWidth(vueGenerale));
