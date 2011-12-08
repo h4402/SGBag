@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Graphics;
 
+import javax.annotation.Generated;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -26,6 +27,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -55,6 +57,9 @@ import bibliotheques.SGBagFileFilter;
  *
  */
 public class FenetrePrincipale extends JFrame {
+	
+	private Aeroport unAeroport;
+	
 	/**
 	 * Vue générale
 	 */
@@ -105,7 +110,6 @@ public class FenetrePrincipale extends JFrame {
 	/**
 	 * Constantes
 	 */
-	int LAPSE_TEMPS = 20;
 	String playString = "Play";
 	String pauseString = "Pause";
 
@@ -161,11 +165,21 @@ public class FenetrePrincipale extends JFrame {
 	
 	
 	/**
-	 * Clic sur arret d'urgence
+	 * Clic sur Arret d'urgence
 	 */
 	private ActionListener arretUrgenceListener = new ActionListener() {
 		public void actionPerformed(ActionEvent actionEvent) {
 			// TODO : vueGeneral.arretUrgence();
+		}
+	};
+	
+	/**
+	 * Listener sur Panel général
+	 */
+	private MouseAdapter clicVueGenerale = new MouseAdapter() {
+		public void mouseClicked(MouseEvent e) {
+			// TODO : appeler methode de vueGenerale pour gestion des clics.
+			
 		}
 	};
 	
@@ -176,10 +190,12 @@ public class FenetrePrincipale extends JFrame {
 
         public void actionPerformed(ActionEvent evt) {
         	// TODO : a chaque tick d'horloge
+        	unAeroport.avancerTemps();
+        	
         }
     };
 
-    private Timer horloge = new Timer(LAPSE_TEMPS, taskPerformer);
+    private Timer horloge = new Timer(Aeroport.lapsTemps, taskPerformer);
 
 	/**
 	 * Create the frame.
@@ -261,6 +277,7 @@ public class FenetrePrincipale extends JFrame {
 		VueGeneral = new VueGeneral(bandeauVitesseChariot, bandeauAjoutBagages,
 		 						    labelInfo);
 		*/
+		vueGeneral.addMouseListener(clicVueGenerale);
 		
 		// Ajout des panels
 		container.setBackground(Color.white);
@@ -307,7 +324,7 @@ public class FenetrePrincipale extends JFrame {
 	public int construireToutAPartirDeXML(Element vueAeroportElement)
 	{
 		// On crée l'élément Aéroport et la vue qui lui est associée
-        Aeroport unAeroport = new Aeroport(null, null, null, null, null);
+        unAeroport = new Aeroport(null, null, null, null, null);
         VueGeneral vueGenerale = null;
         /*if (unAeroport.construireAPartirDeXML(vueAeroportElement) != Aeroport.PARSE_OK) {
             return Cadre.PARSE_ERROR;
