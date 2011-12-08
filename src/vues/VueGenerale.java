@@ -4,6 +4,7 @@ import ihm.BandeauAjoutBagages;
 import ihm.BandeauVitesseChariot;
 
 import java.awt.Image;
+import java.beans.BeanDescriptor;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -115,6 +116,12 @@ public class VueGenerale extends JPanel {
 		public void clic(int x, int y){
 			int i = 0;
 			boolean trouve = false;
+			bandeauAjoutBagages.setVisible(false);
+			bandeauVitesseChariot.setVisible(false);
+			zoneInfo.setText("");
+			for (Vue v : listVues ){
+				v.deselectionner();
+			}
 			while (i < listVues.size() && !trouve) {
 				trouve = listVues.get(i++).clic(x, y);
 			}

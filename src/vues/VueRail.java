@@ -29,7 +29,7 @@ public class VueRail extends Vue {
 	}
 
 	@Override
-	void dessin() {
+	void dessin(Graphics g) {
 		// TODO Auto-generated method stub
 		
 	}

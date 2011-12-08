@@ -74,6 +74,18 @@ public class Chariot {
 		this.distanceDepuisNoeudDepart = 0;
 	}	
 	
+	public float getVitesse() {
+		return vitesse;
+	}
+
+	public void setVitesse(float vitesse) {
+		this.vitesse = vitesse;
+	}
+
+	public int getId() {
+		return id;
+	}
+
 	/**
 	 * Calcul la nouvelle distance sur le meme rail
 	 * après un top horloge.
