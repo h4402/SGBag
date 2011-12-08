@@ -384,7 +384,7 @@ public class Aeroport {
             Element railElement = (Element) listeRails.item(i);
             Rail rail = new Rail(null, null, null);
 			
-			// On vérifie que la création du noeud à partir du XML n'a pas échoué
+			// On vérifie que la création du rail à partir du XML n'a pas échoué
             if (rail.construireAPartirDeXML(railElement, this)!= Aeroport.PARSE_OK){
                 return Aeroport.PARSE_ERROR;
             }
