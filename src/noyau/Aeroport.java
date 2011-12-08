@@ -306,6 +306,14 @@ public class Aeroport {
 		
 	}
 	
+	public int getLongueur() {
+		return longueur;
+	}
+
+	public int getLargeur() {
+		return largeur;
+	}
+
 	/**
 	 * Ajoute un bagage dans un guichet,
 	 * avec un destination.
