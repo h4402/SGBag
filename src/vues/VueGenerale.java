@@ -3,6 +3,7 @@ package vues;
 import java.awt.Image;
 import java.util.List;
 
+import javax.annotation.Generated;
 import javax.swing.JPanel;
 
 
@@ -54,6 +55,11 @@ public class VueGenerale extends JPanel {
 			}
 			
 		}
+		
+		public void redessiner(){
+			
+		}
+		
 		public double getEchelle() {
 			return echelle;
 		}

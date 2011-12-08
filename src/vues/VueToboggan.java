@@ -13,15 +13,15 @@ public class VueToboggan extends Vue {
 	public VueToboggan(VueGenerale vueGenerale, Image image, Toboggan toboggan) {
 		super(vueGenerale, image);
 		this.toboggan = toboggan;
-		posPixel = new Point(this.toboggan.getCoordoonees().x * this.vueGenerale.getEchelle()
-				, this.toboggan.getCoordoonees().y * this.vueGenerale.getEchelle());
+		posPixel = new Point(this.toboggan.getCoordonnees().x * this.vueGenerale.getEchelle()
+				, this.toboggan.getCoordonnees().y * this.vueGenerale.getEchelle());
 		rectangle = new Rectangle(posPixel.x-25, posPixel.y-25, 50, 50);
 		//TODO Suite
 	}
 	
 	private void updatePos(){
-		posPixel.x = toboggan.getCoordoonees().x * vueGenerale.getEchelle();
-		posPixel.y = toboggan.getCoordoonees().y * vueGenerale.getEchelle();
+		posPixel.x = toboggan.getCoordonnees().x * vueGenerale.getEchelle();
+		posPixel.y = toboggan.getCoordonnees().y * vueGenerale.getEchelle();
 		rectangle.x = posPixel.x - 25;
 		rectangle.y = posPixel.y - 25;
 	}
