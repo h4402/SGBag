@@ -47,11 +47,6 @@ import bibliotheques.SGBagFileFilter;
 public class FenetrePrincipale extends JFrame {
 	
 	/**
-	 * L'Aéroport 
-	 */
-	private Aeroport unAeroport;
-	
-	/**
 	 * Vue générale
 	 */
 	private VueGenerale vueGenerale;
@@ -80,8 +75,8 @@ public class FenetrePrincipale extends JFrame {
 	 */
 	private JPanel container = new JPanel();
 	private JPanel bandeauGeneral = new JPanel();
-	private BandeauAjoutBagages bandeauAjoutBagages = new BandeauAjoutBagages();
-	private BandeauVitesseChariot bandeauVitesseChariot = new BandeauVitesseChariot();
+	private BandeauAjoutBagages bandeauAjoutBagages = new BandeauAjoutBagages(vueGenerale);
+	private BandeauVitesseChariot bandeauVitesseChariot = new BandeauVitesseChariot(vueGenerale);
 	private TestDessins testDessins = new TestDessins();
 	private JPanel panelBas = new JPanel();
 	
@@ -169,10 +164,14 @@ public class FenetrePrincipale extends JFrame {
 	 */
 	private MouseAdapter clicVueGenerale = new MouseAdapter() {
 		public void mouseClicked(MouseEvent e) {
-			// TODO : appeler methode de vueGenerale pour gestion des clics.
 			clicSurVueGenerale(e);
 		}
 	};
+	
+	/**
+	 * Listener sur Bandeaux
+	 */
+	
 	
 	/**
 	 * Timer
@@ -181,7 +180,7 @@ public class FenetrePrincipale extends JFrame {
 
         public void actionPerformed(ActionEvent evt) {
         	// TODO : a chaque tick d'horloge
-        	unAeroport.avancerTemps();
+        	vueGenerale.avancerTemps();
         	vueGenerale.redessiner();
         	
         }
@@ -279,8 +278,6 @@ public class FenetrePrincipale extends JFrame {
 		
 		// Panel Parametres
 		// TODO : 
-		bandeauAjoutBagages = new BandeauAjoutBagages();
-		bandeauVitesseChariot = new BandeauVitesseChariot();
 		bandeauAjoutBagages.setVisible(false);
 		bandeauVitesseChariot.setVisible(false);
 		

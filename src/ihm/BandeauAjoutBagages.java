@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import vues.VueGenerale;
+
 import noyau.Guichet;
 import noyau.Toboggan;
 
@@ -19,6 +21,12 @@ import noyau.Toboggan;
 
 public class BandeauAjoutBagages extends JPanel {
 
+	
+	/**
+	 * La vue Générale
+	 */
+	VueGenerale vueGenerale = null;
+	
 	/**
 	 * Label
 	 */
@@ -36,8 +44,7 @@ public class BandeauAjoutBagages extends JPanel {
 	 */
 	private ActionListener ajouterListener = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			// TODO : appeler Ajout bagage de vueGeneral
-			
+			vueGenerale.ajouterBagage();
 		}
 	};
 	
@@ -45,7 +52,8 @@ public class BandeauAjoutBagages extends JPanel {
 	/**
 	 * Construit le bandeau sans valeur à mettre dedans
 	 */
-	public BandeauAjoutBagages() {
+	public BandeauAjoutBagages(VueGenerale vueGenerale) {
+		this.vueGenerale = vueGenerale;
 		labelBagage.setText("Du guichet .. au toboggan .. : ");
 		boutonAjouter.setText("Ajouter");
 		boutonAjouter.addActionListener(ajouterListener);
