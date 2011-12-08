@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Graphics;
 
+import javax.annotation.Generated;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -26,6 +27,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -55,6 +57,9 @@ import bibliotheques.SGBagFileFilter;
  *
  */
 public class FenetrePrincipale extends JFrame {
+	
+	private Aeroport unAeroport;
+	
 	/**
 	 * Vue générale
 	 */
@@ -83,7 +88,9 @@ public class FenetrePrincipale extends JFrame {
 	 * Panels
 	 */
 	private JPanel container = new JPanel();
-	private JPanel bandeauParametres = new JPanel();
+	private JPanel bandeauGeneral = new JPanel();
+	private BandeauAjoutBagages bandeauAjoutBagages = new BandeauAjoutBagages();
+	private BandeauVitesseChariot bandeauVitesseChariot = new BandeauVitesseChariot();
 	private TestDessins testDessins = new TestDessins();
 	private JPanel panelBas = new JPanel();
 	
@@ -103,7 +110,6 @@ public class FenetrePrincipale extends JFrame {
 	/**
 	 * Constantes
 	 */
-	int LAPSE_TEMPS = 20;
 	String playString = "Play";
 	String pauseString = "Pause";
 
@@ -159,11 +165,21 @@ public class FenetrePrincipale extends JFrame {
 	
 	
 	/**
-	 * Clic sur arret d'urgence
+	 * Clic sur Arret d'urgence
 	 */
 	private ActionListener arretUrgenceListener = new ActionListener() {
 		public void actionPerformed(ActionEvent actionEvent) {
 			// TODO : vueGeneral.arretUrgence();
+		}
+	};
+	
+	/**
+	 * Listener sur Panel général
+	 */
+	private MouseAdapter clicVueGenerale = new MouseAdapter() {
+		public void mouseClicked(MouseEvent e) {
+			// TODO : appeler methode de vueGenerale pour gestion des clics.
+			
 		}
 	};
 	
@@ -174,10 +190,12 @@ public class FenetrePrincipale extends JFrame {
 
         public void actionPerformed(ActionEvent evt) {
         	// TODO : a chaque tick d'horloge
+        	unAeroport.avancerTemps();
+        	
         }
     };
 
-    private Timer horloge = new Timer(LAPSE_TEMPS, taskPerformer);
+    private Timer horloge = new Timer(Aeroport.lapsTemps, taskPerformer);
 
 	/**
 	 * Create the frame.
@@ -239,9 +257,14 @@ public class FenetrePrincipale extends JFrame {
 		
 		// Panel Parametres
 		// TODO : 
-		//bandeauParametres = new BandeauAjoutBagages();
-		bandeauParametres = new BandeauVitesseChariot();
-
+		bandeauAjoutBagages = new BandeauAjoutBagages();
+		bandeauVitesseChariot = new BandeauVitesseChariot();
+		bandeauAjoutBagages.setVisible(false);
+		bandeauVitesseChariot.setVisible(false);
+		
+		bandeauGeneral.add(bandeauAjoutBagages, BorderLayout.NORTH);
+		bandeauGeneral.add(bandeauVitesseChariot, BorderLayout.SOUTH);
+		
 		// Panel général
 		// Test
 		testDessins.addMouseListener(new MouseAdapter() {
@@ -254,13 +277,14 @@ public class FenetrePrincipale extends JFrame {
 		VueGeneral = new VueGeneral(bandeauVitesseChariot, bandeauAjoutBagages,
 		 						    labelInfo);
 		*/
+		vueGeneral.addMouseListener(clicVueGenerale);
 		
 		// Ajout des panels
 		container.setBackground(Color.white);
 		container.setLayout(new BorderLayout());
 		container.add(testDessins, BorderLayout.CENTER);
 		container.add(panelBas, BorderLayout.SOUTH);
-		container.add(bandeauParametres, BorderLayout.NORTH);
+		container.add(bandeauGeneral, BorderLayout.NORTH);
 		
 		labelInfo.setText("Bienvenue dans le système de gestion de bagages SGBag");
 		
@@ -283,9 +307,11 @@ public class FenetrePrincipale extends JFrame {
 	 */
 	private void testDessinsMouseclicked(MouseEvent me) {
         if (me.getX() < testDessins.getWidth()/2) {
-        	
+        	bandeauAjoutBagages.setVisible(true);
+        	bandeauVitesseChariot.setVisible(false);
         } else {
-        	
+        	bandeauAjoutBagages.setVisible(false);
+        	bandeauVitesseChariot.setVisible(true);
         }
 	}
 	
@@ -298,8 +324,13 @@ public class FenetrePrincipale extends JFrame {
 	public int construireToutAPartirDeXML(Element vueAeroportElement)
 	{
 		// On crée l'élément Aéroport et la vue qui lui est associée
+<<<<<<< HEAD
+        unAeroport = new Aeroport(null, null, null, null, null);
+        VueGeneral vueGenerale = null;
+=======
         Aeroport unAeroport = new Aeroport(null, null, null, null, null);
         VueGenerale vueGenerale = null;
+>>>>>>> branch 'master' of git@github.com:h4402/SGBag.git
         /*if (unAeroport.construireAPartirDeXML(vueAeroportElement) != Aeroport.PARSE_OK) {
             return Cadre.PARSE_ERROR;
         }
