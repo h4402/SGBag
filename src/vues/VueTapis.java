@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 
+import noyau.Aeroport;
 import noyau.Tapis;
 import noyau.Aeroport.Mode;
 
@@ -33,7 +34,7 @@ public class VueTapis extends Vue {
 
 	@Override
 	boolean clic(int x, int y) {
-		if(vueGenerale.getAeroport().getMode() == Mode.MANUEL){
+		if(Aeroport.getMode() == Mode.MANUEL){
 			Point p = new Point(x, y);
 			return dansRectangle(p);
 		}
