@@ -78,8 +78,8 @@ public class VueRail extends Vue {
 		double h = pointB.y - pointA.y;
 		double b = pointB.x - pointA.x;
 		alpha = Math.atan2(h,b);
-		rectangle = new Rectangle((int)Math.round(pointA.x - image.getWidth(vueGenerale)/2), (int)Math.round(pointA.y - image.getHeight(vueGenerale)/2),
-				image.getWidth(vueGenerale), image.getHeight(vueGenerale));
+		rectangle = new Rectangle((int)Math.round(pointA.x - imageWidth/2), (int)Math.round(pointA.y - imageHeight/2),
+				imageWidth, imageHeight);
 		AffineTransform rotation = AffineTransform.getRotateInstance(alpha, pointA.x, pointA.y);
 		rectangle = (Rectangle)rotation.createTransformedShape(rectangle);
 	}
@@ -89,9 +89,9 @@ public class VueRail extends Vue {
 		Image temp2 = imageSel;
 		Graphics2D g = (Graphics2D)temp.getGraphics();
 		Graphics2D g2 = (Graphics2D)temp2.getGraphics();
-		for (int i = 0; i < Math.round(rectangle.width/image.getWidth(vueGenerale)); i++) {
-			g.drawImage(image, pointA.x + i*image.getWidth(vueGenerale), pointA.y, vueGenerale);
-			g2.drawImage(imageSel, pointA.x + i*image.getWidth(vueGenerale), pointA.y, vueGenerale);
+		for (int i = 0; i < Math.round(rectangle.width/imageWidth); i++) {
+			g.drawImage(image, pointA.x + i*image.getWidth(vueGenerale), pointA.y, imageWidth, imageHeight, vueGenerale);
+			g2.drawImage(imageSel, pointA.x + i*image.getWidth(vueGenerale), pointA.y, imageWidth, imageHeight, vueGenerale);
 		}
 		image = temp;
 		imageSel = temp2;

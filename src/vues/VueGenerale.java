@@ -24,16 +24,19 @@ public class VueGenerale extends JPanel {
 		private BandeauVitesseChariot bandeauVitesseChariot;
 		private JLabel zoneInfo;
 		private double echelle;
+		private double coefImage;
 		private ArrayList<Vue> listVues;
 
-		@SuppressWarnings("null")
 		public VueGenerale(BandeauAjoutBagages bandeauAjoutBagages, BandeauVitesseChariot bandeauVitesseChariot, 
-				JLabel zoneInfo, Aeroport aeroport, ImagesManager imagesManager){
+				JLabel zoneInfo, Aeroport aeroport, ImagesManager imagesManager, double echelle){
 			
 			this.aeroport = aeroport;
 			this.bandeauAjoutBagages = bandeauAjoutBagages;
 			this.bandeauVitesseChariot = bandeauVitesseChariot;
-			this.zoneInfo = zoneInfo;			
+			this.zoneInfo = zoneInfo;
+			this.echelle =echelle;
+			
+			coefImage = Bagage.TAILLE_BAGAGE*echelle;
 			
 			listVues = new ArrayList<Vue>();
 			
@@ -73,6 +76,10 @@ public class VueGenerale extends JPanel {
 			
 		}
 		
+		public double getCoefImage() {
+			return coefImage;
+		}
+
 		public Toboggan getTobogganCourant() {
 			return tobogganCourant;
 		}
