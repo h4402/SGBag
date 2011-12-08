@@ -20,8 +20,8 @@ public class VueRail extends Vue {
 	private Point pointB;
 	private double alpha;
 
-	public VueRail(VueGenerale vueGenerale, Image image, Rail rail) {
-		super(vueGenerale, image);
+	public VueRail(VueGenerale vueGenerale, Image image, Image imageSel, Rail rail) {
+		super(vueGenerale, image, imageSel);
 		this.rail = rail;
 		constructionRectangle();
 		constructionImage();
@@ -43,7 +43,12 @@ public class VueRail extends Vue {
 	void dessin(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
 		g2d.rotate(alpha, pointA.x, pointA.y);
-		g2d.drawImage(image, (int)Math.round(pointA.x - image.getWidth(vueGenerale)/2), (int)Math.round(pointA.y - image.getHeight(vueGenerale)/2), vueGenerale);
+		if(selection){
+			g2d.drawImage(imageSel, (int)Math.round(pointA.x - image.getWidth(vueGenerale)/2), (int)Math.round(pointA.y - image.getHeight(vueGenerale)/2), vueGenerale);
+		}
+		else{
+			g2d.drawImage(image, (int)Math.round(pointA.x - image.getWidth(vueGenerale)/2), (int)Math.round(pointA.y - image.getHeight(vueGenerale)/2), vueGenerale);
+		}
 		g2d.rotate(-alpha, pointA.x, pointA.y);
 	}
 
@@ -81,11 +86,15 @@ public class VueRail extends Vue {
 	
 	private void constructionImage(){
 		Image temp = image;
+		Image temp2 = imageSel;
 		Graphics2D g = (Graphics2D)temp.getGraphics();
+		Graphics2D g2 = (Graphics2D)temp2.getGraphics();
 		for (int i = 0; i < Math.round(rectangle.width/image.getWidth(vueGenerale)); i++) {
 			g.drawImage(image, pointA.x + i*image.getWidth(vueGenerale), pointA.y, vueGenerale);
+			g2.drawImage(imageSel, pointA.x + i*image.getWidth(vueGenerale), pointA.y, vueGenerale);
 		}
 		image = temp;
+		imageSel = temp2;
 	}
 	
 

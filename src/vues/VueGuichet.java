@@ -11,8 +11,8 @@ import noyau.Guichet;
 public class VueGuichet extends Vue {
 
 	private Guichet guichet;
-	public VueGuichet(VueGenerale vueGeneral, Image image, Guichet guichet) {
-		super(vueGeneral, image);
+	public VueGuichet(VueGenerale vueGeneral, Image image, Image imageSel, Guichet guichet) {
+		super(vueGeneral, image, imageSel);
 		this.guichet = guichet;
 		posPixel = new Point((int)Math.round(this.guichet.getCoordonnees().x * this.vueGenerale.getEchelle() - image.getWidth(vueGenerale)/2)
 				, (int)Math.round(this.guichet.getCoordonnees().y * this.vueGenerale.getEchelle() - image.getHeight(vueGenerale)/2));
@@ -21,8 +21,14 @@ public class VueGuichet extends Vue {
 	
 	@Override
 	void dessin(Graphics g) {
-		Graphics2D g2d = (Graphics2D)g;
-		g2d.drawImage(image, posPixel.x, posPixel.y, vueGenerale);
+		if(selection){
+			Graphics2D g2d = (Graphics2D)g;
+			g2d.drawImage(imageSel, posPixel.x, posPixel.y, vueGenerale);
+		}
+		else{
+			Graphics2D g2d = (Graphics2D)g;
+			g2d.drawImage(image, posPixel.x, posPixel.y, vueGenerale);
+		}
 	}
 	
 	@Override
