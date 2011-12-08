@@ -14,9 +14,9 @@ public class VueGuichet extends Vue {
 	public VueGuichet(VueGenerale vueGeneral, Image image, Guichet guichet) {
 		super(vueGeneral, image);
 		this.guichet = guichet;
-		posPixel = new Point((int)Math.round(this.guichet.getCoordonnees().x * this.vueGenerale.getEchelle() - image.getHeight(vueGenerale)/2)
-				, (int)Math.round(this.guichet.getCoordonnees().y * this.vueGenerale.getEchelle() - image.getWidth(vueGenerale)/2));
-		rectangle = new Rectangle(posPixel.x, posPixel.y, image.getHeight(vueGenerale), image.getWidth(vueGenerale));
+		posPixel = new Point((int)Math.round(this.guichet.getCoordonnees().x * this.vueGenerale.getEchelle() - image.getWidth(vueGenerale)/2)
+				, (int)Math.round(this.guichet.getCoordonnees().y * this.vueGenerale.getEchelle() - image.getHeight(vueGenerale)/2));
+		rectangle = new Rectangle(posPixel.x, posPixel.y, image.getWidth(vueGenerale), image.getHeight(vueGenerale));
 	}
 	
 	@Override
