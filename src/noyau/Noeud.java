@@ -104,5 +104,9 @@ public class Noeud {
 			return false;
 		return true;
 	}
+
+	public Point getCoordonnees() {
+		return coordonnees;
+	}
 	
 }
