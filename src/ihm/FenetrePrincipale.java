@@ -75,8 +75,8 @@ public class FenetrePrincipale extends JFrame {
 	 */
 	private JPanel container = new JPanel();
 	private JPanel bandeauGeneral = new JPanel();
-	private BandeauAjoutBagages bandeauAjoutBagages = new BandeauAjoutBagages(vueGenerale);
-	private BandeauVitesseChariot bandeauVitesseChariot = new BandeauVitesseChariot(vueGenerale);
+	private BandeauAjoutBagages bandeauAjoutBagages = new BandeauAjoutBagages();
+	private BandeauVitesseChariot bandeauVitesseChariot = new BandeauVitesseChariot();
 	private TestDessins testDessins = new TestDessins();
 	private JPanel panelBas = new JPanel();
 	
@@ -280,7 +280,6 @@ public class FenetrePrincipale extends JFrame {
 		// TODO : 
 		bandeauAjoutBagages.setVisible(false);
 		bandeauVitesseChariot.setVisible(false);
-		
 		bandeauGeneral.add(bandeauAjoutBagages, BorderLayout.NORTH);
 		bandeauGeneral.add(bandeauVitesseChariot, BorderLayout.SOUTH);
 		
@@ -366,6 +365,13 @@ public class FenetrePrincipale extends JFrame {
         }
         
         VueGenerale vueGenerale = new VueGenerale(aeroport, null, null, null, null, null, null);
+        // création des bandeaux qui ont besoin de la vue générale
+        bandeauAjoutBagages.setVueGenerale(vueGenerale);
+        bandeauVitesseChariot.setVueGenerale(vueGenerale);
+        // par sécurité
+        bandeauAjoutBagages.setVisible(false);
+		bandeauVitesseChariot.setVisible(false);
+        
         vueGenerale.addMouseListener(clicVueGenerale);
         this.vueGenerale = vueGenerale;
 

@@ -50,16 +50,16 @@ public class BandeauVitesseChariot extends JPanel {
 	 */
 	private ActionListener modifierListener = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			// TODO : appeler changerBagage de vueGeneral
-			
+			// TODO : securiser la saisie
+			if (vueGenerale != null)
+				vueGenerale.setVitesseChariot(Float.valueOf(textFieldVitesse.getText()));
 		}
 	};
 	
 	/**
 	 * Construit le bandeau vide
 	 */
-	public BandeauVitesseChariot(VueGenerale vueGenerale) {
-		this.vueGenerale = vueGenerale;
+	public BandeauVitesseChariot() {
 		labelVitesse.setText("Vitesse chariot : ");
 		boutonModifier.setText("Modifier");
 		boutonModifier.addActionListener(modifierListener);
@@ -71,6 +71,11 @@ public class BandeauVitesseChariot extends JPanel {
 		this.add(textFieldVitesse, BorderLayout.CENTER);
 		this.add(boutonModifier, BorderLayout.EAST);
 		
+	}
+	
+	
+	public void setVueGenerale(VueGenerale vueGenerale) {
+		this.vueGenerale = vueGenerale;
 	}
 	
 	/**
