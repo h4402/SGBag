@@ -12,8 +12,8 @@ public class VueToboggan extends Vue {
 
 	private Toboggan toboggan;
 		
-	public VueToboggan(VueGenerale vueGenerale, Image image, Toboggan toboggan) {
-		super(vueGenerale, image);
+	public VueToboggan(VueGenerale vueGenerale, Image image, Image imageSel, Toboggan toboggan) {
+		super(vueGenerale, image, imageSel);
 		this.toboggan = toboggan;
 		posPixel = new Point((int)Math.round(this.toboggan.getCoordonnees().x * this.vueGenerale.getEchelle() - image.getWidth(vueGenerale)/2)
 				, (int)Math.round(this.toboggan.getCoordonnees().y * this.vueGenerale.getEchelle() - image.getHeight(vueGenerale)/2));
@@ -21,9 +21,15 @@ public class VueToboggan extends Vue {
 	}
 	
 	@Override
-	void dessin(Graphics g) {
-		Graphics2D g2d = (Graphics2D)g;
-		g2d.drawImage(image, posPixel.x, posPixel.y, vueGenerale);
+	void dessin(Graphics g){
+		if(selection){
+			Graphics2D g2d = (Graphics2D)g;
+			g2d.drawImage(imageSel, posPixel.x, posPixel.y, vueGenerale);
+		}
+		else{
+			Graphics2D g2d = (Graphics2D)g;
+			g2d.drawImage(image, posPixel.x, posPixel.y, vueGenerale);
+		}
 	}
 	
 	@Override

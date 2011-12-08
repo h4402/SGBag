@@ -10,27 +10,81 @@ public class ImagesManager {
      * Les fichiers images
      */
     private Image imgChariot = null;
+    private Image imgChariotSel = null;
     private Image imgChariotB = null;
+    private Image imgChariotBSel = null;
     private Image imgNode = null;
+    private Image imgNodeSel = null;
     private Image imgNodeGarage = null;
+    private Image imgNodeGarageSel = null;
     private Image imgGuichet = null;
+    private Image imgGuichetSel = null;
     private Image imgToboggan = null;
+    private Image imgTobogganSel = null;
     private Image imgTapis = null;
+    private Image imgTapisSel = null;
     private Image imgTapisB = null;
+    private Image imgTapisBSel = null;
     private Image imgRail = null;
+    private Image imgRailSel = null;
     
     final String PATH_IMAGE = "res/img/";
     final String IMG_CHARIOT = PATH_IMAGE+"chariot.png";
     final String IMG_CHARIOT_B = PATH_IMAGE+"chariot_b.png";
     final String IMG_NODE = PATH_IMAGE+"node.png";
     final String IMG_NODE_GARAGE = PATH_IMAGE+"node_garage.png";
-    final String IMG_GUICHET = PATH_IMAGE+"node.png";
+    final String IMG_GUICHET = PATH_IMAGE+"guichet.png";
     final String IMG_TOBOGGAN = PATH_IMAGE+"toboggan.png";
     final String IMG_TAPIS = PATH_IMAGE+"tapis.png";
     final String IMG_TAPIS_B = PATH_IMAGE+"tapis_b.png";
     final String IMG_RAIL = PATH_IMAGE+"rail.png";
+    final String IMG_CHARIOT_SEL = PATH_IMAGE+"chariot_sel.png";
+    final String IMG_CHARIOT_B_SEL = PATH_IMAGE+"chariot_b_sel.png";
+    final String IMG_NODE_SEL = PATH_IMAGE+"node_sel.png";
+    final String IMG_NODE_GARAGE_SEL = PATH_IMAGE+"node_garage_sel.png";
+    final String IMG_GUICHET_SEL = PATH_IMAGE+"guichet_sel.png";
+    final String IMG_TOBOGGAN_SEL = PATH_IMAGE+"toboggan_sel.png";
+    final String IMG_TAPIS_SEL = PATH_IMAGE+"tapis_sel.png";
+    final String IMG_TAPIS_B_SEL = PATH_IMAGE+"tapis_b_sel.png";
+    final String IMG_RAIL_SEL = PATH_IMAGE+"rail_sel.png";
 	
-    public ImagesManager() {
+    public Image getImgChariotSel() {
+		return imgChariotSel;
+	}
+
+	public Image getImgChariotBSel() {
+		return imgChariotBSel;
+	}
+
+	public Image getImgNodeSel() {
+		return imgNodeSel;
+	}
+
+	public Image getImgNodeGarageSel() {
+		return imgNodeGarageSel;
+	}
+
+	public Image getImgGuichetSel() {
+		return imgGuichetSel;
+	}
+
+	public Image getImgTobogganSel() {
+		return imgTobogganSel;
+	}
+
+	public Image getImgTapisSel() {
+		return imgTapisSel;
+	}
+
+	public Image getImgTapisBSel() {
+		return imgTapisBSel;
+	}
+
+	public Image getImgRailSel() {
+		return imgRailSel;
+	}
+
+	public ImagesManager() {
     	Toolkit tk = Toolkit.getDefaultToolkit();
     	imgChariot = tk.getImage(IMG_CHARIOT);
     	imgChariotB = tk.getImage(IMG_CHARIOT_B);
