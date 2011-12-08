@@ -46,7 +46,6 @@ public class BandeauVitesseChariot extends JPanel {
 	 */
 	private ActionListener modifierListener = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			// TODO : securiser la saisie
 			if (vueGenerale != null)
 				vueGenerale.setVitesseChariot(Float.valueOf(textFieldVitesse.getText()));
 		}

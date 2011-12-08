@@ -72,6 +72,9 @@ public class Chariot {
 	 */
 	public Chariot(int id, Point coordonnees, Bagage bagage, float vitesse,
 			LinkedList<Noeud> chemin) {
+		/* TODO : enlever le bagage en parametre du constructeur, et mettre
+		 * bagage = null ici
+		 */
 		super();
 		this.id = id;
 		this.coordonnees = coordonnees;
