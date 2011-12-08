@@ -257,10 +257,12 @@ public class FenetrePrincipale extends JFrame {
 		boutonLecture.setText("Play");
 		boutonLecture.addActionListener(playPauseListener);
 		boutonLecture.setAlignmentX(LEFT_ALIGNMENT);
+		boutonLecture.setEnabled(false);
 
 		// Bouton d'arret d'urgence
 		boutonArretUrgence.setText("STOP!");
 		boutonArretUrgence.addActionListener(arretUrgenceListener);
+		boutonArretUrgence.setEnabled(false);
 		
 		// Panel du bas
 		panelBas.add(boutonArretUrgence);
@@ -367,6 +369,10 @@ public class FenetrePrincipale extends JFrame {
 		bandeauVitesseChariot.setVisible(false);
         
         vueGenerale.addMouseListener(clicVueGenerale);
+        
+        // activation des boutons si chargement reussi
+        boutonLecture.setEnabled(true);
+        boutonArretUrgence.setEnabled(true);
         
         return Aeroport.PARSE_OK;
     }
