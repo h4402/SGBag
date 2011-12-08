@@ -35,11 +35,11 @@ public class Chariot {
 	private Bagage bagage;
 	
 	/**
-	 * Vitesse du chariot.
+	 * Vitesse du chariot en metre/millisecondes.
 	 * 
 	 * @uml.property  name="vitesse"
 	 */
-	private int vitesse;
+	private float vitesse;
 	
 	/**
 	 * Liste des noeud a parcourir par le chariot
@@ -51,6 +51,11 @@ public class Chariot {
 	private LinkedList<Noeud> chemin;
 	
 	/**
+	 * Distance sur le rail depuis le noeud d'entrée.
+	 */
+	private float distanceDepuisNoeudDepart;
+	
+	/**
 	 * Constructeur nécéssaire à GreenUML.
 	 * 
 	 * @param coordonnees Coordonnées initiale du chariot.
@@ -58,7 +63,7 @@ public class Chariot {
 	 * @param vitesse Vitesse initiale du chariot.
 	 * @param chemin Liste des noeud avant la destination.
 	 */
-	public Chariot(int id, Point coordonnees, Bagage bagage, int vitesse,
+	public Chariot(int id, Point coordonnees, Bagage bagage, float vitesse,
 			LinkedList<Noeud> chemin) {
 		super();
 		this.id = id;
@@ -66,6 +71,7 @@ public class Chariot {
 		this.bagage = bagage;
 		this.vitesse = vitesse;
 		this.chemin = chemin;
+		this.distanceDepuisNoeudDepart = 0;
 	}	
 	
 	/**
@@ -77,20 +83,11 @@ public class Chariot {
 	 * 
 	 * @return La nouvelle position.
 	 */
-	public Point calculerNouvPos(Point depart, Point arrivee) {
+	public Point calculerNouvPos(Point vectUnitaire) {
 		
-		int nouvY = arrivee.y - coordonnees.y;
-		int nouvX = arrivee.x - coordonnees.x;
+		distanceDepuisNoeudDepart += vitesse;
 		
-		double norm = Math.sqrt(nouvX*nouvX + nouvY*nouvY);
-		
-		nouvY = (int)(nouvY/norm);
-		nouvX = (int)(nouvX/norm);
-		
-		nouvX = (nouvX + 2)*vitesse;
-		nouvY = (nouvY + 2)*vitesse;
-		
-		return new Point(nouvX+coordonnees.x, nouvY+coordonnees.y);
+		return new Point();
 	}
 	
 	/**
@@ -207,6 +204,15 @@ public class Chariot {
 	public void mettreBagage(Noeud depart, Bagage b) {
 		bagage = b;
 		calculerChemin(depart, b.getTogobban().getNoeud());
+	}
+	
+	/**
+	 * Retourne les coordonnées du Chariot.
+	 * 
+	 * @return Coordonnées actuelles du chariot.
+	 */
+	public Point getCoordonnees() {
+		return coordonnees;
 	}
 	
 	/**
