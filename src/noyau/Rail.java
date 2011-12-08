@@ -217,11 +217,17 @@ public class Rail {
 		
 		int idNoeudEntree = Integer.parseInt(railElement.getAttribute("noeudEntree"));
 		int idNoeudSortie = Integer.parseInt(railElement.getAttribute("noeudSortie"));
+		
+		//insertion des noeud.
 		this.noeudEntree = aeroport.getNoeud(idNoeudEntree);
-		this.noeudEntree = aeroport.getNoeud(idNoeudSortie);
+		this.noeudSortie = aeroport.getNoeud(idNoeudSortie);
         
-		LinkedList<Chariot> liste = new LinkedList<Chariot>();
-		this.listChariots = liste;
+		//il faut également le faire dans l'autre sens (référencer le rail dans le noeud
+		this.noeudEntree.listRailsSortie.add(this);
+		//TODO: référencer les rails d'entrées dans le noeud de sortie ?
+		
+		//Pas de chariots sur ce rail pour le moment.
+		this.listChariots = new LinkedList<Chariot>();
 		
 		aeroport.ajouterRail(this);
 		return Aeroport.PARSE_OK;
