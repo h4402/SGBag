@@ -1,9 +1,13 @@
 package vues;
 
+import ihm.BandeauAjoutBagages;
+import ihm.BandeauVitesseChariot;
+
 import java.awt.Image;
 import java.util.List;
 
 import javax.annotation.Generated;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
@@ -13,13 +17,21 @@ public class VueGenerale extends JPanel {
 		private Guichet guichetCourant;
 		private Toboggan tobogganCourant;
 		private Aeroport aeroport;
+		private BandeauAjoutBagages bandeauAjoutBagages;
+		private BandeauVitesseChariot bandeauVitesseChariot;
+		private JLabel zoneInfo;
 		private double echelle;
 		private Image image;
 
 		@SuppressWarnings("null")
-		public VueGenerale(Aeroport aeroport, Image imageChariot, Image imageNode,Image imageGuichet,Image imageToboggan, Image imageTapis,Image imageRail){
+		public VueGenerale(BandeauAjoutBagages bandeauAjoutBagages, BandeauVitesseChariot bandeauVitesseChariot, 
+				JLabel zoneInfo, Aeroport aeroport, Image imageChariot, Image imageNode, Image imageGuichet, 
+				Image imageToboggan, Image imageTapis, Image imageRail){
 			
 			this.aeroport = aeroport;
+			this.bandeauAjoutBagages = bandeauAjoutBagages;
+			this.bandeauVitesseChariot = bandeauVitesseChariot;
+			this.zoneInfo = zoneInfo;			
 			
 			List<Vue> listVues = null;
 			
@@ -56,8 +68,24 @@ public class VueGenerale extends JPanel {
 			
 		}
 		
-		public void redessiner(){
-			
+		public Toboggan getTobogganCourant() {
+			return tobogganCourant;
+		}
+
+		public void setTobogganCourant(Toboggan tobogganCourant) {
+			this.tobogganCourant = tobogganCourant;
+		}
+
+		public BandeauAjoutBagages getBandeauAjoutBagages() {
+			return bandeauAjoutBagages;
+		}
+
+		public BandeauVitesseChariot getBandeauVitesseChariot() {
+			return bandeauVitesseChariot;
+		}
+
+		public JLabel getZoneInfo() {
+			return zoneInfo;
 		}
 		
 		public double getEchelle() {
@@ -76,6 +104,14 @@ public class VueGenerale extends JPanel {
 			this.guichetCourant = guichetCourant;
 		}
 				
+		public void redessiner(){
+			
+		}
+		
+		public void clic(int x, int y){
+			
+		}
+		
 		public void ajouterBagage(){
 			//aeroport.ajouterBagage(guichetCourant, tobogganCourant);
 		}

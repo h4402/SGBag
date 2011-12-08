@@ -36,7 +36,9 @@ public class VueToboggan extends Vue {
 	void action() {
 		this.selectionner();
 		if(vueGenerale.getGuichetCourant() != null){
-			vueGenerale.afficherBandeau();
+			vueGenerale.getZoneInfo().setText("Ajouter un bagage?");
+			vueGenerale.setTobogganCourant(this.toboggan);
+			vueGenerale.getBandeauAjoutBagages().setVisible(true);
 		}
 		// TODO Auto-generated method stub
 
