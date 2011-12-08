@@ -11,10 +11,12 @@ import noyau.Aeroport.Mode;
 public class VueTapis extends Vue {
 
 	private Tapis tapis;
+	private Image imageAvecBagage;
 	
-	public VueTapis(VueGenerale vueGeneral, Image image, Tapis tapis) {
+	public VueTapis(VueGenerale vueGeneral, Image image, Image imageAvecBagage, Tapis tapis) {
 		super(vueGeneral, image);
 		this.tapis = tapis;
+		this.imageAvecBagage = imageAvecBagage;
 		// TODO Auto-generated constructor stub
 	}
 
