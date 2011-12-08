@@ -1,5 +1,6 @@
 package noyau;
 
+import java.awt.Point;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -48,6 +49,10 @@ public class Toboggan extends ES {
 		return id;
 	}
 
+	public Point getCoordonnees(){
+		return noeud.getCoordonnees();
+	}
+	
 	/**
 	 * Permet de compléter un objet vide à partir du XML
 	 * 

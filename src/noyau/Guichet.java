@@ -121,8 +121,8 @@ public class Guichet {
         Noeud noeudTapis = aeroport.getNoeud(idNoeud);
         this.tapis.setNoeud(noeudTapis);
 
-        int longueurTapis = (int) Math.sqrt(Math.pow((noeudTapis.getCoordoonees().getX() - posX),2)
-        		+ Math.pow((noeudTapis.getCoordoonees().getY() - posY),2));
+        int longueurTapis = (int) Math.sqrt(Math.pow((noeudTapis.getCoordonnees().getX() - posX),2)
+        		+ Math.pow((noeudTapis.getCoordonnees().getY() - posY),2));
         int nbBagages = Math.round(longueurTapis/Bagage.TAILLE_BAGAGE);
         Tapis tapis = new Tapis(aeroport.getNoeud(idNoeud), new Bagage[nbBagages] , 0, 0, longueurTapis);
         aeroport.ajouterTapis(tapis);

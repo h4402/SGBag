@@ -58,7 +58,7 @@ public class Noeud {
 	 * 
 	 * @return Coordonnées du noeud.
 	 */
-	public Point getCoordoonees() {
+	public Point getCoordonnees() {
 		return coordonnees;
 	}
 	
@@ -104,9 +104,4 @@ public class Noeud {
 			return false;
 		return true;
 	}
-
-	public Point getCoordonnees() {
-		return coordonnees;
-	}
-	
 }

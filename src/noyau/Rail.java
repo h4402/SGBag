@@ -70,8 +70,8 @@ public class Rail {
 		this.listChariots = listChariots;
 		this.noeudEntree = noeudEntree;
 		this.noeudSortie = noeudSortie;
-		direction = new Point(noeudSortie.getCoordoonees().x - noeudEntree.getCoordoonees().x,
-				noeudSortie.getCoordoonees().y - noeudEntree.getCoordoonees().y);
+		direction = new Point(noeudSortie.getCoordonnees().x - noeudEntree.getCoordonnees().x,
+				noeudSortie.getCoordonnees().y - noeudEntree.getCoordonnees().y);
 		longueur = (float) Math.sqrt(direction.x*direction.x + direction.y*direction.y);
 	}
 

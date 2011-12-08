@@ -53,8 +53,8 @@ public class VueRail extends Vue {
 	 * @param r rail que on va utiliser pour la construction du rectangle
 	 */
 	private void constructionRectangle(Rail r,VueGenerale vueGeneral){
-		pointA = r.getNoeudEntree().getCoordoonees();
-		pointB = r.getNoeudSortie().getCoordoonees();
+		pointA = r.getNoeudEntree().getCoordonnees();
+		pointB = r.getNoeudSortie().getCoordonnees();
 		pointA.x = (int) Math.round(pointA.getX()*vueGeneral.getEchelle());
 		pointA.y = (int) Math.round(pointA.getY()*vueGeneral.getEchelle());
 		pointB.x = (int) Math.round(pointB.getX()*vueGeneral.getEchelle());

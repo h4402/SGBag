@@ -114,8 +114,8 @@ public class Chariot {
 		
 		distanceDepuisNoeudDepart = nouvDist;
 		if(entree != null && vectUnitaire != null) {
-			coordonnees.x = (int)(entree.getCoordoonees().x + distanceDepuisNoeudDepart*vectUnitaire.x);
-			coordonnees.y = (int)(entree.getCoordoonees().y + distanceDepuisNoeudDepart*vectUnitaire.y);
+			coordonnees.x = (int)(entree.getCoordonnees().x + distanceDepuisNoeudDepart*vectUnitaire.x);
+			coordonnees.y = (int)(entree.getCoordonnees().y + distanceDepuisNoeudDepart*vectUnitaire.y);
 		}
 	}
 
@@ -384,7 +384,7 @@ public class Chariot {
 	{
 		// On récupère les coordonnées du noeud associé
         int idNoeudGarage = Integer.parseInt(chariotElement.getAttribute("noeudParDefaut"));
-        this.coordonnees = aeroport.getNoeud(idNoeudGarage).getCoordoonees();
+        this.coordonnees = aeroport.getNoeud(idNoeudGarage).getCoordonnees();
         
         // Création du garage correspondant au noeud par défaut d'apparition des chariots
         LinkedList<Chariot> listeChariotsVides = new LinkedList<Chariot>();
@@ -396,7 +396,7 @@ public class Chariot {
         // Instanciation  du noeud garage
         NoeudGarage noeudGarage = new NoeudGarage(
         								aeroport.getNoeud(idNoeudGarage).getListeRails(),
-        								aeroport.getNoeud(idNoeudGarage).getCoordoonees(),
+        								aeroport.getNoeud(idNoeudGarage).getCoordonnees(),
         								garage);
         garage.setNoeud(noeudGarage);
         
