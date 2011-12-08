@@ -344,7 +344,7 @@ public class FenetrePrincipale extends JFrame {
 	public int construireToutAPartirDeXML(Element aeroportElement)
 	{
 		// On crée l'élément Aéroport et la vue qui lui est associée
-		Aeroport aeroport = new Aeroport(null, null, null, null, null);
+		Aeroport aeroport = new Aeroport(null, null, null, null, null, null);
 		
 		/* TODO
 		 * Créer la vue generale avec le constructeur complet de VueGeneral
@@ -363,7 +363,7 @@ public class FenetrePrincipale extends JFrame {
             return Aeroport.PARSE_ERROR;
         }
         
-        VueGenerale vueGenerale = new VueGenerale(aeroport, null, null, null, null, null, null);
+        VueGenerale vueGenerale = new VueGenerale(null, null, null, aeroport, null, null, null, null, null, null);
         // création des bandeaux qui ont besoin de la vue générale
         bandeauAjoutBagages.setVueGenerale(vueGenerale);
         bandeauVitesseChariot.setVueGenerale(vueGenerale);

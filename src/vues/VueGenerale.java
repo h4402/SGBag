@@ -167,12 +167,12 @@ public class VueGenerale extends JPanel {
 		}
 		
 		public int construireToutAPartirDeXML(Element aeroportElement){
-		// On crée l'élément Aéroport et la vue qui lui est associée
+		// On cree l'element Aeroport et la vue qui lui est associee
 		//Aeroport aeroport = new Aeroport(null, null, null, null, null);
 		/* TODO
 
-		 	* Créer la vue generale avec le constructeur complet de VueGeneral
-			* Après avoir tout chargé depuis le fichier XML
+		 	* Crer la vue generale avec le constructeur complet de VueGeneral
+			* Apres avoir tout charge depuis le fichier XML
 			* 
 			* vueGeneral = new VueGeneral(bandeauAjoutBagages,bandeauVitesseChariot,
 			  labelInfo, ....., ...., .....);

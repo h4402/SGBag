@@ -73,7 +73,7 @@ public class TestDessins extends JPanel {
 	}
 	
 	private void dessinerRond(int x, int y) {
-		g.drawOval(x, y, 50, 50);
+		//g.drawOval(x, y, 50, 50);
 	}
 	
 	

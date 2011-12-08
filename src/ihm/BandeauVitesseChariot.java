@@ -11,10 +11,6 @@ import javax.swing.JTextField;
 
 import vues.VueGenerale;
 
-import noyau.Chariot;
-import noyau.Guichet;
-import noyau.Toboggan;
-
 /**
  * 
  * @author jeremy

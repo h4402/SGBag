@@ -10,9 +10,6 @@ import javax.swing.JPanel;
 
 import vues.VueGenerale;
 
-import noyau.Guichet;
-import noyau.Toboggan;
-
 /**
  * 
  * @author jeremy
