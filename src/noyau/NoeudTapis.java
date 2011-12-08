@@ -41,7 +41,7 @@ public class NoeudTapis extends Noeud {
 	 * @param c Chariot à remplir.
 	 */
 	public void avertirChariotPresent(Chariot c) {
-		chariotVide = c;	
+		chariotVide = c;
 	}
 
 	/**

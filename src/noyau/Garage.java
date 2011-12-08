@@ -51,7 +51,7 @@ public class Garage extends ES {
 	 */
 	public void ajouterChariotVide(Chariot c) {
 		c.calculerChemin(null, null);
-		c.majPos(this.getNoeud().getCoordoonees());
+		c.majPos(null,null,0);
 		listChariotsVides.offerLast(c);
 	}
 
