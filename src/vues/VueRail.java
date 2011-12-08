@@ -72,7 +72,7 @@ public class VueRail extends Vue {
 		 */
 		double h = pointB.y - pointA.y;
 		double b = pointB.x - pointA.x;
-		alpha = Math.atan(h/b);
+		alpha = Math.atan2(h,b);
 		rectangle = new Rectangle((int)Math.round(pointA.x - image.getWidth(vueGenerale)/2), (int)Math.round(pointA.y - image.getHeight(vueGenerale)/2),
 				image.getWidth(vueGenerale), image.getHeight(vueGenerale));
 		AffineTransform rotation = AffineTransform.getRotateInstance(alpha, pointA.x, pointA.y);
