@@ -8,6 +8,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import sun.org.mozilla.javascript.internal.annotations.JSGetter;
+
 /**
  * La classe principale du noyau, celle qui connait
  * tout le monde, qui fait avancer les chariots...
@@ -63,6 +65,11 @@ public class Aeroport {
 	public void setListTapis(List<Tapis> listTapis) {
 		this.listTapis = listTapis;
 	}
+	
+	/**
+	 * Temps entre chaque tick en millisecondes.
+	 */
+	public static final int lapsTemps = 20;
 
 	/**
 	 * Le mode sera choisi

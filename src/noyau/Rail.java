@@ -42,6 +42,16 @@ public class Rail {
 	 * @uml.property  name="noeudSortie"
 	 */
 	private Noeud noeudSortie;
+	
+	/**
+	 * Direction du vecteur Rail.
+	 */
+	private Point direction;
+	
+	/**
+	 * Taille du rail.
+	 */
+	private float longueur;
 
 	/**
 	 * Constructeur pratique pour GreenUML.
@@ -55,6 +65,9 @@ public class Rail {
 		this.listChariots = listChariots;
 		this.noeudEntree = noeudEntree;
 		this.noeudSortie = noeudSortie;
+		direction = new Point(noeudSortie.getCoordoonees().x - noeudEntree.getCoordoonees().x,
+				noeudSortie.getCoordoonees().y - noeudEntree.getCoordoonees().y);
+		longueur = (float) Math.sqrt(direction.x*direction.x + direction.y*direction.y);
 	}
 
 	/**
@@ -68,7 +81,7 @@ public class Rail {
 			/*
 			 * TODO Envoyer la direction du rail... 
 			 */
-			Point p = c.calculerNouvPos(noeudEntree.getCoordoonees(), noeudSortie.getCoordoonees());
+			Point p = c.calculerNouvPos(getVectUnitaire());
 			
 			/*
 			 * TODO Vérifier que p depasse le chariot précédent.
@@ -135,6 +148,14 @@ public class Rail {
 		 * ne dépasse pas le dernier chariot de la liste.
 		 */
 		return false;
+	}
+	
+	/**
+	 * Retourne le vecteur unitaire correspondant au rail.
+	 * @return Vecteur unitaire du rail.
+	 */
+	public Point getVectUnitaire() {
+		return new Point((int)(direction.x/longueur), (int)(direction.y/longueur));
 	}
 	
 	/**
