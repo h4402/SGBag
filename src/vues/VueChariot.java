@@ -11,8 +11,8 @@ public class VueChariot extends Vue {
 	public VueChariot(VueGenerale vueGenerale, Image image, Chariot chariot) {
 		super(vueGenerale, image);
 		this.chariot = chariot;
-		posPixel = new Point(this.chariot.getCoordoonees().x * this.vueGenerale.getEchelle()
-				, this.chariot.getCoordoonees().y * this.vueGenerale.getEchelle());
+		posPixel = new Point((int)Math.round(this.chariot.getCoordonnees().x * this.vueGenerale.getEchelle())
+				, (int)Math.round(this.chariot.getCoordonnees().y * this.vueGenerale.getEchelle()));
 		rectangle = new Rectangle(posPixel.x - image.getHeight(vueGenerale)/2, 
 				posPixel.y - image.getWidth(vueGenerale)/2, image.getHeight(vueGenerale),
 				image.getWidth(vueGenerale));
@@ -20,8 +20,8 @@ public class VueChariot extends Vue {
 	}
 
 	private void updatePos(){
-		posPixel.x = chariot.getCoordoonees().x * vueGenerale.getEchelle();
-		posPixel.y = chariot.getCoordoonees().y * vueGenerale.getEchelle();
+		posPixel.x = (int)Math.round(chariot.getCoordonnees().x * vueGenerale.getEchelle());
+		posPixel.y = (int)Math.round(chariot.getCoordonnees().y * vueGenerale.getEchelle());
 		rectangle.x = posPixel.x - image.getHeight(vueGenerale)/2;
 		rectangle.y = posPixel.y - image.getWidth(vueGenerale)/2;
 	}
