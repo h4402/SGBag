@@ -287,7 +287,7 @@ public class FenetrePrincipale extends JFrame {
 		// Ajout des panels
 		container.setBackground(Color.white);
 		container.setLayout(new BorderLayout());
-		//container.add(testDessins, BorderLayout.CENTER);
+		container.add(testDessins, BorderLayout.CENTER);
 		//container.add(vueGenerale, BorderLayout.CENTER);
 		container.add(panelBas, BorderLayout.SOUTH);
 		container.add(bandeauGeneral, BorderLayout.NORTH);
