@@ -2,6 +2,7 @@ package vues;
 
 import ihm.BandeauAjoutBagages;
 import ihm.BandeauVitesseChariot;
+import ihm.ImagesManager;
 
 import java.awt.Image;
 import java.util.ArrayList;
@@ -28,8 +29,7 @@ public class VueGenerale extends JPanel {
 
 		@SuppressWarnings("null")
 		public VueGenerale(BandeauAjoutBagages bandeauAjoutBagages, BandeauVitesseChariot bandeauVitesseChariot, 
-				JLabel zoneInfo, Aeroport aeroport, Image imageChariot, Image imageNode, Image imageGuichet, 
-				Image imageToboggan, Image imageTapis, Image imageRail){
+				JLabel zoneInfo, Aeroport aeroport, ImagesManager imagesManager){
 			
 			this.aeroport = aeroport;
 			this.bandeauAjoutBagages = bandeauAjoutBagages;
