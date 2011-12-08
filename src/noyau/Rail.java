@@ -18,7 +18,12 @@ public class Rail {
 	/**
 	 * Identifiant d'un rail
 	 */
-	protected int id;
+	private int id;
+	
+	/**
+	 * Distance de sécurité entre deux chariots
+	 */
+	public static final int distSecu = 2; 
 	
 	/**
 	 * Liste des chariots roulant actuellement
@@ -85,7 +90,7 @@ public class Rail {
 			 * Si il n'y a pas de chariot précédent, ou si on ne le dépasse pas.
 			 */
 			if(prev == null || distChariot < prev.getDistance()) {
-				
+				c.setArret(false);
 				/*
 				 * Si le chariot est toujours dans le rail,
 				 * on l'avance.
@@ -113,7 +118,7 @@ public class Rail {
 					}
 					
 					/*
-					 * Si on est la, le chariot continue sont chemin,
+					 * Si on est la, le chariot continue son chemin,
 					 * on prend le prochain rail et
 					 * on essai de le placer.
 					 * Si on est en mode AUTO.
@@ -124,7 +129,17 @@ public class Rail {
 							it.remove();
 						}
 					}
+					else {
+						c.setArret(true);
+					}
 				}
+			}
+			else {
+				/*
+				 * Si on est la, c'est qu'on peut dépasser un chariot
+				 * On met alors notre chariot le plus près possible du précédent.
+				 */
+				c.majPos(noeudEntree, getVectUnitaire(), prev.getDistance()-distSecu);
 			}
 			
 			prev = c;
@@ -201,5 +216,19 @@ public class Rail {
 		
 		return Aeroport.PARSE_OK;
     }
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Rail other = (Rail) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
 }
 

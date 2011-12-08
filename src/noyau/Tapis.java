@@ -85,8 +85,9 @@ public class Tapis extends ES {
 		if(listBagages[0] != null) {
 			return false;
 		}
-		
-		Aeroport.garage.appelerChariot(this.getNoeud());
+		if(Aeroport.mode == Aeroport.Mode.AUTO) {
+			Aeroport.garage.appelerChariot(this.getNoeud());
+		}
 		listBagages[0] = b;
 		
 		return true;

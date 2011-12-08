@@ -56,6 +56,11 @@ public class Chariot {
 	private float distanceDepuisNoeudDepart;
 	
 	/**
+	 * Si le chariot est arrété.
+	 */
+	private boolean arret; 
+	
+	/**
 	 * Constructeur nécéssaire à GreenUML.
 	 * 
 	 * @param coordonnees Coordonnées initiale du chariot.
@@ -72,6 +77,7 @@ public class Chariot {
 		this.vitesse = vitesse;
 		this.chemin = chemin;
 		this.distanceDepuisNoeudDepart = 0;
+		this.arret = false;
 	}	
 	
 	/**
@@ -91,9 +97,12 @@ public class Chariot {
 	 * @param nouvDist Nouvelle distance du chariot sur le rail.
 	 */
 	public void majPos(Noeud entree, Point vectUnitaire, float nouvDist) {
+		
 		distanceDepuisNoeudDepart = nouvDist;
-		coordonnees.x = (int)(entree.getCoordoonees().x + distanceDepuisNoeudDepart*vectUnitaire.x);
-		coordonnees.y = (int)(entree.getCoordoonees().y + distanceDepuisNoeudDepart*vectUnitaire.y);
+		if(entree != null && vectUnitaire != null) {
+			coordonnees.x = (int)(entree.getCoordoonees().x + distanceDepuisNoeudDepart*vectUnitaire.x);
+			coordonnees.y = (int)(entree.getCoordoonees().y + distanceDepuisNoeudDepart*vectUnitaire.y);
+		}
 	}
 
 	/**
@@ -135,12 +144,14 @@ public class Chariot {
 	
 	/**
 	 * Supprime et retourne le bagage du chariot.
+	 * Supprime le chemin.
 	 * 
 	 * @return L'ancien bagage du chariot.
 	 */
 	public Bagage viderChariot() {
 		Bagage b = bagage;
 		bagage = null;
+		chemin.clear();
 		return b;
 	}
 	
@@ -163,12 +174,15 @@ public class Chariot {
 			 *   et ajouter au fur et à mesure dans la liste des chemins.
 			 *
 			 1  function Dijkstra(Graph, source):
+			 
 			 2      for each vertex v in Graph:            // Initializations
 			 3          dist[v] := infinity ;              // Unknown distance function from source to v
 			 4          previous[v] := undefined ;         // Previous node in optimal path from source
 			 5      end for ;
+			 
 			 6      dist[source] := 0 ;                    // Distance from source to source
 			 7      Q := the set of all nodes in Graph ;   // All nodes in the graph are unoptimized - thus are in Q
+			 
 			 8      while Q is not empty:                  // The main loop
 			 9          u := vertex in Q with smallest distance in dist[] ;
 			10          if dist[u] = infinity:
@@ -184,9 +198,35 @@ public class Chariot {
 			20              end if ;
 			21          end for ;
 			22      end while ;
+			
 			23      return dist[] ;
 			24  end Dijkstra.
 			*/
+			
+			//TreeMap<Rail, DijPair> graph = new
+			
+			LinkedList<Noeud> noeudsGraph = new LinkedList<Noeud>();
+			LinkedList<Rail> arretesGraph = new LinkedList<Rail>();
+			
+			Noeud noeudCourant = depart;
+			for(int i = 0;; i++) {
+				if(!noeudsGraph.contains(noeudCourant) && noeudCourant != arrivee) {
+					noeudsGraph.add(noeudCourant);
+					for(Rail r : noeudCourant.listRailsSortie) {
+						if(!arretesGraph.contains(r)) {
+							arretesGraph.add(r);
+						}
+					}
+				}
+				
+				if(i >= arretesGraph.size()) {
+					/*
+					 * Plus d'arrete à visiter...
+					 */
+					break;
+				}
+				noeudCourant = arretesGraph.get(i).getNoeudSortie();
+			}
 			
 			
 		}
@@ -201,6 +241,49 @@ public class Chariot {
 	public void mettreBagage(Noeud depart, Bagage b) {
 		bagage = b;
 		calculerChemin(depart, b.getTogobban().getNoeud());
+	}
+	
+	/**
+	 * Vérifie que le rail peut-etre ajouté.
+	 * 
+	 * @param r Rail à ajouter.
+	 * @return Possible ou pas.
+	 */
+	public boolean railElligible(Rail r) {
+		return chemin.getLast().listRailsSortie.contains(r);
+	}
+	
+	/**
+	 * Vérifie que le noeud peut-etre ajouté.
+	 * 
+	 * @param n Noeud à ajouter.
+	 * @return Possible ou pas.
+	 */
+	public boolean noeudElligible(Noeud n) {
+		for(Rail r : chemin.getLast().listRailsSortie) {
+			if(r.getNoeudSortie() == n) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * Ajoute un noeud au chemin.
+	 * 
+	 * @param n Noeud du chemin.
+	 */
+	public void ajouterNoeud(Noeud n) {
+		chemin.offerLast(n);
+	}
+	
+	/**
+	 * Ajoute un rail au chemin.
+	 * 
+	 * @param r Rail à ajouter.
+	 */
+	public void ajouterRail(Rail r) {
+		chemin.offerLast(r.getNoeudSortie());
 	}
 	
 	/**
@@ -219,6 +302,33 @@ public class Chariot {
 	 */
 	public float getDistance() {
 		return distanceDepuisNoeudDepart;
+	}
+	
+	/**
+	 * Retourne si le chariot est à l'arret ou non.
+	 * 
+	 * @return Arret ou pas.
+	 */
+	public boolean getArret() {
+		return arret;
+	}
+	
+	/**
+	 * Retourne le bagage du chariot si présent.
+	 * 
+	 * @return Le bagage du chariot, null sinon.
+	 */
+	public Bagage getBagage() {
+		return bagage;
+	}
+	
+	/**
+	 * Change l'état du chariot
+	 * 
+	 * @param arret Arreté ou pas.
+	 */
+	public void setArret(boolean arret) {
+		this.arret = arret;
 	}
 	
 	/**
