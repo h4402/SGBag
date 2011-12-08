@@ -29,11 +29,14 @@ public class TestConfig {
 		listChariots = new ArrayList<Chariot>();
 	
 		
-		/*
+		
+		Noeud n1 = new Noeud(listRailsSortie, coordonnees)
+		
+		listRails.add(new R);
 		listChariots.add(new Chariot(1, new Point(380, 280), null, 1, null));
 		listToboggans.add(new Toboggan(noeud, null));
 		listNoeuds.add(new Noeud(listRailsSortie, coordonnees))
-		*/
+		
 		
 	}
 	
