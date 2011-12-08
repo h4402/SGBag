@@ -63,7 +63,7 @@ public class FenetrePrincipale extends JFrame {
 	/**
 	 * Vue générale
 	 */
-	private VueGenerale vueGeneral;
+	private VueGenerale vueGenerale;
 	
 	/**
 	 * Fichiers
@@ -191,6 +191,7 @@ public class FenetrePrincipale extends JFrame {
         public void actionPerformed(ActionEvent evt) {
         	// TODO : a chaque tick d'horloge
         	unAeroport.avancerTemps();
+        	vueGenerale.redessiner();
         	
         }
     };
@@ -201,9 +202,7 @@ public class FenetrePrincipale extends JFrame {
 	 * Create the frame.
 	 */
 	public FenetrePrincipale() {
-
 		jInit();
-		
 	}
 
 	private void jInit() {
@@ -274,7 +273,7 @@ public class FenetrePrincipale extends JFrame {
 		
 		});
 		/* TODO : remplacer par VueGeneral
-		VueGeneral = new VueGeneral(bandeauVitesseChariot, bandeauAjoutBagages,
+		VueGeneral = new VueGeneral(bandeauAjoutBagages,bandeauVitesseChariot,
 		 						    labelInfo);
 		*/
 		vueGeneral.addMouseListener(clicVueGenerale);
@@ -324,13 +323,10 @@ public class FenetrePrincipale extends JFrame {
 	public int construireToutAPartirDeXML(Element vueAeroportElement)
 	{
 		// On crée l'élément Aéroport et la vue qui lui est associée
-<<<<<<< HEAD
+
         unAeroport = new Aeroport(null, null, null, null, null);
-        VueGeneral vueGenerale = null;
-=======
-        Aeroport unAeroport = new Aeroport(null, null, null, null, null);
-        VueGenerale vueGenerale = null;
->>>>>>> branch 'master' of git@github.com:h4402/SGBag.git
+        vueGenerale = null;
+
         /*if (unAeroport.construireAPartirDeXML(vueAeroportElement) != Aeroport.PARSE_OK) {
             return Cadre.PARSE_ERROR;
         }

@@ -37,6 +37,7 @@ public class BandeauAjoutBagages extends JPanel {
 	private ActionListener ajouterListener = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			// TODO : appeler Ajout bagage de vueGeneral
+			
 		}
 	};
 	
