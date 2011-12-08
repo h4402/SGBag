@@ -89,7 +89,7 @@ public class Guichet {
 	 * 
 	 * @return Coordonnées du guichet.
 	 */
-	public Point getCoordoonees() {
+	public Point getCoordonnees() {
 		return coordonnees;
 	}
 	

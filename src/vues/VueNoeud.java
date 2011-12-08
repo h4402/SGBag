@@ -1,5 +1,6 @@
 package vues;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -12,11 +13,9 @@ public class VueNoeud extends Vue{
 	public VueNoeud(VueGenerale vueGeneral, Image image,Noeud noeud) {
 		super(vueGeneral, image);
 		this.noeud = noeud;
-		posPixel = new Point((int)Math.round(this.noeud.getCoordonnees().x * this.vueGenerale.getEchelle())
-				, (int)Math.round(this.noeud.getCoordonnees().y * this.vueGenerale.getEchelle()));
-		rectangle = new Rectangle(posPixel.x - image.getHeight(vueGenerale)/2, 
-				posPixel.y - image.getWidth(vueGenerale)/2, image.getHeight(vueGenerale),
-				image.getWidth(vueGenerale));
+		posPixel = new Point((int)Math.round(this.noeud.getCoordonnees().x * this.vueGenerale.getEchelle() - image.getHeight(vueGenerale)/2)
+				, (int)Math.round(this.noeud.getCoordonnees().y * this.vueGenerale.getEchelle() - image.getWidth(vueGenerale)/2));
+		rectangle = new Rectangle(posPixel.x, posPixel.y, image.getHeight(vueGenerale), image.getWidth(vueGenerale));
 		// TODO Auto-generated constructor stub
 	}
 
@@ -28,8 +27,8 @@ public class VueNoeud extends Vue{
 
 	@Override
 	void dessin(Graphics g) {
-		// TODO Auto-generated method stub
-		
+		Graphics2D g2d = (Graphics2D)g;
+		g2d.drawImage(image, posPixel.x, posPixel.y, vueGenerale);	
 	}
 
 	@Override

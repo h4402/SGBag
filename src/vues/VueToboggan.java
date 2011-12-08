@@ -1,6 +1,7 @@
 package vues;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -14,18 +15,15 @@ public class VueToboggan extends Vue {
 	public VueToboggan(VueGenerale vueGenerale, Image image, Toboggan toboggan) {
 		super(vueGenerale, image);
 		this.toboggan = toboggan;
-		posPixel = new Point((int)Math.round(this.toboggan.getCoordonnees().x * this.vueGenerale.getEchelle())
-				, (int)Math.round(this.toboggan.getCoordonnees().y * this.vueGenerale.getEchelle()));
-		rectangle = new Rectangle(posPixel.x - image.getHeight(vueGenerale)/2, 
-				posPixel.y - image.getWidth(vueGenerale)/2, image.getHeight(vueGenerale),
-				image.getWidth(vueGenerale));
-		//TODO Suite
+		posPixel = new Point((int)Math.round(this.toboggan.getCoordonnees().x * this.vueGenerale.getEchelle() - image.getHeight(vueGenerale)/2)
+				, (int)Math.round(this.toboggan.getCoordonnees().y * this.vueGenerale.getEchelle() - image.getWidth(vueGenerale)/2));
+		rectangle = new Rectangle(posPixel.x, posPixel.y, image.getHeight(vueGenerale), image.getWidth(vueGenerale));
 	}
 	
 	@Override
 	void dessin(Graphics g) {
-		// TODO Auto-generated method stub
-
+		Graphics2D g2d = (Graphics2D)g;
+		g2d.drawImage(image, posPixel.x, posPixel.y, vueGenerale);
 	}
 	
 	@Override

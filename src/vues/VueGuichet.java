@@ -1,6 +1,7 @@
 package vues;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -13,18 +14,15 @@ public class VueGuichet extends Vue {
 	public VueGuichet(VueGenerale vueGeneral, Image image, Guichet guichet) {
 		super(vueGeneral, image);
 		this.guichet = guichet;
-		posPixel = new Point((int)Math.round(this.guichet.getCoordoonees().x * this.vueGenerale.getEchelle())
-				, (int)Math.round(this.guichet.getCoordoonees().y * this.vueGenerale.getEchelle()));
-		rectangle = new Rectangle(posPixel.x - image.getHeight(vueGeneral)/2, 
-				posPixel.y - image.getWidth(vueGeneral)/2, image.getHeight(vueGeneral),
-				image.getWidth(vueGeneral));
-		//TODO Suite
+		posPixel = new Point((int)Math.round(this.guichet.getCoordonnees().x * this.vueGenerale.getEchelle() - image.getHeight(vueGenerale)/2)
+				, (int)Math.round(this.guichet.getCoordonnees().y * this.vueGenerale.getEchelle() - image.getWidth(vueGenerale)/2));
+		rectangle = new Rectangle(posPixel.x, posPixel.y, image.getHeight(vueGenerale), image.getWidth(vueGenerale));
 	}
 	
 	@Override
 	void dessin(Graphics g) {
-		// TODO Auto-generated method stub
-
+		Graphics2D g2d = (Graphics2D)g;
+		g2d.drawImage(image, posPixel.x, posPixel.y, vueGenerale);
 	}
 	
 	@Override

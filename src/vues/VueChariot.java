@@ -1,6 +1,7 @@
 package vues;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -14,19 +15,16 @@ public class VueChariot extends Vue {
 	public VueChariot(VueGenerale vueGenerale, Image image, Chariot chariot) {
 		super(vueGenerale, image);
 		this.chariot = chariot;
-		posPixel = new Point((int)Math.round(this.chariot.getCoordonnees().x * this.vueGenerale.getEchelle())
-				, (int)Math.round(this.chariot.getCoordonnees().y * this.vueGenerale.getEchelle()));
-		rectangle = new Rectangle(posPixel.x - image.getHeight(vueGenerale)/2, 
-				posPixel.y - image.getWidth(vueGenerale)/2, image.getHeight(vueGenerale),
-				image.getWidth(vueGenerale));
-		// TODO Auto-generated constructor stub
+		posPixel = new Point((int)Math.round(this.chariot.getCoordonnees().x * this.vueGenerale.getEchelle() - image.getHeight(vueGenerale)/2)
+				, (int)Math.round(this.chariot.getCoordonnees().y * this.vueGenerale.getEchelle() - image.getWidth(vueGenerale)/2));
+		rectangle = new Rectangle(posPixel.x, posPixel.y, image.getHeight(vueGenerale), image.getWidth(vueGenerale));
 	}
 
 	private void updatePos(){
-		posPixel.x = (int)Math.round(chariot.getCoordonnees().x * vueGenerale.getEchelle());
-		posPixel.y = (int)Math.round(chariot.getCoordonnees().y * vueGenerale.getEchelle());
-		rectangle.x = posPixel.x - image.getHeight(vueGenerale)/2;
-		rectangle.y = posPixel.y - image.getWidth(vueGenerale)/2;
+		posPixel.x = (int)Math.round(chariot.getCoordonnees().x * vueGenerale.getEchelle() - image.getHeight(vueGenerale)/2);
+		posPixel.y = (int)Math.round(chariot.getCoordonnees().y * vueGenerale.getEchelle() - image.getWidth(vueGenerale)/2);
+		rectangle.x = posPixel.x;
+		rectangle.y = posPixel.y;
 	}
 	
 	@Override
@@ -38,9 +36,8 @@ public class VueChariot extends Vue {
 
 	@Override
 	void dessin(Graphics g) {
-		this.selectionner();
-		// TODO Auto-generated method stub
-		
+		Graphics2D g2d = (Graphics2D)g;
+		g2d.drawImage(image, posPixel.x, posPixel.y, vueGenerale);
 	}
 
 	@Override
