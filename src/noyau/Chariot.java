@@ -246,6 +246,24 @@ public class Chariot {
         int idNoeudGarage = Integer.parseInt(chariotElement.getAttribute("noeudParDefaut"));
         this.coordonnees = aeroport.getNoeud(idNoeudGarage).getCoordoonees();
         
+        // Création du garage correspondant au noeud par défaut d'apparition des chariots
+        LinkedList<Chariot> listeChariotsVides = new LinkedList<Chariot>();
+        LinkedList<Chariot> listeChariotsPourPartir = new LinkedList<Chariot>();
+        Garage garage = new Garage(null,
+        					listeChariotsVides,listeChariotsPourPartir);
+        Aeroport.garage = garage;
+        
+        // Instanciation  du noeud garage
+        NoeudGarage noeudGarage = new NoeudGarage(
+        								aeroport.getNoeud(idNoeudGarage).getListeRails(),
+        								aeroport.getNoeud(idNoeudGarage).getCoordoonees(),
+        								garage);
+        garage.setNoeud(noeudGarage);
+        
+        aeroport.getListeNoeuds().remove(aeroport.getNoeud(idNoeudGarage));
+        aeroport.ajouterNoeud(noeudGarage);
+        
+        
         // On récupère la vitesse par défaut
         this.vitesse = Integer.parseInt(chariotElement.getAttribute("vitesseParDefaut"));;
         
