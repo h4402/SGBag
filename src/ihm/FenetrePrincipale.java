@@ -2,21 +2,16 @@ package ihm;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.Graphics;
 
-import javax.annotation.Generated;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 import javax.swing.KeyStroke;
 import javax.swing.Timer;
 
@@ -27,7 +22,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -35,13 +29,6 @@ import javax.swing.JLabel;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 
 import noyau.Aeroport;
 
@@ -264,19 +251,13 @@ public class FenetrePrincipale extends JFrame {
 		bandeauGeneral.add(bandeauAjoutBagages, BorderLayout.NORTH);
 		bandeauGeneral.add(bandeauVitesseChariot, BorderLayout.SOUTH);
 		
-		// Panel général
-		// Test
+		// Test : Panel général
 		testDessins.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
                 testDessinsMouseclicked(e);
             }
 		
 		});
-		/* TODO : remplacer par VueGeneral
-		VueGeneral = new VueGeneral(bandeauAjoutBagages,bandeauVitesseChariot,
-		 						    labelInfo);
-		*/
-		vueGeneral.addMouseListener(clicVueGenerale);
 		
 		// Ajout des panels
 		container.setBackground(Color.white);
@@ -324,6 +305,16 @@ public class FenetrePrincipale extends JFrame {
 	{
 		// On crée l'élément Aéroport et la vue qui lui est associée
 
+		/* TODO
+		 * Créer la vue generale avec le constructeur complet de VueGeneral
+		 * Après avoir tout chargé depuis le fichier XML
+		 * 
+		vueGeneral = new VueGeneral(bandeauAjoutBagages,bandeauVitesseChariot,
+		 						    labelInfo, ....., ...., .....);
+		
+		vueGenerale.addMouseListener(clicVueGenerale);
+		*/
+		
         unAeroport = new Aeroport(null, null, null, null, null);
         vueGenerale = null;
 
