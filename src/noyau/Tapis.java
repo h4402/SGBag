@@ -67,7 +67,7 @@ public class Tapis extends ES {
 	 * Fait avancer le tapis si c'est possible,
 	 * met un bagage dans un chariot si c'est possible.
 	 */
-	public void avancerBagages() {
+	public void avancerBagages(){
 		topCourant = ++topCourant % vitesse;
 		if(topCourant == 0) {
 			Bagage b = listBagages[tailleTapis-1];

@@ -15,6 +15,15 @@ public class VueChariot extends Vue {
 	private Image imageAvecBagageSel;
 	private Chariot chariot;
 	
+	/**
+	 * Constructeur de la VueChariot
+	 * @param vueGenerale
+	 * @param image
+	 * @param imageSel
+	 * @param imageAvecBagage
+	 * @param imageAvecBagageSel
+	 * @param chariot
+	 */
 	public VueChariot(VueGenerale vueGenerale, Image image, Image imageSel, 
 			Image imageAvecBagage, Image imageAvecBagageSel, Chariot chariot) {
 		super(vueGenerale, image, imageSel);
@@ -26,6 +35,10 @@ public class VueChariot extends Vue {
 		rectangle = new Rectangle(posPixel.x, posPixel.y, image.getHeight(vueGenerale), image.getWidth(vueGenerale));
 	}
 
+	/**
+	 * Met a jour la position du chariot et du rectangle de selection
+	 * en fonction de la position de l'objet du noyau
+	 */
 	private void updatePos(){
 		posPixel.x = (int)Math.round(chariot.getCoordonnees().x * vueGenerale.getEchelle() - image.getWidth(vueGenerale)/2);
 		posPixel.y = (int)Math.round(chariot.getCoordonnees().y * vueGenerale.getEchelle() - image.getHeight(vueGenerale)/2);

@@ -11,6 +11,8 @@ import noyau.Guichet;
 public class VueGuichet extends Vue {
 
 	private Guichet guichet;
+
+	
 	public VueGuichet(VueGenerale vueGeneral, Image image, Image imageSel, Guichet guichet) {
 		super(vueGeneral, image, imageSel);
 		this.guichet = guichet;
