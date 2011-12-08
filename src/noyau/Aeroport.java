@@ -1,5 +1,6 @@
 package noyau;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -180,6 +181,27 @@ public class Aeroport {
 	}
 	
 	/**
+	 * Constructeur permettant de se mettre d'accord avec 
+	 * GreenUML.
+	 * 
+	 * @param listRails Liste des rails de l'application.
+	 * @param listGuichets Liste des guichets de l'application.
+	 * @param listTapis Liste des tapis de l'application.
+	 * @param listToboggans Liste des toboggans de l'application.
+	 * @param listNoeuds Liste des noeuds de l'application
+	 */
+	public Aeroport() {
+		super();
+		this.listRails = new ArrayList<Rail>();
+		this.listGuichets = new ArrayList<Guichet>();
+		this.listToboggans = new ArrayList<Toboggan>();
+		this.listTapis = new ArrayList<Tapis>();
+		this.listNoeuds = new ArrayList<Noeud>();
+		this.listChariots= new ArrayList<Chariot>(); 
+		genRan = new Random();
+	}
+	
+	/**
 	 * Permet d'ajouter un chariot à l'aéroport
 	 * 
 	 * @param chariot Chariot à ajouter
@@ -320,6 +342,9 @@ public class Aeroport {
 	 */
 	public Noeud getNoeud(int id)
 	{
+		//TODO:verifier que c'est bien ce qu'on veut faire
+		//ici on retourne le noeud à la position id dans la liste, ce n'est
+		//pas forcément le noeud ayant pour id "id".
 		return this.listNoeuds.get(id);
 	}
 	

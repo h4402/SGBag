@@ -338,7 +338,7 @@ public class FenetrePrincipale extends JFrame {
 	{
 		// On crée l'élément Aéroport et la vue qui lui est associée
 		
-		Aeroport aeroport = new Aeroport(null, null, null, null, null, null);
+		Aeroport aeroport = new Aeroport();
 		
 		/* TODO
 		 * Créer la vue generale avec le constructeur complet de VueGeneral
