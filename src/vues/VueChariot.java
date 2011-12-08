@@ -17,14 +17,14 @@ public class VueChariot extends Vue {
 		super(vueGenerale, image);
 		this.imageAvecBagage = imageAvecBagage;
 		this.chariot = chariot;
-		posPixel = new Point((int)Math.round(this.chariot.getCoordonnees().x * this.vueGenerale.getEchelle() - image.getHeight(vueGenerale)/2)
-				, (int)Math.round(this.chariot.getCoordonnees().y * this.vueGenerale.getEchelle() - image.getWidth(vueGenerale)/2));
+		posPixel = new Point((int)Math.round(this.chariot.getCoordonnees().x * this.vueGenerale.getEchelle() - image.getWidth(vueGenerale)/2)
+				, (int)Math.round(this.chariot.getCoordonnees().y * this.vueGenerale.getEchelle() - image.getHeight(vueGenerale)/2));
 		rectangle = new Rectangle(posPixel.x, posPixel.y, image.getHeight(vueGenerale), image.getWidth(vueGenerale));
 	}
 
 	private void updatePos(){
-		posPixel.x = (int)Math.round(chariot.getCoordonnees().x * vueGenerale.getEchelle() - image.getHeight(vueGenerale)/2);
-		posPixel.y = (int)Math.round(chariot.getCoordonnees().y * vueGenerale.getEchelle() - image.getWidth(vueGenerale)/2);
+		posPixel.x = (int)Math.round(chariot.getCoordonnees().x * vueGenerale.getEchelle() - image.getWidth(vueGenerale)/2);
+		posPixel.y = (int)Math.round(chariot.getCoordonnees().y * vueGenerale.getEchelle() - image.getHeight(vueGenerale)/2);
 		rectangle.x = posPixel.x;
 		rectangle.y = posPixel.y;
 	}
