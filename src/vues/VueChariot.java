@@ -10,10 +10,12 @@ import noyau.Aeroport.Mode;
 import noyau.Aeroport;
 import noyau.Chariot;
 public class VueChariot extends Vue {
+	private Image imageAvecBagage;
 	private Chariot chariot;
 	
-	public VueChariot(VueGenerale vueGenerale, Image image, Chariot chariot) {
+	public VueChariot(VueGenerale vueGenerale, Image image, Image imageAvecBagage, Chariot chariot) {
 		super(vueGenerale, image);
+		this.imageAvecBagage = imageAvecBagage;
 		this.chariot = chariot;
 		posPixel = new Point((int)Math.round(this.chariot.getCoordonnees().x * this.vueGenerale.getEchelle() - image.getHeight(vueGenerale)/2)
 				, (int)Math.round(this.chariot.getCoordonnees().y * this.vueGenerale.getEchelle() - image.getWidth(vueGenerale)/2));
@@ -37,7 +39,13 @@ public class VueChariot extends Vue {
 	@Override
 	void dessin(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
-		g2d.drawImage(image, posPixel.x, posPixel.y, vueGenerale);
+		if(chariot.getBagage() == null){
+			g2d.drawImage(image, posPixel.x, posPixel.y, vueGenerale);
+		}
+		else{
+			g2d.drawImage(imageAvecBagage, posPixel.x, posPixel.y, vueGenerale);
+		}
+		
 	}
 
 	@Override

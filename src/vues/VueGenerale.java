@@ -40,7 +40,7 @@ public class VueGenerale extends JPanel {
 			
 			List<Chariot> listChariot = aeroport.getListChariots();
 			for(Chariot c: listChariot){
-				listVues.add(new VueChariot(this,imageChariot,c));
+				listVues.add(new VueChariot(this, imageChariot, imageChariot, c));
 			}
 			
 			
