@@ -1,6 +1,7 @@
 package ihm;
 
 import java.awt.BorderLayout;
+import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
@@ -160,6 +161,7 @@ public class FenetrePrincipale extends JFrame {
 	private ActionListener modeListener = new ActionListener() {
 		public void actionPerformed(ActionEvent actionEvent) {
 			vueGenerale.changerMode();
+			boutonMode.setText(vueGenerale.getMode());
 		}
 	};
 	

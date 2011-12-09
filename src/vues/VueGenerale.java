@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import org.w3c.dom.Element;
 
 import noyau.*;
+import noyau.Aeroport.Mode;
 public class VueGenerale extends JPanel {
 	
 		private Guichet guichetCourant;
@@ -173,6 +174,24 @@ public class VueGenerale extends JPanel {
 		
 		public void avancerTemps(){
 			aeroport.avancerTemps();
+		}
+		
+		public void changerMode(){
+			if(Aeroport.mode == Mode.AUTO){
+				Aeroport.mode = Mode.MANUEL;
+			}
+			else{
+				Aeroport.mode = Mode.AUTO;
+			}
+		}
+		
+		public String getMode(){
+			if(Aeroport.mode == Mode.AUTO){
+				return "Auto";
+			}
+			else{
+				return "Manuel";
+			}
 		}
 		
 		public int construireToutAPartirDeXML(Element aeroportElement){
