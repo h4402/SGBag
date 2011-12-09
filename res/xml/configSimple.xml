@@ -13,7 +13,7 @@
 		<Rail id="7" noeudEntree="3" noeudSortie="6"></Rail>
 		<Rail id="8" noeudEntree="6" noeudSortie="7"></Rail>
 		<Rail id="9" noeudEntree="6" noeudSortie="8"></Rail>
-		<Rail id="10" noeudEntree="8" noeudSortie="7"></Rail>
+		<Rail id="10" noeudEntree="	8" noeudSortie="7"></Rail>
 	</Rails>
 	
 	<Noeuds>

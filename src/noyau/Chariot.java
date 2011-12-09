@@ -137,6 +137,10 @@ public class Chariot {
 			coordonnees.x = entree.getCoordonnees().x + distanceDepuisNoeudDepart*vectUnitaire.x;
 			coordonnees.y = entree.getCoordonnees().y + distanceDepuisNoeudDepart*vectUnitaire.y;
 		}
+		else {
+			coordonnees.x = 0;
+			coordonnees.y = 0;
+		}
 	}
 
 	/**
