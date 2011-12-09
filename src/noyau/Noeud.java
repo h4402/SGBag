@@ -45,6 +45,10 @@ public class Noeud {
 		this.coordonnees = coordonnees;
 	}
 	
+	/**
+	 * Constructeur utile
+	 * @param coordonnees
+	 */
 	public Noeud(Point coordonnees) {
 		this.coordonnees = coordonnees;
 		this.listRailsSortie = new ArrayList<Rail>();
@@ -99,7 +103,9 @@ public class Noeud {
         aeroport.ajouterNoeud(this);
         return Aeroport.PARSE_OK;
     }
-
+	
+	// TODO : ajouter une methode ajouterRail
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

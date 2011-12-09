@@ -1,12 +1,16 @@
 package ihm;
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import vues.VueGenerale;
 import vues.VueGuichet;
+import vues.VueRail;
 
 import noyau.Chariot;
 import noyau.Guichet;
@@ -26,7 +30,7 @@ public class TestConfig {
 	List<Noeud> listNoeuds;
 	LinkedList<Chariot> listChariots;
 
-	public TestConfig() {
+	public TestConfig(ImagesManager imagesManager) {
 		listRails = new ArrayList<Rail>();
 		listGuichets = new ArrayList<Guichet>();
 		listToboggans = new ArrayList<Toboggan>();
@@ -36,11 +40,21 @@ public class TestConfig {
 	
 		Noeud n1 = new Noeud(new Point(50, 350));
 		Noeud n2 = new Noeud(new Point(50, 200));
-		listChariots.add(new Chariot(1, new Point(380, 280), null, 1, null));
 		
-		Rail r1 = new Rail(listChariots, n1, n2);
+		//listChariots.add(new Chariot(1, new Point(380, 280), null, 1, null));
+		
+		Rail r1 = new Rail(null, n1, n2);
 		listRails.add(r1);
+		n1.getListeRails().add(r1);
 		
+		
+		/*
+		VueRail vueRail = new  VueRail(new VueGenerale(null, 
+				null, null, null, imagesManager)
+		, image, imageSel, rail);
+		
+		*/
+
 		/*
 		listRails.add(new R);
 		listChariots.add(new Chariot(1, new Point(380, 280), null, 1, null));
@@ -49,6 +63,7 @@ public class TestConfig {
 		*/
 		
 	}
+
 	
 	
 }
