@@ -4,14 +4,12 @@ import ihm.BandeauAjoutBagages;
 import ihm.BandeauVitesseChariot;
 import ihm.ImagesManager;
 
-import java.awt.Image;
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import org.w3c.dom.Element;
 
 import noyau.*;
 import noyau.Aeroport.Mode;
@@ -37,8 +35,8 @@ public class VueGenerale extends JPanel {
 			this.zoneInfo = zoneInfo;
 			this.echelle = Math.max(this.getWidth()/this.aeroport.getLongueur(),
 					this.getHeight()/this.aeroport.getLargeur());
-			coefImage = Bagage.TAILLE_BAGAGE*echelle;
-			
+			//coefImage = Bagage.TAILLE_BAGAGE*echelle;
+			coefImage = 50;
 			listVues = new ArrayList<Vue>();
 			
 			List<Chariot> listChariot = aeroport.getListChariots();
@@ -132,11 +130,13 @@ public class VueGenerale extends JPanel {
 		public void setChariotCourant(Chariot chariotCourant) {
 			this.chariotCourant = chariotCourant;
 		}
-				
-		public void redessiner(){
+		
+		@Override
+		public void paint(Graphics g) {
+			super.paintComponents(g);
 			for (int i = listVues.size()-1 ; i >= 0; i--) {
-				listVues.get(i).dessin(this.getGraphics());
-			}			
+				listVues.get(i).dessin(g);
+			}
 		}
 		
 		public void clic(int x, int y) {
@@ -194,30 +194,4 @@ public class VueGenerale extends JPanel {
 			}
 		}
 		
-		public int construireToutAPartirDeXML(Element aeroportElement){
-		// On cree l'element Aeroport et la vue qui lui est associee
-		//Aeroport aeroport = new Aeroport(null, null, null, null, null);
-		/* TODO
-
-		 	* Crer la vue generale avec le constructeur complet de VueGeneral
-			* Apres avoir tout charge depuis le fichier XML
-			* 
-			* vueGeneral = new VueGeneral(bandeauAjoutBagages,bandeauVitesseChariot,
-			  labelInfo, ....., ...., .....);
-			  vueGenerale.addMouseListener(clicVueGenerale);
-		 	*/
-			
-			/*this.vueGenerale = null;
-			if (aeroport.construireAPartirDeXML(aeroportElement) != Aeroport.PARSE_OK){
-				return Aeroport.PARSE_ERROR;
-			}
-		
-			VueGenerale vueGenerale = new VueGenerale(aeroport, null, null, null, null, null, null);
-		
-			vueGenerale.addMouseListener(clicVueGenerale);
-		
-			this.vueGenerale = vueGenerale;
-		 	*/
-			return Aeroport.PARSE_OK;
-		}
 }
