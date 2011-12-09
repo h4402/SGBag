@@ -365,8 +365,8 @@ public class FenetrePrincipale extends JFrame {
             return Aeroport.PARSE_ERROR;
         }
         
-        //this.vueGenerale = new VueGenerale(bandeauAjoutBagages, 
-        	//	bandeauVitesseChariot, labelInfo, aeroport, imagesManager);
+        this.vueGenerale = new VueGenerale(bandeauAjoutBagages, 
+        		bandeauVitesseChariot, labelInfo, aeroport, imagesManager);
         // création des bandeaux qui ont besoin de la vue générale
         bandeauAjoutBagages.setVueGenerale(vueGenerale);
         bandeauVitesseChariot.setVueGenerale(vueGenerale);
