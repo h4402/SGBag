@@ -45,7 +45,7 @@ public class VueGuichet extends Vue {
 			vueGenerale.getBandeauAjoutBagages().setVisible(true);
 		}
 		else{
-			vueGenerale.getZoneInfo().setText("Veuillez sélectionner un toboggan");
+			vueGenerale.getZoneInfo().setText("Veuillez sÃ©lectionner un toboggan");
 		}
 	}
 

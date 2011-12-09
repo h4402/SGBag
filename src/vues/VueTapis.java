@@ -54,7 +54,14 @@ public class VueTapis extends Vue {
 		this.selectionner();
 		vueGenerale.setGuichetCourant(null);
 		vueGenerale.setTobogganCourant(null);
-		vueGenerale.getChariotCourant().ajouterNoeud(this.tapis.getNoeud());
+		if(vueGenerale.getChariotCourant().noeudElligible(tapis.getNoeud())){
+			vueGenerale.getChariotCourant().ajouterNoeud(tapis.getNoeud());
+			vueGenerale.getZoneInfo().setText("Destination ajoutée");
+			this.deselectionner();
+		}
+		else{
+			vueGenerale.getZoneInfo().setText("Cette destination n'est pas valide!");
+		}
 	}
 
 	@Override

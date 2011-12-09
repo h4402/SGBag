@@ -58,7 +58,14 @@ public class VueRail extends Vue {
 		this.selectionner();
 		vueGenerale.setGuichetCourant(null);
 		vueGenerale.setTobogganCourant(null);
-		vueGenerale.getChariotCourant().ajouterNoeud(this.rail.getNoeudSortie());
+		if(vueGenerale.getChariotCourant().noeudElligible(rail.getNoeudSortie())){
+			vueGenerale.getChariotCourant().ajouterNoeud(rail.getNoeudSortie());
+			vueGenerale.getZoneInfo().setText("Destination ajoutée");
+			this.deselectionner();
+		}
+		else{
+			vueGenerale.getZoneInfo().setText("Cette destination n'est pas valide!");
+		}
 	}
 	
 	/**

@@ -6,7 +6,9 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+import noyau.Aeroport;
 import noyau.Toboggan;
+import noyau.Aeroport.Mode;
 
 public class VueToboggan extends Vue {
 
@@ -35,16 +37,29 @@ public class VueToboggan extends Vue {
 	@Override
 	void action() {
 		this.selectionner();
-		vueGenerale.setChariotCourant(null);
-		vueGenerale.setTobogganCourant(this.toboggan);
-		if(vueGenerale.getGuichetCourant() != null){
-			vueGenerale.getZoneInfo().setText("Pour ajouter un bagage cliquez sur Valider");
-			vueGenerale.getBandeauAjoutBagages().setNumeros(vueGenerale.getGuichetCourant().getId(), 
-					vueGenerale.getTobogganCourant().getId());
-			vueGenerale.getBandeauAjoutBagages().setVisible(true);
+		if(vueGenerale.getChariotCourant() != null && Aeroport.getMode() == Mode.MANUEL){
+			vueGenerale.setGuichetCourant(null);
+			if(vueGenerale.getChariotCourant().noeudElligible(toboggan.getNoeud())){
+				vueGenerale.getChariotCourant().ajouterNoeud(toboggan.getNoeud());
+				vueGenerale.getZoneInfo().setText("Destination ajoutée");
+				this.deselectionner();
+			}
+			else{
+				vueGenerale.getZoneInfo().setText("Cette destination n'est pas valide!");
+			}
 		}
 		else{
-			vueGenerale.getZoneInfo().setText("Veuillez selectionner un Guichet");
+			vueGenerale.setChariotCourant(null);
+			vueGenerale.setTobogganCourant(this.toboggan);
+			if(vueGenerale.getGuichetCourant() != null){
+				vueGenerale.getZoneInfo().setText("Pour ajouter un bagage cliquez sur Valider");
+				vueGenerale.getBandeauAjoutBagages().setNumeros(vueGenerale.getGuichetCourant().getId(), 
+						vueGenerale.getTobogganCourant().getId());
+				vueGenerale.getBandeauAjoutBagages().setVisible(true);
+			}
+			else{
+				vueGenerale.getZoneInfo().setText("Veuillez selectionner un Guichet");
+			}
 		}
 	}
 
