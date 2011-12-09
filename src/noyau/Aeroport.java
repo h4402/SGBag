@@ -381,6 +381,9 @@ public class Aeroport {
 		// On récupère les attributs de l'aéroports
         this.longueur = Integer.parseInt(aeroportElement.getAttribute("longueur"));
         this.largeur = Integer.parseInt(aeroportElement.getAttribute("largeur"));
+        
+        //TODO ajouter dans les fichiers de config et récupérer pour mise à jour,
+        //les vitesses des tapis, la taille des bagages et autres...
 
         // TODO on supprime la config existante et on la remplace par la nouvelle
         //lesBoules.removeAllElements();
