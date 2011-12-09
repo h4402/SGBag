@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
-<Aeroport longueur="400" largeur="400">
+<Aeroport longueur="40" largeur="40">
 	<Chariots nbChariots="1" noeudParDefaut="8" vitesseParDefaut="1"></Chariots>
 	
 	<Rails>
@@ -17,18 +17,18 @@
 	</Rails>
 	
 	<Noeuds>
-		<Noeud id="1" posX="50" posY="350"></Noeud>
-		<Noeud id="2" posX="50" posY="200"></Noeud>
-		<Noeud id="3" posX="200" posY="170"></Noeud>
-		<Noeud id="4" posX="350" posY="50"></Noeud>
-		<Noeud id="5" posX="50" posY="50"></Noeud>
-		<Noeud id="6" posX="350" posY="200"></Noeud>
-		<Noeud id="7" posX="350" posY="350"></Noeud>
-		<Noeud id="8" posX="380" posY="280"></Noeud>
+		<Noeud id="1" posX="5" posY="35"></Noeud>
+		<Noeud id="2" posX="5" posY="20"></Noeud>
+		<Noeud id="3" posX="20" posY="17"></Noeud>
+		<Noeud id="4" posX="35" posY="5"></Noeud>
+		<Noeud id="5" posX="5" posY="5"></Noeud>
+		<Noeud id="6" posX="35" posY="20"></Noeud>
+		<Noeud id="7" posX="35" posY="35"></Noeud>
+		<Noeud id="8" posX="38" posY="28"></Noeud>
 	</Noeuds>
 	
 	<GuichetsEntree>
-		<Guichet id="1" idNoeud="1" posX="50" posY="370"></Guichet>
+		<Guichet id="1" idNoeud="1" posX="5" posY="37"></Guichet>
 	</GuichetsEntree>
 	
 	<TobogganSortie>

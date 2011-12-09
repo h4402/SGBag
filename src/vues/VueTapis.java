@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 
 import noyau.Aeroport;
@@ -35,8 +36,8 @@ public class VueTapis extends Vue {
 	void dessin(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
 		g2d.rotate(alpha, pointA.x, pointA.y);
-		for (int i = 0; i < tapis.getListBagages().length; i++) {
-			if(tapis.getListBagages()[i] == null){
+		for (int i = 0; i < tapis.getListBagages().size(); i++) {
+			if(tapis.getListBagages().elementAt(i) == null){
 				g2d.drawImage(image, pointA.x + i*image.getWidth(vueGenerale), pointA.y, imageWidth, imageHeight, vueGenerale);
 				g2d.drawImage(imageSel, pointA.x + i*image.getWidth(vueGenerale), pointA.y, imageWidth, imageHeight, vueGenerale);
 			}
@@ -53,7 +54,14 @@ public class VueTapis extends Vue {
 		this.selectionner();
 		vueGenerale.setGuichetCourant(null);
 		vueGenerale.setTobogganCourant(null);
-		vueGenerale.getChariotCourant().ajouterNoeud(this.tapis.getNoeud());
+		if(vueGenerale.getChariotCourant().noeudElligible(tapis.getNoeud())){
+			vueGenerale.getChariotCourant().ajouterNoeud(tapis.getNoeud());
+			vueGenerale.getZoneInfo().setText("Destination ajoutée");
+			this.deselectionner();
+		}
+		else{
+			vueGenerale.getZoneInfo().setText("Cette destination n'est pas valide!");
+		}
 	}
 
 	@Override
@@ -85,7 +93,8 @@ public class VueTapis extends Vue {
 		rectangle = new Rectangle((int)Math.round(pointA.x - imageWidth/2), (int)Math.round(pointA.y - imageHeight/2),
 				imageWidth, imageHeight);
 		AffineTransform rotation = AffineTransform.getRotateInstance(alpha, pointA.x, pointA.y);
-		rectangle = (Rectangle)rotation.createTransformedShape(rectangle);
+		rectangle = rotation.createTransformedShape(rectangle);
+		
 	}
 
 }

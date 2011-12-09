@@ -1,5 +1,7 @@
 package noyau;
 
+import java.util.Vector;
+
 /**
  * Un tapis est une file de bagage
  * qui arrive d'un guichet
@@ -21,7 +23,7 @@ public class Tapis extends ES {
 	 * 
 	 * @uml.property  name="listBagages"
 	 */
-	private Bagage[] listBagages;
+	private Vector<Bagage> listBagages;
 	
 	/**
 	 * Vitesse en nombre de top quand faire avancer un bagage.
@@ -50,7 +52,7 @@ public class Tapis extends ES {
 	 * @param topCourant Nombre de topCourant actuel.
 	 * @param guichet Guichet relié au tapis.
 	 */
-	public Tapis(Noeud noeud, Bagage listBagages[], int vitesse, 
+	public Tapis(Noeud noeud, Vector<Bagage> listBagages, int vitesse, 
 			int topCourant, int tailleTapis, Guichet guichet) {
 		super(noeud);
 		this.listBagages = listBagages;
@@ -70,7 +72,8 @@ public class Tapis extends ES {
 		this.guichet = guichet;
 		this.tailleTapis = (int) Math.round(guichet.getCoordonnees().distance(
 								 noeud.getCoordonnees())/Bagage.TAILLE_BAGAGE);		
-		this.listBagages = new Bagage[tailleTapis];//TODO : ça marche ça ?
+		this.listBagages = new Vector<Bagage>(tailleTapis);
+		this.listBagages.setSize(tailleTapis);
 		this.vitesse = 1;//TODO : faire autre chose en statique c'est moche
 		this.topCourant = 0;
 	}
@@ -82,15 +85,15 @@ public class Tapis extends ES {
 	public void avancerBagages(){
 		topCourant = ++topCourant % vitesse;
 		if(topCourant == 0) {
-			Bagage b = listBagages[tailleTapis-1];
+			Bagage b = listBagages.elementAt(tailleTapis-1);
 			if(b != null) {
 				Chariot c = ((NoeudTapis)(this.getNoeud())).getChariotVide();
 				if(c != null) {
 					c.mettreBagage(this.getNoeud(), b);
 				}
 			}
-			for(int i = tailleTapis; i > 0; i--) {
-				listBagages[i] = listBagages[i-1];
+			for(int i = tailleTapis-1; i > 0; i--) {
+				listBagages.set(i, listBagages.elementAt(i-1));
 			}
 		}
 	}
@@ -104,20 +107,20 @@ public class Tapis extends ES {
 	 */
 	public boolean ajouterBagage(Bagage b) {
 		
-		if(listBagages[0] != null) {
+		if(listBagages.elementAt(0) != null) {
 			return false;
 		}
 		if(Aeroport.mode == Aeroport.Mode.AUTO) {
 			Aeroport.garage.appelerChariot(this.getNoeud());
 		}
-		listBagages[0] = b;
+		listBagages.set(0, b);
 		
 		return true;
 	}
 	public Guichet getGuichet() {
 		return guichet;
 	}
-	public Bagage[] getListBagages() {
+	public Vector<Bagage> getListBagages() {
 		return listBagages;
 	}
 

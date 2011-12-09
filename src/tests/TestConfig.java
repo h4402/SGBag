@@ -40,8 +40,8 @@ public class TestConfig {
 		listNoeuds = new ArrayList<Noeud>();
 		listChariots = new LinkedList<Chariot>();
 	
-		Noeud n1 = new Noeud(new Point(50, 350));
-		Noeud n2 = new Noeud(new Point(50, 200));
+		Noeud n1 = new Noeud(0,new Point(50, 350));
+		Noeud n2 = new Noeud(1,new Point(50, 200));
 		
 		//listChariots.add(new Chariot(1, new Point(380, 280), null, 1, null));
 		

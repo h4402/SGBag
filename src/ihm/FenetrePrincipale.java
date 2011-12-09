@@ -192,7 +192,7 @@ public class FenetrePrincipale extends JFrame {
 
         public void actionPerformed(ActionEvent evt) {
         	vueGenerale.avancerTemps();
-        	vueGenerale.redessiner();
+        	vueGenerale.repaint();
         	// TODO : mises a jour des panels ? a voir
         }
     };
@@ -418,6 +418,9 @@ public class FenetrePrincipale extends JFrame {
                 	}
                 	*/
                 	construireToutAPartirDeXML(racine);
+                	//vueGenerale.setSize(container.getSize());
+                	container.add(vueGenerale, BorderLayout.CENTER);
+                	vueGenerale.repaint();
                 }
             // TODO : traiter les erreurs
                 
