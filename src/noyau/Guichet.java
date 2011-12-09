@@ -124,8 +124,8 @@ public class Guichet {
         // On récupère le noeud associé
         int idNoeud = Integer.parseInt(guichetElement.getAttribute("idNoeud"));
         Noeud noeudOld = aeroport.getNoeud(idNoeud);
-        		
-        NoeudTapis noeudTapis = new NoeudTapis(idNoeud, noeudOld.getCoordonnees());
+
+        NoeudTapis noeudTapis = new NoeudTapis(idNoeud, noeudOld.getCoordonnees(), noeudOld.getListeRails());
         		
         //Création du tapis
         this.tapis = new Tapis(noeudTapis, this);	

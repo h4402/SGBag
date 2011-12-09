@@ -77,7 +77,7 @@ public class Toboggan extends ES {
         int idNoeud = Integer.parseInt(tobogganElement.getAttribute("idNoeud"));
         this.noeud = aeroport.getNoeud(idNoeud);
         
-        this.noeud = new NoeudToboggan(idNoeud, noeud.getCoordonnees(), this);
+        this.noeud = new NoeudToboggan(idNoeud, noeud.getCoordonnees(), this, noeud.getListeRails());
         
         aeroport.getListeNoeuds().remove(aeroport.getNoeud(idNoeud));
 		aeroport.ajouterNoeud(this.noeud);
