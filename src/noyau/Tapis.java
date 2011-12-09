@@ -73,6 +73,7 @@ public class Tapis extends ES {
 		this.tailleTapis = (int) Math.round(guichet.getCoordonnees().distance(
 								 noeud.getCoordonnees())/Bagage.TAILLE_BAGAGE);		
 		this.listBagages = new Vector<Bagage>(tailleTapis);
+		this.listBagages.setSize(tailleTapis);
 		this.vitesse = 1;//TODO : faire autre chose en statique c'est moche
 		this.topCourant = 0;
 	}
@@ -91,7 +92,7 @@ public class Tapis extends ES {
 					c.mettreBagage(this.getNoeud(), b);
 				}
 			}
-			for(int i = tailleTapis; i > 0; i--) {
+			for(int i = tailleTapis-1; i > 0; i--) {
 				listBagages.set(i, listBagages.elementAt(i-1));
 			}
 		}

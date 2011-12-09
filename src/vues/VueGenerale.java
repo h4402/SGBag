@@ -134,7 +134,7 @@ public class VueGenerale extends JPanel {
 		}
 				
 		public void redessiner(){
-			for (int i = listVues.size(); i >= 0; i--) {
+			for (int i = listVues.size()-1 ; i >= 0; i--) {
 				listVues.get(i).dessin(this.getGraphics());
 			}			
 		}
