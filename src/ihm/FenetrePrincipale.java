@@ -418,6 +418,7 @@ public class FenetrePrincipale extends JFrame {
                 	}
                 	*/
                 	construireToutAPartirDeXML(racine);
+                	container.add(vueGenerale, BorderLayout.CENTER);
                 	vueGenerale.repaint();
                 }
             // TODO : traiter les erreurs

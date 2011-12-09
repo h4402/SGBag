@@ -35,8 +35,7 @@ public class VueGenerale extends JPanel {
 			this.zoneInfo = zoneInfo;
 			this.echelle = Math.max(this.getWidth()/this.aeroport.getLongueur(),
 					this.getHeight()/this.aeroport.getLargeur());
-			//coefImage = Bagage.TAILLE_BAGAGE*echelle;
-			coefImage = 50;
+			coefImage = Bagage.TAILLE_BAGAGE*echelle;
 			listVues = new ArrayList<Vue>();
 			
 			List<Chariot> listChariot = aeroport.getListChariots();
