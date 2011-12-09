@@ -418,6 +418,7 @@ public class FenetrePrincipale extends JFrame {
                 	}
                 	*/
                 	construireToutAPartirDeXML(racine);
+                	//vueGenerale.setSize(container.getSize());
                 	container.add(vueGenerale, BorderLayout.CENTER);
                 	vueGenerale.repaint();
                 }
