@@ -36,8 +36,8 @@ public class VueTapis extends Vue {
 	void dessin(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
 		g2d.rotate(alpha, pointA.x, pointA.y);
-		for (int i = 0; i < tapis.getListBagages().length; i++) {
-			if(tapis.getListBagages()[i] == null){
+		for (int i = 0; i < tapis.getListBagages().size(); i++) {
+			if(tapis.getListBagages().elementAt(i) == null){
 				g2d.drawImage(image, pointA.x + i*image.getWidth(vueGenerale), pointA.y, imageWidth, imageHeight, vueGenerale);
 				g2d.drawImage(imageSel, pointA.x + i*image.getWidth(vueGenerale), pointA.y, imageWidth, imageHeight, vueGenerale);
 			}
