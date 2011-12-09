@@ -46,21 +46,33 @@ public class Noeud {
 	/**
 	 * Constructeur utile pour GreenUML.
 	 * 
+	 * @param id Id du noeud.
 	 * @param listRailsSortie Liste des rails de sortie.
 	 * @param coordonnees Coordonnées du noeud.
 	 */
-	public Noeud(List<Rail> listRailsSortie, Point coordonnees) {
-		super();
+	public Noeud(int id, List<Rail> listRailsSortie, Point coordonnees) {
+		this.id = id;
 		this.listRailsSortie = listRailsSortie;
 		this.coordonnees = coordonnees;
 	}
 	
 	/**
-	 * Constructeur utile
+	 * Constructeur utile pour les Tests.
+	 * 
+	 * @param id Id du noeud.
 	 * @param coordonnees
 	 */
-	public Noeud(Point coordonnees) {
+	public Noeud(int id, Point coordonnees) {
+		this.id = id;
 		this.coordonnees = coordonnees;
+		this.listRailsSortie = new ArrayList<Rail>();
+	}
+	
+	/**
+	 * Constructeur par défault.
+	 */
+	public Noeud() {
+		this.coordonnees = new Point();
 		this.listRailsSortie = new ArrayList<Rail>();
 	}
 	
@@ -89,28 +101,13 @@ public class Noeud {
 	 * @param aeroport Aeroport
 	 * @return Résultat du parsing
 	 */
-	public int construireAPartirDeXML(Element noeudElement, Aeroport aeroport)
+	public int construireAPartirDeXML(Element noeudElement)
 	{
         // On récupère l'id et les coordonnées
 		this.id = Integer.parseInt(noeudElement.getAttribute("id"));
-		int posX = Integer.parseInt(noeudElement.getAttribute("posX"));
-        int posY = Integer.parseInt(noeudElement.getAttribute("posY"));
-        this.coordonnees = new Point(posX, posY);
-        this.listRailsSortie = new ArrayList<Rail>();
+        this.coordonnees.move(Integer.parseInt(noeudElement.getAttribute("posX")),
+        		Integer.parseInt(noeudElement.getAttribute("posY")));
         
-        //TODO : c'est juste pas possible de faire ça là, les rails n'existent pas
-        // On récupère les rails de sortie du noeud
-        /*List<Rail> listeRails = aeroport.getListeRails();
-        for ( Rail rail : listeRails)
-        {
-        	if (this.id == rail.getNoeudEntree().id)
-        	{
-        		this.listRailsSortie.add(rail);
-        	}
-        }*/
-
-        
-        aeroport.ajouterNoeud(this);
         return Aeroport.PARSE_OK;
     }
 	

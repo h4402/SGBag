@@ -30,6 +30,13 @@ public abstract class ES {
 	}
 	
 	/**
+	 * Constructeur par défault.
+	 */
+	protected ES() {
+		this.noeud = null;
+	}
+	
+	/**
 	 * Retourne le noeud associé à l'ES.
 	 * 
 	 * @return Noeud de l'ES.

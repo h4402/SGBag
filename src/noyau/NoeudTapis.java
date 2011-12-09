@@ -23,14 +23,15 @@ public class NoeudTapis extends Noeud {
 	/**
 	 * Constructeur pratique pour GreenUML.
 	 * 
+	 * @param id Id du noeud.
 	 * @param listRailsSortie Liste des rails de sortie.
 	 * @param coordonnees Coordonnées du noeud.
 	 * @param chariotVide Chariot Vide de départ.
 	 * @param tapis Tapis associé au noeud.
 	 * @param chariotVide Si un chariot attend un bagage à ce noeud.
 	 */
-	public NoeudTapis(List<Rail> listRailsSortie, Point coordonnees, Tapis tapis, Chariot chariotVide) {
-		super(listRailsSortie, coordonnees);
+	public NoeudTapis(int id, List<Rail> listRailsSortie, Point coordonnees, Tapis tapis, Chariot chariotVide) {
+		super(id, coordonnees);
 		this.tapis = tapis;
 		this.chariotVide = chariotVide;
 	}

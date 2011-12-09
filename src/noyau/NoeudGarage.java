@@ -26,9 +26,21 @@ public class NoeudGarage extends Noeud {
 	 * @param coordonnees Coordonnées du noeud.
 	 * @param sortie Garage de sortie.
 	 */
-	public NoeudGarage(List<Rail> listRailsSortie, Point coordonnees,
+	public NoeudGarage(int id, List<Rail> listRailsSortie, Point coordonnees,
 			Garage sortie) {
-		super(listRailsSortie, coordonnees);
+		super(id, listRailsSortie, coordonnees);
+		this.sortie = sortie;
+	}
+	
+	/**
+	 * Constructeur pour XML.
+	 * 
+	 * @param id Id du noeud.
+	 * @param coordonnees Coordonnées du point.
+	 * @param sortie Garage associé.
+	 */
+	public NoeudGarage(int id,Point coordonnees, Garage sortie) {
+		super(id, coordonnees);
 		this.sortie = sortie;
 	}
 	

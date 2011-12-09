@@ -21,13 +21,14 @@ public class NoeudToboggan extends Noeud {
 	/**
 	 * Noeud obligatoire pour GreenUML.
 	 * 
+	 * @param id Id du noeud.
 	 * @param listRailsSortie Liste des rails de sortie du noeud.
 	 * @param coordonnees Coordonnées du noeud.
 	 * @param sortie Toboggan associé à ce noeud.
 	 */
-	public NoeudToboggan(List<Rail> listRailsSortie, Point coordonnees,
+	public NoeudToboggan(int id, List<Rail> listRailsSortie, Point coordonnees,
 			Toboggan sortie) {
-		super(listRailsSortie, coordonnees);
+		super(id, coordonnees);
 		this.sortie = sortie;
 	}
 

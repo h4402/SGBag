@@ -1,6 +1,7 @@
 package noyau;
 
 import java.awt.Point;
+import java.awt.geom.Point2D;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map.Entry;
@@ -26,7 +27,7 @@ public class Chariot {
 	 * 
 	 * @uml.property  name="coordonnees"
 	 */
-	private Point coordonnees;
+	private Point2D.Float coordonnees;
 
 	/**
 	 * Bagage à acheminer.
@@ -70,7 +71,7 @@ public class Chariot {
 	 * @param vitesse Vitesse initiale du chariot.
 	 * @param chemin Liste des noeud avant la destination.
 	 */
-	public Chariot(int id, Point coordonnees, Bagage bagage, float vitesse,
+	public Chariot(int id, Point2D.Float coordonnees, Bagage bagage, float vitesse,
 			LinkedList<Noeud> chemin) {
 		/* TODO : enlever le bagage en parametre du constructeur, et mettre
 		 * bagage = null ici
@@ -113,12 +114,12 @@ public class Chariot {
 	 * @param vectUnitaire Vecteur unitaire du rail.
 	 * @param nouvDist Nouvelle distance du chariot sur le rail.
 	 */
-	public void majPos(Noeud entree, Point vectUnitaire, float nouvDist) {
+	public void majPos(Noeud entree, Point2D.Float vectUnitaire, float nouvDist) {
 		
 		distanceDepuisNoeudDepart = nouvDist;
 		if(entree != null && vectUnitaire != null) {
-			coordonnees.x = (int)(entree.getCoordonnees().x + distanceDepuisNoeudDepart*vectUnitaire.x);
-			coordonnees.y = (int)(entree.getCoordonnees().y + distanceDepuisNoeudDepart*vectUnitaire.y);
+			coordonnees.x = entree.getCoordonnees().x + distanceDepuisNoeudDepart*vectUnitaire.x;
+			coordonnees.y = entree.getCoordonnees().y + distanceDepuisNoeudDepart*vectUnitaire.y;
 		}
 	}
 
@@ -295,7 +296,7 @@ public class Chariot {
 	 * 
 	 * @return Coordonnées actuelles du chariot.
 	 */
-	public Point getCoordonnees() {
+	public Point2D.Float getCoordonnees() {
 		return coordonnees;
 	}
 	
@@ -346,7 +347,8 @@ public class Chariot {
 	{
 		// On récupère les coordonnées du noeud associé
         int idNoeudGarage = Integer.parseInt(chariotElement.getAttribute("noeudParDefaut"));
-        this.coordonnees = aeroport.getNoeud(idNoeudGarage).getCoordonnees();
+        
+        this.coordonnees.setLocation(aeroport.getNoeud(idNoeudGarage).getCoordonnees());
         
         // On récupère la vitesse par défaut
         this.vitesse = Integer.parseInt(chariotElement.getAttribute("vitesseParDefaut"));;

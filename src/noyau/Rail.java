@@ -1,6 +1,7 @@
 package noyau;
 
 import java.awt.Point;
+import java.awt.geom.Point2D;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -54,9 +55,25 @@ public class Rail {
 	private Point direction;
 	
 	/**
+	 * Vecteur unitaire du rail.
+	 */
+	private Point2D.Float vectUnitaire;
+	
+	/**
 	 * Taille du rail.
 	 */
 	private float longueur;
+	
+	/**
+	 * Retourne la direction du rail.
+	 * (Recalculé à chaque appel)
+	 * 
+	 * @return Direction du vecteur.
+	 */
+	public Point getDirection() {
+		return new Point(noeudSortie.getCoordonnees().x - noeudEntree.getCoordonnees().x,
+				noeudSortie.getCoordonnees().y - noeudEntree.getCoordonnees().y);
+	}
 
 	/**
 	 * Constructeur pratique pour GreenUML.
@@ -70,9 +87,10 @@ public class Rail {
 		this.listChariots = listChariots;
 		this.noeudEntree = noeudEntree;
 		this.noeudSortie = noeudSortie;
-		direction = new Point(noeudSortie.getCoordonnees().x - noeudEntree.getCoordonnees().x,
-				noeudSortie.getCoordonnees().y - noeudEntree.getCoordonnees().y);
+		Point direction = getDirection();
 		longueur = (float) Math.sqrt(direction.x*direction.x + direction.y*direction.y);
+		vectUnitaire = new Point2D.Float(direction.x/longueur, direction.y/longueur);
+		
 	}
 	
 	/**
@@ -185,8 +203,8 @@ public class Rail {
 	 * Retourne le vecteur unitaire correspondant au rail.
 	 * @return Vecteur unitaire du rail.
 	 */
-	public Point getVectUnitaire() {
-		return new Point((int)(direction.x/longueur), (int)(direction.y/longueur));
+	public Point2D.Float getVectUnitaire() {
+		return vectUnitaire;
 	}
 	
 	/**

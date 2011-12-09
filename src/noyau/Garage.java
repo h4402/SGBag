@@ -47,6 +47,15 @@ public class Garage extends ES {
 	}
 	
 	/**
+	 * Constructeur par défault.
+	 */
+	public Garage() {
+		super();
+		this.listChariotsVides = new LinkedList<Chariot>();
+		this.listChariotsPourPartir = new LinkedList<Chariot>();
+	}
+	
+	/**
 	 * Ajoute un chariot vide dans le garage.
 	 * 
 	 * @param c Chariot vide.
@@ -90,18 +99,15 @@ public class Garage extends ES {
 		}
 	}
 	
+
 	public int construireAPartirDeXML(Element chariotElement, Aeroport aeroport)
 	{
 		int idNoeudGarage = Integer.parseInt(chariotElement.getAttribute("noeudParDefaut"));
 		
 		// Instanciation  du noeud garage
-		NoeudGarage noeudGarage = new NoeudGarage(
-									aeroport.getNoeud(idNoeudGarage).getListeRails(),
-									aeroport.getNoeud(idNoeudGarage).getCoordonnees(),
-									Aeroport.garage);
+		NoeudGarage noeudGarage = new NoeudGarage(idNoeudGarage, aeroport.getNoeud(idNoeudGarage).getCoordonnees(), this);
 		Aeroport.garage.setNoeud(noeudGarage);
 		
-		// TODO: plus besoin de ça ?
 		aeroport.getListeNoeuds().remove(aeroport.getNoeud(idNoeudGarage));
 		aeroport.ajouterNoeud(noeudGarage);
 		
