@@ -12,6 +12,15 @@ public class VueNoeud extends Vue{
 
 	private Noeud noeud;
 	
+	/**
+	 * Constructeur de la vueNoeud
+	 * @param vueGeneral
+	 * @param image
+	 * @param imageSel
+	 * @param imageGarage
+	 * @param imageGarageSel
+	 * @param noeud
+	 */
 	public VueNoeud(VueGenerale vueGeneral, Image image, Image imageSel, 
 			Image imageGarage, Image imageGarageSel, Noeud noeud) {	
 		super(vueGeneral, image, imageSel);

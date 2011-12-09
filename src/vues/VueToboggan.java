@@ -14,6 +14,13 @@ public class VueToboggan extends Vue {
 
 	private Toboggan toboggan;
 		
+	/**
+	 * Constructeur de la VueToboggan
+	 * @param vueGenerale
+	 * @param image
+	 * @param imageSel
+	 * @param toboggan
+	 */
 	public VueToboggan(VueGenerale vueGenerale, Image image, Image imageSel, Toboggan toboggan) {
 		super(vueGenerale, image, imageSel);
 		this.toboggan = toboggan;

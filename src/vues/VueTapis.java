@@ -22,6 +22,15 @@ public class VueTapis extends Vue {
 	private Image imageAvecBagage;
 	private Image imageAvecBagageSel;
 	
+	/**
+	 * Constructeur de la VueTapis
+	 * @param vueGeneral
+	 * @param image
+	 * @param imageSel
+	 * @param imageAvecBagage
+	 * @param imageAvecBagageSel
+	 * @param tapis
+	 */
 	public VueTapis(VueGenerale vueGeneral, Image image, Image imageSel, 
 			Image imageAvecBagage, Image imageAvecBagageSel, Tapis tapis) {
 		super(vueGeneral, image, imageSel);
@@ -76,6 +85,9 @@ public class VueTapis extends Vue {
 		
 	}
 	
+	/**
+	 * Construit le rectangle permettant la détection de clic
+	 */
 	private void constructionRectangle(){
 		pointA = tapis.getGuichet().getCoordonnees();
 		pointB = tapis.getNoeud().getCoordonnees();

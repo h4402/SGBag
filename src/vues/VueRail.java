@@ -20,6 +20,13 @@ public class VueRail extends Vue {
 	private Point pointB;
 	private double alpha;
 
+	/**
+	 * Constructeur de la VueRail
+	 * @param vueGenerale
+	 * @param image
+	 * @param imageSel
+	 * @param rail
+	 */
 	public VueRail(VueGenerale vueGenerale, Image image, Image imageSel, Rail rail) {
 		super(vueGenerale, image, imageSel);
 		this.rail = rail;
@@ -69,8 +76,7 @@ public class VueRail extends Vue {
 	}
 	
 	/**
-	 * On fait la construction du rectangle
-	 * @param r rail que on va utiliser pour la construction du rectangle
+	 * On fait la construction du rectangle de détection de clic
 	 */
 	private void constructionRectangle(){
 		pointA = rail.getNoeudEntree().getCoordonnees();

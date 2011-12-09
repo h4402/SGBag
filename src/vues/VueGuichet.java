@@ -12,7 +12,13 @@ public class VueGuichet extends Vue {
 
 	private Guichet guichet;
 
-	
+	/**
+	 * Constructeur de la VueGuichet
+	 * @param vueGeneral
+	 * @param image
+	 * @param imageSel
+	 * @param guichet
+	 */
 	public VueGuichet(VueGenerale vueGeneral, Image image, Image imageSel, Guichet guichet) {
 		super(vueGeneral, image, imageSel);
 		this.guichet = guichet;
