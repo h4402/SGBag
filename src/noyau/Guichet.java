@@ -56,6 +56,15 @@ public class Guichet {
 		this.listBagages = listBagages;
 		this.coordonnees = coordonnees;
 	}
+	
+	/**
+	 * Constructeur par défault.
+	 */
+	public Guichet() {
+		this.tapis = null;
+		this.listBagages = new LinkedList<Bagage>();
+		this.coordonnees = new Point();
+	}
 
 	/**
 	 * Ajout de bagages dans le guichet.
@@ -109,20 +118,22 @@ public class Guichet {
 	{
         // On récupère l'id et les coordonnées
 		this.id = Integer.parseInt(guichetElement.getAttribute("id"));
-		int posX = Integer.parseInt(guichetElement.getAttribute("posX"));
-        int posY = Integer.parseInt(guichetElement.getAttribute("posY"));
-        this.coordonnees = new Point(posX, posY);
-        
-        LinkedList<Bagage> liste = new LinkedList<Bagage>();
-        this.listBagages = liste;
+        this.coordonnees.move(Integer.parseInt(guichetElement.getAttribute("posX")),
+        		Integer.parseInt(guichetElement.getAttribute("posY")));
         
         // On récupère le noeud associé
         int idNoeud = Integer.parseInt(guichetElement.getAttribute("idNoeud"));
-        Noeud noeudTapis = aeroport.getNoeud(idNoeud);
+        Noeud noeudOld = aeroport.getNoeud(idNoeud);
+        		
+        NoeudTapis noeudTapis = new NoeudTapis(idNoeud, noeudOld.getCoordonnees());
+        		
         //Création du tapis
-        this.tapis = new Tapis(noeudTapis,this);
+        this.tapis = new Tapis(noeudTapis, this);	
+       
         aeroport.ajouterTapis(this.tapis);
-        aeroport.ajouterGuichet(this);
+        
+        aeroport.getListeNoeuds().remove(aeroport.getNoeud(idNoeud));
+		aeroport.ajouterNoeud(noeudTapis);
         
         return Aeroport.PARSE_OK;
     }

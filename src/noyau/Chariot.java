@@ -2,6 +2,7 @@ package noyau;
 
 import java.awt.Point;
 import java.awt.geom.Point2D;
+import java.awt.geom.Point2D.Float;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map.Entry;
@@ -84,7 +85,22 @@ public class Chariot {
 		this.chemin = chemin;
 		this.distanceDepuisNoeudDepart = 0;
 		this.arret = false;
-	}	
+	}
+	
+	/**
+	 * Constructeur par défault.
+	 * 
+	 * @param id Id du chariot.
+	 */
+	public Chariot(int id) {
+		this.id = id;
+		this.coordonnees = new Point2D.Float();
+		this.bagage = null;
+		this.vitesse = 0;
+		this.chemin = new LinkedList<Noeud>();
+		this.distanceDepuisNoeudDepart = 0;
+		this.arret = false;
+	}
 	
 	public float getVitesse() {
 		return vitesse;
@@ -352,10 +368,6 @@ public class Chariot {
         
         // On récupère la vitesse par défaut
         this.vitesse = Integer.parseInt(chariotElement.getAttribute("vitesseParDefaut"));;
-        
-        LinkedList<Noeud> liste = new LinkedList<Noeud>();
-        this.chemin = liste;
-        aeroport.ajouterChariot(this);
         
         return Aeroport.PARSE_OK;
     }

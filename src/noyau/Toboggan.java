@@ -37,6 +37,14 @@ public class Toboggan extends ES {
 	}
 	
 	/**
+	 * Constructeur par défault, sans noeud.
+	 */
+	public Toboggan() {
+		super(null);
+		this.listBagages = new LinkedList<Bagage>();
+	}
+	
+	/**
 	 * Ajouter un bagage à la liste des bagages terminés.
 	 * 
 	 * @param b Le bagage à ajouter.
@@ -68,11 +76,11 @@ public class Toboggan extends ES {
 		// On récupère le noeud associé
         int idNoeud = Integer.parseInt(tobogganElement.getAttribute("idNoeud"));
         this.noeud = aeroport.getNoeud(idNoeud);
-
-        LinkedList<Bagage> liste = new LinkedList<Bagage>();
-        this.listBagages = liste;
         
-        aeroport.ajouterToboggan(this);
+        this.noeud = new NoeudToboggan(idNoeud, noeud.getCoordonnees(), this);
+        
+        aeroport.getListeNoeuds().remove(aeroport.getNoeud(idNoeud));
+		aeroport.ajouterNoeud(this.noeud);
         
         return Aeroport.PARSE_OK;
     }

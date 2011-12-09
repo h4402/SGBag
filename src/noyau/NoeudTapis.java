@@ -35,6 +35,30 @@ public class NoeudTapis extends Noeud {
 		this.tapis = tapis;
 		this.chariotVide = chariotVide;
 	}
+	
+	
+	/**
+	 * Constructeur pour le XML.
+	 * Le tapis n'est pas donné à cause de la double inclusion
+	 * (le tapis doit connaitre le noeud).
+	 * 
+	 * @param id Id du noeud.
+	 * @param coordonnees Coordonnées du noeud.
+	 */
+	public NoeudTapis(int id, Point coordonnees) {
+		super(id, coordonnees);
+		this.tapis = null;
+		this.chariotVide = null;
+	}
+	
+	/**
+	 * Ajoute un tapis au noeudTapis.
+	 * 
+	 * @param t Tapis associé au noeud.
+	 */
+	public void setTapis(Tapis t) {
+		this.tapis = t;
+	}
 
 	/**
 	 * Averti que le chariot est arrivé.

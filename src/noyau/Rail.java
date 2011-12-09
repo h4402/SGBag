@@ -50,11 +50,6 @@ public class Rail {
 	private Noeud noeudSortie;
 	
 	/**
-	 * Direction du vecteur Rail.
-	 */
-	private Point direction;
-	
-	/**
 	 * Vecteur unitaire du rail.
 	 */
 	private Point2D.Float vectUnitaire;
@@ -90,7 +85,6 @@ public class Rail {
 		Point direction = getDirection();
 		longueur = (float) Math.sqrt(direction.x*direction.x + direction.y*direction.y);
 		vectUnitaire = new Point2D.Float(direction.x/longueur, direction.y/longueur);
-		
 	}
 	
 	/**
@@ -102,8 +96,22 @@ public class Rail {
 		this.listChariots = new LinkedList<Chariot>();
 		this.noeudEntree = null;
 		this.noeudSortie = null;
-		direction = null;
+		vectUnitaire = new Point2D.Float();
 		longueur = 0;
+	}
+	
+	/**
+	 * Ajoute les noeuds au rail et calcul le vecteur unitaire et la longueur.
+	 * 
+	 * @param noeudEntree Noeud d'entrée du rail.
+	 * @param noeudSortie Noeud de sortie du rail.
+	 */
+	public void ajouterNoeuds(Noeud noeudEntree, Noeud noeudSortie) {
+		this.noeudEntree = noeudEntree;
+		this.noeudSortie = noeudSortie;
+		Point direction = getDirection();
+		longueur = (float) Math.sqrt(direction.x*direction.x + direction.y*direction.y);
+		vectUnitaire = new Point2D.Float(direction.x/longueur, direction.y/longueur);
 	}
 
 	/**
@@ -249,22 +257,10 @@ public class Rail {
 		int idNoeudEntree = Integer.parseInt(railElement.getAttribute("noeudEntree"));
 		int idNoeudSortie = Integer.parseInt(railElement.getAttribute("noeudSortie"));
 		
-		//insertion des noeud.
-		this.noeudEntree = aeroport.getNoeud(idNoeudEntree);
-		this.noeudSortie = aeroport.getNoeud(idNoeudSortie);
+		this.ajouterNoeuds(aeroport.getNoeud(idNoeudEntree), aeroport.getNoeud(idNoeudSortie));
         
 		//il faut également le faire dans l'autre sens (référencer le rail dans le noeud
 		this.noeudEntree.ajouterRailDeSortie(this);
-		//TODO: référencer les rails d'entrées dans le noeud de sortie ?
-		
-		//Pas de chariots sur ce rail pour le moment.
-		this.listChariots = new LinkedList<Chariot>();
-		
-		aeroport.ajouterRail(this);
-		
-		direction = new Point(noeudSortie.getCoordonnees().x - noeudEntree.getCoordonnees().x,
-				noeudSortie.getCoordonnees().y - noeudEntree.getCoordonnees().y);
-		longueur = (float) Math.sqrt(direction.x*direction.x + direction.y*direction.y);
 		
 		return Aeroport.PARSE_OK;
     }

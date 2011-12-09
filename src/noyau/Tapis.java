@@ -13,7 +13,7 @@ public class Tapis extends ES {
 	/**
 	 * Taille d'un tapis définie par le systeme.
 	 */
-	private final int tailleTapis;
+	private int tailleTapis;
 	
 	/**
 	 * File de bagage.
