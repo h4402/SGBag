@@ -1,4 +1,4 @@
-package ihm;
+package tests;
 
 import java.awt.Color;
 import java.awt.Graphics;

@@ -1,4 +1,6 @@
-package ihm;
+package tests;
+
+import ihm.ImagesManager;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;

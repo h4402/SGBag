@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 import javax.swing.Timer;
 
+import tests.TestDessins;
 import vues.VueGenerale;
 
 import java.awt.event.KeyEvent;
@@ -38,6 +39,7 @@ import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
 import bibliotheques.SGBagFileFilter;
+
 
 /**
  * 
@@ -86,6 +88,7 @@ public class FenetrePrincipale extends JFrame {
 	 */
 	private JButton boutonLecture = new JButton();
 	private JButton boutonArretUrgence = new JButton();
+	private JButton boutonMode = new JButton();
 	
 	/**
 	 * Label d'info
@@ -147,6 +150,16 @@ public class FenetrePrincipale extends JFrame {
 	private ActionListener playPauseListener = new ActionListener() {
 		public void actionPerformed(ActionEvent actionEvent) {
 			playPauseActionPerformed();
+		}
+	};
+	
+	
+	/**
+	 * Clic sur bouton du choix du mode
+	 */
+	private ActionListener modeListener = new ActionListener() {
+		public void actionPerformed(ActionEvent actionEvent) {
+			vueGenerale.changerMode();
 		}
 	};
 	
@@ -250,9 +263,14 @@ public class FenetrePrincipale extends JFrame {
 		boutonArretUrgence.addActionListener(arretUrgenceListener);
 		boutonArretUrgence.setEnabled(false);
 		
+		// Bouton du choix du mode
+		boutonMode.setText("Mode");
+		boutonMode.setEnabled(false);
+		
 		// Panel du bas
 		panelBas.add(boutonArretUrgence);
 		panelBas.add(boutonLecture);
+		panelBas.add(boutonMode);
 		panelBas.add(labelInfo);
 		
 		// Panel Parametres
@@ -359,6 +377,8 @@ public class FenetrePrincipale extends JFrame {
         // activation des boutons si chargement reussi
         boutonLecture.setEnabled(true);
         boutonArretUrgence.setEnabled(true);
+        boutonMode.setEnabled(true);
+        boutonMode.setText(vueGenerale.getMode());
         
         return Aeroport.PARSE_OK;
     }
