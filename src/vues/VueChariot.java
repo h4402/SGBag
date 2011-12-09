@@ -42,8 +42,7 @@ public class VueChariot extends Vue {
 	private void updatePos(){
 		posPixel.x = (int)Math.round(chariot.getCoordonnees().x * vueGenerale.getEchelle() - imageWidth/2);
 		posPixel.y = (int)Math.round(chariot.getCoordonnees().y * vueGenerale.getEchelle() - imageHeight/2);
-		rectangle.x = posPixel.x;
-		rectangle.y = posPixel.y;
+		rectangle = new Rectangle(posPixel.x, posPixel.y, imageHeight, imageWidth);
 	}
 	
 	@Override

@@ -24,7 +24,6 @@ public class VueRail extends Vue {
 		super(vueGenerale, image, imageSel);
 		this.rail = rail;
 		constructionRectangle();
-		constructionImage();
 		// TODO Auto-generated constructor stub
 	}
 
@@ -43,11 +42,13 @@ public class VueRail extends Vue {
 	void dessin(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
 		g2d.rotate(alpha, pointA.x, pointA.y);
-		if(selection){
-			g2d.drawImage(imageSel, (int)Math.round(pointA.x - image.getWidth(vueGenerale)/2), (int)Math.round(pointA.y - image.getHeight(vueGenerale)/2), vueGenerale);
-		}
-		else{
-			g2d.drawImage(image, (int)Math.round(pointA.x - image.getWidth(vueGenerale)/2), (int)Math.round(pointA.y - image.getHeight(vueGenerale)/2), vueGenerale);
+		for (int i = 0; i < Math.round(rectangle.getBounds2D().getWidth()/imageWidth); i++) {
+			if(selection){
+				g2d.drawImage(imageSel, pointA.x + i*image.getWidth(vueGenerale), pointA.y, imageWidth, imageHeight, vueGenerale);
+			}
+			else{
+				g2d.drawImage(image, pointA.x + i*image.getWidth(vueGenerale), pointA.y, imageWidth, imageHeight, vueGenerale);
+			}
 		}
 		g2d.rotate(-alpha, pointA.x, pointA.y);
 	}
@@ -81,20 +82,7 @@ public class VueRail extends Vue {
 		rectangle = new Rectangle((int)Math.round(pointA.x - imageWidth/2), (int)Math.round(pointA.y - imageHeight/2),
 				imageWidth, imageHeight);
 		AffineTransform rotation = AffineTransform.getRotateInstance(alpha, pointA.x, pointA.y);
-		rectangle = (Rectangle)rotation.createTransformedShape(rectangle);
-	}
-	
-	private void constructionImage(){
-		Image temp = image;
-		Image temp2 = imageSel;
-		Graphics2D g = (Graphics2D)temp.getGraphics();
-		Graphics2D g2 = (Graphics2D)temp2.getGraphics();
-		for (int i = 0; i < Math.round(rectangle.width/imageWidth); i++) {
-			g.drawImage(image, pointA.x + i*image.getWidth(vueGenerale), pointA.y, imageWidth, imageHeight, vueGenerale);
-			g2.drawImage(imageSel, pointA.x + i*image.getWidth(vueGenerale), pointA.y, imageWidth, imageHeight, vueGenerale);
-		}
-		image = temp;
-		imageSel = temp2;
+		rectangle = rotation.createTransformedShape(rectangle);
 	}
 	
 

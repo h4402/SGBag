@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 
 import noyau.Aeroport;
@@ -85,7 +86,8 @@ public class VueTapis extends Vue {
 		rectangle = new Rectangle((int)Math.round(pointA.x - imageWidth/2), (int)Math.round(pointA.y - imageHeight/2),
 				imageWidth, imageHeight);
 		AffineTransform rotation = AffineTransform.getRotateInstance(alpha, pointA.x, pointA.y);
-		rectangle = (Rectangle)rotation.createTransformedShape(rectangle);
+		rectangle = rotation.createTransformedShape(rectangle);
+		
 	}
 
 }

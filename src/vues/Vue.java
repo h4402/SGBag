@@ -4,12 +4,13 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.Shape;
 
 
 public abstract class Vue {
 	
 	protected VueGenerale vueGenerale; //name changed
-	protected Rectangle rectangle;
+	protected Shape rectangle;
 	protected Image image;
 	protected Image imageSel;
 	protected int imageWidth;
@@ -18,7 +19,7 @@ public abstract class Vue {
 	protected boolean selection;
 	
 	/**
-	 * Constructeur présent uniquement pour des raisons de factorisation du code.
+	 * Constructeur prï¿½sent uniquement pour des raisons de factorisation du code.
 	 * @param vueGeneral
 	 * @param image
 	 */
@@ -41,21 +42,21 @@ public abstract class Vue {
 	}
 	
 	/**
-	 * Passe la vue en mode selectioné
+	 * Passe la vue en mode selectionï¿½
 	 */
 	void selectionner(){
 		selection = true;
 	}
 	
 	/**
-	 * Passe la vue en mod déselectioné
+	 * Passe la vue en mod dï¿½selectionï¿½
 	 */
 	void deselectionner(){
 		selection = false;
 	}
 	
 	/**
-	 * Détecte si un clic de souris est effectué sur la vue
+	 * Dï¿½tecte si un clic de souris est effectuï¿½ sur la vue
 	 * @param x
 	 * @param y
 	 * @return
@@ -69,8 +70,8 @@ public abstract class Vue {
 	abstract void dessin(Graphics g);
 	
 	/**
-	 * Action consécutive au clic, est toujour appellée sur l'objet qui
-	 * a été cliqué.
+	 * Action consï¿½cutive au clic, est toujour appellï¿½e sur l'objet qui
+	 * a ï¿½tï¿½ cliquï¿½.
 	 */
 	abstract void action(); //Effectue l'action consÃ©cutive au clic sur l'objet
 	
