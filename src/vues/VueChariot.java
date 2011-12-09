@@ -55,20 +55,23 @@ public class VueChariot extends Vue {
 	@Override
 	void dessin(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
-		if(selection){
-			if(chariot.getBagage() == null){
-				g2d.drawImage(imageSel, posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
+		updatePos();
+		if(chariot.getDestination() != null || chariot.getCoordonnees().x != 0 || chariot.getCoordonnees().y != 0){
+			if(selection){
+				if(chariot.getBagage() == null){
+					g2d.drawImage(imageSel, posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
+				}
+				else{
+					g2d.drawImage(imageAvecBagageSel, posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
+				}
 			}
 			else{
-				g2d.drawImage(imageAvecBagageSel, posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
-			}
-		}
-		else{
-			if(chariot.getBagage() == null){
-				g2d.drawImage(image, posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
-			}
-			else{
-				g2d.drawImage(imageAvecBagage, posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
+				if(chariot.getBagage() == null){
+					g2d.drawImage(image, posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
+				}
+				else{
+					g2d.drawImage(imageAvecBagage, posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
+				}
 			}
 		}
 	}
