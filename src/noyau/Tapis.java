@@ -36,6 +36,8 @@ public class Tapis extends ES {
 	 */
 	private int topCourant;
 	
+	private Guichet guichet;
+	
 
 	/**
 	 * Constructeur pratique pour GreenUML.
@@ -61,6 +63,7 @@ public class Tapis extends ES {
 	 */
 	public Tapis(Noeud noeud, Guichet guichet) {
 		super(noeud);
+		this.guichet = guichet;
 		this.tailleTapis = (int) Math.round(guichet.getCoordonnees().distance(
 								 noeud.getCoordonnees())/Bagage.TAILLE_BAGAGE);		
 		this.listBagages = new Bagage[tailleTapis];//TODO : ça marche ça ?
@@ -106,6 +109,12 @@ public class Tapis extends ES {
 		listBagages[0] = b;
 		
 		return true;
+	}
+	public Guichet getGuichet() {
+		return guichet;
+	}
+	public Bagage[] getListBagages() {
+		return listBagages;
 	}
 
 }
