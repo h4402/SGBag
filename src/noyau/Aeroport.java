@@ -1,6 +1,7 @@
 package noyau;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
@@ -401,6 +402,19 @@ public class Aeroport {
             if (noeud.construireAPartirDeXML(noeudElement, this)!= Aeroport.PARSE_OK){
                 return Aeroport.PARSE_ERROR;
             }
+        }
+		
+		// Création du garage correspondant au noeud par défaut d'apparition des chariots
+        LinkedList<Chariot> listeChariotsVides = new LinkedList<Chariot>();
+        LinkedList<Chariot> listeChariotsPourPartir = new LinkedList<Chariot>();        
+        
+		Garage garage = new Garage(null,
+						listeChariotsVides,listeChariotsPourPartir);
+		Aeroport.garage = garage;
+		
+		Element chariotElement = (Element) listeChariots.item(0);
+		if (garage.construireAPartirDeXML(chariotElement, this)!= Aeroport.PARSE_OK){
+            return Aeroport.PARSE_ERROR;
         }
 		
 		// On parcourt la liste des rails récupérés pour créer les objets correspondants

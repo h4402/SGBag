@@ -3,6 +3,8 @@ package noyau;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import org.w3c.dom.Element;
+
 /**
  * Objet dans lequel sera rangé tous les chariots
  * vides et les chariots en attente de partir
@@ -86,6 +88,24 @@ public class Garage extends ES {
 		if(!r.ajoutChariot(c)) {
 			listChariotsPourPartir.offerLast(c);
 		}
+	}
+	
+	public int construireAPartirDeXML(Element chariotElement, Aeroport aeroport)
+	{
+		int idNoeudGarage = Integer.parseInt(chariotElement.getAttribute("noeudParDefaut"));
+		
+		// Instanciation  du noeud garage
+		NoeudGarage noeudGarage = new NoeudGarage(
+									aeroport.getNoeud(idNoeudGarage).getListeRails(),
+									aeroport.getNoeud(idNoeudGarage).getCoordonnees(),
+									Aeroport.garage);
+		Aeroport.garage.setNoeud(noeudGarage);
+		
+		// TODO: plus besoin de ça ?
+		aeroport.getListeNoeuds().remove(aeroport.getNoeud(idNoeudGarage));
+		aeroport.ajouterNoeud(noeudGarage);
+		
+		return Aeroport.PARSE_OK;
 	}
 
 }

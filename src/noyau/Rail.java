@@ -236,7 +236,7 @@ public class Rail {
 		this.noeudSortie = aeroport.getNoeud(idNoeudSortie);
         
 		//il faut également le faire dans l'autre sens (référencer le rail dans le noeud
-		this.noeudEntree.listRailsSortie.add(this);
+		this.noeudEntree.ajouterRailDeSortie(this);
 		//TODO: référencer les rails d'entrées dans le noeud de sortie ?
 		
 		//Pas de chariots sur ce rail pour le moment.

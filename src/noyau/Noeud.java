@@ -27,6 +27,16 @@ public class Noeud {
 	protected List<Rail> listRailsSortie;
 	
 	/**
+	 * Permet d'ajouter un rail de sortie au noeud
+	 * 
+	 * @param rail Rail
+	 */
+	public void ajouterRailDeSortie(Rail rail)
+	{
+		this.listRailsSortie.add(rail);
+	}
+	
+	/**
 	 * Coordonnées physiques du point.
 	 * 
 	 * @uml.property  name="coordonnees"
