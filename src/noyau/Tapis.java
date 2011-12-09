@@ -36,8 +36,10 @@ public class Tapis extends ES {
 	 */
 	private int topCourant;
 	
+	/**
+	 * Guichet associé au rail.
+	 */
 	private Guichet guichet;
-	
 
 	/**
 	 * Constructeur pratique pour GreenUML.
@@ -46,14 +48,16 @@ public class Tapis extends ES {
 	 * @param listBagages File de bagage.
 	 * @param vitesse Vitesse du tapis.
 	 * @param topCourant Nombre de topCourant actuel.
+	 * @param guichet Guichet relié au tapis.
 	 */
 	public Tapis(Noeud noeud, Bagage listBagages[], int vitesse, 
-			int topCourant, int tailleTapis) {
+			int topCourant, int tailleTapis, Guichet guichet) {
 		super(noeud);
 		this.listBagages = listBagages;
 		this.vitesse = vitesse;
 		this.topCourant = topCourant;
 		this.tailleTapis = tailleTapis;
+		this.guichet = guichet;
 	}
 	/**
 	 * Constructeur utilisable :

@@ -185,75 +185,18 @@ public class Chariot {
 			chemin.clear();
 		}
 		else {
-			/*
-			 * TODO
-			 *   Faire le calcul des chemins ici, 
-			 *   et ajouter au fur et à mesure dans la liste des chemins.
-			 *
-			 1  function Dijkstra(Graph, source):
-			 
-			 2      for each vertex v in Graph:            // Initializations
-			 3          dist[v] := infinity ;              // Unknown distance function from source to v
-			 4          previous[v] := undefined ;         // Previous node in optimal path from source
-			 5      end for ;
-			 
-			 6      dist[source] := 0 ;                    // Distance from source to source
-			 7      Q := the set of all nodes in Graph ;   // All nodes in the graph are unoptimized - thus are in Q
-			 
-			 8      while Q is not empty:                  // The main loop
-			 9          u := vertex in Q with smallest distance in dist[] ;
-			10          if dist[u] = infinity:
-			11              break ;                        // all remaining vertices are inaccessible from source
-			12          end if ;
-			13          remove u from Q ;
-			14          for each neighbor v of u:          // where v has not yet been removed from Q.
-			15              alt := dist[u] + dist_between(u, v) ;
-			16              if alt < dist[v]:              // Relax (u,v,a)
-			17                  dist[v] := alt ;
-			18                  previous[v] := u ;
-			19                  decrease-key v in Q;       // Reorder v in the Queue
-			20              end if ;
-			21          end for ;
-			22      end while ;
-			
-			23      return dist[] ;
-			24  end Dijkstra.
-			*/
-			
 			TreeMap<Noeud, DijStuff> graph = new TreeMap<Noeud, DijStuff>();
 			
-			LinkedList<Noeud> noeudsGraph = new LinkedList<Noeud>();
-			LinkedList<Rail> arretesGraph = new LinkedList<Rail>();
-			
-			
-			
-			Noeud noeudCourant = depart;
-			/*
-			for(int i = 0;; i++) {
-				if(!noeudsGraph.contains(noeudCourant) && noeudCourant != arrivee) {
-					noeudsGraph.add(noeudCourant);
-					for(Rail r : noeudCourant.listRailsSortie) {
-						if(!arretesGraph.contains(r)) {
-							arretesGraph.add(r);
-						}
-					}
-				}
-				
-				if(i >= arretesGraph.size()) {
-					break;
-				}
-				noeudCourant = arretesGraph.get(i).getNoeudSortie();
-			}
-			*/
-			
 			graph.put(depart, new DijStuff(0, null));
-			for(;;) {
-				Noeud courant = minNoeud(graph);
+			Noeud courant = null;
+			while((courant = minNoeud(graph)) != null) {
 				graph.get(courant).visited = true;
 				
 				for(Rail r : courant.getListeRails()) {
 					r.getNoeudSortie();
-					graph.put(r.getNoeudSortie(), new DijStuff());
+					if(!graph.containsKey(r.getNoeudSortie())) {
+						graph.put(r.getNoeudSortie(), new DijStuff());
+					}
 					float distance = graph.get(courant).dist + r.getLongueur();
 					if(graph.get(r.getNoeudSortie()).dist > distance) {
 						graph.get(r.getNoeudSortie()).dist = distance;
@@ -261,9 +204,25 @@ public class Chariot {
 					}
 				}
 			}
+			
+			chemin.addFirst(arrivee);
+			DijStuff dijCourant = graph.get(arrivee);
+			while(dijCourant.pred != depart) {
+				chemin.addFirst(dijCourant.pred);
+				dijCourant = graph.get(dijCourant.pred);
+			}
+			chemin.addFirst(depart);
 		}
 	}
 	
+	/**
+	 * Méthode privé pour Dijsktra qui rend le noeud accessible
+	 * avec la plus petite distance.
+	 * 
+	 * @param graph Graph de recherche
+	 * 
+	 * @return Le noeud le plus proche.
+	 */
 	private Noeud minNoeud(TreeMap<Noeud, DijStuff> graph) {
 		
 		float x = Integer.MAX_VALUE;
@@ -418,20 +377,56 @@ public class Chariot {
     }
 }
 
+/**
+ * Classe privée, pratique pour calculer Dijsktra.
+ * 
+ * @author H4402
+ */
 class DijStuff {
 	
+	/**
+	 * Distance actuelle du noeud à l'arrivée.
+	 */
 	public float dist;
+	
+	/**
+	 * Noeud précédent dans le graphe.
+	 */
 	public Noeud pred;
+	
+	/**
+	 * Noeud déja visité ou non?
+	 */
 	public boolean visited;
 	
+	/**
+	 * Constructeur par défault.
+	 */
 	public DijStuff() {
 		dist = Integer.MAX_VALUE;
 		pred = null;
 		visited = false;
 	}
 	
-	public DijStuff(float i, Noeud n) {
-		dist = i;
+	/**
+	 * Améliorateur.
+	 * 
+	 * @param n Noeud précédent.
+	 */
+	public DijStuff(Noeud n) {
+		dist = Integer.MAX_VALUE;
+		pred = n;
+		visited = false;
+	}
+	
+	/**
+	 * Améliorateur.
+	 * 
+	 * @param dist Distance parcourue.
+	 * @param n  Noeud précédent.
+	 */
+	public DijStuff(int dist, Noeud n) {
+		this.dist = dist;
 		pred = n;
 		visited = false;
 	}
