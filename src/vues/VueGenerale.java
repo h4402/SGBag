@@ -33,6 +33,8 @@ public class VueGenerale extends JPanel {
 			this.bandeauAjoutBagages = bandeauAjoutBagages;
 			this.bandeauVitesseChariot = bandeauVitesseChariot;
 			this.zoneInfo = zoneInfo;
+			System.out.printf("this.width: %d, aeroportLong: %d, this.height: %d, aeroportLarg: %d", this.getWidth(), this.aeroport.getLongueur(),
+					this.getHeight(), this.aeroport.getLargeur());
 			this.echelle = Math.max(this.getWidth()/this.aeroport.getLongueur(),
 					this.getHeight()/this.aeroport.getLargeur());
 			coefImage = Bagage.TAILLE_BAGAGE*echelle;
