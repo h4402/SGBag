@@ -133,8 +133,9 @@ public class VueGenerale extends JPanel {
 		}
 		
 		@Override
-		public void paint(Graphics g) {
+		public void paintComponent(Graphics g) {
 			super.paintComponents(g);
+			System.out.println("vueGenerale.width: "+this.getWidth()+", vueGenerale.height: "+this.getHeight());
 			for (int i = listVues.size()-1 ; i >= 0; i--) {
 				listVues.get(i).dessin(g);
 			}

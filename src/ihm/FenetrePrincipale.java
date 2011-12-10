@@ -208,10 +208,10 @@ public class FenetrePrincipale extends JFrame {
 	 * Create the frame.
 	 */
 	public FenetrePrincipale() {
-		jInit();
+		jInit(false);
 	}
 
-	private void jInit() {
+	private void jInit(boolean fichierCharge) {
 		
 		Dimension dimBandeau = new Dimension(this.getWidth(), 50);
 		this.setTitle("SGBag - Simulation");
@@ -294,12 +294,15 @@ public class FenetrePrincipale extends JFrame {
 		container.setBackground(Color.white);
 		container.setLayout(new BorderLayout());
 		//container.add(testDessins, BorderLayout.CENTER);
-		//container.add(vueGenerale, BorderLayout.CENTER);
+		if (fichierCharge)
+			container.add(vueGenerale, BorderLayout.CENTER);
 		container.add(panelBas, BorderLayout.SOUTH);
 		container.add(bandeauGeneral, BorderLayout.NORTH);
 		
 		labelInfo.setText("Bienvenue dans le système de gestion de bagages SGBag");
 		this.setContentPane(container);
+		
+		System.out.printf("this.width: %d, this.height: %d", this.getWidth(), this.getHeight());
 		
 	}
 	
@@ -315,11 +318,11 @@ public class FenetrePrincipale extends JFrame {
 		if (etat == etatsLecture.PLAY) {
 			horloge.stop();
 			etat = etatsLecture.STOP;
-			boutonLecture.setText(pauseString);
+			boutonLecture.setText(playString);
 		} else if (etat == etatsLecture.STOP) {
 			horloge.start();
 			etat = etatsLecture.PLAY;
-			boutonLecture.setText(playString);
+			boutonLecture.setText(pauseString);
 		}
 	}
 	
@@ -367,6 +370,18 @@ public class FenetrePrincipale extends JFrame {
         
         this.vueGenerale = new VueGenerale(bandeauAjoutBagages, 
         		bandeauVitesseChariot, labelInfo, aeroport, imagesManager);
+        
+        
+        container = new JPanel();
+        container.setBackground(Color.white);
+		container.setLayout(new BorderLayout());
+		container.add(panelBas, BorderLayout.SOUTH);
+		container.add(bandeauGeneral, BorderLayout.NORTH);
+        container.add(vueGenerale, BorderLayout.CENTER);
+        container.add(panelBas, BorderLayout.SOUTH);
+		container.add(bandeauGeneral, BorderLayout.NORTH);
+    	setContentPane(container);
+        
         // création des bandeaux qui ont besoin de la vue générale
         bandeauAjoutBagages.setVueGenerale(vueGenerale);
         bandeauVitesseChariot.setVueGenerale(vueGenerale);
@@ -381,6 +396,9 @@ public class FenetrePrincipale extends JFrame {
         boutonArretUrgence.setEnabled(true);
         boutonMode.setEnabled(true);
         boutonMode.setText(vueGenerale.getMode());
+        
+    	//System.out.println("this.width: "+vueGenerale.getWidth()+", this.height: "+vueGenerale.getHeight());
+    	vueGenerale.repaint();
         
         return Aeroport.PARSE_OK;
     }
@@ -419,8 +437,6 @@ public class FenetrePrincipale extends JFrame {
                 	*/
                 	construireToutAPartirDeXML(racine);
                 	//vueGenerale.setSize(container.getSize());
-                	container.add(vueGenerale, BorderLayout.CENTER);
-                	vueGenerale.repaint();
                 }
             // TODO : traiter les erreurs
                 
