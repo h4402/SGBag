@@ -34,6 +34,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import noyau.Aeroport;
+import noyau.Aeroport.Mode;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -121,7 +122,6 @@ public class FenetrePrincipale extends JFrame {
 	 */
 	private ActionListener ouvrirListener = new ActionListener() {
 		public void actionPerformed(ActionEvent actionEvent) {
-			// TODO : charger fichier XML de configuration
 			chargerConfiguration();
 		}
 	};
@@ -192,7 +192,6 @@ public class FenetrePrincipale extends JFrame {
         public void actionPerformed(ActionEvent evt) {
         	vueGenerale.avancerTemps();
         	vueGenerale.repaint();
-        	// TODO : mises a jour des panels ? a voir
         }
     };
 
@@ -202,7 +201,6 @@ public class FenetrePrincipale extends JFrame {
      */
     private Timer horloge = new Timer(Aeroport.lapsTemps, taskPerformer);
 
-    
 	/**
 	 * Create the frame.
 	 */
@@ -424,16 +422,9 @@ public class FenetrePrincipale extends JFrame {
 
                 if (racine.getNodeName().equals("Aeroport"))
                 {
-                	/*
-                	if (vueGenerale.construireToutAPartirDeXML(racine) == Aeroport.PARSE_OK)
-                	{
-                		// unAeroport = vueGenerale.
-                		//leCadre = container.GetVueCadre().GetCadre();
-                	}
-                	*/
                 	construireToutAPartirDeXML(racine);
-                	//vueGenerale.setSize(container.getSize());
                 }
+                
             // TODO : traiter les erreurs
                 
             } catch (ParserConfigurationException pce) {

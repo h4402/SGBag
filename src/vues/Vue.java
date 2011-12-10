@@ -19,7 +19,7 @@ public abstract class Vue {
 	protected boolean selection;
 	
 	/**
-	 * Constructeur pr�sent uniquement pour des raisons de factorisation du code.
+	 * Constructeur present uniquement pour des raisons de factorisation du code.
 	 * @param vueGeneral
 	 * @param image
 	 */

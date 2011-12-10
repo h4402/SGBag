@@ -50,10 +50,11 @@ public class VueGenerale extends JPanel {
 			
 			//TODO: c'est pour pouvoir tester mais il faudrait trouver une meilleure solution.
 			if(this.echelle==0) {
-				this.echelle=1022/this.aeroport.getLongueur();
+				this.echelle= 1022/this.aeroport.getLongueur();
 			}
 			
-			coefImage = Bagage.TAILLE_BAGAGE*echelle;
+			// TODO : supprimer ce coeff 5
+			coefImage = 5*Bagage.TAILLE_BAGAGE*echelle;
 			listVues = new ArrayList<Vue>();
 			
 			List<Chariot> listChariot = aeroport.getListChariots();
