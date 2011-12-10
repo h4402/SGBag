@@ -4,6 +4,9 @@ import ihm.BandeauAjoutBagages;
 import ihm.BandeauVitesseChariot;
 import ihm.ImagesManager;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +31,11 @@ public class VueGenerale extends JPanel {
 
 		public VueGenerale(BandeauAjoutBagages bandeauAjoutBagages, BandeauVitesseChariot bandeauVitesseChariot, 
 				JLabel zoneInfo, Aeroport aeroport, ImagesManager imagesManager){
-			super();
+			
+                         super(new BorderLayout());
+                        this.setSize(500,500);
+                        this.setPreferredSize(new Dimension(500, 500));
+                        this.setBackground(Color.red);
 			this.aeroport = aeroport;
 			this.bandeauAjoutBagages = bandeauAjoutBagages;
 			this.bandeauVitesseChariot = bandeauVitesseChariot;
@@ -142,7 +149,8 @@ public class VueGenerale extends JPanel {
 		
 		@Override
 		public void paintComponent(Graphics g) {
-			super.paintComponents(g);
+			super.paintComponent(g);
+                        g.drawOval(50, 50, 50, 50);
 			System.out.println("vueGenerale.width: "+this.getWidth()+", vueGenerale.height: "+this.getHeight());
 			for (int i = listVues.size()-1 ; i >= 0; i--) {
 				listVues.get(i).dessin(g);
