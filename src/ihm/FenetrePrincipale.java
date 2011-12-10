@@ -207,10 +207,10 @@ public class FenetrePrincipale extends JFrame {
 	 * Create the frame.
 	 */
 	public FenetrePrincipale() {
-		jInit(false);
+		jInit();
 	}
 
-	private void jInit(boolean fichierCharge) {
+	private void jInit() {
 		
 		Dimension dimBandeau = new Dimension(this.getWidth(), 50);
 		this.setTitle("SGBag - Simulation");
@@ -276,7 +276,6 @@ public class FenetrePrincipale extends JFrame {
 		panelBas.add(labelInfo);
 		
 		// Panel Parametres
-		// TODO : 
 		bandeauAjoutBagages.setVisible(false);
 		bandeauVitesseChariot.setVisible(false);
 		bandeauGeneral.add(bandeauAjoutBagages, BorderLayout.NORTH);
@@ -293,9 +292,6 @@ public class FenetrePrincipale extends JFrame {
 		// Ajout des panels
 		container.setBackground(Color.white);
 		container.setLayout(new BorderLayout());
-		//container.add(testDessins, BorderLayout.CENTER);
-		if (fichierCharge)
-			container.add(vueGenerale, BorderLayout.CENTER);
 		container.add(panelBas, BorderLayout.SOUTH);
 		container.add(bandeauGeneral, BorderLayout.NORTH);
 		
