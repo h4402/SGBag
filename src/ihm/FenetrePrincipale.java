@@ -266,6 +266,7 @@ public class FenetrePrincipale extends JFrame {
 		
 		// Bouton du choix du mode
 		boutonMode.setText("Mode");
+		boutonMode.addActionListener(modeListener);
 		boutonMode.setEnabled(false);
 		
 		// Panel du bas
