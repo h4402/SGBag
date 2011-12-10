@@ -152,6 +152,8 @@ public class VueGenerale extends JPanel {
 		public void paintComponent(Graphics g) {
 			//super.paintComponent(g);
             //g.drawOval(50, 50, 50, 50);
+			g.setColor(Color.white);
+			g.fillRect(0, 0, this.getWidth(), this.getHeight());
 			System.out.println("vueGenerale.width: "+this.getWidth()+", vueGenerale.height: "+this.getHeight());
 			for (int i = listVues.size()-1 ; i >= 0; i--) {
 				listVues.get(i).dessin(g);
