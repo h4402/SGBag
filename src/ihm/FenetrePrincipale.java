@@ -41,6 +41,8 @@ import org.xml.sax.SAXException;
 
 import bibliotheques.SGBagFileFilter;
 
+// TODO: Le raccourci de zoom avant est ctrl-minus
+// le raccourci de zoom arriere est ctrl-plus
 
 /**
  * 

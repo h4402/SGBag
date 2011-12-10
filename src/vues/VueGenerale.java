@@ -33,10 +33,18 @@ public class VueGenerale extends JPanel {
 			this.bandeauAjoutBagages = bandeauAjoutBagages;
 			this.bandeauVitesseChariot = bandeauVitesseChariot;
 			this.zoneInfo = zoneInfo;
-			System.out.printf("this.width: %d, aeroportLong: %d, this.height: %d, aeroportLarg: %d", this.getWidth(), this.aeroport.getLongueur(),
+			
+			//TODO : à réparer y a t'il une inversion entre longueur et largeur ?
+			System.out.printf("this.width: %d, aeroportLong: %d, this.height: %d, aeroportLarg: %d\n", this.getWidth(), this.aeroport.getLongueur(),
 					this.getHeight(), this.aeroport.getLargeur());
 			this.echelle = Math.max(this.getWidth()/this.aeroport.getLongueur(),
 					this.getHeight()/this.aeroport.getLargeur());
+			
+			//TODO: c'est pour pouvoir tester mais il faudrait trouver une meilleure solution.
+			if(this.echelle==0) {
+				this.echelle=1022/this.aeroport.getLongueur();
+			}
+			
 			coefImage = Bagage.TAILLE_BAGAGE*echelle;
 			listVues = new ArrayList<Vue>();
 			
