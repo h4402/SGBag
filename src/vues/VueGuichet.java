@@ -31,10 +31,12 @@ public class VueGuichet extends Vue {
 	void dessin(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
 		if(selection){
-			g2d.drawImage(imageSel, posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
+			//g2d.drawImage(imageSel, posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
+			g2d.drawImage(imageSel, posPixel.x, posPixel.y,vueGenerale);
 		}
 		else{
-			g2d.drawImage(image, posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
+			//g2d.drawImage(image, posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
+			g2d.drawImage(image, posPixel.x, posPixel.y,vueGenerale);
 		}
 	}
 	

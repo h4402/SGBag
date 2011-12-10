@@ -31,11 +31,12 @@ public class VueGenerale extends JPanel {
 
 		public VueGenerale(BandeauAjoutBagages bandeauAjoutBagages, BandeauVitesseChariot bandeauVitesseChariot, 
 				JLabel zoneInfo, Aeroport aeroport, ImagesManager imagesManager){
-			
-                         super(new BorderLayout());
+						
+                        super(new BorderLayout());
                         this.setSize(500,500);
                         this.setPreferredSize(new Dimension(500, 500));
-                        this.setBackground(Color.red);
+                        this.setBackground(Color.white);
+                        
 			this.aeroport = aeroport;
 			this.bandeauAjoutBagages = bandeauAjoutBagages;
 			this.bandeauVitesseChariot = bandeauVitesseChariot;
@@ -149,8 +150,8 @@ public class VueGenerale extends JPanel {
 		
 		@Override
 		public void paintComponent(Graphics g) {
-			super.paintComponent(g);
-                        g.drawOval(50, 50, 50, 50);
+			//super.paintComponent(g);
+            //g.drawOval(50, 50, 50, 50);
 			System.out.println("vueGenerale.width: "+this.getWidth()+", vueGenerale.height: "+this.getHeight());
 			for (int i = listVues.size()-1 ; i >= 0; i--) {
 				listVues.get(i).dessin(g);

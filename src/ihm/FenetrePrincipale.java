@@ -223,7 +223,7 @@ public class FenetrePrincipale extends JFrame {
 		bandeauGeneral.setPreferredSize(dimBandeau);
 		
 		// Chargement des images
-		imagesManager = new ImagesManager();
+		imagesManager = new ImagesManager(getToolkit());
 		
 		// Menu Fichier
 		menuBar.add(fileMenu);
@@ -290,8 +290,8 @@ public class FenetrePrincipale extends JFrame {
 		});
 		
 		// Ajout des panels
-		container.setBackground(Color.white);
 		container.setLayout(new BorderLayout());
+		container.setBackground(Color.white);
 		container.add(panelBas, BorderLayout.SOUTH);
 		container.add(bandeauGeneral, BorderLayout.NORTH);
 		
