@@ -48,8 +48,8 @@ public class ImagesManager {
     final String IMG_TAPIS_B_SEL = PATH_IMAGE+"tapis_b_sel.png";
     final String IMG_RAIL_SEL = PATH_IMAGE+"rail_sel.png";
 	
-    public ImagesManager() {
-    	Toolkit tk = Toolkit.getDefaultToolkit();
+    public ImagesManager(Toolkit tk) {
+    	//Toolkit tk = Toolkit.getDefaultToolkit();
     	imgChariot = tk.getImage(IMG_CHARIOT);
     	imgChariotSel = tk.getImage(IMG_CHARIOT_SEL);
     	imgChariotB = tk.getImage(IMG_CHARIOT_B);
