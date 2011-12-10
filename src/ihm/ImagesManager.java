@@ -48,6 +48,28 @@ public class ImagesManager {
     final String IMG_TAPIS_B_SEL = PATH_IMAGE+"tapis_b_sel.png";
     final String IMG_RAIL_SEL = PATH_IMAGE+"rail_sel.png";
 	
+    public ImagesManager() {
+    	Toolkit tk = Toolkit.getDefaultToolkit();
+    	imgChariot = tk.getImage(IMG_CHARIOT);
+    	imgChariotSel = tk.getImage(IMG_CHARIOT_SEL);
+    	imgChariotB = tk.getImage(IMG_CHARIOT_B);
+    	imgChariotBSel = tk.getImage(IMG_CHARIOT_B_SEL);
+    	imgNode = tk.getImage(IMG_NODE);
+    	imgNodeSel = tk.getImage(IMG_NODE_SEL);
+    	imgNodeGarage = tk.getImage(IMG_NODE_GARAGE);
+    	imgNodeGarageSel = tk.getImage(IMG_NODE_GARAGE_SEL);
+    	imgGuichet = tk.getImage(IMG_GUICHET);
+    	imgGuichetSel = tk.getImage(IMG_GUICHET_SEL);
+    	imgToboggan = tk.getImage(IMG_TOBOGGAN);
+    	imgTobogganSel = tk.getImage(IMG_TOBOGGAN_SEL);
+    	imgTapis = tk.getImage(IMG_TAPIS);
+    	imgTapisSel = tk.getImage(IMG_TAPIS_SEL);
+    	imgTapisB = tk.getImage(IMG_TAPIS_B);
+    	imgTapisBSel = tk.getImage(IMG_TAPIS_B_SEL);
+    	imgRail = tk.getImage(IMG_RAIL);
+    	imgRailSel = tk.getImage(IMG_RAIL_SEL);
+	}
+    
     public Image getImgChariotSel() {
 		return imgChariotSel;
 	}
@@ -82,20 +104,6 @@ public class ImagesManager {
 
 	public Image getImgRailSel() {
 		return imgRailSel;
-	}
-
-	public ImagesManager() {
-    	Toolkit tk = Toolkit.getDefaultToolkit();
-    	imgChariot = tk.getImage(IMG_CHARIOT);
-    	imgChariotB = tk.getImage(IMG_CHARIOT_B);
-    	imgNode = tk.getImage(IMG_NODE);
-    	imgNodeGarage = tk.getImage(IMG_NODE_GARAGE);
-    	imgGuichet = tk.getImage(IMG_GUICHET);
-    	imgToboggan = tk.getImage(IMG_TOBOGGAN);
-    	imgTapis = tk.getImage(IMG_TAPIS);
-    	imgTapisB = tk.getImage(IMG_TAPIS_B);
-    	imgRail = tk.getImage(IMG_RAIL);
-    	
 	}
 
 	public Image getImgChariot() {

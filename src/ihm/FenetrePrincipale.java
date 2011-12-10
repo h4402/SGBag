@@ -105,7 +105,7 @@ public class FenetrePrincipale extends JFrame {
 	/**
 	 * ImageManager
 	 */
-	private ImagesManager imagesManager = null;
+	private ImagesManager imagesManager;
 	
 	/**
 	 * Enumérations
