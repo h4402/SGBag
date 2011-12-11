@@ -289,15 +289,7 @@ public class FenetrePrincipale extends JFrame {
 		bandeauGeneral.add(bandeauAjoutBagages, BorderLayout.NORTH);
 		bandeauGeneral.add(bandeauVitesseChariot, BorderLayout.SOUTH);
 		
-		// Test : Panel général
-		testDessins.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-                testDessinsMouseclicked(e);
-            }
-		
-		});
-		
-		// Ajout des panels
+		// Ajout des panels, structuration de la fenetre
 		container.setLayout(new BorderLayout());
 		container.setBackground(Color.white);
 		container.add(panelBas, BorderLayout.SOUTH);
@@ -329,7 +321,7 @@ public class FenetrePrincipale extends JFrame {
 	}
 	
 	/**
-	 * Clic sur le panem vueGenerale
+	 * Clic sur le panel vueGenerale
 	 * @param e : mouseEvent pour récupérer la position du clic
 	 */
 	
@@ -338,21 +330,6 @@ public class FenetrePrincipale extends JFrame {
 			vueGenerale.clic(e.getX(), e.getY());
 	}
 	
-	
-	/**
-	 * Test de dessins
-	 * TODO : a supprimer
-	 * @param me : mouseEvent
-	 */
-	private void testDessinsMouseclicked(MouseEvent me) {
-        if (me.getX() < testDessins.getWidth()/2) {
-        	bandeauAjoutBagages.setVisible(true);
-        	bandeauVitesseChariot.setVisible(false);
-        } else {
-        	bandeauAjoutBagages.setVisible(false);
-        	bandeauVitesseChariot.setVisible(true);
-        }
-	}
 	
 	/**
 	 * 
@@ -399,7 +376,6 @@ public class FenetrePrincipale extends JFrame {
         boutonMode.setEnabled(true);
         boutonMode.setText(vueGenerale.getMode());
         
-    	//System.out.println("this.width: "+vueGenerale.getWidth()+", this.height: "+vueGenerale.getHeight());
     	vueGenerale.repaint();
         
         return Aeroport.PARSE_OK;
