@@ -32,10 +32,10 @@ public class VueGenerale extends JPanel {
 		public VueGenerale(BandeauAjoutBagages bandeauAjoutBagages, BandeauVitesseChariot bandeauVitesseChariot, 
 				JLabel zoneInfo, Aeroport aeroport, ImagesManager imagesManager){
 						
-                        super(new BorderLayout());
-                        this.setSize(500,500);
-                        this.setPreferredSize(new Dimension(500, 500));
-                        this.setBackground(Color.white);
+            super(new BorderLayout());
+            this.setSize(1022,628);
+            this.setPreferredSize(new Dimension(1022, 628));
+            this.setBackground(Color.white);
                         
 			this.aeroport = aeroport;
 			this.bandeauAjoutBagages = bandeauAjoutBagages;
@@ -45,16 +45,12 @@ public class VueGenerale extends JPanel {
 			//TODO : à réparer y a t'il une inversion entre longueur et largeur ?
 			System.out.printf("this.width: %d, aeroportLong: %d, this.height: %d, aeroportLarg: %d\n", this.getWidth(), this.aeroport.getLongueur(),
 					this.getHeight(), this.aeroport.getLargeur());
-			this.echelle = Math.max(this.getWidth()/this.aeroport.getLongueur(),
-					this.getHeight()/this.aeroport.getLargeur());
+			this.echelle = Math.min(this.getWidth()/this.aeroport.getLargeur(),
+					this.getHeight()/this.aeroport.getLongueur());
 			
-			//TODO: c'est pour pouvoir tester mais il faudrait trouver une meilleure solution.
-			if(this.echelle==0) {
-				this.echelle= 1022/this.aeroport.getLongueur();
-			}
 			
-			// TODO : supprimer ce coeff 5
-			coefImage = 5*Bagage.TAILLE_BAGAGE*echelle;
+			// TODO : supprimer ce coeff 3
+			coefImage = 3*Bagage.TAILLE_BAGAGE*echelle;
 			listVues = new ArrayList<Vue>();
 			
 			List<Chariot> listChariot = aeroport.getListChariots();
