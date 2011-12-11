@@ -377,9 +377,25 @@ public class Aeroport {
 		//return this.listNoeuds.get(id);
 	}
 	
+	/**
+	 * Reset pour la reconstruction de l'aeroport.
+	 */
+	private void reset() {
+		this.listRails.clear();
+		this.listGuichets.clear();
+		this.listToboggans.clear();
+		this.listTapis.clear();
+		this.listNoeuds.clear();
+		this.listChariots.clear(); 
+		genRan = new Random();
+		mode = Mode.MANUEL;
+		largeur = 0;
+		longueur = 0;
+	}
+	
 	public int construireAPartirDeXML(Element aeroportElement)
 	{	
-		
+		this.reset();
 		// On récupère les attributs de l'aéroports
         this.longueur = Integer.parseInt(aeroportElement.getAttribute("longueur"));
         this.largeur = Integer.parseInt(aeroportElement.getAttribute("largeur"));
