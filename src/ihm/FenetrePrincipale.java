@@ -1,14 +1,11 @@
 package ihm;
 
 import java.awt.BorderLayout;
-import java.awt.Button;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
 
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
@@ -20,7 +17,6 @@ import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 import javax.swing.Timer;
 
-import tests.TestDessins;
 import vues.VueGenerale;
 
 import java.awt.event.KeyEvent;
@@ -37,7 +33,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import noyau.Aeroport;
-import noyau.Aeroport.Mode;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -83,7 +78,6 @@ public class FenetrePrincipale extends JFrame {
 	private JPanel bandeauGeneral = new JPanel();
 	private BandeauAjoutBagages bandeauAjoutBagages = new BandeauAjoutBagages();
 	private BandeauVitesseChariot bandeauVitesseChariot = new BandeauVitesseChariot();
-	private TestDessins testDessins = new TestDessins();
 	private JPanel panelBas = new JPanel();
 	private final JPanel panelBoutons = new JPanel();
     private final JPanel panelLabelInfo = new JPanel();
@@ -296,8 +290,6 @@ public class FenetrePrincipale extends JFrame {
 		container.add(bandeauGeneral, BorderLayout.NORTH);
 		this.setContentPane(container);
 		
-		System.out.printf("this.width: %d, this.height: %d", this.getWidth(), this.getHeight());
-		
 	}
 	
 	/**
@@ -340,26 +332,16 @@ public class FenetrePrincipale extends JFrame {
 	{
 		// On crée l'élément Aéroport et la vue qui lui est associée
 		Aeroport aeroport = new Aeroport();
-        //this.vueGenerale = null;
 
         if (aeroport.construireAPartirDeXML(aeroportElement) != Aeroport.PARSE_OK)
         {
             return Aeroport.PARSE_ERROR;
         }
         
-        this.vueGenerale = new VueGenerale(bandeauAjoutBagages, 
+        vueGenerale = new VueGenerale(bandeauAjoutBagages, 
         		bandeauVitesseChariot, labelInfo, aeroport, imagesManager);
         
-        
-        container = new JPanel();
-        container.setBackground(Color.white);
-		container.setLayout(new BorderLayout());
-		container.add(panelBas, BorderLayout.SOUTH);
-		container.add(bandeauGeneral, BorderLayout.NORTH);
-        container.add(vueGenerale, BorderLayout.CENTER);
-        container.add(panelBas, BorderLayout.SOUTH);
-		container.add(bandeauGeneral, BorderLayout.NORTH);
-    	setContentPane(container);
+        labelInfo.setText("Bienvenue dans le système de gestion de bagages SGBag");
         
         // création des bandeaux qui ont besoin de la vue générale
         bandeauAjoutBagages.setVueGenerale(vueGenerale);
@@ -376,7 +358,13 @@ public class FenetrePrincipale extends JFrame {
         boutonMode.setEnabled(true);
         boutonMode.setText(vueGenerale.getMode());
         
-    	vueGenerale.repaint();
+        container = new JPanel();
+		container.setLayout(new BorderLayout());
+		container.setBackground(Color.white);
+		container.add(panelBas, BorderLayout.SOUTH);
+		container.add(bandeauGeneral, BorderLayout.NORTH);
+        container.add(vueGenerale, BorderLayout.CENTER);
+    	setContentPane(container);
         
         return Aeroport.PARSE_OK;
     }
