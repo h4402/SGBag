@@ -109,6 +109,8 @@ public class FenetrePrincipale extends JFrame {
 	 */
 	String playString = "Play";
 	String pauseString = "Pause";
+	String auString = "Arret d'urgence";
+	String repriseAuString = "Reprise AU";
 
 	/**
 	 * ImageManager
@@ -178,7 +180,11 @@ public class FenetrePrincipale extends JFrame {
 	 */
 	private ActionListener arretUrgenceListener = new ActionListener() {
 		public void actionPerformed(ActionEvent actionEvent) {
-			// TODO : vueGenerale.arretUrgence();
+			vueGenerale.toggleAU();
+			if (boutonArretUrgence.getText().equals(auString))
+				boutonArretUrgence.setText(repriseAuString);
+			else
+				boutonArretUrgence.setText(auString);
 		}
 	};
 	
@@ -263,7 +269,7 @@ public class FenetrePrincipale extends JFrame {
 		GridLayout gridBoutons = new GridLayout(1, 3, 5, 3);
 		panelBoutons.setLayout(gridBoutons);
 		// Bouton d'arret d'urgence
-		boutonArretUrgence.setText("STOP!");
+		boutonArretUrgence.setText(auString);
 		boutonArretUrgence.addActionListener(arretUrgenceListener);
 		boutonArretUrgence.setEnabled(false);
 		panelBoutons.add(boutonArretUrgence);

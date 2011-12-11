@@ -177,6 +177,9 @@ public class VueGenerale extends JPanel {
 				tobogganCourant = null;
 				chariotCourant = null;
 			}
+			
+			repaint();
+			
 		}
 		
 		public void ajouterBagage(){
@@ -192,6 +195,10 @@ public class VueGenerale extends JPanel {
 		
 		public void avancerTemps(){
 			aeroport.avancerTemps();
+		}
+		
+		public void toggleAU(){
+			aeroport.toggleAU();
 		}
 		
 		public void changerMode(){
