@@ -56,7 +56,7 @@ public class VueRail extends Vue {
 	void dessin(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
 		g2d.rotate(alpha, pointA.x, pointA.y);
-		//TODO : verifier que le clic fonctionne.
+
 		for (int i = 0; i < Math.round(Math.round(pointA.distance(pointB))/imageWidth); i++) {
 			if(selection){
 				g2d.drawImage(imageSel, pointA.x + i*imageWidth, pointA.y - imageHeight/2, imageWidth, imageHeight, vueGenerale);
@@ -73,13 +73,16 @@ public class VueRail extends Vue {
 		this.selectionner();
 		vueGenerale.setGuichetCourant(null);
 		vueGenerale.setTobogganCourant(null);
-		if(vueGenerale.getChariotCourant().noeudElligible(rail.getNoeudSortie())){
-			vueGenerale.getChariotCourant().ajouterNoeud(rail.getNoeudSortie());
-			vueGenerale.getZoneInfo().setText("Destination ajoutée");
-			this.deselectionner();
-		}
-		else{
-			vueGenerale.getZoneInfo().setText("Cette destination n'est pas valide!");
+		//TODO : vérifier qu'on est en manuel
+		if(vueGenerale.getChariotCourant()!=null) {
+			if(vueGenerale.getChariotCourant().noeudElligible(rail.getNoeudSortie())){
+				vueGenerale.getChariotCourant().ajouterNoeud(rail.getNoeudSortie());
+				vueGenerale.getZoneInfo().setText("Destination ajoutée");
+				this.deselectionner();
+			}
+			else{
+				vueGenerale.getZoneInfo().setText("Cette destination n'est pas valide!");
+			}
 		}
 	}
 	
@@ -100,7 +103,6 @@ public class VueRail extends Vue {
 		double b = pointB.x - pointA.x;
 		alpha = Math.atan2(h,b);
 		
-		//TODO : verifier ce rectangle, pas sur que le clic fonctionne.
 		rectangle = new Rectangle((int)Math.round(pointA.x), (int)Math.round(pointA.y - imageHeight/2),
 				(int) Math.round(pointA.distance(pointB)), imageHeight);
 		AffineTransform rotation = AffineTransform.getRotateInstance(alpha, pointA.x, pointA.y);
