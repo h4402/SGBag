@@ -157,6 +157,21 @@ public class Aeroport {
 	 * Générateur de nombre aléatoire.
 	 */
 	private Random genRan;
+	
+	/**
+	 * Nombre de top actuel entre chaque bagage.
+	 */
+	private int nbTopEnvoiBagage;
+	
+	/**
+	 * Nombre de top max entre deux bagages.
+	 */
+	private static final int NB_TOP_BAGAGES = 100;
+	
+	/**
+	 * Le systeme est-il en AU?
+	 */
+	private boolean enAU;
 
 	/**
 	 * Constructeur permettant de se mettre d'accord avec 
@@ -170,7 +185,9 @@ public class Aeroport {
 	 */
 	public Aeroport(List<Rail> listRails, List<Guichet> listGuichets,
 			List<Toboggan> listToboggans, List<Tapis> listTapis,
-			List<Noeud> listNoeuds, List<Chariot> listChariots) {
+			List<Noeud> listNoeuds, List<Chariot> listChariots, 
+			int longueur, int largeur, int nbTopEnvoiBagage,
+			boolean enAU) {
 		super();
 		this.listRails = listRails;
 		this.listGuichets = listGuichets;
@@ -178,18 +195,15 @@ public class Aeroport {
 		this.listTapis = listTapis;
 		this.listNoeuds = listNoeuds;
 		this.listChariots= listChariots; 
-		genRan = new Random();
+		this.genRan = new Random();
+		this.largeur = largeur;
+		this.longueur = longueur;
+		this.nbTopEnvoiBagage = nbTopEnvoiBagage;
+		this.enAU = enAU;
 	}
 	
 	/**
-	 * Constructeur permettant de se mettre d'accord avec 
-	 * GreenUML.
-	 * 
-	 * @param listRails Liste des rails de l'application.
-	 * @param listGuichets Liste des guichets de l'application.
-	 * @param listTapis Liste des tapis de l'application.
-	 * @param listToboggans Liste des toboggans de l'application.
-	 * @param listNoeuds Liste des noeuds de l'application
+	 * Constructeur par défault.
 	 */
 	public Aeroport() {
 		super();
@@ -199,7 +213,11 @@ public class Aeroport {
 		this.listTapis = new ArrayList<Tapis>();
 		this.listNoeuds = new ArrayList<Noeud>();
 		this.listChariots= new ArrayList<Chariot>(); 
-		genRan = new Random();
+		this.genRan = new Random();
+		this.largeur = 0;
+		this.longueur = 0;
+		this.nbTopEnvoiBagage = 0;
+		this.enAU = false;
 	}
 	
 	/**
@@ -277,8 +295,10 @@ public class Aeroport {
 		/*
 		 * On fait avancer les chariots sur les rails.
 		 */
-		for (Rail r : listRails) {
-			r.avancerChariots();
+		if(!enAU) {
+			for (Rail r : listRails) {
+				r.avancerChariots();
+			}
 		}
 		
 		/* 
@@ -287,18 +307,23 @@ public class Aeroport {
 		 */
 		
 		if(mode == Mode.AUTO) {
-			Bagage b = new Bagage(listToboggans.get(genRan.nextInt(listToboggans.size())));
-			for (Guichet g : listGuichets) {
-				//System.out.println("On ajoute un bagage");
-				g.ajoutBagage(b);
+			nbTopEnvoiBagage = (nbTopEnvoiBagage + 1) % NB_TOP_BAGAGES;
+			if(nbTopEnvoiBagage == 0) {
+				Bagage b = new Bagage(listToboggans.get(genRan.nextInt(listToboggans.size())));
+				for (Guichet g : listGuichets) {
+					//System.out.println("On ajoute un bagage");
+					g.ajoutBagage(b);
+				}
 			}
 		}
 		
 		/*
 		 * On fait avancer les bagages sur les tapis. 
 		 */
-		for (Tapis t : listTapis) {
-			t.avancerBagages();
+		if(!enAU) {
+			for (Tapis t : listTapis) {
+				t.avancerBagages();
+			}
 		}
 		
 		/*
@@ -306,7 +331,9 @@ public class Aeroport {
 		 * chercher un bagage mais sont bloqués 
 		 * dans le garage, on essai de les faire sortir.
 		 */
-		garage.faireSortirAttente();
+		if(!enAU) {
+			garage.faireSortirAttente();
+		}
 		
 	}
 	
@@ -345,6 +372,22 @@ public class Aeroport {
 	public List<Noeud> getListeNoeuds() {
 		return this.listNoeuds;
 	}
+	
+	/**
+	 * Change l'état de l'arret d'urgence.
+	 */
+	public void toggleAU() {
+		enAU = !enAU;
+	}
+	
+	/**
+	 * Retourne si le systeme est en AU ou pas.
+	 * 
+	 * @return AU ou non?
+	 */
+	public boolean setAU() {
+		return enAU;
+	}
 
 	/**
 	 * Retourne un noeud à partir de son id
@@ -377,9 +420,26 @@ public class Aeroport {
 		//return this.listNoeuds.get(id);
 	}
 	
+	/**
+	 * Reset pour la reconstruction de l'aeroport.
+	 */
+	private void reset() {
+		this.listRails.clear();
+		this.listGuichets.clear();
+		this.listToboggans.clear();
+		this.listTapis.clear();
+		this.listNoeuds.clear();
+		this.listChariots.clear(); 
+		this.genRan = new Random();
+		this.mode = Mode.MANUEL;
+		this.largeur = 0;
+		this.longueur = 0;
+		this.enAU = false;
+	}
+	
 	public int construireAPartirDeXML(Element aeroportElement)
 	{	
-		
+		this.reset();
 		// On récupère les attributs de l'aéroports
         this.longueur = Integer.parseInt(aeroportElement.getAttribute("longueur"));
         this.largeur = Integer.parseInt(aeroportElement.getAttribute("largeur"));
