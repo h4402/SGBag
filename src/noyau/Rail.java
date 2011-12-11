@@ -121,8 +121,8 @@ public class Rail {
 		Iterator<Chariot> it = listChariots.iterator();
 		Chariot prev = null;
 		
-		if(id == 10) {
-			System.out.println("RAIL: Cool");
+		if(listChariots.size() > 0) {
+			System.out.println("RAIL: " + id);
 		}
 		
 		while ( it.hasNext() ) {
@@ -143,6 +143,7 @@ public class Rail {
 				 * Si le chariot est toujours dans le rail,
 				 * on l'avance.
 				 */
+				System.out.println("On ne dépasse pas de chariot " + distChariot + " longueurRail : "+ longueur);
 				if(distChariot < longueur) {
 					System.out.println("RAIL: J'avance le chariot");
 					c.majPos(noeudEntree, getVectUnitaire(), distChariot);
@@ -215,6 +216,7 @@ public class Rail {
 		if((listChariots.size() > 0 && listChariots.getLast().getDistance() > 0)
 				|| listChariots.size() == 0) {
 			System.out.println("RAIL "+ id +": J'ajoute un chariot!!!!");
+			listChariots.addLast(c);
 			c.majPos(noeudEntree, getVectUnitaire(), 0);
 			return true;
 		}

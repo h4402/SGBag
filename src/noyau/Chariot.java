@@ -128,7 +128,7 @@ public class Chariot {
 	 * après un top horloge.
 	 */
 	public float calculerNouvPos() {
-		return (float)(distanceDepuisNoeudDepart + vitesse*Aeroport.lapsTemps);
+		return (float)(distanceDepuisNoeudDepart + vitesse*Aeroport.lapsTemps/1000);
 	}
 	
 	/**
@@ -166,14 +166,14 @@ public class Chariot {
 		List<Rail> l = n.getListeRails();
 		
 		for (Rail r : l) {
-			/*
+			
 			System.out.println("On teste le rail n°" + r.getId());
 			System.out.println("Le noeud de sortie de ce rail est : " + r.getNoeudSortie().getId());
 			System.out.println("Mon chemin: ");
 			for(Noeud n0 : chemin) {
 				System.out.println("\t "+ n0.getId());
 			}
-			*/
+			
 			/*
 			 * On parle du meme objet ici, donc
 			 * on peut faire ce test, mais la logique voudrait
