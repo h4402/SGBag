@@ -45,8 +45,8 @@ public class VueNoeud extends Vue{
 
 	@Override
 	boolean clic(int x, int y) {
-		// TODO Auto-generated method stub
-		return false;
+		Point p = new Point(x, y);
+		return dansRectangle(p);
 	}
 
 	@Override
@@ -64,7 +64,15 @@ public class VueNoeud extends Vue{
 	@Override
 	void action() {
 		// TODO : afficher infos nombre de chariots dans le garage
-		
+		if(noeud instanceof NoeudGarage){
+			this.selectionner();
+			// Tiens c'est marrant le \n ne fonctionne pas dans un Jlabel ...
+			vueGenerale.getZoneInfo().setText("<html>Chariots présents : " + 
+					Aeroport.garage.getListChariotsVides().size()  + 
+					"<br>" + "Chariots en attente de départ : " + 
+					Aeroport.garage.getListChariotsPourPartir().size()+
+					"</html>");
+		}
 		
 	}
 	
