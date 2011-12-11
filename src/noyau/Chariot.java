@@ -144,12 +144,10 @@ public class Chariot {
 		
 		distanceDepuisNoeudDepart = nouvDist;
 		if(entree != null && vectUnitaire != null) {
-			System.out.println("je fais avancer le chariot!");
 			coordonnees.x = entree.getCoordonnees().x + distanceDepuisNoeudDepart*vectUnitaire.x;
 			coordonnees.y = entree.getCoordonnees().y + distanceDepuisNoeudDepart*vectUnitaire.y;
 		}
 		else {
-			System.out.println("J'entre dans le garage!");
 			coordonnees.x = 0;
 			coordonnees.y = 0;
 		}
@@ -173,6 +171,7 @@ public class Chariot {
 			for(Noeud n0 : chemin) {
 				System.out.println("\t "+ n0.getId());
 			}
+			System.out.println("Chemin Peek : " + chemin.peek().getId());
 			
 			/*
 			 * On parle du meme objet ici, donc
@@ -182,7 +181,8 @@ public class Chariot {
 			 * Il faudrait peut-être commencer avec les LinkedList,
 			 * afin de pouvoir récupérer le premier élément plus facilement.
 			 */
-			if(r.getNoeudSortie() == chemin.peek()) {
+			if(r.getNoeudSortie().equals(chemin.peek())) {
+				System.out.println("CHARIOT: On donne un truc");
 				chemin.peek();
 				return r;
 			}
