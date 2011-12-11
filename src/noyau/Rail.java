@@ -120,8 +120,17 @@ public class Rail {
 	public void avancerChariots() {
 		Iterator<Chariot> it = listChariots.iterator();
 		Chariot prev = null;
+		
+		if(id == 10) {
+			System.out.println("RAIL: Cool");
+		}
+		
 		while ( it.hasNext() ) {
+			
+			
 		    Chariot c = it.next();
+		    
+		    System.out.println("RAIL: J'essai de faire avancer un chariot");
 		    
 			float distChariot = c.calculerNouvPos();
 
@@ -135,27 +144,31 @@ public class Rail {
 				 * on l'avance.
 				 */
 				if(distChariot < longueur) {
+					System.out.println("RAIL: J'avance le chariot");
 					c.majPos(noeudEntree, getVectUnitaire(), distChariot);
 				}
 				else {
 					
 					if(noeudSortie == c.getDestination()) {
-						
+						System.out.println("RAIL: On est arrivé!");
 						if(noeudSortie instanceof NoeudGarage) {
+							System.out.println("RAIL: Dans un garage");
 							((NoeudGarage)noeudSortie).getGarage().ajouterChariotVide(c);
 							it.remove();
 							continue;
 						}
 						else if(noeudSortie instanceof NoeudToboggan) {
+							System.out.println("RAIL: Dans un toboggan");
 							((NoeudToboggan)noeudSortie).getToboggan().ajouterBagage((c.viderChariot()));
 							c.calculerChemin(noeudSortie, Aeroport.garage.getNoeud());
 						}
 						else if(noeudSortie instanceof NoeudTapis) {
+							System.out.println("RAIL: Dans un tapis");
 							((NoeudTapis)noeudSortie).avertirChariotPresent(c);
 						}
 						
 					}
-					
+					System.out.println("RAIL: Changement de rail si possible");
 					/*
 					 * Si on est la, le chariot continue son chemin,
 					 * on prend le prochain rail et
@@ -201,6 +214,7 @@ public class Rail {
 		 */
 		if((listChariots.size() > 0 && listChariots.getLast().getDistance() > 0)
 				|| listChariots.size() == 0) {
+			System.out.println("RAIL "+ id +": J'ajoute un chariot!!!!");
 			c.majPos(noeudEntree, getVectUnitaire(), 0);
 			return true;
 		}

@@ -60,6 +60,13 @@ public class Chariot {
 	private float distanceDepuisNoeudDepart;
 	
 	/**
+	 * Prochain Noeud qui n'est pas dans le chemin
+	 * car dans le chemin on garde le noeud de sortie du
+	 * prochain rail.
+	 */
+	private Noeud nextNode;
+	
+	/**
 	 * Si le chariot est arrété.
 	 */
 	private boolean arret; 
@@ -73,7 +80,7 @@ public class Chariot {
 	 * @param chemin Liste des noeud avant la destination.
 	 */
 	public Chariot(int id, Point2D.Float coordonnees, Bagage bagage, float vitesse,
-			LinkedList<Noeud> chemin) {
+			LinkedList<Noeud> chemin, Noeud nextNode) {
 		/* TODO : enlever le bagage en parametre du constructeur, et mettre
 		 * bagage = null ici
 		 */
@@ -85,6 +92,7 @@ public class Chariot {
 		this.chemin = chemin;
 		this.distanceDepuisNoeudDepart = 0;
 		this.arret = false;
+		this.nextNode = nextNode;
 	}
 	
 	/**
@@ -100,6 +108,7 @@ public class Chariot {
 		this.chemin = new LinkedList<Noeud>();
 		this.distanceDepuisNoeudDepart = 0;
 		this.arret = false;
+		this.nextNode = null;
 	}
 	
 	public float getVitesse() {
@@ -132,12 +141,15 @@ public class Chariot {
 	 */
 	public void majPos(Noeud entree, Point2D.Float vectUnitaire, float nouvDist) {
 		
+		
 		distanceDepuisNoeudDepart = nouvDist;
 		if(entree != null && vectUnitaire != null) {
+			System.out.println("je fais avancer le chariot!");
 			coordonnees.x = entree.getCoordonnees().x + distanceDepuisNoeudDepart*vectUnitaire.x;
 			coordonnees.y = entree.getCoordonnees().y + distanceDepuisNoeudDepart*vectUnitaire.y;
 		}
 		else {
+			System.out.println("J'entre dans le garage!");
 			coordonnees.x = 0;
 			coordonnees.y = 0;
 		}
@@ -212,6 +224,7 @@ public class Chariot {
 		
 		if(depart == null || arrivee == null) {
 			chemin.clear();
+			nextNode = null;
 		}
 		else {
 			TreeMap<Noeud, DijStuff> graph = new TreeMap<Noeud, DijStuff>();
@@ -241,7 +254,9 @@ public class Chariot {
 				dijCourant = graph.get(dijCourant.pred);
 			}
 			//chemin.addFirst(depart);
+			nextNode = depart;
 		}
+		
 	}
 	
 	/**
@@ -343,7 +358,7 @@ public class Chariot {
 	 * @return Prochain noeud du chemin.
 	 */
 	public Noeud getProchainNoeud() {
-		return chemin.peek();
+		return nextNode;
 	}
 	
 	/**
@@ -398,7 +413,7 @@ public class Chariot {
 	 * Complémentaire de getProchainRail.
 	 */
 	public void suppProchainRail() {
-		chemin.removeFirst();
+		nextNode = chemin.poll();
 	}
 }
 
