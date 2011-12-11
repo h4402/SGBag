@@ -194,6 +194,10 @@ public class VueGenerale extends JPanel {
 			aeroport.avancerTemps();
 		}
 		
+		public void toggleAU(){
+			aeroport.toggleAU();
+		}
+		
 		public void changerMode(){
 			if(Aeroport.mode == Mode.AUTO){
 				Aeroport.mode = Mode.MANUEL;
