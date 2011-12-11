@@ -123,15 +123,14 @@ public class Tapis extends ES {
 	 * @return Oui si l'opération est possible, non si le tapis est plein.
 	 */
 	public boolean ajouterBagage(Bagage b) {
-		
 		if(listBagages.elementAt(0) != null) {
 			return false;
 		}
 		if(Aeroport.mode == Aeroport.Mode.AUTO) {
+			
 			Aeroport.garage.appelerChariot(this.getNoeud());
 		}
 		listBagages.set(0, b);
-		
 		return true;
 	}
 	public Guichet getGuichet() {

@@ -31,6 +31,12 @@ public class Garage extends ES {
 	 * @uml.property  name="listChariotsPourPartir"
 	 */
 	private LinkedList<Chariot> listChariotsPourPartir;
+	
+	/**
+	 * Liste des tapis qui ont appelé un chariot
+	 * quand le garage était vide.
+	 */
+	private LinkedList<Noeud> listTapisARejoindre;
 
 	/**
 	 * Constructeur pratique pour GreenUML.
@@ -39,12 +45,15 @@ public class Garage extends ES {
 	 * @param listChariotsVides Liste des chariots vides.
 	 * @param listChariotsPourPartir Liste des chariots en attente.
 	 * @param coordonnees Coordonnées de l'ES.
+	 * @param listTapisARejoindre Liste des tapis a rejoindre.
 	 */
 	public Garage(Noeud noeud, LinkedList<Chariot> listChariotsVides,
-			LinkedList<Chariot> listChariotsPourPartir) {
+			LinkedList<Chariot> listChariotsPourPartir,
+			LinkedList<Noeud> listTapisARejoindre) {
 		super(noeud);
 		this.listChariotsVides = listChariotsVides;
 		this.listChariotsPourPartir = listChariotsPourPartir;
+		this.listTapisARejoindre = listTapisARejoindre;
 	}
 	
 	/**
@@ -54,6 +63,7 @@ public class Garage extends ES {
 		super();
 		this.listChariotsVides = new LinkedList<Chariot>();
 		this.listChariotsPourPartir = new LinkedList<Chariot>();
+		this.listTapisARejoindre = new LinkedList<Noeud>();
 	}
 	
 	/**
@@ -62,9 +72,15 @@ public class Garage extends ES {
 	 * @param c Chariot vide.
 	 */
 	public void ajouterChariotVide(Chariot c) {
-		c.calculerChemin(null, null);
-		c.majPos(null,null,0);
-		listChariotsVides.offerLast(c);
+		if(!listTapisARejoindre.isEmpty()) {
+			listChariotsVides.offerLast(c);
+			appelerChariot(listTapisARejoindre.poll());
+		}
+		else {
+			c.calculerChemin(null, null);
+			c.majPos(null,null,0);
+			listChariotsVides.offerLast(c);
+		}
 	}
 
 	/**
@@ -107,7 +123,7 @@ public class Garage extends ES {
 			}
 		}
 		else {
-			// TODO garder une liste des appels si la list eest vide.
+			listTapisARejoindre.offerLast(n);
 		}
 	}
 	
