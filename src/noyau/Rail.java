@@ -243,6 +243,15 @@ public class Rail {
 	}
 	
 	/**
+	 * Retourne l'ID du rail.
+	 * 
+	 * @return Id du rail.
+	 */
+	public int getId() {
+		return id;
+	}
+	
+	/**
 	 * Permet de compléter un objet vide à partir du XML
 	 * 
 	 * @param railElement Element XML Rail

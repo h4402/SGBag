@@ -83,12 +83,14 @@ public class Tapis extends ES {
 	 * met un bagage dans un chariot si c'est possible.
 	 */
 	public void avancerBagages(){
+		System.out.println("Le tapis fais avancer les bagages.");
 		topCourant = ++topCourant % vitesse;
 		if(topCourant == 0) {
 			Bagage b = listBagages.elementAt(tailleTapis-1);
 			if(b != null) {
 				Chariot c = ((NoeudTapis)(this.getNoeud())).getChariotVide();
 				if(c != null) {
+					System.out.println("Je peux mettre un bagage!!!");
 					c.mettreBagage(this.getNoeud(), b);
 				}
 			}

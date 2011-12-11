@@ -93,7 +93,9 @@ public class Garage extends ES {
 		Chariot c = listChariotsVides.poll();
 		
 		c.calculerChemin(this.getNoeud(), n);
-		Rail r = c.getProchainRail(n);
+		
+		Rail r = c.getProchainRail(this.getNoeud());
+		
 		if(!r.ajoutChariot(c)) {
 			listChariotsPourPartir.offerLast(c);
 		}
