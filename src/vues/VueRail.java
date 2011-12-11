@@ -19,6 +19,9 @@ public class VueRail extends Vue {
 	private Point pointA;
 	private Point pointB;
 	private double alpha;
+	
+	static private double largeurReelleElem = 1.1;
+	static private double longueurReelleElem = 1;
 
 	/**
 	 * Constructeur de la VueRail
@@ -30,6 +33,10 @@ public class VueRail extends Vue {
 	public VueRail(VueGenerale vueGenerale, Image image, Image imageSel, Rail rail) {
 		super(vueGenerale, image, imageSel);
 		this.rail = rail;
+		
+		this.imageWidth = (int)Math.round(longueurReelleElem*vueGenerale.getEchelle());
+		this.imageHeight = (int)Math.round(largeurReelleElem*vueGenerale.getEchelle());
+		
 		constructionRectangle();
 		// TODO Auto-generated constructor stub
 	}
@@ -49,12 +56,13 @@ public class VueRail extends Vue {
 	void dessin(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
 		g2d.rotate(alpha, pointA.x, pointA.y);
-		for (int i = 0; i < Math.round(rectangle.getBounds2D().getWidth()/imageWidth); i++) {
+		//TODO : verifier que le clic fonctionne.
+		for (int i = 0; i < Math.round(Math.round(pointA.distance(pointB))/imageWidth); i++) {
 			if(selection){
-				g2d.drawImage(imageSel, pointA.x + i*image.getWidth(vueGenerale), pointA.y, imageWidth, imageHeight, vueGenerale);
+				g2d.drawImage(imageSel, pointA.x + i*imageWidth, pointA.y - imageHeight/2, imageWidth, imageHeight, vueGenerale);
 			}
 			else{
-				g2d.drawImage(image, pointA.x + i*image.getWidth(vueGenerale), pointA.y, imageWidth, imageHeight, vueGenerale);
+				g2d.drawImage(image, pointA.x + i*imageWidth, pointA.y - imageHeight/2, imageWidth, imageHeight, vueGenerale);
 			}
 		}
 		g2d.rotate(-alpha, pointA.x, pointA.y);
@@ -81,7 +89,6 @@ public class VueRail extends Vue {
 	private void constructionRectangle(){
 		pointA = new Point(rail.getNoeudEntree().getCoordonnees());
 		pointB = new Point(rail.getNoeudSortie().getCoordonnees());
-		//System.out.printf("coordonnes rail "+pointA.toString()+" "+pointB.toString());//TODO : debug, supprimer
 		pointA.x = (int) Math.round(pointA.getX()*vueGenerale.getEchelle());
 		pointA.y = (int) Math.round(pointA.getY()*vueGenerale.getEchelle());
 		pointB.x = (int) Math.round(pointB.getX()*vueGenerale.getEchelle());
@@ -92,9 +99,10 @@ public class VueRail extends Vue {
 		double h = pointB.y - pointA.y;
 		double b = pointB.x - pointA.x;
 		alpha = Math.atan2(h,b);
-		//System.out.printf("angle rail "+alpha+"\n");//TODO : debug, supprimer
-		rectangle = new Rectangle((int)Math.round(pointA.x - imageWidth/2), (int)Math.round(pointA.y - imageHeight/2),
-				imageWidth, imageHeight);
+		
+		//TODO : verifier ce rectangle, pas sur que le clic fonctionne.
+		rectangle = new Rectangle((int)Math.round(pointA.x), (int)Math.round(pointA.y - imageHeight/2),
+				(int) Math.round(pointA.distance(pointB)), imageHeight);
 		AffineTransform rotation = AffineTransform.getRotateInstance(alpha, pointA.x, pointA.y);
 		rectangle = rotation.createTransformedShape(rectangle);
 	}
