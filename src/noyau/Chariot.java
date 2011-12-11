@@ -171,11 +171,11 @@ public class Chariot {
 			 * afin de pouvoir récupérer le premier élément plus facilement.
 			 */
 			if(r.getNoeudSortie() == chemin.peek()) {
-				chemin.poll();
+				chemin.peek();
 				return r;
 			}
 		}
-		System.out.println("On ne trouve pas de chemin!");
+		//System.out.println("On ne trouve pas de chemin!");
 		return null;
 	}
 	
@@ -383,6 +383,14 @@ public class Chariot {
         
         return Aeroport.PARSE_OK;
     }
+
+	/**
+	 * Supprime le premier (prochain) rail du chemin.
+	 * Complémentaire de getProchainRail.
+	 */
+	public void suppProchainRail() {
+		chemin.removeFirst();
+	}
 }
 
 /**
