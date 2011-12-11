@@ -177,6 +177,9 @@ public class VueGenerale extends JPanel {
 				tobogganCourant = null;
 				chariotCourant = null;
 			}
+			
+			repaint();
+			
 		}
 		
 		public void ajouterBagage(){
