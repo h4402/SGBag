@@ -1,10 +1,10 @@
 package ihm;
 
 import java.awt.BorderLayout;
-import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.GridLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,7 +17,6 @@ import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 import javax.swing.Timer;
 
-import tests.TestDessins;
 import vues.VueGenerale;
 
 import java.awt.event.KeyEvent;
@@ -34,7 +33,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import noyau.Aeroport;
-import noyau.Aeroport.Mode;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -80,10 +78,10 @@ public class FenetrePrincipale extends JFrame {
 	private JPanel bandeauGeneral = new JPanel();
 	private BandeauAjoutBagages bandeauAjoutBagages = new BandeauAjoutBagages();
 	private BandeauVitesseChariot bandeauVitesseChariot = new BandeauVitesseChariot();
-	private TestDessins testDessins = new TestDessins();
 	private JPanel panelBas = new JPanel();
-	
-	
+	private final JPanel panelBoutons = new JPanel();
+    private final JPanel panelLabelInfo = new JPanel();
+    
 	/**
 	 * Boutons
 	 */
@@ -251,27 +249,33 @@ public class FenetrePrincipale extends JFrame {
 		menuItemAPropos.addActionListener(aboutListener);
 		aideMenu.add(menuItemAPropos);
 		
-		// Bouton de lecture
-		boutonLecture.setText("Play");
-		boutonLecture.addActionListener(playPauseListener);
-		boutonLecture.setAlignmentX(LEFT_ALIGNMENT);
-		boutonLecture.setEnabled(false);
-
+		GridLayout gridBoutons = new GridLayout(1, 3, 5, 3);
+		panelBoutons.setLayout(gridBoutons);
 		// Bouton d'arret d'urgence
 		boutonArretUrgence.setText("STOP!");
 		boutonArretUrgence.addActionListener(arretUrgenceListener);
 		boutonArretUrgence.setEnabled(false);
+		panelBoutons.add(boutonArretUrgence);
+		
+		// Bouton de lecture
+		boutonLecture.setText("Play");
+		boutonLecture.addActionListener(playPauseListener);
+		boutonLecture.setEnabled(false);
+		panelBoutons.add(boutonLecture);
 		
 		// Bouton du choix du mode
 		boutonMode.setText("Mode");
 		boutonMode.addActionListener(modeListener);
 		boutonMode.setEnabled(false);
+		panelBoutons.add(boutonMode);
 		
-		// Panel du bas
-		panelBas.add(boutonArretUrgence);
-		panelBas.add(boutonLecture);
-		panelBas.add(boutonMode);
-		panelBas.add(labelInfo);
+		labelInfo.setText("Bienvenue dans le système de gestion de bagages SGBag");
+		panelLabelInfo.add(labelInfo);
+		
+		panelBas.setLayout(new GridLayout());
+		panelBas.add(panelBoutons, BorderLayout.WEST);
+		panelBas.add(panelLabelInfo, BorderLayout.EAST);
+		panelBas.setPreferredSize(dimBandeau);
 		
 		// Panel Parametres
 		bandeauAjoutBagages.setVisible(false);
@@ -279,24 +283,12 @@ public class FenetrePrincipale extends JFrame {
 		bandeauGeneral.add(bandeauAjoutBagages, BorderLayout.NORTH);
 		bandeauGeneral.add(bandeauVitesseChariot, BorderLayout.SOUTH);
 		
-		// Test : Panel général
-		testDessins.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-                testDessinsMouseclicked(e);
-            }
-		
-		});
-		
-		// Ajout des panels
+		// Ajout des panels, structuration de la fenetre
 		container.setLayout(new BorderLayout());
 		container.setBackground(Color.white);
 		container.add(panelBas, BorderLayout.SOUTH);
 		container.add(bandeauGeneral, BorderLayout.NORTH);
-		
-		labelInfo.setText("Bienvenue dans le système de gestion de bagages SGBag");
 		this.setContentPane(container);
-		
-		System.out.printf("this.width: %d, this.height: %d", this.getWidth(), this.getHeight());
 		
 	}
 	
@@ -321,7 +313,7 @@ public class FenetrePrincipale extends JFrame {
 	}
 	
 	/**
-	 * Clic sur le panem vueGenerale
+	 * Clic sur le panel vueGenerale
 	 * @param e : mouseEvent pour récupérer la position du clic
 	 */
 	
@@ -332,21 +324,6 @@ public class FenetrePrincipale extends JFrame {
 	
 	
 	/**
-	 * Test de dessins
-	 * TODO : a supprimer
-	 * @param me : mouseEvent
-	 */
-	private void testDessinsMouseclicked(MouseEvent me) {
-        if (me.getX() < testDessins.getWidth()/2) {
-        	bandeauAjoutBagages.setVisible(true);
-        	bandeauVitesseChariot.setVisible(false);
-        } else {
-        	bandeauAjoutBagages.setVisible(false);
-        	bandeauVitesseChariot.setVisible(true);
-        }
-	}
-	
-	/**
 	 * 
 	 * @param vueCadreDOMElement
 	 * @return
@@ -355,26 +332,16 @@ public class FenetrePrincipale extends JFrame {
 	{
 		// On crée l'élément Aéroport et la vue qui lui est associée
 		Aeroport aeroport = new Aeroport();
-        //this.vueGenerale = null;
 
         if (aeroport.construireAPartirDeXML(aeroportElement) != Aeroport.PARSE_OK)
         {
             return Aeroport.PARSE_ERROR;
         }
         
-        this.vueGenerale = new VueGenerale(bandeauAjoutBagages, 
+        vueGenerale = new VueGenerale(bandeauAjoutBagages, 
         		bandeauVitesseChariot, labelInfo, aeroport, imagesManager);
         
-        
-        container = new JPanel();
-        container.setBackground(Color.white);
-		container.setLayout(new BorderLayout());
-		container.add(panelBas, BorderLayout.SOUTH);
-		container.add(bandeauGeneral, BorderLayout.NORTH);
-        container.add(vueGenerale, BorderLayout.CENTER);
-        container.add(panelBas, BorderLayout.SOUTH);
-		container.add(bandeauGeneral, BorderLayout.NORTH);
-    	setContentPane(container);
+        labelInfo.setText("Bienvenue dans le système de gestion de bagages SGBag");
         
         // création des bandeaux qui ont besoin de la vue générale
         bandeauAjoutBagages.setVueGenerale(vueGenerale);
@@ -391,8 +358,13 @@ public class FenetrePrincipale extends JFrame {
         boutonMode.setEnabled(true);
         boutonMode.setText(vueGenerale.getMode());
         
-    	//System.out.println("this.width: "+vueGenerale.getWidth()+", this.height: "+vueGenerale.getHeight());
-    	vueGenerale.repaint();
+        container = new JPanel();
+		container.setLayout(new BorderLayout());
+		container.setBackground(Color.white);
+		container.add(panelBas, BorderLayout.SOUTH);
+		container.add(bandeauGeneral, BorderLayout.NORTH);
+        container.add(vueGenerale, BorderLayout.CENTER);
+    	setContentPane(container);
         
         return Aeroport.PARSE_OK;
     }

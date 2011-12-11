@@ -14,6 +14,7 @@ import org.w3c.dom.Element;
  */
 public class Garage extends ES {
 
+	
 	/**
 	 * Liste des chariots vides.
 	 * Gérée en FIFO.
@@ -114,6 +115,15 @@ public class Garage extends ES {
 		aeroport.ajouterNoeud(noeudGarage);
 		
 		return Aeroport.PARSE_OK;
+	}
+	
+	
+	public LinkedList<Chariot> getListChariotsVides() {
+		return listChariotsVides;
+	}
+
+	public LinkedList<Chariot> getListChariotsPourPartir() {
+		return listChariotsPourPartir;
 	}
 
 }

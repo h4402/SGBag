@@ -11,6 +11,8 @@ import noyau.*;
 public class VueNoeud extends Vue{
 
 	private Noeud noeud;
+	//TODO : set from xml
+	static private int tailleReelle = 2;
 	
 	/**
 	 * Constructeur de la vueNoeud
@@ -21,24 +23,30 @@ public class VueNoeud extends Vue{
 	 * @param imageGarageSel
 	 * @param noeud
 	 */
-	public VueNoeud(VueGenerale vueGeneral, Image image, Image imageSel, 
+	public VueNoeud(VueGenerale vueGenerale, Image image, Image imageSel, 
 			Image imageGarage, Image imageGarageSel, Noeud noeud) {	
-		super(vueGeneral, image, imageSel);
+		super(vueGenerale, image, imageSel);
 		if(noeud instanceof NoeudGarage){
 			this.image = imageGarage;
 			this.imageSel = imageGarageSel;
 		}
+		
+		this.imageWidth = (int)Math.round(tailleReelle*vueGenerale.getEchelle());
+		this.imageHeight = (int)Math.round(tailleReelle*vueGenerale.getEchelle());
+		
 		this.noeud = noeud;
+		
 		posPixel = new Point((int)Math.round(this.noeud.getCoordonnees().x * this.vueGenerale.getEchelle() - imageWidth/2)
 				, (int)Math.round(this.noeud.getCoordonnees().y * this.vueGenerale.getEchelle() - imageHeight/2));
+		
 		rectangle = new Rectangle(posPixel.x, posPixel.y, imageWidth, imageHeight);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	boolean clic(int x, int y) {
-		// TODO Auto-generated method stub
-		return false;
+		Point p = new Point(x, y);
+		return dansRectangle(p);
 	}
 
 	@Override
@@ -55,7 +63,16 @@ public class VueNoeud extends Vue{
 
 	@Override
 	void action() {
-		// TODO Auto-generated method stub
+		// TODO : afficher infos nombre de chariots dans le garage
+		if(noeud instanceof NoeudGarage){
+			this.selectionner();
+			// Tiens c'est marrant le \n ne fonctionne pas dans un Jlabel ...
+			vueGenerale.getZoneInfo().setText("<html>Chariots présents : " + 
+					Aeroport.garage.getListChariotsVides().size()  + 
+					"<br>" + "Chariots en attente de départ : " + 
+					Aeroport.garage.getListChariotsPourPartir().size()+
+					"</html>");
+		}
 		
 	}
 	

@@ -43,8 +43,8 @@ public class VueGenerale extends JPanel {
 			this.zoneInfo = zoneInfo;
 			
 			//TODO : à réparer y a t'il une inversion entre longueur et largeur ?
-			System.out.printf("this.width: %d, aeroportLong: %d, this.height: %d, aeroportLarg: %d\n", this.getWidth(), this.aeroport.getLongueur(),
-					this.getHeight(), this.aeroport.getLargeur());
+			//System.out.printf("this.width: %d, aeroportLong: %d, this.height: %d, aeroportLarg: %d\n", this.getWidth(), this.aeroport.getLongueur(),
+				//	this.getHeight(), this.aeroport.getLargeur());
 			this.echelle = Math.min(this.getWidth()/this.aeroport.getLargeur(),
 					this.getHeight()/this.aeroport.getLongueur());
 			

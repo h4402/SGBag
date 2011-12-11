@@ -11,6 +11,10 @@ import noyau.Guichet;
 public class VueGuichet extends Vue {
 
 	private Guichet guichet;
+	
+	//TODO : set from xml
+	static private double hauteurReelle = 4;
+	static private double largeurReelle = 5.4;
 
 	/**
 	 * Constructeur de la VueGuichet
@@ -19,11 +23,17 @@ public class VueGuichet extends Vue {
 	 * @param imageSel
 	 * @param guichet
 	 */
-	public VueGuichet(VueGenerale vueGeneral, Image image, Image imageSel, Guichet guichet) {
-		super(vueGeneral, image, imageSel);
+	public VueGuichet(VueGenerale vueGenerale, Image image, Image imageSel, Guichet guichet) {
+		super(vueGenerale, image, imageSel);
 		this.guichet = guichet;
+		
+		this.imageWidth = (int)Math.round(largeurReelle*vueGenerale.getEchelle());
+		this.imageHeight = (int)Math.round(hauteurReelle*vueGenerale.getEchelle());
+		
 		posPixel = new Point((int)Math.round(this.guichet.getCoordonnees().x * this.vueGenerale.getEchelle() - imageWidth/2)
 				, (int)Math.round(this.guichet.getCoordonnees().y * this.vueGenerale.getEchelle() - imageHeight/2));
+		
+		
 		rectangle = new Rectangle(posPixel.x, posPixel.y, imageWidth, imageHeight);
 	}
 	

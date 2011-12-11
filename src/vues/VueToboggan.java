@@ -13,6 +13,8 @@ import noyau.Aeroport.Mode;
 public class VueToboggan extends Vue {
 
 	private Toboggan toboggan;
+	//TODO : set from xml
+	static private int tailleReelle = 2;
 		
 	/**
 	 * Constructeur de la VueToboggan
@@ -24,8 +26,13 @@ public class VueToboggan extends Vue {
 	public VueToboggan(VueGenerale vueGenerale, Image image, Image imageSel, Toboggan toboggan) {
 		super(vueGenerale, image, imageSel);
 		this.toboggan = toboggan;
+		
+		this.imageWidth = (int)Math.round(tailleReelle*vueGenerale.getEchelle());
+		this.imageHeight = (int)Math.round(tailleReelle*vueGenerale.getEchelle());
+		
 		posPixel = new Point((int)Math.round(this.toboggan.getCoordonnees().x * this.vueGenerale.getEchelle() - imageWidth/2)
 				, (int)Math.round(this.toboggan.getCoordonnees().y * this.vueGenerale.getEchelle() - imageHeight/2));
+		
 		rectangle = new Rectangle(posPixel.x, posPixel.y, imageWidth, imageHeight);
 	}
 	
