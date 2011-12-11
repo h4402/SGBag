@@ -85,10 +85,9 @@ public class VueRail extends Vue {
 		pointA.y = (int) Math.round(pointA.getY()*vueGenerale.getEchelle());
 		pointB.x = (int) Math.round(pointB.getX()*vueGenerale.getEchelle());
 		pointB.y = (int) Math.round(pointB.getY()*vueGenerale.getEchelle());
-		/**
-		 * Ici on a les deux points...on va commencer les transformations mathematics pour obtenir le bon rectangle 
-		 * 
-		 */
+		
+		//Ici on a les deux points...on va commencer les transformations mathematics pour obtenir le bon rectangle 
+
 		double h = pointB.y - pointA.y;
 		double b = pointB.x - pointA.x;
 		alpha = Math.atan2(h,b);
