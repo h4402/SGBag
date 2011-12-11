@@ -289,7 +289,7 @@ public class Aeroport {
 		if(mode == Mode.AUTO) {
 			Bagage b = new Bagage(listToboggans.get(genRan.nextInt(listToboggans.size())));
 			for (Guichet g : listGuichets) {
-				System.out.println("On ajoute un bagage");
+				//System.out.println("On ajoute un bagage");
 				g.ajoutBagage(b);
 			}
 		}

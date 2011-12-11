@@ -77,6 +77,7 @@ public class Garage extends ES {
 			Chariot c = it.next();
 			Rail r = c.getProchainRail(this.getNoeud());
 			if(r.ajoutChariot(c)) {
+				c.suppProchainRail();
 				it.remove();
 			}
 		} 

@@ -165,6 +165,7 @@ public class Rail {
 					if(Aeroport.mode == Aeroport.Mode.AUTO) {
 						Rail r = c.getProchainRail(noeudSortie);
 						if (r.ajoutChariot(c)) {
+							c.suppProchainRail();
 							it.remove();
 						}
 					}
