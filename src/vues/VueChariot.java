@@ -1,14 +1,17 @@
 package vues;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+import java.awt.geom.Point2D;
 import noyau.Aeroport.Mode;
 import noyau.Aeroport;
 import noyau.Chariot;
+import noyau.Noeud;
 public class VueChariot extends Vue {
 	
 	private Image imageAvecBagage;
@@ -55,25 +58,50 @@ public class VueChariot extends Vue {
 	@Override
 	void dessin(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
+              
+                double alpha = 0;
 		updatePos();
+                if(chariot.getProchainNoeud() != null){
+                    alpha = calculerAngleTour(chariot.getProchainNoeud());
+                    g2d.rotate(alpha,posPixel.x+imageWidth/2, posPixel.y+imageHeight/2);
+                }
+               // System.out.println(chariot.getCoordonnees().x + "    " + chariot.getCoordonnees().y  +"   "+chariot.getDestination());
 		if(chariot.getDestination() != null || chariot.getCoordonnees().x != 0 || chariot.getCoordonnees().y != 0){
 			if(selection){
 				if(chariot.getBagage() == null){
 					g2d.drawImage(imageSel, posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
+                                           g2d.setColor(Color.red);
+                                           int a =  (int) (chariot.getProchainNoeud().getCoordonnees().x*vueGenerale.getEchelle());
+                                           int b =  (int) (chariot.getProchainNoeud().getCoordonnees().y*vueGenerale.getEchelle());
+                                           g2d.drawOval(a,b, 35, 35);
+                                          
 				}
 				else{
 					g2d.drawImage(imageAvecBagageSel, posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
-				}
-			}
+                                           g2d.setColor(Color.red);
+                                           int a =  (int) (chariot.getProchainNoeud().getCoordonnees().x*vueGenerale.getEchelle());
+                                           int b =  (int) (chariot.getProchainNoeud().getCoordonnees().y*vueGenerale.getEchelle());
+                                           g2d.drawOval(a,b, 35, 35);
+                            }
+                        }
 			else{
 				if(chariot.getBagage() == null){
 					g2d.drawImage(image, posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
-				}
+                                          g2d.setColor(Color.red);
+                                           int a =  (int) (chariot.getProchainNoeud().getCoordonnees().x*vueGenerale.getEchelle());
+                                           int b =  (int) (chariot.getProchainNoeud().getCoordonnees().y*vueGenerale.getEchelle());
+                                           g2d.drawOval(a,b, 35, 35);
+                                }
 				else{
 					g2d.drawImage(imageAvecBagage, posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
+                                         g2d.setColor(Color.red);
+                                           int a =  (int) (chariot.getProchainNoeud().getCoordonnees().x*vueGenerale.getEchelle());
+                                           int b =  (int) (chariot.getProchainNoeud().getCoordonnees().y*vueGenerale.getEchelle());
+                                           g2d.drawOval(a,b, 35, 35);
 				}
 			}
 		}
+                g2d.rotate(-alpha, chariot.getCoordonnees().x, chariot.getCoordonnees().y);
 	}
 
 	@Override
@@ -89,6 +117,31 @@ public class VueChariot extends Vue {
 			vueGenerale.getZoneInfo().setText("Veuillez selectionner la destination suivante du chariot.");
 		}
 	}
+
+    private double calculerAngleTour(Noeud prochainNoeud) {
+        System.out.println("----1-----------------------------------");
+        System.out.println(prochainNoeud.getCoordonnees().x + "   " + prochainNoeud.getCoordonnees().y);
+        System.out.println("-----1-----------------------------------");
+        
+        double xAux = (int)Math.round(prochainNoeud.getCoordonnees().x*vueGenerale.getEchelle() - imageWidth/2);
+        double yAux = (int)Math.round(prochainNoeud.getCoordonnees().y*vueGenerale.getEchelle() - imageHeight/2);
+        System.out.println("-------2---------------------------------");
+        System.out.println(xAux + "   " + yAux);
+        System.out.println("---------2-------------------------------");
+         System.out.println("----------3------------------------------");
+        System.out.println(posPixel.x + "   " + posPixel.y);
+        System.out.println("-----------3-----------------------------");
+        Point2D.Double prochain = new Point2D.Double(xAux, yAux);
+        Point2D.Double vector_director = new Point2D.Double(prochain.getX()-posPixel.x,prochain.getY()-posPixel.y);
+        System.out.println("----------4------------------------------");
+        System.out.println(vector_director.x + "   " + vector_director.y);
+        System.out.println("-----------4-----------------------------");
+        double angle = Math.acos((vector_director.getX())/(Math.sqrt( Math.pow(vector_director.getX(), 2) + Math.pow(vector_director.getY(), 2 )))*(Math.sqrt(1)));
+        System.out.println("----------5------------------------------");
+        System.out.println((angle*180)/Math.PI);
+        System.out.println("-----------5----------------------------");
+        return angle;
+    }
 	
 
 }
