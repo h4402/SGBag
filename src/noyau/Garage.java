@@ -92,6 +92,7 @@ public class Garage extends ES {
 	 * @param n Le noeud vers lequel envoyé.
 	 */
 	public void appelerChariot(Noeud n) {
+		
 		Chariot c = listChariotsVides.poll();
 		if(c != null) {
 			c.calculerChemin(this.getNoeud(), n);
@@ -104,6 +105,9 @@ public class Garage extends ES {
 			else {
 				c.suppProchainRail();
 			}
+		}
+		else {
+			// TODO garder une liste des appels si la list eest vide.
 		}
 	}
 	

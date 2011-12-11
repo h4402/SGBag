@@ -141,23 +141,19 @@ public class Rail {
 					c.majPos(noeudEntree, getVectUnitaire(), distChariot);
 				}
 				else {
-					
-					if(noeudSortie == c.getDestination()) {
-						System.out.println("RAIL: On est arrivé!");
-						if(noeudSortie instanceof NoeudGarage) {
-							System.out.println("RAIL: Dans un garage");
-							((NoeudGarage)noeudSortie).getGarage().ajouterChariotVide(c);
+					if(noeudSortie.equals(c.getDestination())) {
+						if(c.getDestination() instanceof NoeudGarage) {
+							((NoeudGarage)c.getDestination()).getGarage().ajouterChariotVide(c);
 							it.remove();
 							continue;
 						}
-						else if(noeudSortie instanceof NoeudToboggan) {
-							System.out.println("RAIL: Dans un toboggan");
-							((NoeudToboggan)noeudSortie).getToboggan().ajouterBagage((c.viderChariot()));
+						else if(c.getDestination() instanceof NoeudToboggan) {
+							((NoeudToboggan)c.getDestination()).getToboggan().ajouterBagage((c.viderChariot()));
 							c.calculerChemin(noeudSortie, Aeroport.garage.getNoeud());
 						}
-						else if(noeudSortie instanceof NoeudTapis) {
-							System.out.println("RAIL: Dans un tapis");
-							((NoeudTapis)noeudSortie).avertirChariotPresent(c);
+						else if(c.getDestination() instanceof NoeudTapis) {
+							((NoeudTapis)c.getDestination()).avertirChariotPresent(c);
+							continue;
 						}
 						
 					}

@@ -164,7 +164,7 @@ public class Chariot {
 		List<Rail> l = n.getListeRails();
 		
 		for (Rail r : l) {
-			
+			/*
 			System.out.println("On teste le rail n°" + r.getId());
 			System.out.println("Le noeud de sortie de ce rail est : " + r.getNoeudSortie().getId());
 			System.out.println("Mon chemin: ");
@@ -172,7 +172,7 @@ public class Chariot {
 				System.out.println("\t "+ n0.getId());
 			}
 			System.out.println("Chemin Peek : " + chemin.peek().getId());
-			
+			*/
 			/*
 			 * On parle du meme objet ici, donc
 			 * on peut faire ce test, mais la logique voudrait
@@ -182,7 +182,7 @@ public class Chariot {
 			 * afin de pouvoir récupérer le premier élément plus facilement.
 			 */
 			if(r.getNoeudSortie().equals(chemin.peek())) {
-				System.out.println("CHARIOT: On donne un truc");
+				//System.out.println("CHARIOT: On donne un truc");
 				chemin.peek();
 				return r;
 			}
@@ -197,7 +197,12 @@ public class Chariot {
 	 * @return Noeud de la fin de parcours.
 	 */
 	public Noeud getDestination() {
-		return chemin.peekLast();
+		if(chemin.peekLast() == null) {
+			return nextNode;
+		}
+		else {
+			return chemin.peekLast();
+		}
 	}
 	
 	/**
@@ -210,6 +215,7 @@ public class Chariot {
 		Bagage b = bagage;
 		bagage = null;
 		chemin.clear();
+		nextNode = null;
 		return b;
 	}
 	
@@ -323,6 +329,7 @@ public class Chariot {
 	 */
 	public void ajouterNoeud(Noeud n) {
 		chemin.offerLast(n);
+		nextNode = chemin.getFirst();
 	}
 	
 	/**
@@ -332,6 +339,7 @@ public class Chariot {
 	 */
 	public void ajouterRail(Rail r) {
 		chemin.offerLast(r.getNoeudSortie());
+		nextNode = chemin.getFirst();
 	}
 	
 	/**

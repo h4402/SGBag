@@ -83,6 +83,13 @@ public class NoeudTapis extends Noeud {
 	public void avertirChariotPresent(Chariot c) {
 		chariotVide = c;
 	}
+	
+	/**
+	 * On a mis un bagage dans le chariot.
+	 */
+	public void avertirChariotPlein() {
+		chariotVide = null;
+	}
 
 	/**
 	 * Retourne le chariot Vide du noeud si il est présent.

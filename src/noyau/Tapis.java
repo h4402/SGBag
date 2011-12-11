@@ -93,6 +93,7 @@ public class Tapis extends ES {
 				Chariot c = ((NoeudTapis)(this.getNoeud())).getChariotVide();
 				if(c != null) {
 					c.mettreBagage(this.getNoeud(), b);
+					((NoeudTapis)noeud).avertirChariotPlein();
 				}
 			}
 			/*
