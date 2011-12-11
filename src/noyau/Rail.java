@@ -198,7 +198,7 @@ public class Rail {
 		 * Si il n'y a pas de bagage qui vient d'arriver sur le rail,
 		 * je l'ajoute.
 		 */
-		if(listChariots.getLast().getDistance() > 0) {
+		if(listChariots.size() > 0 && listChariots.getLast().getDistance() > 0) {
 			c.majPos(noeudEntree, getVectUnitaire(), 0);
 			return true;
 		}
