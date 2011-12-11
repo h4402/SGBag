@@ -385,7 +385,7 @@ public class Aeroport {
 	 * 
 	 * @return AU ou non?
 	 */
-	public boolean setAU() {
+	public boolean getAU() {
 		return enAU;
 	}
 
