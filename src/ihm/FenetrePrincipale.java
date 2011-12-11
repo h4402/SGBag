@@ -239,10 +239,10 @@ public class FenetrePrincipale extends JFrame {
 		menuItemZoom100.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_0,
                 KeyEvent.CTRL_MASK));
 		affichageMenu.add(menuItemZoom100);
-		menuItemZoomArriere.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_MINUS,
+		menuItemZoomArriere.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_PLUS,
                 KeyEvent.CTRL_MASK));
 		affichageMenu.add(menuItemZoomArriere);
-		menuItemZoomAvant.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_PLUS,
+		menuItemZoomAvant.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_MINUS,
                 KeyEvent.CTRL_MASK));
 		affichageMenu.add(menuItemZoomAvant);
 		
