@@ -79,8 +79,9 @@ public class VueRail extends Vue {
 	 * On fait la construction du rectangle de détection de clic
 	 */
 	private void constructionRectangle(){
-		pointA = rail.getNoeudEntree().getCoordonnees();
-		pointB = rail.getNoeudSortie().getCoordonnees();
+		pointA = new Point(rail.getNoeudEntree().getCoordonnees());
+		pointB = new Point(rail.getNoeudSortie().getCoordonnees());
+		//System.out.printf("coordonnes rail "+pointA.toString()+" "+pointB.toString());//TODO : debug, supprimer
 		pointA.x = (int) Math.round(pointA.getX()*vueGenerale.getEchelle());
 		pointA.y = (int) Math.round(pointA.getY()*vueGenerale.getEchelle());
 		pointB.x = (int) Math.round(pointB.getX()*vueGenerale.getEchelle());
@@ -91,6 +92,7 @@ public class VueRail extends Vue {
 		double h = pointB.y - pointA.y;
 		double b = pointB.x - pointA.x;
 		alpha = Math.atan2(h,b);
+		//System.out.printf("angle rail "+alpha+"\n");//TODO : debug, supprimer
 		rectangle = new Rectangle((int)Math.round(pointA.x - imageWidth/2), (int)Math.round(pointA.y - imageHeight/2),
 				imageWidth, imageHeight);
 		AffineTransform rotation = AffineTransform.getRotateInstance(alpha, pointA.x, pointA.y);

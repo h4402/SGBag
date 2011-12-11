@@ -165,6 +165,7 @@ public class Rail {
 					if(Aeroport.mode == Aeroport.Mode.AUTO) {
 						Rail r = c.getProchainRail(noeudSortie);
 						if (r.ajoutChariot(c)) {
+							c.suppProchainRail();
 							it.remove();
 						}
 					}
@@ -198,7 +199,7 @@ public class Rail {
 		 * Si il n'y a pas de bagage qui vient d'arriver sur le rail,
 		 * je l'ajoute.
 		 */
-		if(listChariots.getLast().getDistance() > 0) {
+		if(listChariots.size() > 0 && listChariots.getLast().getDistance() > 0) {
 			c.majPos(noeudEntree, getVectUnitaire(), 0);
 			return true;
 		}
@@ -240,6 +241,15 @@ public class Rail {
 	 */
 	public float getLongueur() {
 		return longueur;
+	}
+	
+	/**
+	 * Retourne l'ID du rail.
+	 * 
+	 * @return Id du rail.
+	 */
+	public int getId() {
+		return id;
 	}
 	
 	/**

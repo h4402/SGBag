@@ -155,6 +155,14 @@ public class Chariot {
 		
 		for (Rail r : l) {
 			/*
+			System.out.println("On teste le rail n°" + r.getId());
+			System.out.println("Le noeud de sortie de ce rail est : " + r.getNoeudSortie().getId());
+			System.out.println("Mon chemin: ");
+			for(Noeud n0 : chemin) {
+				System.out.println("\t "+ n0.getId());
+			}
+			*/
+			/*
 			 * On parle du meme objet ici, donc
 			 * on peut faire ce test, mais la logique voudrait
 			 * peut-être faire un equals.
@@ -163,11 +171,11 @@ public class Chariot {
 			 * afin de pouvoir récupérer le premier élément plus facilement.
 			 */
 			if(r.getNoeudSortie() == chemin.peek()) {
-				chemin.poll();
+				chemin.peek();
 				return r;
 			}
 		}
-		
+		//System.out.println("On ne trouve pas de chemin!");
 		return null;
 	}
 	
@@ -232,7 +240,7 @@ public class Chariot {
 				chemin.addFirst(dijCourant.pred);
 				dijCourant = graph.get(dijCourant.pred);
 			}
-			chemin.addFirst(depart);
+			//chemin.addFirst(depart);
 		}
 	}
 	
@@ -375,6 +383,14 @@ public class Chariot {
         
         return Aeroport.PARSE_OK;
     }
+
+	/**
+	 * Supprime le premier (prochain) rail du chemin.
+	 * Complémentaire de getProchainRail.
+	 */
+	public void suppProchainRail() {
+		chemin.removeFirst();
+	}
 }
 
 /**
