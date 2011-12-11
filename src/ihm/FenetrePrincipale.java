@@ -255,9 +255,8 @@ public class FenetrePrincipale extends JFrame {
 		menuItemAPropos.addActionListener(aboutListener);
 		aideMenu.add(menuItemAPropos);
 		
-		
-		
-
+		GridLayout gridBoutons = new GridLayout(1, 3, 5, 3);
+		panelBoutons.setLayout(gridBoutons);
 		// Bouton d'arret d'urgence
 		boutonArretUrgence.setText("STOP!");
 		boutonArretUrgence.addActionListener(arretUrgenceListener);

@@ -63,7 +63,7 @@ public class VueNoeud extends Vue{
 
 	@Override
 	void action() {
-		// TODO Auto-generated method stub
+		// TODO : afficher infos nombre de chariots dans le garage
 		
 	}
 	
