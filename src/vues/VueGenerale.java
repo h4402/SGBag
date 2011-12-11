@@ -203,12 +203,21 @@ public class VueGenerale extends JPanel {
 			}
 		}
 		
-		public String getMode(){
+		public String getModeBouton(){
 			if(Aeroport.mode == Mode.AUTO){
 				return "Passer en Manuel";
 			}
 			else{
 				return "Passer en Auto";
+			}
+		}
+		
+		public String getModeTexte(){
+			if(Aeroport.mode == Mode.AUTO){
+				return "Mode Auto";
+			}
+			else{
+				return "Mode Manuel";
 			}
 		}
 		
