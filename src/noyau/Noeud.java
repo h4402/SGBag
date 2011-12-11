@@ -13,7 +13,7 @@ import org.w3c.dom.Element;
  * 
  * @author H4402
  */
-public class Noeud {
+public class Noeud implements Comparable {
 	/**
 	 * Identifiant d'un noeud
 	 */
@@ -111,6 +111,15 @@ public class Noeud {
         return Aeroport.PARSE_OK;
     }
 	
+	/**
+	 * Retourne l'id du noeud.
+	 * 
+	 * @return Id du noeud.
+	 */
+	public int getId() {
+		return id;
+	}
+	
 	// TODO : ajouter une methode ajouterRail
 	
 	@Override
@@ -119,11 +128,24 @@ public class Noeud {
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
-			return false;
 		Noeud other = (Noeud) obj;
 		if (id != other.id)
 			return false;
 		return true;
+	}
+
+	@Override
+	public int compareTo(Object arg0) {
+		if (this == arg0)
+			return 0;
+		if (arg0 == null)
+			return 1;
+		Noeud other = (Noeud)arg0;
+		if (id == other.id)
+			return 0;
+		else if (id > other.id)
+			return 1;
+		else
+			return -1;
 	}
 }
