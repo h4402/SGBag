@@ -312,6 +312,9 @@ public class FenetrePrincipale extends JFrame {
         JOptionPane.showMessageDialog(this, new FenetreAbout(), "A Propos", JOptionPane.PLAIN_MESSAGE);
     }
 	
+	/**
+	 * Appui sur bouton play/pause
+	 */
 	private void playPauseActionPerformed() {
 		if (etat == etatsLecture.PLAY) {
 			horloge.stop();
@@ -378,6 +381,8 @@ public class FenetrePrincipale extends JFrame {
         container.add(vueGenerale, BorderLayout.CENTER);
     	setContentPane(container);
         
+    	vueGenerale.repaint();
+    	
         return Aeroport.PARSE_OK;
     }
 	
