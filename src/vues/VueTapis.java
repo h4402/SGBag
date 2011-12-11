@@ -22,6 +22,9 @@ public class VueTapis extends Vue {
 	private Image imageAvecBagage;
 	private Image imageAvecBagageSel;
 	
+	static private double largeurReelleElem = 1.1*Bagage.TAILLE_BAGAGE;
+	static private double longueurReelleElem = Bagage.TAILLE_BAGAGE;
+	
 	/**
 	 * Constructeur de la VueTapis
 	 * @param vueGeneral
@@ -34,6 +37,10 @@ public class VueTapis extends Vue {
 	public VueTapis(VueGenerale vueGeneral, Image image, Image imageSel, 
 			Image imageAvecBagage, Image imageAvecBagageSel, Tapis tapis) {
 		super(vueGeneral, image, imageSel);
+		
+		this.imageWidth = (int)Math.round(longueurReelleElem*vueGenerale.getEchelle());
+		this.imageHeight = (int)Math.round(largeurReelleElem*vueGenerale.getEchelle());
+		
 		this.tapis = tapis;
 		this.imageAvecBagage = imageAvecBagage;
 		this.imageAvecBagageSel = imageAvecBagageSel;
@@ -47,12 +54,16 @@ public class VueTapis extends Vue {
 		g2d.rotate(alpha, pointA.x, pointA.y);
 		for (int i = 0; i < tapis.getListBagages().size(); i++) {
 			if(tapis.getListBagages().elementAt(i) == null){
-				g2d.drawImage(image, pointA.x + i*image.getWidth(vueGenerale), pointA.y, imageWidth, imageHeight, vueGenerale);
-				g2d.drawImage(imageSel, pointA.x + i*image.getWidth(vueGenerale), pointA.y, imageWidth, imageHeight, vueGenerale);
+				if(selection)
+					g2d.drawImage(imageSel, pointA.x + i*imageWidth, pointA.y - imageHeight/2, imageWidth, imageHeight, vueGenerale);
+				else
+					g2d.drawImage(image, pointA.x + i*imageWidth, pointA.y - imageHeight/2, imageWidth, imageHeight, vueGenerale);
 			}
 			else{
-				g2d.drawImage(imageAvecBagage, pointA.x + i*image.getWidth(vueGenerale), pointA.y, imageWidth, imageHeight, vueGenerale);
-				g2d.drawImage(imageAvecBagageSel, pointA.x + i*image.getWidth(vueGenerale), pointA.y, imageWidth, imageHeight, vueGenerale);
+				if(selection)
+					g2d.drawImage(imageAvecBagageSel, pointA.x + i*imageWidth, pointA.y - imageHeight/2, imageWidth, imageHeight, vueGenerale);
+				else
+					g2d.drawImage(imageAvecBagage, pointA.x + i*imageWidth, pointA.y - imageHeight/2, imageWidth, imageHeight, vueGenerale);
 			}
 		}
 		g2d.rotate(-alpha, pointA.x, pointA.y);
@@ -95,15 +106,15 @@ public class VueTapis extends Vue {
 		pointA.y = (int) Math.round(pointA.getY()*vueGenerale.getEchelle());
 		pointB.x = (int) Math.round(pointB.getX()*vueGenerale.getEchelle());
 		pointB.y = (int) Math.round(pointB.getY()*vueGenerale.getEchelle());
-		/**
-		 * Ici on a les deux points...on va commencer les transformations mathematics pour obtenir le bon rectangle 
-		 * 
-		 */
+
+		// Ici on a les deux points...on va commencer les transformations mathematics pour obtenir le bon rectangle 
+
 		double h = pointB.y - pointA.y;
 		double b = pointB.x - pointA.x;
 		alpha = Math.atan2(h,b);
-		rectangle = new Rectangle((int)Math.round(pointA.x - imageWidth/2), (int)Math.round(pointA.y - imageHeight/2),
-				imageWidth, imageHeight);
+		
+		rectangle = new Rectangle((int)Math.round(pointA.x), (int)Math.round(pointA.y - imageHeight/2),
+				(int) Math.round(pointA.distance(pointB)), imageHeight);
 		AffineTransform rotation = AffineTransform.getRotateInstance(alpha, pointA.x, pointA.y);
 		rectangle = rotation.createTransformedShape(rectangle);
 		
