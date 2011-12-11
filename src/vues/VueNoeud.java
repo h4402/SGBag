@@ -65,6 +65,7 @@ public class VueNoeud extends Vue{
 	void action() {
 		// TODO : afficher infos nombre de chariots dans le garage
 		
+		
 	}
 	
 
