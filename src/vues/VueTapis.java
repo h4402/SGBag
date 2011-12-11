@@ -89,8 +89,8 @@ public class VueTapis extends Vue {
 	 * Construit le rectangle permettant la détection de clic
 	 */
 	private void constructionRectangle(){
-		pointA = tapis.getGuichet().getCoordonnees();
-		pointB = tapis.getNoeud().getCoordonnees();
+		pointA = new Point(tapis.getGuichet().getCoordonnees());
+		pointB = new Point(tapis.getNoeud().getCoordonnees());
 		pointA.x = (int) Math.round(pointA.getX()*vueGenerale.getEchelle());
 		pointA.y = (int) Math.round(pointA.getY()*vueGenerale.getEchelle());
 		pointB.x = (int) Math.round(pointB.getX()*vueGenerale.getEchelle());
