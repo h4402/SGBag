@@ -51,6 +51,8 @@ public class Tapis extends ES {
 	 * @param vitesse Vitesse du tapis.
 	 * @param topCourant Nombre de topCourant actuel.
 	 * @param guichet Guichet relié au tapis.
+	 * @param topCourant nb Top horloge courant.
+	 * @param vitesse Vitesse du tapis.
 	 */
 	public Tapis(Noeud noeud, Vector<Bagage> listBagages, int vitesse, 
 			int topCourant, int tailleTapis, Guichet guichet) {
@@ -76,6 +78,7 @@ public class Tapis extends ES {
 		this.listBagages.setSize(tailleTapis);
 		this.vitesse = 1;//TODO : faire autre chose en statique c'est moche
 		this.topCourant = 0;
+		this.vitesse = 1;
 	}
 
 	/**
@@ -92,8 +95,21 @@ public class Tapis extends ES {
 					c.mettreBagage(this.getNoeud(), b);
 				}
 			}
+			/*
+			 *  On ne connait pas le nombre d'élément
+			 *  dans le vecteur, on essai donc le premier
+			 *  ou le second selon la vitesse...
+			 */
+			for(int i = listBagages.size()-1; i > listBagages.size() - 1 - vitesse; i--) {
+				if(listBagages.elementAt(i) != null) {
+					return;
+				}
+			}
 			for(int i = tailleTapis-1; i > 0; i--) {
 				listBagages.set(i, listBagages.elementAt(i-1));
+			}
+			for(int i = 0; i < vitesse; i++) {
+				listBagages.set(i, null);
 			}
 		}
 	}

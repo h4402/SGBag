@@ -184,12 +184,16 @@ public class VueGenerale extends JPanel {
 		
 		public void ajouterBagage(){
 			aeroport.ajouterBagage(guichetCourant, tobogganCourant);
+			bandeauAjoutBagages.setVisible(false);
+			zoneInfo.setText("");
 			guichetCourant = null;
 			tobogganCourant = null;
 		}
 		
 		public void setVitesseChariot(float vitesse){
 			chariotCourant.setVitesse(vitesse);
+			bandeauVitesseChariot.setVisible(false);
+			zoneInfo.setText("");
 			chariotCourant = null;
 		}
 		
