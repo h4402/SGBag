@@ -41,6 +41,10 @@ import org.xml.sax.SAXException;
 import bibliotheques.SGBagFileFilter;
 
 /**
+ * TODO: Gérer le rechargement du XML!
+ */
+
+/**
  * 
  * @author jeremy
  *
