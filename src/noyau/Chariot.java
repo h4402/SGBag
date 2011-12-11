@@ -338,6 +338,15 @@ public class Chariot {
 	}
 	
 	/**
+	 * Retourne le prochain Noeud
+	 * 
+	 * @return Prochain noeud du chemin.
+	 */
+	public Noeud getProchainNoeud() {
+		return chemin.peek();
+	}
+	
+	/**
 	 * Retourne si le chariot est à l'arret ou non.
 	 * 
 	 * @return Arret ou pas.

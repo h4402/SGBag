@@ -101,6 +101,9 @@ public class Garage extends ES {
 		if(!r.ajoutChariot(c)) {
 			listChariotsPourPartir.offerLast(c);
 		}
+		else {
+			c.suppProchainRail();
+		}
 	}
 	
 
