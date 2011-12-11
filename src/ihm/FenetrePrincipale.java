@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
 import javax.swing.JFrame;
@@ -98,6 +99,10 @@ public class FenetrePrincipale extends JFrame {
 	 */
 	private final JLabel labelInfo = new JLabel("Label Info");
 	
+	/**
+	 * Label Mode en cours
+	 */
+	private JLabel labelMode = new JLabel();
 	
 	/**
 	 * Constantes
@@ -162,7 +167,8 @@ public class FenetrePrincipale extends JFrame {
 	private ActionListener modeListener = new ActionListener() {
 		public void actionPerformed(ActionEvent actionEvent) {
 			vueGenerale.changerMode();
-			boutonMode.setText(vueGenerale.getMode());
+			boutonMode.setText(vueGenerale.getModeBouton());
+			labelMode.setText(vueGenerale.getModeTexte());
 		}
 	};
 	
@@ -221,6 +227,7 @@ public class FenetrePrincipale extends JFrame {
 		this.setJMenuBar(menuBar);
 		bandeauGeneral.setVisible(true);
 		bandeauGeneral.setPreferredSize(dimBandeau);
+		bandeauGeneral.setLayout(new GridLayout(1, 2, 10, 10));
 		
 		// Chargement des images
 		imagesManager = new ImagesManager(getToolkit());
@@ -284,6 +291,7 @@ public class FenetrePrincipale extends JFrame {
 		// Panel Parametres
 		bandeauAjoutBagages.setVisible(false);
 		bandeauVitesseChariot.setVisible(false);
+		bandeauGeneral.add(labelMode, BorderLayout.EAST);
 		bandeauGeneral.add(bandeauAjoutBagages, BorderLayout.NORTH);
 		bandeauGeneral.add(bandeauVitesseChariot, BorderLayout.SOUTH);
 		
@@ -346,7 +354,7 @@ public class FenetrePrincipale extends JFrame {
         		bandeauVitesseChariot, labelInfo, aeroport, imagesManager);
         
         labelInfo.setText("Bienvenue dans le système de gestion de bagages SGBag");
-        
+        labelMode.setText(vueGenerale.getModeTexte());
         // création des bandeaux qui ont besoin de la vue générale
         bandeauAjoutBagages.setVueGenerale(vueGenerale);
         bandeauVitesseChariot.setVueGenerale(vueGenerale);
@@ -360,7 +368,7 @@ public class FenetrePrincipale extends JFrame {
         boutonLecture.setEnabled(true);
         boutonArretUrgence.setEnabled(true);
         boutonMode.setEnabled(true);
-        boutonMode.setText(vueGenerale.getMode());
+        boutonMode.setText(vueGenerale.getModeBouton());
         
         container = new JPanel();
 		container.setLayout(new BorderLayout());
