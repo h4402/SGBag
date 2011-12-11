@@ -3,9 +3,12 @@ package ihm;
 import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.GridLayout;
 
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
@@ -82,8 +85,9 @@ public class FenetrePrincipale extends JFrame {
 	private BandeauVitesseChariot bandeauVitesseChariot = new BandeauVitesseChariot();
 	private TestDessins testDessins = new TestDessins();
 	private JPanel panelBas = new JPanel();
-	
-	
+	private final JPanel panelBoutons = new JPanel();
+    private final JPanel panelLabelInfo = new JPanel();
+    
 	/**
 	 * Boutons
 	 */
@@ -251,27 +255,34 @@ public class FenetrePrincipale extends JFrame {
 		menuItemAPropos.addActionListener(aboutListener);
 		aideMenu.add(menuItemAPropos);
 		
-		// Bouton de lecture
-		boutonLecture.setText("Play");
-		boutonLecture.addActionListener(playPauseListener);
-		boutonLecture.setAlignmentX(LEFT_ALIGNMENT);
-		boutonLecture.setEnabled(false);
+		
+		
 
 		// Bouton d'arret d'urgence
 		boutonArretUrgence.setText("STOP!");
 		boutonArretUrgence.addActionListener(arretUrgenceListener);
 		boutonArretUrgence.setEnabled(false);
+		panelBoutons.add(boutonArretUrgence);
+		
+		// Bouton de lecture
+		boutonLecture.setText("Play");
+		boutonLecture.addActionListener(playPauseListener);
+		boutonLecture.setEnabled(false);
+		panelBoutons.add(boutonLecture);
 		
 		// Bouton du choix du mode
 		boutonMode.setText("Mode");
 		boutonMode.addActionListener(modeListener);
 		boutonMode.setEnabled(false);
+		panelBoutons.add(boutonMode);
 		
-		// Panel du bas
-		panelBas.add(boutonArretUrgence);
-		panelBas.add(boutonLecture);
-		panelBas.add(boutonMode);
-		panelBas.add(labelInfo);
+		labelInfo.setText("Bienvenue dans le système de gestion de bagages SGBag");
+		panelLabelInfo.add(labelInfo);
+		
+		panelBas.setLayout(new GridLayout());
+		panelBas.add(panelBoutons, BorderLayout.WEST);
+		panelBas.add(panelLabelInfo, BorderLayout.EAST);
+		panelBas.setPreferredSize(dimBandeau);
 		
 		// Panel Parametres
 		bandeauAjoutBagages.setVisible(false);
@@ -292,8 +303,6 @@ public class FenetrePrincipale extends JFrame {
 		container.setBackground(Color.white);
 		container.add(panelBas, BorderLayout.SOUTH);
 		container.add(bandeauGeneral, BorderLayout.NORTH);
-		
-		labelInfo.setText("Bienvenue dans le système de gestion de bagages SGBag");
 		this.setContentPane(container);
 		
 		System.out.printf("this.width: %d, this.height: %d", this.getWidth(), this.getHeight());
