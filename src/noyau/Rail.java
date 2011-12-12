@@ -127,7 +127,6 @@ public class Rail {
 		    Chariot c = it.next();
 		    
 			float distChariot = c.calculerNouvPos();
-
 			/* 
 			 * Si il n'y a pas de chariot précédent, ou si on ne le dépasse pas.
 			 */
@@ -144,9 +143,11 @@ public class Rail {
 
 					if(noeudSortie.equals(c.getDestination())) {
 						if(c.getDestination() instanceof NoeudGarage) {
-							((NoeudGarage)c.getDestination()).getGarage().ajouterChariotVide(c);
-							it.remove();
-							continue;
+							if(c.getBagage() == null) {
+								((NoeudGarage)c.getDestination()).getGarage().ajouterChariotVide(c);
+								it.remove();
+								continue;
+							}
 						}
 						else if(c.getDestination() instanceof NoeudToboggan) {
 							if(c.getBagage().getTogobban().getNoeud().equals(c.getDestination())) {
@@ -154,12 +155,14 @@ public class Rail {
 								if(Aeroport.mode == Aeroport.Mode.AUTO) {
 									c.calculerChemin(noeudSortie, Aeroport.garage.getNoeud());
 								}
+								prev = c;
 								continue;
 							}
 						}
 						else if(c.getDestination() instanceof NoeudTapis) {
 							if(c.getBagage() == null) {
 								((NoeudTapis)c.getDestination()).avertirChariotPresent(c);
+								prev = c;
 								continue;
 							}
 						}
