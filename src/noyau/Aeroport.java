@@ -477,6 +477,10 @@ public class Aeroport {
 		Aeroport.garage = garage;
 		
 		Element chariotElement = (Element) listeChariots.item(0);
+		Chariot.VIT_MIN = Integer.parseInt(chariotElement.getAttribute("vitesseMinimum"));
+		Chariot.VIT_MAX = Integer.parseInt(chariotElement.getAttribute("vitesseMaximum"));
+		
+		System.out.println("Vitesse Min = " + Chariot.VIT_MIN + " et Max : " + Chariot.VIT_MAX );
 		if (garage.construireAPartirDeXML(chariotElement, this)!= Aeroport.PARSE_OK){
             return Aeroport.PARSE_ERROR;
         }
