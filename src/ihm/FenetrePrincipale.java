@@ -390,6 +390,7 @@ public class FenetrePrincipale extends JFrame {
         
         // activation des boutons si chargement reussi
         boutonLecture.setEnabled(true);
+        etat = etatsLecture.STOP;
         boutonLecture.setText(playString);
         boutonArretUrgence.setText(auString);
         boutonArretUrgence.setEnabled(true);
