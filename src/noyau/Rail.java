@@ -131,7 +131,7 @@ public class Rail {
 			/* 
 			 * Si il n'y a pas de chariot précédent, ou si on ne le dépasse pas.
 			 */
-			if(prev == null || distChariot < prev.getDistance()) {
+			if(prev == null || distChariot+distSecu < prev.getDistance()) {
 				c.setArret(false);
 				/*
 				 * Si le chariot est toujours dans le rail,
@@ -182,8 +182,9 @@ public class Rail {
 				 * On met alors notre chariot le plus près possible du précédent.
 				 */
 				// TODO Géré la distance de sécu
-				if(prev.getDistance()-distSecu > 0)
+				if(prev.getDistance()-distSecu > 0) {
 					c.majPos(noeudEntree, getVectUnitaire(), prev.getDistance()-distSecu);
+				}
 			}
 			prev = c;
 		}

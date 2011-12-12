@@ -73,11 +73,10 @@ public class VueRail extends Vue {
 		this.selectionner();
 		vueGenerale.setGuichetCourant(null);
 		vueGenerale.setTobogganCourant(null);
-		//TODO : vérifier qu'on est en manuel
 		if(vueGenerale.getChariotCourant()!=null) {
-			if(vueGenerale.getChariotCourant().noeudElligible(rail.getNoeudSortie())){
-				vueGenerale.getChariotCourant().ajouterNoeud(rail.getNoeudSortie());
-				vueGenerale.getZoneInfo().setText("Destination ajoutée");
+			if(vueGenerale.getChariotCourant().getChariot().noeudElligible(rail.getNoeudSortie())){
+				vueGenerale.getChariotCourant().getChariot().ajouterNoeud(rail.getNoeudSortie());
+				vueGenerale.getZoneInfo().setText("Destination ajoutee, cliquez sur le prochain rail pour definir un chemin");
 				this.deselectionner();
 			}
 			else{
@@ -87,7 +86,7 @@ public class VueRail extends Vue {
 	}
 	
 	/**
-	 * On fait la construction du rectangle de détection de clic
+	 * On fait la construction du rectangle de detection de clic
 	 */
 	private void constructionRectangle(){
 		pointA = new Point(rail.getNoeudEntree().getCoordonnees());
