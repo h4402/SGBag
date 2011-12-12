@@ -141,6 +141,7 @@ public class Rail {
 					c.majPos(noeudEntree, getVectUnitaire(), distChariot);
 				}
 				else {
+					// TODO géré les sortie genre toboggan en manuel
 					if(noeudSortie.equals(c.getDestination())) {
 						if(c.getDestination() instanceof NoeudGarage) {
 							((NoeudGarage)c.getDestination()).getGarage().ajouterChariotVide(c);
