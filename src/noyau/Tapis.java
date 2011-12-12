@@ -86,7 +86,7 @@ public class Tapis extends ES {
 	 * met un bagage dans un chariot si c'est possible.
 	 */
 	public void avancerBagages(){
-		topCourant = ++topCourant % vitesse;
+		topCourant = (topCourant + 1) % vitesse;
 		if(topCourant == 0) {
 			Bagage b = listBagages.elementAt(tailleTapis-1);
 			if(b != null) {
@@ -94,6 +94,7 @@ public class Tapis extends ES {
 				if(c != null) {
 					c.mettreBagage(this.getNoeud(), b);
 					((NoeudTapis)noeud).avertirChariotPlein();
+					listBagages.set(tailleTapis-1, null);
 				}
 			}
 			/*
@@ -101,16 +102,11 @@ public class Tapis extends ES {
 			 *  dans le vecteur, on essai donc le premier
 			 *  ou le second selon la vitesse...
 			 */
-			for(int i = listBagages.size()-1; i > listBagages.size() - 1 - vitesse; i--) {
-				if(listBagages.elementAt(i) != null) {
-					return;
+			if(listBagages.elementAt(tailleTapis-1) == null) {
+				for(int j = tailleTapis-1; j > 0; j--) {
+					listBagages.set(j, listBagages.elementAt(j-1));
 				}
-			}
-			for(int i = tailleTapis-1; i > 0; i--) {
-				listBagages.set(i, listBagages.elementAt(i-1));
-			}
-			for(int i = 0; i < vitesse; i++) {
-				listBagages.set(i, null);
+				listBagages.set(0, null);
 			}
 		}
 	}
@@ -127,7 +123,6 @@ public class Tapis extends ES {
 			return false;
 		}
 		if(Aeroport.mode == Aeroport.Mode.AUTO) {
-			
 			Aeroport.garage.appelerChariot(this.getNoeud());
 		}
 		listBagages.set(0, b);

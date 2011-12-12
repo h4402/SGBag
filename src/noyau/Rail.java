@@ -159,12 +159,12 @@ public class Rail {
 					}
 					/*
 					 * Si on est la, le chariot continue son chemin,
-					 * on prend le prochain rail et
+					 * on prend le prochain rail
+					 * si il existe et
 					 * on essai de le placer.
-					 * Si on est en mode AUTO.
 					 */
-					if(Aeroport.mode == Aeroport.Mode.AUTO) {
-						Rail r = c.getProchainRail(noeudSortie);
+					Rail r = c.getProchainRail(noeudSortie);
+					if(r != null) {
 						if (r.ajoutChariot(c)) {
 							c.suppProchainRail();
 							it.remove();
