@@ -18,6 +18,17 @@ import org.w3c.dom.Element;
  * @author H4402
  */
 public class Chariot {
+	
+	/**
+	 * Vitesse minimale d'un chariot.
+	 */
+	public static final int VIT_MIN = 5;
+	
+	/**
+	 * Vitesse maximale d'un chariot.
+	 */
+	public static final int VIT_MAX = 20;
+	
 	/**
 	 * Identifiant d'un noeud
 	 */
@@ -294,17 +305,8 @@ public class Chariot {
 	 */
 	public void mettreBagage(Noeud depart, Bagage b) {
 		bagage = b;
-		calculerChemin(depart, b.getTogobban().getNoeud());
-	}
-	
-	/**
-	 * Vérifie que le rail peut-etre ajouté.
-	 * 
-	 * @param r Rail à ajouter.
-	 * @return Possible ou pas.
-	 */
-	public boolean railElligible(Rail r) {
-		return chemin.getLast().listRailsSortie.contains(r);
+		if(Aeroport.getMode() == Aeroport.Mode.AUTO) 
+			calculerChemin(depart, b.getTogobban().getNoeud());
 	}
 	
 	/**
@@ -314,6 +316,9 @@ public class Chariot {
 	 * @return Possible ou pas.
 	 */
 	public boolean noeudElligible(Noeud n) {
+		if(chemin.isEmpty()) {
+			return true;
+		}
 		for(Rail r : chemin.getLast().listRailsSortie) {
 			if(r.getNoeudSortie() == n) {
 				return true;
@@ -329,17 +334,6 @@ public class Chariot {
 	 */
 	public void ajouterNoeud(Noeud n) {
 		chemin.offerLast(n);
-		nextNode = chemin.getFirst();
-	}
-	
-	/**
-	 * Ajoute un rail au chemin.
-	 * 
-	 * @param r Rail à ajouter.
-	 */
-	public void ajouterRail(Rail r) {
-		chemin.offerLast(r.getNoeudSortie());
-		nextNode = chemin.getFirst();
 	}
 	
 	/**
