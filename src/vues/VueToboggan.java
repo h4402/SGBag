@@ -67,8 +67,13 @@ public class VueToboggan extends Vue {
 
 	@Override
 	boolean clic(int x, int y) {
-		Point p = new Point(x, y);
-		return dansRectangle(p);
+		if(Aeroport.getMode() == Mode.MANUEL){
+			Point p = new Point(x, y);
+			return dansRectangle(p);
+		}
+		else{
+			return false;
+		}
 	}
 
 	public Toboggan getToboggan() {

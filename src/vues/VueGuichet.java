@@ -6,7 +6,9 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+import noyau.Aeroport;
 import noyau.Guichet;
+import noyau.Aeroport.Mode;
 
 public class VueGuichet extends Vue {
 
@@ -72,8 +74,13 @@ public class VueGuichet extends Vue {
 
 	@Override
 	boolean clic(int x, int y) {
-		Point p = new Point(x, y);
-		return dansRectangle(p);
+		if(Aeroport.getMode() == Mode.MANUEL){
+			Point p = new Point(x, y);
+			return dansRectangle(p);
+		}
+		else{
+			return false;
+		}
 	}
 
 	public Guichet getGuichet() {
