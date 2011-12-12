@@ -175,14 +175,15 @@ public class Rail {
 					}
 				}
 			}
+			
 			else {
 				/*
 				 * Si on est la, c'est qu'on peut dépasser un chariot
 				 * On met alors notre chariot le plus près possible du précédent.
 				 */
-				c.majPos(noeudEntree, getVectUnitaire(), prev.getDistance()-distSecu);
+				// TODO Géré la distance de sécu
+				//c.majPos(noeudEntree, getVectUnitaire(), prev.getDistance()-distSecu);
 			}
-			
 			prev = c;
 		}
 	}
