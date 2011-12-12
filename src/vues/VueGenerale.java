@@ -1,6 +1,7 @@
 package vues;
 
 import ihm.BandeauAjoutBagages;
+import ihm.BandeauSortirChariot;
 import ihm.BandeauVitesseChariot;
 import ihm.ImagesManager;
 
@@ -25,16 +26,18 @@ public class VueGenerale extends JPanel {
 		private VueGuichet guichetCourant;
 		private VueToboggan tobogganCourant;
 		private VueChariot chariotCourant;
+		private VueNoeud noeudCourant;
 		private Aeroport aeroport;
 		private BandeauAjoutBagages bandeauAjoutBagages;
 		private BandeauVitesseChariot bandeauVitesseChariot;
+		private BandeauSortirChariot bandeauSortirChariot;
 		private JLabel zoneInfo;
 		private double echelle;
 		private double coefImage;
 		private ArrayList<Vue> listVues;
 
 		public VueGenerale(BandeauAjoutBagages bandeauAjoutBagages, BandeauVitesseChariot bandeauVitesseChariot, 
-				JLabel zoneInfo, Aeroport aeroport, ImagesManager imagesManager){
+				BandeauSortirChariot bandeauSortirChariot ,JLabel zoneInfo, Aeroport aeroport, ImagesManager imagesManager){
 						
             super(new BorderLayout());
             this.setSize(1022,628);
@@ -44,6 +47,7 @@ public class VueGenerale extends JPanel {
 			this.aeroport = aeroport;
 			this.bandeauAjoutBagages = bandeauAjoutBagages;
 			this.bandeauVitesseChariot = bandeauVitesseChariot;
+			this.bandeauSortirChariot = bandeauSortirChariot;
 			this.zoneInfo = zoneInfo;
 			
 			//TODO : à réparer y a t'il une inversion entre longueur et largeur ?
@@ -148,7 +152,19 @@ public class VueGenerale extends JPanel {
 		public void setChariotCourant(VueChariot chariotCourant) {
 			this.chariotCourant = chariotCourant;
 		}
-		
+			
+		public BandeauSortirChariot getBandeauSortirChariot() {
+			return bandeauSortirChariot;
+		}
+
+		public VueNoeud getNoeudCourant() {
+			return noeudCourant;
+		}
+
+		public void setNoeudCourant(VueNoeud noeudCourant) {
+			this.noeudCourant = noeudCourant;
+		}
+
 		@Override
 		public void paintComponent(Graphics g) {
 			//super.paintComponent(g);
@@ -166,6 +182,7 @@ public class VueGenerale extends JPanel {
 			boolean trouve = false;
 			bandeauAjoutBagages.setVisible(false);
 			bandeauVitesseChariot.setVisible(false);
+			bandeauSortirChariot.setVisible(false);
 			zoneInfo.setText("");
 			for (Vue v : listVues ){
 				v.deselectionner();
@@ -180,6 +197,7 @@ public class VueGenerale extends JPanel {
 				guichetCourant = null;
 				tobogganCourant = null;
 				chariotCourant = null;
+				noeudCourant = null;
 			}
 			
 			repaint();
@@ -199,7 +217,7 @@ public class VueGenerale extends JPanel {
 		}
 		
 		public void libererChariot() {
-			
+			chariotCourant.getChariot().ajouterNoeud(noeudCourant.getNoeud().getListeRails().get(0).getNoeudSortie());
 		}
 		
 		public void avancerTemps(){

@@ -52,6 +52,7 @@ public class VueToboggan extends Vue {
 	void action() {
 		this.selectionner();
 		vueGenerale.setChariotCourant(null);
+		vueGenerale.setNoeudCourant(null);
 		vueGenerale.setTobogganCourant(this);
 		if(vueGenerale.getGuichetCourant() != null){
 			vueGenerale.getGuichetCourant().selectionner();
