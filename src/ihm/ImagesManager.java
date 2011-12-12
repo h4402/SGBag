@@ -9,6 +9,7 @@ public class ImagesManager {
 	/**
      * Les fichiers images
      */
+	private Image imgIcon = null;
     private Image imgChariot = null;
     private Image imgChariotSel = null;
     private Image imgChariotB = null;
@@ -29,7 +30,8 @@ public class ImagesManager {
     private Image imgRailSel = null;
     
     final String PATH_IMAGE = "res/img/";
-    final String IMG_CHARIOT = PATH_IMAGE+"chariot.png";
+    final String IMG_ICON = PATH_IMAGE+"icon_logo.png";
+	final String IMG_CHARIOT = PATH_IMAGE+"chariot.png";
     final String IMG_CHARIOT_B = PATH_IMAGE+"chariot_b.png";
     final String IMG_NODE = PATH_IMAGE+"node.png";
     final String IMG_NODE_GARAGE = PATH_IMAGE+"node_garage.png";
@@ -50,6 +52,7 @@ public class ImagesManager {
 	
     public ImagesManager(Toolkit tk) {
     	//Toolkit tk = Toolkit.getDefaultToolkit();
+    	imgIcon = tk.getImage(IMG_ICON);
     	imgChariot = tk.getImage(IMG_CHARIOT);
     	imgChariotSel = tk.getImage(IMG_CHARIOT_SEL);
     	imgChariotB = tk.getImage(IMG_CHARIOT_B);
@@ -68,6 +71,10 @@ public class ImagesManager {
     	imgTapisBSel = tk.getImage(IMG_TAPIS_B_SEL);
     	imgRail = tk.getImage(IMG_RAIL);
     	imgRailSel = tk.getImage(IMG_RAIL_SEL);
+	}
+    
+    public Image getImgIcon() {
+		return imgIcon;
 	}
     
     public Image getImgChariotSel() {

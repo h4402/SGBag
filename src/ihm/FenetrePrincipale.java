@@ -2,11 +2,13 @@ package ihm;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
@@ -81,8 +83,11 @@ public class FenetrePrincipale extends JFrame {
 	 */
 	private JPanel container = new JPanel();
 	private JPanel bandeauGeneral = new JPanel();
+	private JPanel bandeauTexteMode = new JPanel();
+	private JPanel bandeauActions = new JPanel();
 	private BandeauAjoutBagages bandeauAjoutBagages = new BandeauAjoutBagages();
 	private BandeauVitesseChariot bandeauVitesseChariot = new BandeauVitesseChariot();
+	private BandeauLibererChariot bandeauLibererChariot = new BandeauLibererChariot();
 	private JPanel panelBas = new JPanel();
 	private final JPanel panelBoutons = new JPanel();
     private final JPanel panelLabelInfo = new JPanel();
@@ -111,6 +116,7 @@ public class FenetrePrincipale extends JFrame {
 	String pauseString = "Pause";
 	String auString = "Arret d'urgence";
 	String repriseAuString = "Reprise AU";
+	String sortirChariot = "Sortir un chariot";
 
 	/**
 	 * ImageManager
@@ -224,7 +230,8 @@ public class FenetrePrincipale extends JFrame {
 
 	private void jInit() {
 		
-		Dimension dimBandeau = new Dimension(this.getWidth(), 50);
+		Dimension dimBandeau = new Dimension(this.getWidth(), 80);
+		Dimension dimPanelBas = new Dimension(this.getWidth(), 40);
 		this.setTitle("SGBag - Simulation");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
@@ -233,10 +240,11 @@ public class FenetrePrincipale extends JFrame {
 		this.setJMenuBar(menuBar);
 		bandeauGeneral.setVisible(true);
 		bandeauGeneral.setPreferredSize(dimBandeau);
-		bandeauGeneral.setLayout(new GridLayout(1, 2, 10, 10));
+		bandeauGeneral.setLayout(new BorderLayout());
 		
 		// Chargement des images
 		imagesManager = new ImagesManager(getToolkit());
+		setIconImage(imagesManager.getImgIcon());
 		
 		// Menu Fichier
 		menuBar.add(fileMenu);
@@ -292,20 +300,27 @@ public class FenetrePrincipale extends JFrame {
 		panelBas.setLayout(new GridLayout());
 		panelBas.add(panelBoutons, BorderLayout.WEST);
 		panelBas.add(panelLabelInfo, BorderLayout.EAST);
-		panelBas.setPreferredSize(dimBandeau);
+		panelBas.setPreferredSize(dimPanelBas);
 		
 		// Panel Parametres
 		bandeauAjoutBagages.setVisible(false);
 		bandeauVitesseChariot.setVisible(false);
-		bandeauGeneral.add(labelMode, BorderLayout.EAST);
-		bandeauGeneral.add(bandeauAjoutBagages, BorderLayout.NORTH);
-		bandeauGeneral.add(bandeauVitesseChariot, BorderLayout.SOUTH);
+		bandeauLibererChariot.setVisible(false);
+
+		bandeauActions.add(bandeauAjoutBagages);
+		bandeauActions.add(bandeauVitesseChariot);
+		bandeauActions.add(bandeauLibererChariot);
+		
+		bandeauTexteMode.add(labelMode);
+		
+		bandeauGeneral.add(bandeauTexteMode, BorderLayout.NORTH);
+		bandeauGeneral.add(bandeauActions, BorderLayout.CENTER);
 		
 		// Ajout des panels, structuration de la fenetre
 		container.setLayout(new BorderLayout());
 		container.setBackground(Color.white);
-		container.add(panelBas, BorderLayout.SOUTH);
-		container.add(bandeauGeneral, BorderLayout.NORTH);
+		container.add(panelBas);
+		container.add(bandeauGeneral);
 		this.setContentPane(container);
 		
 	}
