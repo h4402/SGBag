@@ -132,12 +132,12 @@ public class Rail {
 			 * Si il n'y a pas de chariot précédent, ou si on ne le dépasse pas.
 			 */
 			if(prev == null || distChariot+distSecu < prev.getDistance()) {
-				c.setArret(false);
 				/*
 				 * Si le chariot est toujours dans le rail,
 				 * on l'avance.
 				 */
 				if(distChariot < longueur) {
+					c.setArret(false);
 					c.majPos(noeudEntree, getVectUnitaire(), distChariot);
 				}
 				else {
@@ -158,8 +158,10 @@ public class Rail {
 							}
 						}
 						else if(c.getDestination() instanceof NoeudTapis) {
-							((NoeudTapis)c.getDestination()).avertirChariotPresent(c);
-							continue;
+							if(c.getBagage() == null) {
+								((NoeudTapis)c.getDestination()).avertirChariotPresent(c);
+								continue;
+							}
 						}
 					}
 					/*
@@ -171,6 +173,7 @@ public class Rail {
 					Rail r = c.getProchainRail(noeudSortie);
 					if(r != null) {
 						if (r.ajoutChariot(c)) {
+							c.setArret(false);
 							c.suppProchainRail();
 							it.remove();
 						}
@@ -188,6 +191,7 @@ public class Rail {
 				 */
 				if(prev.getDistance()-distSecu > 0) {
 					c.majPos(noeudEntree, getVectUnitaire(), prev.getDistance()-distSecu);
+					c.setArret(false);
 				}
 			}
 			prev = c;

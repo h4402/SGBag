@@ -316,12 +316,16 @@ public class Chariot {
 	 * @return Possible ou pas.
 	 */
 	public boolean noeudElligible(Noeud n) {
+		// TODO: ne pas rajouter un rail si on ne peut pas aller dessus!
 		if(chemin.isEmpty()) {
+			
 			return true;
 		}
-		for(Rail r : chemin.getLast().listRailsSortie) {
-			if(r.getNoeudSortie() == n) {
-				return true;
+		else {
+			for(Rail r : chemin.getLast().listRailsSortie) {
+				if(r.getNoeudSortie() == n) {
+					return true;
+				}
 			}
 		}
 		return false;
