@@ -60,7 +60,7 @@ public class BandeauVitesseChariot extends JPanel {
 		boutonModifier.addActionListener(modifierListener);
 		
 		textFieldVitesse.setText("");
-		textFieldVitesse.setColumns(3);
+		textFieldVitesse.setColumns(6);
 		
 		this.add(labelVitesse, BorderLayout.WEST);
 		this.add(textFieldVitesse, BorderLayout.CENTER);
