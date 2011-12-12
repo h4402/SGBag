@@ -50,19 +50,23 @@ public class VueGuichet extends Vue {
 		}
 	}
 	
+	/**
+	 * Selectionne le toboggan et guichet courant et permet si possible l'ajout de bagage;
+	 */
 	@Override
 	void action() {
 		this.selectionner();
 		vueGenerale.setChariotCourant(null);
-		vueGenerale.setGuichetCourant(guichet);
+		vueGenerale.setGuichetCourant(this);
 		if(vueGenerale.getTobogganCourant() != null){
+			vueGenerale.getTobogganCourant().selectionner();
 			vueGenerale.getZoneInfo().setText("Pour ajouter un bagage cliquez sur Valider");
-			vueGenerale.getBandeauAjoutBagages().setNumeros(vueGenerale.getGuichetCourant().getId(), 
-					vueGenerale.getTobogganCourant().getId());
+			vueGenerale.getBandeauAjoutBagages().setNumeros(vueGenerale.getGuichetCourant().getGuichet().getId(), 
+					vueGenerale.getTobogganCourant().getToboggan().getId());
 			vueGenerale.getBandeauAjoutBagages().setVisible(true);
 		}
 		else{
-			vueGenerale.getZoneInfo().setText("Veuillez sélectionner un toboggan");
+			vueGenerale.getZoneInfo().setText("Veuillez selectionner un toboggan");
 		}
 	}
 
@@ -70,6 +74,10 @@ public class VueGuichet extends Vue {
 	boolean clic(int x, int y) {
 		Point p = new Point(x, y);
 		return dansRectangle(p);
+	}
+
+	public Guichet getGuichet() {
+		return guichet;
 	}
 
 }

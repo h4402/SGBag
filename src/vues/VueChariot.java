@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 import noyau.Aeroport.Mode;
 import noyau.Aeroport;
@@ -57,8 +58,11 @@ public class VueChariot extends Vue {
 		posPixel.y = (int) Math.round(chariot.getCoordonnees().y
 				* vueGenerale.getEchelle() - imageHeight / 2);
 		calculerAngleTour();
-		rectangle = new Rectangle(posPixel.x, posPixel.y, imageHeight,
-				imageWidth);
+		rectangle = new Rectangle(posPixel.x, posPixel.y, imageWidth,
+				imageHeight);
+		AffineTransform rotation = AffineTransform.getRotateInstance(alpha, posPixel.x + imageWidth / 2, posPixel.y
+				+ imageHeight / 2);
+		rectangle = rotation.createTransformedShape(rectangle);
 	}
 
 	@Override
@@ -103,7 +107,7 @@ public class VueChariot extends Vue {
 	@Override
 	void action() {
 		this.selectionner();
-		vueGenerale.setChariotCourant(this.chariot);
+		vueGenerale.setChariotCourant(this);
 		vueGenerale.setGuichetCourant(null);
 		vueGenerale.setTobogganCourant(null);
 		vueGenerale.getBandeauVitesseChariot().setNumChariot(
@@ -131,6 +135,11 @@ public class VueChariot extends Vue {
 			double b = prochain.x - posPixel.x;
 			alpha=Math.atan2(h, b);
 		}
+		
+	}
+
+	public Chariot getChariot() {
+		return chariot;
 	}
 
 }

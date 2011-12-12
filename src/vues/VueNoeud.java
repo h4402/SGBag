@@ -67,9 +67,9 @@ public class VueNoeud extends Vue{
 		if(noeud instanceof NoeudGarage){
 			this.selectionner();
 			// Tiens c'est marrant le \n ne fonctionne pas dans un Jlabel ...
-			vueGenerale.getZoneInfo().setText("<html>Chariots présents : " + 
+			vueGenerale.getZoneInfo().setText("<html>Chariots presents : " + 
 					Aeroport.garage.getListChariotsVides().size()  + 
-					"<br>" + "Chariots en attente de départ : " + 
+					"<br>" + "Chariots en attente de depart : " + 
 					Aeroport.garage.getListChariotsPourPartir().size()+
 					"</html>");
 		}

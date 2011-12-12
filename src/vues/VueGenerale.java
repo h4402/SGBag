@@ -18,9 +18,13 @@ import noyau.*;
 import noyau.Aeroport.Mode;
 public class VueGenerale extends JPanel {
 	
-		private Guichet guichetCourant;
-		private Toboggan tobogganCourant;
-		private Chariot chariotCourant;
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7005589055229257737L;
+		private VueGuichet guichetCourant;
+		private VueToboggan tobogganCourant;
+		private VueChariot chariotCourant;
 		private Aeroport aeroport;
 		private BandeauAjoutBagages bandeauAjoutBagages;
 		private BandeauVitesseChariot bandeauVitesseChariot;
@@ -93,11 +97,11 @@ public class VueGenerale extends JPanel {
 			return coefImage;
 		}
 
-		public Toboggan getTobogganCourant() {
+		public VueToboggan getTobogganCourant() {
 			return tobogganCourant;
 		}
 
-		public void setTobogganCourant(Toboggan tobogganCourant) {
+		public void setTobogganCourant(VueToboggan tobogganCourant) {
 			this.tobogganCourant = tobogganCourant;
 		}
 
@@ -129,19 +133,19 @@ public class VueGenerale extends JPanel {
 			this.echelle = echelle;
 		}
 
-		public Guichet getGuichetCourant() {
+		public VueGuichet getGuichetCourant() {
 			return guichetCourant;
 		}
 
-		public void setGuichetCourant(Guichet guichetCourant) {
+		public void setGuichetCourant(VueGuichet guichetCourant) {
 			this.guichetCourant = guichetCourant;
 		}
 		
-		public Chariot getChariotCourant() {
+		public VueChariot getChariotCourant() {
 			return chariotCourant;
 		}
 
-		public void setChariotCourant(Chariot chariotCourant) {
+		public void setChariotCourant(VueChariot chariotCourant) {
 			this.chariotCourant = chariotCourant;
 		}
 		
@@ -183,7 +187,7 @@ public class VueGenerale extends JPanel {
 		}
 		
 		public void ajouterBagage(){
-			aeroport.ajouterBagage(guichetCourant, tobogganCourant);
+			aeroport.ajouterBagage(guichetCourant.getGuichet(), tobogganCourant.getToboggan());
 			bandeauAjoutBagages.setVisible(false);
 			zoneInfo.setText("");
 			guichetCourant = null;
@@ -191,7 +195,7 @@ public class VueGenerale extends JPanel {
 		}
 		
 		public void setVitesseChariot(float vitesse){
-			chariotCourant.setVitesse(vitesse);
+			chariotCourant.getChariot().setVitesse(vitesse);
 			bandeauVitesseChariot.setVisible(false);
 			zoneInfo.setText("");
 			chariotCourant = null;

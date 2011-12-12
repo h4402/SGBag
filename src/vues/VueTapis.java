@@ -72,32 +72,15 @@ public class VueTapis extends Vue {
 	@Override
 	void action() {
 		this.selectionner();
-		vueGenerale.setGuichetCourant(null);
-		vueGenerale.setTobogganCourant(null);
-		if(vueGenerale.getChariotCourant().noeudElligible(tapis.getNoeud())){
-			vueGenerale.getChariotCourant().ajouterNoeud(tapis.getNoeud());
-			vueGenerale.getZoneInfo().setText("Destination ajoutée");
-			this.deselectionner();
-		}
-		else{
-			vueGenerale.getZoneInfo().setText("Cette destination n'est pas valide!");
-		}
 	}
 
 	@Override
 	boolean clic(int x, int y) {
-		if(Aeroport.getMode() == Mode.MANUEL){
-			Point p = new Point(x, y);
-			return dansRectangle(p);
-		}
-		else{
-			return false;
-		}
-		
+		return false;		
 	}
 	
 	/**
-	 * Construit le rectangle permettant la détection de clic
+	 * Construit le rectangle permettant la detection de clic
 	 */
 	private void constructionRectangle(){
 		pointA = new Point(tapis.getGuichet().getCoordonnees());
