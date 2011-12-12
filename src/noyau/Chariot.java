@@ -22,12 +22,12 @@ public class Chariot {
 	/**
 	 * Vitesse minimale d'un chariot.
 	 */
-	public static final int VIT_MIN = 5;
+	public static int VIT_MIN;
 	
 	/**
 	 * Vitesse maximale d'un chariot.
 	 */
-	public static final int VIT_MAX = 20;
+	public static int VIT_MAX;
 	
 	/**
 	 * Identifiant d'un noeud
