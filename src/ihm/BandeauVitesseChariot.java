@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSlider;
 import javax.swing.JTextField;
 
 import vues.VueGenerale;
@@ -39,7 +40,9 @@ public class BandeauVitesseChariot extends JPanel {
 	/**
 	 * Champ de saisie de la vitesse du chariot
 	 */
-	private JTextField textFieldVitesse = new JTextField();
+	//private JTextField textFieldVitesse = new JTextField();
+	private JSlider sliderVitesseChariot = new JSlider(JSlider.HORIZONTAL,
+            0, 100, 10);
 	
 	/**
 	 * Clic sur modifier
@@ -47,7 +50,7 @@ public class BandeauVitesseChariot extends JPanel {
 	private ActionListener modifierListener = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			if (vueGenerale != null)
-				vueGenerale.setVitesseChariot(Float.valueOf(textFieldVitesse.getText()));
+				vueGenerale.setVitesseChariot(Float.valueOf(sliderVitesseChariot.getValue()));
 		}
 	};
 	
@@ -59,11 +62,8 @@ public class BandeauVitesseChariot extends JPanel {
 		boutonModifier.setText("Modifier");
 		boutonModifier.addActionListener(modifierListener);
 		
-		textFieldVitesse.setText("");
-		textFieldVitesse.setColumns(6);
-		
 		this.add(labelVitesse, BorderLayout.WEST);
-		this.add(textFieldVitesse, BorderLayout.CENTER);
+		this.add(sliderVitesseChariot, BorderLayout.CENTER);
 		this.add(boutonModifier, BorderLayout.EAST);
 		
 	}
@@ -87,7 +87,7 @@ public class BandeauVitesseChariot extends JPanel {
 	 */
 	
 	public void setVitesseChariot(float vitesseChariot) {
-		textFieldVitesse.setText(String.valueOf(vitesseChariot));
+		sliderVitesseChariot.setValue((int) vitesseChariot);
 	}
 	
 }

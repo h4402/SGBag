@@ -87,7 +87,7 @@ public class FenetrePrincipale extends JFrame {
 	private JPanel bandeauActions = new JPanel();
 	private BandeauAjoutBagages bandeauAjoutBagages = new BandeauAjoutBagages();
 	private BandeauVitesseChariot bandeauVitesseChariot = new BandeauVitesseChariot();
-	private BandeauLibererChariot bandeauLibererChariot = new BandeauLibererChariot();
+	private BandeauSortirChariot bandeauLibererChariot = new BandeauSortirChariot();
 	private JPanel panelBas = new JPanel();
 	private final JPanel panelBoutons = new JPanel();
     private final JPanel panelLabelInfo = new JPanel();
