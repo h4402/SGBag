@@ -77,7 +77,6 @@ public class VueRail extends Vue {
 			if(vueGenerale.getChariotCourant().getChariot().noeudElligible(rail.getNoeudSortie())){
 				vueGenerale.getChariotCourant().getChariot().ajouterNoeud(rail.getNoeudSortie());
 				vueGenerale.getZoneInfo().setText("Destination ajoutee, cliquez sur le prochain rail pour definir un chemin");
-				this.deselectionner();
 			}
 			else{
 				vueGenerale.getZoneInfo().setText("Cette destination n'est pas valide!");
