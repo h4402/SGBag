@@ -52,7 +52,8 @@ public class BandeauSortirChariot extends JPanel {
 	 */
 	private ActionListener rienFaireListener = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			// Rien à faire
+			if (vueGenerale != null)
+				vueGenerale.annulerLiberationChariot();
 			
 		}
 	};
