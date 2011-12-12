@@ -531,7 +531,6 @@ public class Aeroport {
 		
 		int nbChariot = Integer.parseInt(chariotElement.getAttribute("nbChariots"));
 		for (int i = 0; i < nbChariot; i++) {
-			
             Chariot chariot= new Chariot(i);
 			
 			// On vérifie que la création du noeud à partir du XML n'a pas échoué
