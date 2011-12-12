@@ -201,6 +201,10 @@ public class VueGenerale extends JPanel {
 			chariotCourant = null;
 		}
 		
+		public void libererChariot() {
+			
+		}
+		
 		public void avancerTemps(){
 			aeroport.avancerTemps();
 		}

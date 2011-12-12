@@ -24,7 +24,7 @@ public class Rail {
 	/**
 	 * Distance de sécurité entre deux chariots
 	 */
-	public static final int distSecu = 2; 
+	public static final int distSecu = 4; 
 	
 	/**
 	 * Liste des chariots roulant actuellement
@@ -131,7 +131,7 @@ public class Rail {
 			/* 
 			 * Si il n'y a pas de chariot précédent, ou si on ne le dépasse pas.
 			 */
-			if(prev == null || distChariot < prev.getDistance()) {
+			if(prev == null || distChariot+distSecu < prev.getDistance()) {
 				c.setArret(false);
 				/*
 				 * Si le chariot est toujours dans le rail,
@@ -182,7 +182,9 @@ public class Rail {
 				 * On met alors notre chariot le plus près possible du précédent.
 				 */
 				// TODO Géré la distance de sécu
-				//c.majPos(noeudEntree, getVectUnitaire(), prev.getDistance()-distSecu);
+				if(prev.getDistance()-distSecu > 0) {
+					c.majPos(noeudEntree, getVectUnitaire(), prev.getDistance()-distSecu);
+				}
 			}
 			prev = c;
 		}
@@ -201,7 +203,7 @@ public class Rail {
 		 * Si il n'y a pas de bagage qui vient d'arriver sur le rail,
 		 * je l'ajoute.
 		 */
-		if((listChariots.size() > 0 && listChariots.getLast().getDistance() > 0)
+		if((listChariots.size() > 0 && listChariots.getLast().getDistance() > distSecu)
 				|| listChariots.size() == 0) {
 			listChariots.addLast(c);
 			c.majPos(noeudEntree, getVectUnitaire(), 0);
