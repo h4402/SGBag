@@ -31,7 +31,7 @@ public class Tapis extends ES {
 	 * 	1: On fait avancer un bagage par top horloge.
 	 *  2: On fait avancer un bagage pour deux top horloges. 
 	 */
-	private int vitesse;
+	public static int vitesse;
 	
 	/**
 	 * Compte le nombre de top passé en rapport à la vitesse;
@@ -58,7 +58,6 @@ public class Tapis extends ES {
 			int topCourant, int tailleTapis, Guichet guichet) {
 		super(noeud);
 		this.listBagages = listBagages;
-		this.vitesse = vitesse;
 		this.topCourant = topCourant;
 		this.tailleTapis = tailleTapis;
 		this.guichet = guichet;
@@ -76,9 +75,7 @@ public class Tapis extends ES {
 								 noeud.getCoordonnees())/Bagage.TAILLE_BAGAGE);		
 		this.listBagages = new Vector<Bagage>(tailleTapis);
 		this.listBagages.setSize(tailleTapis);
-		this.vitesse = 1;//TODO : faire autre chose en statique c'est moche
 		this.topCourant = 0;
-		this.vitesse = 1;
 	}
 
 	/**
@@ -86,7 +83,6 @@ public class Tapis extends ES {
 	 * met un bagage dans un chariot si c'est possible.
 	 */
 	public void avancerBagages(){
-		// TODO: Faire avancer tapis correctement.
 		topCourant = (topCourant + 1) % vitesse;
 		if(topCourant == 0) {
 			Bagage b = listBagages.elementAt(tailleTapis-1);
@@ -135,5 +131,4 @@ public class Tapis extends ES {
 	public Vector<Bagage> getListBagages() {
 		return listBagages;
 	}
-
 }

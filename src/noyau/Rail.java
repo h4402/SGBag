@@ -24,7 +24,7 @@ public class Rail {
 	/**
 	 * Distance de sécurité entre deux chariots
 	 */
-	public static final int distSecu = 4; 
+	public static int distSecu; 
 	
 	/**
 	 * Liste des chariots roulant actuellement

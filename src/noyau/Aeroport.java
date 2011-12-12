@@ -75,7 +75,7 @@ public class Aeroport {
 	/**
 	 * Temps entre chaque tick en millisecondes.
 	 */
-	public static final int lapsTemps = 20;
+	public static int lapsTemps;
 
 	/**
 	 * Le mode sera choisi
@@ -166,7 +166,7 @@ public class Aeroport {
 	/**
 	 * Nombre de top max entre deux bagages.
 	 */
-	private static final int NB_TOP_BAGAGES = 100;
+	private static int NB_TOP_BAGAGES;
 	
 	/**
 	 * Le systeme est-il en AU?
@@ -187,7 +187,7 @@ public class Aeroport {
 			List<Toboggan> listToboggans, List<Tapis> listTapis,
 			List<Noeud> listNoeuds, List<Chariot> listChariots, 
 			int longueur, int largeur, int nbTopEnvoiBagage,
-			boolean enAU) {
+			boolean enAU, int nbTopBagage, int lapsTemps) {
 		super();
 		this.listRails = listRails;
 		this.listGuichets = listGuichets;
@@ -431,7 +431,7 @@ public class Aeroport {
 		this.listNoeuds.clear();
 		this.listChariots.clear(); 
 		this.genRan = new Random();
-		this.mode = Mode.MANUEL;
+		mode = Mode.MANUEL;
 		this.largeur = 0;
 		this.longueur = 0;
 		this.enAU = false;
@@ -443,15 +443,16 @@ public class Aeroport {
 		// On récupère les attributs de l'aéroports
         this.longueur = Integer.parseInt(aeroportElement.getAttribute("longueur"));
         this.largeur = Integer.parseInt(aeroportElement.getAttribute("largeur"));
+        NB_TOP_BAGAGES = Integer.parseInt(aeroportElement.getAttribute("vitesseAjoutBagageAuto"));
+        lapsTemps = Integer.parseInt(aeroportElement.getAttribute("tempsEntreTicks"));
         
-        //TODO ajouter dans les fichiers de config et récupérer pour mise à jour,
-        //les vitesses des tapis, la taille des bagages et autres...
-
-        // TODO on supprime la config existante et on la remplace par la nouvelle
-        //lesBoules.removeAllElements();
+        Tapis.vitesse = Integer.parseInt(aeroportElement.getAttribute("vitesseTapis"));
+        
+        Bagage.TAILLE_BAGAGE = Integer.parseInt(aeroportElement.getAttribute("tailleBagage"));
         
         //création des Rails/Chariots/...
         NodeList listeNoeuds    = aeroportElement.getElementsByTagName("Noeud");
+        NodeList classRail      = aeroportElement.getElementsByTagName("Rails");
         NodeList listeRails     = aeroportElement.getElementsByTagName("Rail");
         NodeList listeGuichets  = aeroportElement.getElementsByTagName("Guichet");
         NodeList listeToboggans = aeroportElement.getElementsByTagName("Toboggan");
@@ -479,6 +480,8 @@ public class Aeroport {
 		if (garage.construireAPartirDeXML(chariotElement, this)!= Aeroport.PARSE_OK){
             return Aeroport.PARSE_ERROR;
         }
+		
+		Rail.distSecu = Integer.parseInt(((Element)classRail.item(0)).getAttribute("distanceSecurite"));
 		
 		// On parcourt la liste des rails récupérés pour créer les objets correspondants
 		for (int i = 0; i < listeRails.getLength(); i++)

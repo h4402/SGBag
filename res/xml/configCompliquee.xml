@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
-<Aeroport longueur="60" largeur="60">
-	<Chariots nbChariots="10" noeudParDefaut="12" vitesseParDefaut="1"></Chariots>
+<Aeroport longueur="60" largeur="60" vitesseAjoutBagageAuto="100" vitesseTapis="100" tempsEntreTicks="20">
+	<Chariots nbChariots="1" noeudParDefaut="12" vitesseParDefaut="10"></Chariots>
 	
 	<Rails>
 		<Rail id="1" noeudEntree="1" noeudSortie="2"></Rail>

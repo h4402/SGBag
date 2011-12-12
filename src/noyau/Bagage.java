@@ -16,7 +16,7 @@ public class Bagage {
 	/**
 	 * Taille d'un bagage en mètres
 	 */
-	public static final int TAILLE_BAGAGE = 1;
+	public static int TAILLE_BAGAGE;
 	
 	/**
 	 * Constructeur pour GreenUML.
