@@ -9,6 +9,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.JTextField;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+import noyau.Chariot;
 
 import vues.VueGenerale;
 
@@ -29,28 +33,24 @@ public class BandeauVitesseChariot extends JPanel {
 	 * Label
 	 */
 	private JLabel labelVitesse = new JLabel();
-	
-	
-	/**
-	 * Bouton de modification vitesse chariot
-	 */
-	private JButton boutonModifier = new JButton();
-	
+
 	
 	/**
 	 * Champ de saisie de la vitesse du chariot
 	 */
-	//private JTextField textFieldVitesse = new JTextField();
 	private JSlider sliderVitesseChariot = new JSlider(JSlider.HORIZONTAL,
-            0, 100, 10);
+            Chariot.VIT_MIN, Chariot.VIT_MAX, (Chariot.VIT_MAX+Chariot.VIT_MIN)/2);
+	
 	
 	/**
-	 * Clic sur modifier
+	 * Changement de la vitesse du chariot sur le slider
 	 */
-	private ActionListener modifierListener = new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
+	private ChangeListener stateChanged = new ChangeListener() {
+		@Override
+		public void stateChanged(ChangeEvent e) {
 			if (vueGenerale != null)
-				vueGenerale.setVitesseChariot(Float.valueOf(sliderVitesseChariot.getValue()));
+				vueGenerale.setVitesseChariot(sliderVitesseChariot.getValue());
+			
 		}
 	};
 	
@@ -59,16 +59,23 @@ public class BandeauVitesseChariot extends JPanel {
 	 */
 	public BandeauVitesseChariot() {
 		labelVitesse.setText("Vitesse chariot : ");
-		boutonModifier.setText("Modifier");
-		boutonModifier.addActionListener(modifierListener);
+		sliderVitesseChariot.setMajorTickSpacing(5);
+		sliderVitesseChariot.setMinorTickSpacing(1);
+		sliderVitesseChariot.setPaintTicks(true);
+		sliderVitesseChariot.setPaintLabels(true);
+		
+		sliderVitesseChariot.addChangeListener(stateChanged);
 		
 		this.add(labelVitesse, BorderLayout.WEST);
 		this.add(sliderVitesseChariot, BorderLayout.CENTER);
-		this.add(boutonModifier, BorderLayout.EAST);
 		
 	}
 	
 	
+	/**
+	 * Passe la vueGenerale en reference au bandeau
+	 * @param vueGenerale
+	 */
 	public void setVueGenerale(VueGenerale vueGenerale) {
 		this.vueGenerale = vueGenerale;
 	}
@@ -89,5 +96,6 @@ public class BandeauVitesseChariot extends JPanel {
 	public void setVitesseChariot(float vitesseChariot) {
 		sliderVitesseChariot.setValue((int) vitesseChariot);
 	}
+	
 	
 }
