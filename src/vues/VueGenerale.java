@@ -196,9 +196,6 @@ public class VueGenerale extends JPanel {
 		
 		public void setVitesseChariot(float vitesse){
 			chariotCourant.getChariot().setVitesse(vitesse);
-			bandeauVitesseChariot.setVisible(false);
-			zoneInfo.setText("");
-			chariotCourant = null;
 		}
 		
 		public void libererChariot() {

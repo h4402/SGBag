@@ -103,7 +103,7 @@ public class Noeud implements Comparable {
 	 */
 	public int construireAPartirDeXML(Element noeudElement)
 	{
-        // On récupère l'id et les coordonnées
+        // On recupere l'id et les coordonnees
 		this.id = Integer.parseInt(noeudElement.getAttribute("id"));
         this.coordonnees.move(Integer.parseInt(noeudElement.getAttribute("posX")),
         		Integer.parseInt(noeudElement.getAttribute("posY")));
