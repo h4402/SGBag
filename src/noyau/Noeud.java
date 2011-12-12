@@ -14,6 +14,7 @@ import org.w3c.dom.Element;
  * @author H4402
  */
 public class Noeud implements Comparable {
+	
 	/**
 	 * Identifiant d'un noeud
 	 */

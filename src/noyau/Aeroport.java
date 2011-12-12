@@ -458,6 +458,8 @@ public class Aeroport {
         NodeList listeToboggans = aeroportElement.getElementsByTagName("Toboggan");
         NodeList listeChariots  = aeroportElement.getElementsByTagName("Chariots");
         
+        Rail.distSecu = Integer.parseInt(((Element)classRail.item(0)).getAttribute("distanceSecurite"));
+        
 		// On parcourt la liste des noeuds récupérés pour créer les objets correspondants
 		for (int i = 0; i < listeNoeuds.getLength(); i++)
 		{
@@ -480,24 +482,24 @@ public class Aeroport {
 		Chariot.VIT_MIN = Integer.parseInt(chariotElement.getAttribute("vitesseMinimum"));
 		Chariot.VIT_MAX = Integer.parseInt(chariotElement.getAttribute("vitesseMaximum"));
 		
-		System.out.println("Vitesse Min = " + Chariot.VIT_MIN + " et Max : " + Chariot.VIT_MAX );
 		if (garage.construireAPartirDeXML(chariotElement, this)!= Aeroport.PARSE_OK){
             return Aeroport.PARSE_ERROR;
         }
 		
-		Rail.distSecu = Integer.parseInt(((Element)classRail.item(0)).getAttribute("distanceSecurite"));
 		
-		// On parcourt la liste des rails récupérés pour créer les objets correspondants
-		for (int i = 0; i < listeRails.getLength(); i++)
+		
+		// On parcourt la liste des toboggans récupérés pour créer les objets correspondants
+		for (int i = 0; i < listeToboggans.getLength(); i++)
 		{
-            Element railElement = (Element) listeRails.item(i);
-            Rail rail = new Rail();
+            Element tobogganElement = (Element) listeToboggans.item(i);
+            Toboggan toboggan = new Toboggan();
 			
-			// On vérifie que la création du rail à partir du XML n'a pas échoué
-            if (rail.construireAPartirDeXML(railElement, this)!= Aeroport.PARSE_OK){
+			// On vérifie que la création du noeud à partir du XML n'a pas échoué
+            if (toboggan.construireAPartirDeXML(tobogganElement, this)!= Aeroport.PARSE_OK){
                 return Aeroport.PARSE_ERROR;
             }
-            ajouterRail(rail);
+            
+            ajouterToboggan(toboggan);
         }
 		
 		// On parcourt la liste des guichets récupérés pour créer les objets correspondants
@@ -514,20 +516,19 @@ public class Aeroport {
             ajouterGuichet(guichet);
         }
 		
-		// On parcourt la liste des toboggans récupérés pour créer les objets correspondants
-		for (int i = 0; i < listeToboggans.getLength(); i++)
+		// On parcourt la liste des rails récupérés pour créer les objets correspondants
+		for (int i = 0; i < listeRails.getLength(); i++)
 		{
-            Element tobogganElement = (Element) listeToboggans.item(i);
-            Toboggan toboggan = new Toboggan();
+            Element railElement = (Element) listeRails.item(i);
+            Rail rail = new Rail();
 			
-			// On vérifie que la création du noeud à partir du XML n'a pas échoué
-            if (toboggan.construireAPartirDeXML(tobogganElement, this)!= Aeroport.PARSE_OK){
+			// On vérifie que la création du rail à partir du XML n'a pas échoué
+            if (rail.construireAPartirDeXML(railElement, this)!= Aeroport.PARSE_OK){
                 return Aeroport.PARSE_ERROR;
             }
-            
-            ajouterToboggan(toboggan);
+            ajouterRail(rail);
         }
-
+		
 		int nbChariot = Integer.parseInt(chariotElement.getAttribute("nbChariots"));
 		for (int i = 0; i < nbChariot; i++) {
 			

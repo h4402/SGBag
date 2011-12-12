@@ -109,6 +109,7 @@ public class Rail {
 	public void ajouterNoeuds(Noeud noeudEntree, Noeud noeudSortie) {
 		this.noeudEntree = noeudEntree;
 		this.noeudSortie = noeudSortie;
+
 		Point direction = getDirection();
 		longueur = (float) Math.sqrt(direction.x*direction.x + direction.y*direction.y);
 		vectUnitaire = new Point2D.Float(direction.x/longueur, direction.y/longueur);
@@ -122,7 +123,6 @@ public class Rail {
 		Chariot prev = null;
 		
 		while ( it.hasNext() ) {
-			
 			
 		    Chariot c = it.next();
 		    
@@ -141,7 +141,7 @@ public class Rail {
 					c.majPos(noeudEntree, getVectUnitaire(), distChariot);
 				}
 				else {
-					// TODO géré les sortie genre toboggan en manuel
+
 					if(noeudSortie.equals(c.getDestination())) {
 						if(c.getDestination() instanceof NoeudGarage) {
 							((NoeudGarage)c.getDestination()).getGarage().ajouterChariotVide(c);
@@ -149,14 +149,18 @@ public class Rail {
 							continue;
 						}
 						else if(c.getDestination() instanceof NoeudToboggan) {
-							((NoeudToboggan)c.getDestination()).getToboggan().ajouterBagage((c.viderChariot()));
-							c.calculerChemin(noeudSortie, Aeroport.garage.getNoeud());
+							if(c.getBagage().getTogobban().getNoeud().equals(c.getDestination())) {
+								((NoeudToboggan)c.getDestination()).getToboggan().ajouterBagage((c.viderChariot()));
+								if(Aeroport.mode == Aeroport.Mode.AUTO) {
+									c.calculerChemin(noeudSortie, Aeroport.garage.getNoeud());
+								}
+								continue;
+							}
 						}
 						else if(c.getDestination() instanceof NoeudTapis) {
 							((NoeudTapis)c.getDestination()).avertirChariotPresent(c);
 							continue;
 						}
-						
 					}
 					/*
 					 * Si on est la, le chariot continue son chemin,
@@ -182,7 +186,6 @@ public class Rail {
 				 * Si on est la, c'est qu'on peut dépasser un chariot
 				 * On met alors notre chariot le plus près possible du précédent.
 				 */
-				// TODO Géré la distance de sécu
 				if(prev.getDistance()-distSecu > 0) {
 					c.majPos(noeudEntree, getVectUnitaire(), prev.getDistance()-distSecu);
 				}

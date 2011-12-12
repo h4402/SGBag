@@ -2,7 +2,6 @@ package vues;
 
 import java.awt.Image;
 import java.awt.geom.AffineTransform;
-import java.awt.geom.Rectangle2D;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
