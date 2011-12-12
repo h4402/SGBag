@@ -8,6 +8,7 @@ import java.awt.Rectangle;
 import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
 
 import noyau.*;
+import noyau.Aeroport.Mode;
 public class VueNoeud extends Vue{
 
 	private Noeud noeud;
@@ -66,7 +67,10 @@ public class VueNoeud extends Vue{
 		// TODO : afficher infos nombre de chariots dans le garage
 		if(noeud instanceof NoeudGarage){
 			this.selectionner();
-			// Tiens c'est marrant le \n ne fonctionne pas dans un Jlabel ...
+			if(Aeroport.getMode() == Mode.MANUEL){
+				vueGenerale.getBandeauSortirChariot().setVisible(true);
+				vueGenerale.setNoeudCourant(this);
+			}
 			vueGenerale.getZoneInfo().setText("<html>Chariots presents : " + 
 					Aeroport.garage.getListChariotsVides().size()  + 
 					"<br>" + "Chariots en attente de depart : " + 
@@ -74,6 +78,10 @@ public class VueNoeud extends Vue{
 					"</html>");
 		}
 		
+	}
+
+	public Noeud getNoeud() {
+		return noeud;
 	}
 	
 

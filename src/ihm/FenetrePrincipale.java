@@ -375,7 +375,7 @@ public class FenetrePrincipale extends JFrame {
         }
         
         vueGenerale = new VueGenerale(bandeauAjoutBagages, 
-        		bandeauVitesseChariot, labelInfo, aeroport, imagesManager);
+        		bandeauVitesseChariot, bandeauLibererChariot, labelInfo, aeroport, imagesManager);
         
         labelInfo.setText("Bienvenue dans le système de gestion de bagages SGBag");
         labelMode.setText(vueGenerale.getModeTexte());
