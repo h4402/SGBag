@@ -178,6 +178,9 @@ public class FenetrePrincipale extends JFrame {
 			vueGenerale.changerMode();
 			boutonMode.setText(vueGenerale.getModeBouton());
 			labelMode.setText(vueGenerale.getModeTexte());
+			bandeauVitesseChariot.setVisible(false);
+			bandeauAjoutBagages.setVisible(false);
+			bandeauSortirChariot.setVisible(false);
 		}
 	};
 	
