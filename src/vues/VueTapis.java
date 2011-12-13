@@ -1,5 +1,7 @@
 package vues;
 
+import ihm.ImagesManager;
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -19,8 +21,6 @@ public class VueTapis extends Vue {
 	private Point pointA;
 	private Point pointB;
 	private double alpha;
-	private Image imageAvecBagage;
-	private Image imageAvecBagageSel;
 	
 	static private double largeurReelleElem = 1.1*Bagage.TAILLE_BAGAGE;
 	static private double longueurReelleElem = Bagage.TAILLE_BAGAGE;
@@ -34,18 +34,14 @@ public class VueTapis extends Vue {
 	 * @param imageAvecBagageSel
 	 * @param tapis
 	 */
-	public VueTapis(VueGenerale vueGeneral, Image image, Image imageSel, 
-			Image imageAvecBagage, Image imageAvecBagageSel, Tapis tapis) {
-		super(vueGeneral, image, imageSel);
+	public VueTapis(VueGenerale vueGeneral, ImagesManager imagesManager, Tapis tapis) {
+		super(vueGeneral, imagesManager);
 		
 		this.imageWidth = (int)Math.round(longueurReelleElem*vueGenerale.getEchelle());
 		this.imageHeight = (int)Math.round(largeurReelleElem*vueGenerale.getEchelle());
 		
 		this.tapis = tapis;
-		this.imageAvecBagage = imageAvecBagage;
-		this.imageAvecBagageSel = imageAvecBagageSel;
 		constructionRectangle();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -55,15 +51,15 @@ public class VueTapis extends Vue {
 		for (int i = 0; i < tapis.getListBagages().size(); i++) {
 			if(tapis.getListBagages().elementAt(i) == null){
 				if(selection)
-					g2d.drawImage(imageSel, pointA.x + i*imageWidth, pointA.y - imageHeight/2, imageWidth, imageHeight, vueGenerale);
+					g2d.drawImage(imagesManager.getImgTapisSel(), pointA.x + i*imageWidth, pointA.y - imageHeight/2, imageWidth, imageHeight, vueGenerale);
 				else
-					g2d.drawImage(image, pointA.x + i*imageWidth, pointA.y - imageHeight/2, imageWidth, imageHeight, vueGenerale);
+					g2d.drawImage(imagesManager.getImgTapis(), pointA.x + i*imageWidth, pointA.y - imageHeight/2, imageWidth, imageHeight, vueGenerale);
 			}
 			else{
 				if(selection)
-					g2d.drawImage(imageAvecBagageSel, pointA.x + i*imageWidth, pointA.y - imageHeight/2, imageWidth, imageHeight, vueGenerale);
+					g2d.drawImage(imagesManager.getImgTapisBSel(), pointA.x + i*imageWidth, pointA.y - imageHeight/2, imageWidth, imageHeight, vueGenerale);
 				else
-					g2d.drawImage(imageAvecBagage, pointA.x + i*imageWidth, pointA.y - imageHeight/2, imageWidth, imageHeight, vueGenerale);
+					g2d.drawImage(imagesManager.getImgTapisB(), pointA.x + i*imageWidth, pointA.y - imageHeight/2, imageWidth, imageHeight, vueGenerale);
 			}
 		}
 		g2d.rotate(-alpha, pointA.x, pointA.y);

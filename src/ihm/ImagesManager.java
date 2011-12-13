@@ -14,6 +14,7 @@ public class ImagesManager {
     protected Image imgChariotSel = null;
     protected Image imgChariotB = null;
     protected Image imgChariotBSel = null;
+    protected Image imgEtincelles = null;
     protected Image imgNode = null;
     protected Image imgNodeSel = null;
     protected Image imgNodeGarage = null;
@@ -42,6 +43,7 @@ public class ImagesManager {
     protected final String IMG_RAIL = PATH_IMAGE+"rail.png";
     protected final String IMG_CHARIOT_SEL = PATH_IMAGE+"chariot_sel.png";
     protected final String IMG_CHARIOT_B_SEL = PATH_IMAGE+"chariot_b_sel.png";
+    protected final String IMG_ETINCELLES = PATH_IMAGE+"etoiles.png";
     protected final String IMG_NODE_SEL = PATH_IMAGE+"node_sel.png";
     protected final String IMG_NODE_GARAGE_SEL = PATH_IMAGE+"node_garage_sel.png";
     protected final String IMG_GUICHET_SEL = PATH_IMAGE+"guichet_sel.png";
@@ -57,6 +59,7 @@ public class ImagesManager {
     	imgChariotSel = tk.getImage(IMG_CHARIOT_SEL);
     	imgChariotB = tk.getImage(IMG_CHARIOT_B);
     	imgChariotBSel = tk.getImage(IMG_CHARIOT_B_SEL);
+    	imgEtincelles = tk.getImage(IMG_ETINCELLES);
     	imgNode = tk.getImage(IMG_NODE);
     	imgNodeSel = tk.getImage(IMG_NODE_SEL);
     	imgNodeGarage = tk.getImage(IMG_NODE_GARAGE);
@@ -83,6 +86,10 @@ public class ImagesManager {
 
 	public Image getImgChariotBSel() {
 		return imgChariotBSel;
+	}
+
+	public Image getImgEtincelles() {
+		return imgEtincelles;
 	}
 
 	public Image getImgNodeSel() {

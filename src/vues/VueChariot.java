@@ -1,5 +1,7 @@
 package vues;
 
+import ihm.ImagesManager;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -16,10 +18,11 @@ import noyau.Noeud;
 
 public class VueChariot extends Vue {
 
-	private Image imageAvecBagage;
-	private Image imageAvecBagageSel;
 	private Chariot chariot;
 	private double alpha;
+	
+	static private double longueurReelle = 1.5;
+	static private double largeurReelle = 3;
 
 	/**
 	 * Constructeur de la VueChariot
@@ -31,13 +34,13 @@ public class VueChariot extends Vue {
 	 * @param imageAvecBagageSel
 	 * @param chariot
 	 */
-	public VueChariot(VueGenerale vueGenerale, Image image, Image imageSel,
-			Image imageAvecBagage, Image imageAvecBagageSel, Chariot chariot) {
-		super(vueGenerale, image, imageSel);
-		this.imageAvecBagage = imageAvecBagage;
-		this.imageAvecBagageSel = imageAvecBagageSel;
+	public VueChariot(VueGenerale vueGenerale, ImagesManager imagesManager, Chariot chariot) {
+		super(vueGenerale, imagesManager);
 		this.chariot = chariot;
 		this.alpha=0;
+		this.imageWidth = (int)Math.round(largeurReelle*vueGenerale.getEchelle());
+		this.imageHeight = (int)Math.round(longueurReelle*vueGenerale.getEchelle());
+		
 		posPixel = new Point((int) Math.round(this.chariot.getCoordonnees().x
 				* this.vueGenerale.getEchelle() - imageWidth / 2),
 				(int) Math.round(this.chariot.getCoordonnees().y
@@ -74,10 +77,10 @@ public class VueChariot extends Vue {
 
 	private void dessinSel(Graphics2D g2d){
 		if (chariot.getBagage() == null) {
-			g2d.drawImage(imageSel, posPixel.x, posPixel.y, imageWidth,
+			g2d.drawImage(imagesManager.getImgChariotSel(), posPixel.x, posPixel.y, imageWidth,
 					imageHeight, vueGenerale);
 		} else {
-			g2d.drawImage(imageAvecBagageSel, posPixel.x, posPixel.y,
+			g2d.drawImage(imagesManager.getImgChariotBSel(), posPixel.x, posPixel.y,
 					imageWidth, imageHeight, vueGenerale);
 		}
 		if(chariot.getDestination() !=  null){
@@ -93,10 +96,10 @@ public class VueChariot extends Vue {
 	
 	private void dessinNonSel(Graphics2D g2d){
 		if (chariot.getBagage() == null) {
-			g2d.drawImage(image, posPixel.x, posPixel.y, imageWidth,
+			g2d.drawImage(imagesManager.getImgChariot(), posPixel.x, posPixel.y, imageWidth,
 					imageHeight, vueGenerale);
 		} else {
-			g2d.drawImage(imageAvecBagage, posPixel.x, posPixel.y,
+			g2d.drawImage(imagesManager.getImgChariotB(), posPixel.x, posPixel.y,
 					imageWidth, imageHeight, vueGenerale);
 		}
 	}
@@ -114,6 +117,10 @@ public class VueChariot extends Vue {
 				dessinSel(g2d);
 			} else {
 				dessinNonSel(g2d);
+			}
+			if(chariot.getFreine()){
+				g2d.drawImage(imagesManager.getImgEtincelles(), posPixel.x - imageWidth/4, posPixel.y - imageHeight/3,
+						(int)Math.round(imageWidth*0.5), (int)Math.round(imageHeight*1.5), vueGenerale);
 			}
 		}
 		g2d.rotate(-alpha, posPixel.x + imageWidth / 2, posPixel.y

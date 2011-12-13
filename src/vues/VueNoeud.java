@@ -1,4 +1,6 @@
 package vues;
+import ihm.ImagesManager;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -26,14 +28,9 @@ public class VueNoeud extends Vue{
 	 * @param imageGarageSel
 	 * @param noeud
 	 */
-	public VueNoeud(VueGenerale vueGenerale, Image image, Image imageSel, 
-			Image imageGarage, Image imageGarageSel, Noeud noeud) {	
-		super(vueGenerale, image, imageSel);
-		if(noeud instanceof NoeudGarage){
-			this.image = imageGarage;
-			this.imageSel = imageGarageSel;
-		}
-		
+	public VueNoeud(VueGenerale vueGenerale, ImagesManager imagesManager, Noeud noeud) {	
+		super(vueGenerale, imagesManager);
+
 		this.imageWidth = (int)Math.round(tailleReelle*vueGenerale.getEchelle());
 		this.imageHeight = (int)Math.round(tailleReelle*vueGenerale.getEchelle());
 		
@@ -56,10 +53,20 @@ public class VueNoeud extends Vue{
 	void dessin(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
 		if(selection){
-			g2d.drawImage(imageSel, posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
+			if(noeud instanceof NoeudGarage){
+				g2d.drawImage(imagesManager.getImgNodeGarageSel(), posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
+			}
+			else{
+				g2d.drawImage(imagesManager.getImgNodeSel(), posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
+			}
 		}
 		else{
-			g2d.drawImage(image, posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
+			if(noeud instanceof NoeudGarage){
+				g2d.drawImage(imagesManager.getImgNodeGarage(), posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
+			}
+			else{
+				g2d.drawImage(imagesManager.getImgNode(), posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
+			}
 		}
 		if(noeud.getId() < 10){
 			Font f = new Font("Courier", Font.BOLD, imageWidth);

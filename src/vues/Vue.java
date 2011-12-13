@@ -1,5 +1,7 @@
 package vues;
 
+import ihm.ImagesManager;
+
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
@@ -11,8 +13,7 @@ public abstract class Vue {
 	
 	protected VueGenerale vueGenerale; //name changed
 	protected Shape rectangle;
-	protected Image image;
-	protected Image imageSel;
+	protected ImagesManager imagesManager;
 	protected int imageWidth;
 	protected int imageHeight;
 	protected Point posPixel;
@@ -23,14 +24,9 @@ public abstract class Vue {
 	 * @param vueGeneral
 	 * @param image
 	 */
-	public Vue(VueGenerale vueGeneral, Image image, Image imageSel){
+	public Vue(VueGenerale vueGeneral, ImagesManager imagesManager){
 		this.vueGenerale = vueGeneral;
-		this.image = image;
-		this.imageSel = imageSel;
-		
-		//TODO : à déporter dans les filles puis à supprimer.
-		this.imageWidth = (int)Math.round(vueGeneral.getCoefImage());
-		this.imageHeight = (int)Math.round(vueGeneral.getCoefImage()*this.image.getHeight(vueGeneral)/this.image.getWidth(vueGeneral)/2);//WTF ???????
+		this.imagesManager = imagesManager;
 		this.selection = false;
 	}
 	
@@ -57,6 +53,14 @@ public abstract class Vue {
 		selection = false;
 	}
 	
+	public ImagesManager getImagesManager() {
+		return imagesManager;
+	}
+
+	public void setImagesManager(ImagesManager imagesManager) {
+		this.imagesManager = imagesManager;
+	}
+
 	/**
 	 * D�tecte si un clic de souris est effectu� sur la vue
 	 * @param x

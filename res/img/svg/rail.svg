@@ -17,8 +17,8 @@
    sodipodi:version="0.32"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
    inkscape:export-filename="Y:\USDP\SGBag\res\img\rail.png"
-   inkscape:export-xdpi="385.44299"
-   inkscape:export-ydpi="385.44299">
+   inkscape:export-xdpi="413.50317"
+   inkscape:export-ydpi="413.50317">
   <defs
      id="defs4096">
     <inkscape:perspective
@@ -37,7 +37,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.979899"
-     inkscape:cx="41.275087"
+     inkscape:cx="-50.396256"
      inkscape:cy="65.666129"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -69,7 +69,7 @@
      id="layer1"
      transform="translate(-217.03125,-468.65625)">
     <rect
-       style="opacity:1;fill:#ff9a00;fill-opacity:1"
+       style="opacity:1;fill:#a3a3a3;fill-opacity:1"
        id="rect2395"
        width="110.10663"
        height="58.588848"

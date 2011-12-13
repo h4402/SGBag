@@ -1,5 +1,7 @@
 package vues;
 
+import ihm.ImagesManager;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -25,8 +27,8 @@ public class VueToboggan extends Vue {
 	 * @param imageSel
 	 * @param toboggan
 	 */
-	public VueToboggan(VueGenerale vueGenerale, Image image, Image imageSel, Toboggan toboggan) {
-		super(vueGenerale, image, imageSel);
+	public VueToboggan(VueGenerale vueGenerale, ImagesManager imagesManager, Toboggan toboggan) {
+		super(vueGenerale, imagesManager);
 		this.toboggan = toboggan;
 		
 		this.imageWidth = (int)Math.round(tailleReelle*vueGenerale.getEchelle());
@@ -42,10 +44,10 @@ public class VueToboggan extends Vue {
 	void dessin(Graphics g){
 		Graphics2D g2d = (Graphics2D)g;
 		if(selection){
-			g2d.drawImage(imageSel, posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
+			g2d.drawImage(imagesManager.getImgTobogganSel(), posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
 		}
 		else{
-			g2d.drawImage(image, posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
+			g2d.drawImage(imagesManager.getImgToboggan(), posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
 		}
 		if(toboggan.getNoeud().getId() < 10){
 			Font f = new Font("Courier", Font.BOLD, imageWidth);
