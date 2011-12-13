@@ -1,14 +1,14 @@
 package noyau;
 
-import java.awt.Point;
 import java.awt.geom.Point2D;
-import java.awt.geom.Point2D.Float;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
 import org.w3c.dom.Element;
+
+// TODO: Mieux géré la destination.
 
 /**
  * Composante de l'application qui se déplace
@@ -83,15 +83,22 @@ public class Chariot {
 	private boolean arret; 
 	
 	/**
+	 * Noeud précédent...
+	 */
+	private Noeud prevNoeud;
+	
+	/**
 	 * Constructeur nécéssaire à GreenUML.
 	 * 
 	 * @param coordonnees Coordonnées initiale du chariot.
 	 * @param bagage Bagage du nouveau chariot.
 	 * @param vitesse Vitesse initiale du chariot.
 	 * @param chemin Liste des noeud avant la destination.
+	 * @param nextNode Prochain noeud.
+	 * @param prevNoeud Noeud précédent.
 	 */
 	public Chariot(int id, Point2D.Float coordonnees, Bagage bagage, float vitesse,
-			LinkedList<Noeud> chemin, Noeud nextNode) {
+			LinkedList<Noeud> chemin, Noeud nextNode, Noeud prevNoeud) {
 		/* TODO : enlever le bagage en parametre du constructeur, et mettre
 		 * bagage = null ici
 		 */
@@ -104,6 +111,7 @@ public class Chariot {
 		this.distanceDepuisNoeudDepart = 0;
 		this.arret = false;
 		this.nextNode = nextNode;
+		this.prevNoeud = prevNoeud;
 	}
 	
 	/**
@@ -120,6 +128,7 @@ public class Chariot {
 		this.distanceDepuisNoeudDepart = 0;
 		this.arret = false;
 		this.nextNode = null;
+		this.prevNoeud = null;
 	}
 	
 	public float getVitesse() {
@@ -132,6 +141,15 @@ public class Chariot {
 
 	public int getId() {
 		return id;
+	}
+	
+	/**
+	 * Retourne le noeud précédent.
+	 * 
+	 * @return Noeud précédent.
+	 */
+	public Noeud getPrevNoeud() {
+		return prevNoeud;
 	}
 
 	/**
@@ -199,6 +217,7 @@ public class Chariot {
 			}
 		}
 		//System.out.println("On ne trouve pas de chemin!");
+		
 		return null;
 	}
 	
@@ -318,8 +337,15 @@ public class Chariot {
 	public boolean noeudElligible(Noeud n) {
 		// TODO: ne pas rajouter un rail si on ne peut pas aller dessus!
 		if(chemin.isEmpty()) {
-			
-			return true;
+			if(nextNode != null) {
+				for(Rail r : nextNode.getListeRails()) {
+					if(r.getNoeudSortie() == n) {
+						return true;
+					}
+				}
+				return false;
+			}
+			//return true;
 		}
 		else {
 			for(Rail r : chemin.getLast().listRailsSortie) {
@@ -419,6 +445,7 @@ public class Chariot {
 	 * Complémentaire de getProchainRail.
 	 */
 	public void suppProchainRail() {
+		prevNoeud = nextNode;
 		nextNode = chemin.poll();
 	}
 

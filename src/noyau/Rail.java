@@ -140,7 +140,6 @@ public class Rail {
 					c.majPos(noeudEntree, getVectUnitaire(), distChariot);
 				}
 				else {
-
 					if(noeudSortie.equals(c.getDestination())) {
 						if(c.getDestination() instanceof NoeudGarage) {
 							if(c.getBagage() == null) {
@@ -156,8 +155,10 @@ public class Rail {
 									c.calculerChemin(noeudSortie, Aeroport.garage.getNoeud());
 								}
 								prev = c;
+								
 								continue;
 							}
+							 
 						}
 						else if(c.getDestination() instanceof NoeudTapis) {
 							if(c.getBagage() == null) {
@@ -165,6 +166,12 @@ public class Rail {
 								prev = c;
 								continue;
 							}
+						}
+					}
+					else {
+						if(noeudSortie instanceof NoeudToboggan
+								&& c.getBagage() == null) {
+							c.calculerChemin(noeudSortie, Aeroport.garage.getNoeud());
 						}
 					}
 					/*

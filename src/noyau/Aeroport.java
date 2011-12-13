@@ -1,7 +1,6 @@
 package noyau;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
@@ -337,15 +336,16 @@ public class Aeroport {
 		
 		if(mode == Mode.AUTO) {
 			for(Tapis t : listTapis) {
+				((NoeudTapis)t.getNoeud()).avertirChariotPlein();
 				t.appelerChariotBoutDeFile();
 			}
 			for(Rail r : listRails) {
 				for(Chariot c : r.getListChariots()) {
 					if(c.getBagage() == null) {
-						c.calculerChemin(c.getDestination(), garage.getNoeud());
+						c.calculerChemin(c.getProchainNoeud(), garage.getNoeud());
 					}
 					else {
-						c.calculerChemin(c.getDestination(), c.getBagage().getTogobban().getNoeud());
+						c.calculerChemin(c.getProchainNoeud(), c.getBagage().getTogobban().getNoeud());
 					}
 				}
 			}
