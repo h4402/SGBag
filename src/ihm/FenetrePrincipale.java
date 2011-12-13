@@ -87,10 +87,10 @@ public class FenetrePrincipale extends JFrame {
 	private JPanel bandeauActions = new JPanel();
 	private BandeauAjoutBagages bandeauAjoutBagages = new BandeauAjoutBagages();
 	private BandeauVitesseChariot bandeauVitesseChariot = new BandeauVitesseChariot();
-	private BandeauSortirChariot bandeauLibererChariot = new BandeauSortirChariot();
+	private BandeauSortirChariot bandeauSortirChariot = new BandeauSortirChariot();
 	private JPanel panelBas = new JPanel();
-	private final JPanel panelBoutons = new JPanel();
-    private final JPanel panelLabelInfo = new JPanel();
+	private JPanel panelBoutons = new JPanel();
+    private JPanel panelLabelInfo = new JPanel();
     
 	/**
 	 * Boutons
@@ -102,7 +102,7 @@ public class FenetrePrincipale extends JFrame {
 	/**
 	 * Label d'info
 	 */
-	private final JLabel labelInfo = new JLabel("Label Info");
+	private JLabel labelInfo = new JLabel("Label Info");
 	
 	/**
 	 * Label Mode en cours
@@ -225,11 +225,53 @@ public class FenetrePrincipale extends JFrame {
 	 * Create the frame.
 	 */
 	public FenetrePrincipale() {
-		jInit();
+		jInit(false);
 	}
 
-	private void jInit() {
+	private void jInit(boolean fichierCharge) {
 		
+		// 1er chargement
+		if (!fichierCharge) {
+			this.setJMenuBar(menuBar);
+			// Menu Fichier
+			menuBar.add(fileMenu);
+			menuItemOuvrir.addActionListener(ouvrirListener);
+			menuItemOuvrir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,
+	                KeyEvent.CTRL_MASK));
+			fileMenu.add(menuItemOuvrir);
+			menuItemQuitter.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q,
+	                KeyEvent.CTRL_MASK));
+			menuItemQuitter.addActionListener(quitterListener);
+			fileMenu.add(menuItemQuitter);
+			
+			// Menu Affichage
+			menuBar.add(affichageMenu);
+			menuItemZoom100.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_0,
+	                KeyEvent.CTRL_MASK));
+			affichageMenu.add(menuItemZoom100);
+			menuItemZoomArriere.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_PLUS,
+	                KeyEvent.CTRL_MASK));
+			affichageMenu.add(menuItemZoomArriere);
+			menuItemZoomAvant.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_MINUS,
+	                KeyEvent.CTRL_MASK));
+			affichageMenu.add(menuItemZoomAvant);
+			
+			// Menu Aide
+			menuBar.add(aideMenu);
+			menuItemAPropos.addActionListener(aboutListener);
+			aideMenu.add(menuItemAPropos);
+			
+		}
+		
+		// UI
+		container = new JPanel();
+		panelBas = new JPanel();
+		panelBoutons = new JPanel();
+	    boutonLecture = new JButton();
+		boutonArretUrgence = new JButton();
+		boutonMode = new JButton();
+		
+		// Frame properties
 		Dimension dimBandeau = new Dimension(this.getWidth(), 80);
 		Dimension dimPanelBas = new Dimension(this.getWidth(), 40);
 		this.setTitle("SGBag - Simulation");
@@ -237,7 +279,9 @@ public class FenetrePrincipale extends JFrame {
         this.setLocationRelativeTo(null);
 		this.setBounds(100, 100, 1024, 768);
 		this.setResizable(false);
-		this.setJMenuBar(menuBar);
+		
+		etat = etatsLecture.STOP;
+		
 		bandeauGeneral.setVisible(true);
 		bandeauGeneral.setPreferredSize(dimBandeau);
 		bandeauGeneral.setLayout(new BorderLayout());
@@ -245,34 +289,6 @@ public class FenetrePrincipale extends JFrame {
 		// Chargement des images
 		imagesManager = new ImagesManager(getToolkit());
 		setIconImage(imagesManager.getImgIcon());
-		
-		// Menu Fichier
-		menuBar.add(fileMenu);
-		menuItemOuvrir.addActionListener(ouvrirListener);
-		menuItemOuvrir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,
-                KeyEvent.CTRL_MASK));
-		fileMenu.add(menuItemOuvrir);
-		menuItemQuitter.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q,
-                KeyEvent.CTRL_MASK));
-		menuItemQuitter.addActionListener(quitterListener);
-		fileMenu.add(menuItemQuitter);
-		
-		// Menu Affichage
-		menuBar.add(affichageMenu);
-		menuItemZoom100.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_0,
-                KeyEvent.CTRL_MASK));
-		affichageMenu.add(menuItemZoom100);
-		menuItemZoomArriere.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_PLUS,
-                KeyEvent.CTRL_MASK));
-		affichageMenu.add(menuItemZoomArriere);
-		menuItemZoomAvant.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_MINUS,
-                KeyEvent.CTRL_MASK));
-		affichageMenu.add(menuItemZoomAvant);
-		
-		// Menu Aide
-		menuBar.add(aideMenu);
-		menuItemAPropos.addActionListener(aboutListener);
-		aideMenu.add(menuItemAPropos);
 		
 		GridLayout gridBoutons = new GridLayout(1, 3, 5, 3);
 		panelBoutons.setLayout(gridBoutons);
@@ -305,11 +321,11 @@ public class FenetrePrincipale extends JFrame {
 		// Panel Parametres
 		bandeauAjoutBagages.setVisible(false);
 		bandeauVitesseChariot.setVisible(false);
-		bandeauLibererChariot.setVisible(false);
+		bandeauSortirChariot.setVisible(false);
 
 		bandeauActions.add(bandeauAjoutBagages);
 		bandeauActions.add(bandeauVitesseChariot);
-		bandeauActions.add(bandeauLibererChariot);
+		bandeauActions.add(bandeauSortirChariot);
 		
 		bandeauTexteMode.add(labelMode);
 		
@@ -319,8 +335,13 @@ public class FenetrePrincipale extends JFrame {
 		// Ajout des panels, structuration de la fenetre
 		container.setLayout(new BorderLayout());
 		container.setBackground(Color.white);
-		container.add(panelBas);
-		container.add(bandeauGeneral);
+		container.add(panelBas, BorderLayout.SOUTH);
+		container.add(bandeauGeneral, BorderLayout.NORTH);
+		if (fichierCharge) {
+			vueGenerale.addMouseListener(clicVueGenerale);
+			container.add(vueGenerale, BorderLayout.CENTER);
+		}
+		
 		this.setContentPane(container);
 		
 	}
@@ -375,8 +396,9 @@ public class FenetrePrincipale extends JFrame {
         }
         
         vueGenerale = new VueGenerale(bandeauAjoutBagages, 
-        		bandeauVitesseChariot, bandeauLibererChariot, labelInfo, aeroport, imagesManager);
+        		bandeauVitesseChariot, bandeauSortirChariot, labelInfo, aeroport, imagesManager);
         
+        /*
         labelInfo.setText("Bienvenue dans le système de gestion de bagages SGBag");
         labelMode.setText(vueGenerale.getModeTexte());
         // création des bandeaux qui ont besoin de la vue générale
@@ -406,6 +428,7 @@ public class FenetrePrincipale extends JFrame {
     	setContentPane(container);
         
     	vueGenerale.repaint();
+    	*/
     	
         return Aeroport.PARSE_OK;
     }
@@ -435,7 +458,25 @@ public class FenetrePrincipale extends JFrame {
 
                 if (racine.getNodeName().equals("Aeroport"))
                 {
-                	construireToutAPartirDeXML(racine);
+                	if (construireToutAPartirDeXML(racine) == Aeroport.PARSE_OK) {
+                		jInit(true);
+                		if (vueGenerale != null) {
+            				vueGenerale.repaint();
+            				vueGenerale.addMouseListener(clicVueGenerale);
+            			}
+                		labelInfo.setText("Bienvenue dans le système de gestion de bagages SGBag");
+                        labelMode.setText(vueGenerale.getModeTexte());
+                		bandeauAjoutBagages.setVueGenerale(vueGenerale);
+                        bandeauVitesseChariot.setVueGenerale(vueGenerale);
+                        bandeauSortirChariot.setVueGenerale(vueGenerale);
+            	        boutonLecture.setEnabled(true);
+            	        etat = etatsLecture.STOP;
+            	        boutonLecture.setText(playString);
+            	        boutonArretUrgence.setText(auString);
+            	        boutonArretUrgence.setEnabled(true);
+            	        boutonMode.setEnabled(true);
+            	        boutonMode.setText(vueGenerale.getModeBouton());
+                	}
                 }
                 
             // TODO : traiter les erreurs

@@ -220,6 +220,10 @@ public class VueGenerale extends JPanel {
 			chariotCourant.getChariot().ajouterNoeud(noeudCourant.getNoeud().getListeRails().get(0).getNoeudSortie());
 		}
 		
+		public void annulerLiberationChariot(){
+			bandeauSortirChariot.setVisible(false);
+		}
+		
 		public void avancerTemps(){
 			aeroport.avancerTemps();
 		}
