@@ -208,6 +208,8 @@ public class Rail {
 					Rail r = c.getProchainRail(noeudSortie);
 					if(r != null) {
 						if (r.ajoutChariot(c)) {
+							if(noeudSortie instanceof NoeudTapis) 
+								((NoeudTapis)noeudSortie).avertirChariotPlein();
 							c.suppProchainRail();
 							it.remove();
 						}
