@@ -149,44 +149,4 @@ public class ImagesManager {
 		return imgRail;
 	}
 
-	public String getPATH_IMAGE() {
-		return PATH_IMAGE;
-	}
-
-	public String getIMG_CHARIOT() {
-		return IMG_CHARIOT;
-	}
-
-	public String getIMG_CHARIOT_B() {
-		return IMG_CHARIOT_B;
-	}
-
-	public String getIMG_NODE() {
-		return IMG_NODE;
-	}
-
-	public String getIMG_NODE_GARAGE() {
-		return IMG_NODE_GARAGE;
-	}
-
-	public String getIMG_GUICHET() {
-		return IMG_GUICHET;
-	}
-
-	public String getIMG_TOBOGGAN() {
-		return IMG_TOBOGGAN;
-	}
-
-	public String getIMG_TAPIS() {
-		return IMG_TAPIS;
-	}
-
-	public String getIMG_TAPIS_B() {
-		return IMG_TAPIS_B;
-	}
-
-	public String getIMG_RAIL() {
-		return IMG_RAIL;
-	}
-    
 }
