@@ -303,6 +303,7 @@ public class FenetrePrincipale extends JFrame{
 	                KeyEvent.CTRL_MASK));
 			menuItemChristmas.addActionListener(eggListener);
 			affichageMenu.add(menuItemChristmas);
+			affichageMenu.setEnabled(false);
 			
 			// Menu Aide
 			menuBar.add(aideMenu);
@@ -432,6 +433,34 @@ public class FenetrePrincipale extends JFrame{
 	
 	
 	/**
+	 * Désactivation des actions (boutons, bandeaux, ...)
+	 */
+	private void desactiveActions() {
+		jInit(false);
+	}
+	
+	/**
+	 * Réinitialisation de certains composants
+	 */
+	private void reInitAppli() {
+		labelInfo.setText("Bienvenue dans le système de gestion de bagages SGBag");
+        labelMode.setText(vueGenerale.getModeTexte());
+		bandeauAjoutBagages.setVueGenerale(vueGenerale);
+        bandeauVitesseChariot.setVueGenerale(vueGenerale);
+        bandeauSortirChariot.setVueGenerale(vueGenerale);
+        boutonLecture.setEnabled(true);
+        etat = etatsLecture.STOP;
+        boutonLecture.setText(playString);
+        boutonArretUrgence.setText(auString);
+        boutonArretUrgence.setEnabled(true);
+        boutonMode.setEnabled(true);
+        boutonMode.setText(vueGenerale.getModeBouton());
+        bandeauVitesseChariot.setValuesSlider(Chariot.VIT_MIN, 
+            	Chariot.VIT_MAX);
+        affichageMenu.setEnabled(true);
+	}
+	
+	/**
 	 * 
 	 * @param vueCadreDOMElement
 	 * @return
@@ -481,26 +510,13 @@ public class FenetrePrincipale extends JFrame{
 	                		jInit(true);
 	                		if (vueGenerale != null) {
 	            				vueGenerale.repaint();
-	            			}
-	                		labelInfo.setText("Bienvenue dans le système de gestion de bagages SGBag");
-	                        labelMode.setText(vueGenerale.getModeTexte());
-	                		bandeauAjoutBagages.setVueGenerale(vueGenerale);
-	                        bandeauVitesseChariot.setVueGenerale(vueGenerale);
-	                        bandeauSortirChariot.setVueGenerale(vueGenerale);
-	            	        boutonLecture.setEnabled(true);
-	            	        etat = etatsLecture.STOP;
-	            	        boutonLecture.setText(playString);
-	            	        boutonArretUrgence.setText(auString);
-	            	        boutonArretUrgence.setEnabled(true);
-	            	        boutonMode.setEnabled(true);
-	            	        boutonMode.setText(vueGenerale.getModeBouton());
-	            	        bandeauVitesseChariot.setValuesSlider(Chariot.VIT_MIN, 
-	                            	Chariot.VIT_MAX);
+	            				reInitAppli();
+	                		}
 	                	}
                 	}
                 	catch (Exception e) {
+                		desactiveActions();
                 		labelInfo.setText("Erreur lors du chargement XML");
-                		
                 	}
                 }
                 
