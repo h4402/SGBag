@@ -153,7 +153,6 @@ public class FenetrePrincipale extends JFrame{
 		}
 	};
 	
-	
 	private void changeSkin(){
 		if (vueGenerale != null){
 			if (setImage == 0) {
@@ -479,8 +478,6 @@ public class FenetrePrincipale extends JFrame{
 
         int returnVal = jFileChooserXML.showOpenDialog(null);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
-            System.out.println("nom de fichier " +
-                    jFileChooserXML.getSelectedFile().getAbsolutePath());
             try {
                 DocumentBuilderFactory fabrique = DocumentBuilderFactory.newInstance();
                 DocumentBuilder constructeur = fabrique.newDocumentBuilder();
