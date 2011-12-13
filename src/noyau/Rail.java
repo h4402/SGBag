@@ -158,11 +158,9 @@ public class Rail {
 										
 										Noeud part = Aeroport.garage.getProchaineCommande();
 										if(part != null) {
-											System.out.println("Une commande!");
 											c.calculerChemin(noeudSortie, part);
 										}
 										else {
-											System.out.println("Pas de commande!");
 											c.calculerChemin(noeudSortie, Aeroport.garage.getNoeud());
 										}
 										

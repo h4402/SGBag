@@ -335,10 +335,21 @@ public class Aeroport {
 		
 	}
 	
+	/**
+	 * Retourne le mode de l'aeroport.
+	 * 
+	 * @return Mode courant.
+	 */
 	public static Mode getMode() {
 		return mode;
 	}
 
+	/**
+	 * Change le mode et fais ce qu'il faut
+	 * pour que personne ne l'interrompoe.
+	 * 
+	 * @param mode Nouveau mode.
+	 */
 	public void setMode(Mode mode) {
 		
 		enCalcul = true;

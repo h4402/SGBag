@@ -151,6 +151,9 @@ public class Tapis extends ES {
 		}
 	}
 	
+	/**
+	 * Appeler un chariot pour chaque bagage du tapis.
+	 */
 	public void appelerChariot() {
 		for(int i=0; i < tailleTapis; i++) {
 			if(listBagages.elementAt(tailleTapis-1) != null) {
