@@ -8,8 +8,6 @@ import java.util.TreeMap;
 
 import org.w3c.dom.Element;
 
-// TODO: Mieux géré la destination.
-
 /**
  * Composante de l'application qui se déplace
  * d'un noeud à l'autre sur des rails et qui 
@@ -94,9 +92,6 @@ public class Chariot {
 	 */
 	public Chariot(int id, Point2D.Float coordonnees, Bagage bagage, float vitesse,
 			LinkedList<Noeud> chemin, Noeud nextNode, Noeud prevNoeud) {
-		/* TODO : enlever le bagage en parametre du constructeur, et mettre
-		 * bagage = null ici
-		 */
 		super();
 		this.id = id;
 		this.coordonnees = coordonnees;
