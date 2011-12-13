@@ -79,18 +79,28 @@ public class VueChariot extends Vue {
 		if (chariot.getBagage() == null) {
 			g2d.drawImage(imagesManager.getImgChariotSel(), posPixel.x, posPixel.y, imageWidth,
 					imageHeight, vueGenerale);
+			if(chariot.getDestination() !=  null){
+				vueGenerale.getZoneInfo()
+		        .setText("Chariot " + chariot.getId() + " Destination Noeud " + 
+		        						chariot.getDestination().getId());
+			}
+			else{
+				vueGenerale.getZoneInfo()
+		        .setText("Chariot " + chariot.getId() + " Destination : inconnue");
+			}
 		} else {
 			g2d.drawImage(imagesManager.getImgChariotBSel(), posPixel.x, posPixel.y,
 					imageWidth, imageHeight, vueGenerale);
-		}
-		if(chariot.getDestination() !=  null){
-			vueGenerale.getZoneInfo()
-	        .setText("Chariot " + chariot.getId() + " Destination Noeud " + 
-	        						chariot.getDestination().getId());
-		}
-		else{
-			vueGenerale.getZoneInfo()
-	        .setText("Chariot " + chariot.getId() + " Destination : inconnue");
+			if(chariot.getDestination() !=  null){
+				vueGenerale.getZoneInfo()
+		        .setText("<html>Chariot " + chariot.getId() + " Destination Noeud " + 
+		        						chariot.getDestination().getId() + "<br> Bagage a destination du toboggan " + 
+		        		chariot.getBagage().getTogobban().getId() + "</html>");
+			}
+			else{
+				vueGenerale.getZoneInfo()
+		        .setText("Chariot " + chariot.getId() + " Destination : inconnue");
+			}
 		}
 	}
 	
@@ -111,8 +121,7 @@ public class VueChariot extends Vue {
 		g2d.rotate(alpha, posPixel.x + imageWidth / 2, posPixel.y
 					+ imageHeight / 2);
 		if (chariot.getCoordonnees().x != 0
-				|| chariot.getCoordonnees().y != 0) {
-			
+				|| chariot.getCoordonnees().y != 0) {			
 			if (selection) {
 				dessinSel(g2d);
 			} else {
