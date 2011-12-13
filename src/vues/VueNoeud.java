@@ -55,6 +55,11 @@ public class VueNoeud extends Vue{
 		if(selection){
 			if(noeud instanceof NoeudGarage){
 				g2d.drawImage(imagesManager.getImgNodeGarageSel(), posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
+				vueGenerale.getZoneInfo().setText("<html>Chariots presents : " + 
+						Aeroport.garage.getListChariotsVides().size()  + 
+						"<br>" + "Chariots en attente de depart : " + 
+						Aeroport.garage.getListChariotsPourPartir().size()+
+						"</html>");
 			}
 			else{
 				g2d.drawImage(imagesManager.getImgNodeSel(), posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
@@ -63,6 +68,11 @@ public class VueNoeud extends Vue{
 		else{
 			if(noeud instanceof NoeudGarage){
 				g2d.drawImage(imagesManager.getImgNodeGarage(), posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
+				vueGenerale.getZoneInfo().setText("<html>Chariots presents : " + 
+						Aeroport.garage.getListChariotsVides().size()  + 
+						"<br>" + "Chariots en attente de depart : " + 
+						Aeroport.garage.getListChariotsPourPartir().size()+
+						"</html>");
 			}
 			else{
 				g2d.drawImage(imagesManager.getImgNode(), posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
@@ -84,17 +94,11 @@ public class VueNoeud extends Vue{
 
 	@Override
 	void action() {
-		// TODO : afficher infos nombre de chariots dans le garage
 		if(noeud instanceof NoeudGarage){
 			this.selectionner();
 			if(Aeroport.getMode() == Mode.MANUEL){
 				vueGenerale.getBandeauSortirChariot().setVisible(true);
 			}
-			vueGenerale.getZoneInfo().setText("<html>Chariots presents : " + 
-					Aeroport.garage.getListChariotsVides().size()  + 
-					"<br>" + "Chariots en attente de depart : " + 
-					Aeroport.garage.getListChariotsPourPartir().size()+
-					"</html>");
 		}
 		
 	}
