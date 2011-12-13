@@ -175,14 +175,38 @@ public class FenetrePrincipale extends JFrame {
 	 */
 	private ActionListener modeListener = new ActionListener() {
 		public void actionPerformed(ActionEvent actionEvent) {
-			vueGenerale.changerMode();
-			boutonMode.setText(vueGenerale.getModeBouton());
-			labelMode.setText(vueGenerale.getModeTexte());
 			bandeauVitesseChariot.setVisible(false);
 			bandeauAjoutBagages.setVisible(false);
 			bandeauSortirChariot.setVisible(false);
+			
+			procedureChangerMode();
+			
 		}
 	};
+	
+	
+	private void procedureChangerMode() {
+		boutonMode.setEnabled(false);
+		new Thread(){
+			@Override
+			public void run() {
+				while (Aeroport.enCalcul)
+				{
+					try {
+						Thread.sleep(1);
+					} catch (InterruptedException e) {
+						System.out.println("Erreur threa.sleep");
+						e.printStackTrace();
+					}
+				};
+				vueGenerale.changerMode();
+				boutonMode.setEnabled(true);
+				boutonMode.setText(vueGenerale.getModeBouton());
+				labelMode.setText(vueGenerale.getModeTexte());
+			}
+		}.start();
+		
+	}
 	
 	
 	/**
@@ -209,7 +233,7 @@ public class FenetrePrincipale extends JFrame {
 	
 	
 	/**
-	 * Timer
+	 * Timer du tick d'horloge
 	 */
 	private ActionListener taskPerformer = new ActionListener() {
 
@@ -225,6 +249,14 @@ public class FenetrePrincipale extends JFrame {
      */
     private Timer horloge = new Timer(Aeroport.lapsTemps, taskPerformer);
 
+    
+    /*
+     * public static int BOUTON_MODE_INACTIF = 2;
+     * private Timer idleBoutonMode = new Timer(BOUTON_MODE_INACTIF, listener)
+     */
+    
+
+    
 	/**
 	 * Create the frame.
 	 */
