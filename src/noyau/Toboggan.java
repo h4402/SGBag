@@ -52,10 +52,6 @@ public class Toboggan extends ES {
 	public void ajouterBagage(Bagage b) {
 		listBagages.add(b);
 	}
-	
-	public int getId() {
-		return id;
-	}
 
 	public Point getCoordonnees(){
 		return noeud.getCoordonnees();

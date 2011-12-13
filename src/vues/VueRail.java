@@ -80,7 +80,7 @@ public class VueRail extends Vue {
 					vueGenerale.getZoneInfo().setText("<html>Destination ajoutee, cliquez sur le prochain rail pour definir un chemin <br>" +
 							"Chariot " + vueGenerale.getChariotCourant().getChariot().getId() +
 							" Bagage a destination du toboggan " + vueGenerale.getChariotCourant().getChariot()
-																			 .getBagage().getTogobban().getId() + "</html>");
+																			 .getBagage().getTogobban().getNoeud().getId() + "</html>");
 				}
 				else{
 					vueGenerale.getZoneInfo().setText("<html>Destination ajoutee, cliquez sur le prochain rail pour definir un chemin <br>" +
@@ -89,7 +89,7 @@ public class VueRail extends Vue {
 			}
 			else{
 				vueGenerale.getZoneInfo().setText("<html>Cette destination n'est pas valide! <br> " +
-						"Cliquez sur un rail consécutif et dans la bonne direction pour definir un chemin</html>");
+						"Cliquez sur un rail consï¿½cutif et dans la bonne direction pour definir un chemin</html>");
 			}
 		}
 	}
