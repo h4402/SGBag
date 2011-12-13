@@ -120,8 +120,10 @@ public class Garage extends ES {
 				
 				Rail r = c.getProchainRail(this.getNoeud());
 				
-				if(r == null)
+				if(r == null) {
+					this.ajouterChariotVide(c);
 					return;
+				}
 				
 				if(!r.ajoutChariot(c)) {
 					listChariotsPourPartir.offerLast(c);
