@@ -203,7 +203,8 @@ public class VueGenerale extends JPanel {
 		}
 		
 		public void setVitesseChariot(float vitesse){
-			chariotCourant.getChariot().setVitesse(vitesse);
+			if (chariotCourant != null && chariotCourant.getChariot() != null)
+				chariotCourant.getChariot().setVitesse(vitesse);
 		}
 		
 		public void libererChariot() {

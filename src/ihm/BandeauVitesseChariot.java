@@ -35,12 +35,15 @@ public class BandeauVitesseChariot extends JPanel {
 	private JLabel labelVitesse = new JLabel();
 
 	
-	
+	private int DEFAULT_MIN = 5;
+	private int DEFAULT_MAX = 20;
+	private int DEFAULT_VALUE = 10;
 	
 	/**
 	 * Champ de saisie de la vitesse du chariot
 	 */
-	private JSlider sliderVitesseChariot = new JSlider(JSlider.HORIZONTAL);
+	private JSlider sliderVitesseChariot = new JSlider(JSlider.HORIZONTAL,
+			DEFAULT_MIN, DEFAULT_MAX, DEFAULT_VALUE);
 	
 	
 	/**
@@ -102,6 +105,8 @@ public class BandeauVitesseChariot extends JPanel {
 	public void setValuesSlider(int vMin, int vMax){
 		sliderVitesseChariot.setMinimum(vMin);
 		sliderVitesseChariot.setMaximum(vMax);
+		sliderVitesseChariot.setMajorTickSpacing(5);
+		sliderVitesseChariot.setMinorTickSpacing(1);
 	}
 	
 	
