@@ -493,30 +493,34 @@ public class FenetrePrincipale extends JFrame {
 
                 if (racine.getNodeName().equals("Aeroport"))
                 {
-                	if (construireToutAPartirDeXML(racine) == Aeroport.PARSE_OK) {
-                		jInit(true);
-                		if (vueGenerale != null) {
-            				vueGenerale.repaint();
-            				vueGenerale.addMouseListener(clicVueGenerale);
-            			}
-                		labelInfo.setText("Bienvenue dans le système de gestion de bagages SGBag");
-                        labelMode.setText(vueGenerale.getModeTexte());
-                		bandeauAjoutBagages.setVueGenerale(vueGenerale);
-                        bandeauVitesseChariot.setVueGenerale(vueGenerale);
-                        bandeauSortirChariot.setVueGenerale(vueGenerale);
-            	        boutonLecture.setEnabled(true);
-            	        etat = etatsLecture.STOP;
-            	        boutonLecture.setText(playString);
-            	        boutonArretUrgence.setText(auString);
-            	        boutonArretUrgence.setEnabled(true);
-            	        boutonMode.setEnabled(true);
-            	        boutonMode.setText(vueGenerale.getModeBouton());
-            	        bandeauVitesseChariot.setValuesSlider(Chariot.VIT_MIN, 
-                            	Chariot.VIT_MAX);
+                	try {
+	                	if (construireToutAPartirDeXML(racine) == Aeroport.PARSE_OK) {
+	                		jInit(true);
+	                		if (vueGenerale != null) {
+	            				vueGenerale.repaint();
+	            				vueGenerale.addMouseListener(clicVueGenerale);
+	            			}
+	                		labelInfo.setText("Bienvenue dans le système de gestion de bagages SGBag");
+	                        labelMode.setText(vueGenerale.getModeTexte());
+	                		bandeauAjoutBagages.setVueGenerale(vueGenerale);
+	                        bandeauVitesseChariot.setVueGenerale(vueGenerale);
+	                        bandeauSortirChariot.setVueGenerale(vueGenerale);
+	            	        boutonLecture.setEnabled(true);
+	            	        etat = etatsLecture.STOP;
+	            	        boutonLecture.setText(playString);
+	            	        boutonArretUrgence.setText(auString);
+	            	        boutonArretUrgence.setEnabled(true);
+	            	        boutonMode.setEnabled(true);
+	            	        boutonMode.setText(vueGenerale.getModeBouton());
+	            	        bandeauVitesseChariot.setValuesSlider(Chariot.VIT_MIN, 
+	                            	Chariot.VIT_MAX);
+	                	}
+                	}
+                	catch (Exception e) {
+                		labelInfo.setText("Erreur lors du chargement XML");
+                		
                 	}
                 }
-                
-            // TODO : traiter les erreurs
                 
             } catch (ParserConfigurationException pce) {
                 System.out.println("Erreur de configuration du parseur DOM");

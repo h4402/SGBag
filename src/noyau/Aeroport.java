@@ -480,6 +480,7 @@ public class Aeroport {
 	public int construireAPartirDeXML(Element aeroportElement)
 	{	
 		this.reset();
+		
 		// On récupère les attributs de l'aéroports
         this.longueur = Integer.parseInt(aeroportElement.getAttribute("longueur"));
         this.largeur = Integer.parseInt(aeroportElement.getAttribute("largeur"));
