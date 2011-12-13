@@ -469,8 +469,6 @@ public class FenetrePrincipale extends JFrame {
                         labelMode.setText(vueGenerale.getModeTexte());
                 		bandeauAjoutBagages.setVueGenerale(vueGenerale);
                         bandeauVitesseChariot.setVueGenerale(vueGenerale);
-                        //bandeauVitesseChariot.setValuesSlider(Chariot.VIT_MIN, 
-                        	//Chariot.VIT_MAX);
                         bandeauSortirChariot.setVueGenerale(vueGenerale);
             	        boutonLecture.setEnabled(true);
             	        etat = etatsLecture.STOP;
@@ -479,6 +477,8 @@ public class FenetrePrincipale extends JFrame {
             	        boutonArretUrgence.setEnabled(true);
             	        boutonMode.setEnabled(true);
             	        boutonMode.setText(vueGenerale.getModeBouton());
+            	        bandeauVitesseChariot.setValuesSlider(Chariot.VIT_MIN, 
+                            	Chariot.VIT_MAX);
                 	}
                 }
                 
