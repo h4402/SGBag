@@ -155,7 +155,17 @@ public class Rail {
 								if(c.getBagage().getTogobban().getNoeud().equals(c.getDestination())) {
 									((NoeudToboggan)c.getDestination()).getToboggan().ajouterBagage((c.viderChariot()));
 									if(Aeroport.getMode() == Aeroport.Mode.AUTO) {
-										c.calculerChemin(noeudSortie, Aeroport.garage.getNoeud());
+										
+										Noeud part = Aeroport.garage.getProchaineCommande();
+										if(part != null) {
+											c.calculerChemin(noeudSortie, part);
+										}
+										else {
+											c.calculerChemin(noeudSortie, Aeroport.garage.getNoeud());
+										}
+										
+										//c.calculerChemin(noeudSortie, Aeroport.garage.getNoeud());
+										
 									}
 									prev = c;
 									continue;
@@ -171,13 +181,24 @@ public class Rail {
 							}
 						}
 					}
+					/*
 					else {
 						if(noeudSortie instanceof NoeudToboggan) {
 							if(c.getBagage() == null && Aeroport.getMode() == Aeroport.Mode.AUTO) {
 								c.calculerChemin(noeudSortie, Aeroport.garage.getNoeud());
+								
+								
+								//Noeud part = Aeroport.garage.getProchaineCommande();
+								//if(part != null) {
+								//	c.calculerChemin(noeudSortie, part);
+								//}
+								//else {
+								//	c.calculerChemin(noeudSortie, Aeroport.garage.getNoeud());
+								//}
 							}
 						}
 					}
+					*/
 					/*
 					 * Si on est la, le chariot continue son chemin,
 					 * on prend le prochain rail

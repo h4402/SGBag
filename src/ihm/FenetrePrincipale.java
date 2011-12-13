@@ -460,7 +460,7 @@ public class FenetrePrincipale extends JFrame{
         
         vueGenerale = new VueGenerale(bandeauAjoutBagages, 
         		bandeauVitesseChariot, bandeauSortirChariot, labelInfo, aeroport, imagesManager);
-        
+        horloge.stop();
         
         return Aeroport.PARSE_OK;
     }

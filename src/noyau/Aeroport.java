@@ -335,17 +335,32 @@ public class Aeroport {
 		
 	}
 	
+	/**
+	 * Retourne le mode de l'aeroport.
+	 * 
+	 * @return Mode courant.
+	 */
 	public static Mode getMode() {
 		return mode;
 	}
 
+	/**
+	 * Change le mode et fais ce qu'il faut
+	 * pour que personne ne l'interrompoe.
+	 * 
+	 * @param mode Nouveau mode.
+	 */
 	public void setMode(Mode mode) {
 		
 		enCalcul = true;
 		if(mode == Mode.AUTO) {
 			for(Tapis t : listTapis) {
+				/*
 				((NoeudTapis)t.getNoeud()).avertirChariotPlein();
 				t.appelerChariotBoutDeFile();
+				*/
+				((NoeudTapis)t.getNoeud()).avertirChariotPlein();
+				t.appelerChariot();
 			}
 			for(Rail r : listRails) {
 				for(Chariot c : r.getListChariots()) {

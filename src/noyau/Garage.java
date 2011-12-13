@@ -154,6 +154,10 @@ public class Garage extends ES {
 	public LinkedList<Chariot> getListChariotsPourPartir() {
 		return listChariotsPourPartir;
 	}
+	
+	public Noeud getProchaineCommande() {
+		return listTapisARejoindre.poll();
+	}
 
 	/**
 	 * Efface la liste des tapis ou aller.
