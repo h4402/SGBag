@@ -1,5 +1,7 @@
 package vues;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -38,13 +40,24 @@ public class VueToboggan extends Vue {
 	
 	@Override
 	void dessin(Graphics g){
+		Graphics2D g2d = (Graphics2D)g;
 		if(selection){
-			Graphics2D g2d = (Graphics2D)g;
 			g2d.drawImage(imageSel, posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
 		}
 		else{
-			Graphics2D g2d = (Graphics2D)g;
 			g2d.drawImage(image, posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
+		}
+		if(toboggan.getNoeud().getId() < 10){
+			Font f = new Font("Courier", Font.BOLD, imageWidth);
+			g2d.setFont(f);
+			g2d.setColor(Color.WHITE);
+			g2d.drawString(Integer.toString(toboggan.getNoeud().getId()), (float)(posPixel.x + imageWidth/4), (float)(posPixel.y + imageHeight/1.25));
+		}
+		else{
+			Font f = new Font("Courier", Font.BOLD, (int)Math.round(imageWidth/1.5));
+			g2d.setFont(f);
+			g2d.setColor(Color.WHITE);
+			g2d.drawString(Integer.toString(toboggan.getNoeud().getId()), (float)(posPixel.x + imageWidth/6), (float)(posPixel.y + imageHeight/1.5));
 		}
 	}
 	
