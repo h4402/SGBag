@@ -27,10 +27,6 @@ public abstract class Vue {
 		this.vueGenerale = vueGeneral;
 		this.image = image;
 		this.imageSel = imageSel;
-		
-		//TODO : à déporter dans les filles puis à supprimer.
-		this.imageWidth = (int)Math.round(vueGeneral.getCoefImage());
-		this.imageHeight = (int)Math.round(vueGeneral.getCoefImage()*this.image.getHeight(vueGeneral)/this.image.getWidth(vueGeneral)/2);//WTF ???????
 		this.selection = false;
 	}
 	

@@ -20,6 +20,9 @@ public class VueChariot extends Vue {
 	private Image imageAvecBagageSel;
 	private Chariot chariot;
 	private double alpha;
+	
+	static private double longueurReelle = 1.5;
+	static private double largeurReelle = 3;
 
 	/**
 	 * Constructeur de la VueChariot
@@ -38,6 +41,9 @@ public class VueChariot extends Vue {
 		this.imageAvecBagageSel = imageAvecBagageSel;
 		this.chariot = chariot;
 		this.alpha=0;
+		this.imageWidth = (int)Math.round(largeurReelle*vueGenerale.getEchelle());
+		this.imageHeight = (int)Math.round(longueurReelle*vueGenerale.getEchelle());
+		
 		posPixel = new Point((int) Math.round(this.chariot.getCoordonnees().x
 				* this.vueGenerale.getEchelle() - imageWidth / 2),
 				(int) Math.round(this.chariot.getCoordonnees().y

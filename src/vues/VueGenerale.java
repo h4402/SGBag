@@ -32,7 +32,6 @@ public class VueGenerale extends JPanel {
 		private BandeauSortirChariot bandeauSortirChariot;
 		private JLabel zoneInfo;
 		private double echelle;
-		private double coefImage;
 		private ArrayList<Vue> listVues;
 
 		public VueGenerale(BandeauAjoutBagages bandeauAjoutBagages, BandeauVitesseChariot bandeauVitesseChariot, 
@@ -48,16 +47,10 @@ public class VueGenerale extends JPanel {
 			this.bandeauVitesseChariot = bandeauVitesseChariot;
 			this.bandeauSortirChariot = bandeauSortirChariot;
 			this.zoneInfo = zoneInfo;
-			
-			//TODO : à réparer y a t'il une inversion entre longueur et largeur ?
-			//System.out.printf("this.width: %d, aeroportLong: %d, this.height: %d, aeroportLarg: %d\n", this.getWidth(), this.aeroport.getLongueur(),
-				//	this.getHeight(), this.aeroport.getLargeur());
+
 			this.echelle = Math.min(this.getWidth()/this.aeroport.getLargeur(),
 					this.getHeight()/this.aeroport.getLongueur());
 			
-			
-			// TODO : supprimer ce coeff 3
-			coefImage = 3*Bagage.TAILLE_BAGAGE*echelle;
 			listVues = new ArrayList<Vue>();
 			
 			List<Chariot> listChariot = aeroport.getListChariots();
@@ -94,10 +87,6 @@ public class VueGenerale extends JPanel {
 				listVues.add(new VueRail(this,imagesManager.getImgRail(), imagesManager.getImgRailSel(), r));
 			}
 			
-		}
-		
-		public double getCoefImage() {
-			return coefImage;
 		}
 
 		public VueToboggan getTobogganCourant() {
