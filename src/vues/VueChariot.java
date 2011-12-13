@@ -72,32 +72,48 @@ public class VueChariot extends Vue {
 		return dansRectangle(p);
 	}
 
+	private void dessinSel(Graphics2D g2d){
+		if (chariot.getBagage() == null) {
+			g2d.drawImage(imageSel, posPixel.x, posPixel.y, imageWidth,
+					imageHeight, vueGenerale);
+		} else {
+			g2d.drawImage(imageAvecBagageSel, posPixel.x, posPixel.y,
+					imageWidth, imageHeight, vueGenerale);
+		}
+		if(chariot.getDestination() !=  null){
+			vueGenerale.getZoneInfo()
+	        .setText("Chariot " + chariot.getId() + " Destination Noeud " + 
+	        						chariot.getDestination().getId());
+		}
+		else{
+			vueGenerale.getZoneInfo()
+	        .setText("Chariot " + chariot.getId() + " Destination : inconnue");
+		}
+	}
+	
+	private void dessinNonSel(Graphics2D g2d){
+		if (chariot.getBagage() == null) {
+			g2d.drawImage(image, posPixel.x, posPixel.y, imageWidth,
+					imageHeight, vueGenerale);
+		} else {
+			g2d.drawImage(imageAvecBagage, posPixel.x, posPixel.y,
+					imageWidth, imageHeight, vueGenerale);
+		}
+	}
+	
 	@Override
 	void dessin(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		updatePos();
 		g2d.rotate(alpha, posPixel.x + imageWidth / 2, posPixel.y
 					+ imageHeight / 2);
-		
 		if (chariot.getCoordonnees().x != 0
 				|| chariot.getCoordonnees().y != 0) {
 			
 			if (selection) {
-				if (chariot.getBagage() == null) {
-					g2d.drawImage(imageSel, posPixel.x, posPixel.y, imageWidth,
-							imageHeight, vueGenerale);
-				} else {
-					g2d.drawImage(imageAvecBagageSel, posPixel.x, posPixel.y,
-							imageWidth, imageHeight, vueGenerale);
-				}
+				dessinSel(g2d);
 			} else {
-				if (chariot.getBagage() == null) {
-					g2d.drawImage(image, posPixel.x, posPixel.y, imageWidth,
-							imageHeight, vueGenerale);
-				} else {
-					g2d.drawImage(imageAvecBagage, posPixel.x, posPixel.y,
-							imageWidth, imageHeight, vueGenerale);
-				}
+				dessinNonSel(g2d);
 			}
 		}
 		g2d.rotate(-alpha, posPixel.x + imageWidth / 2, posPixel.y
@@ -116,9 +132,8 @@ public class VueChariot extends Vue {
 				this.chariot.getVitesse());
 		vueGenerale.getBandeauVitesseChariot().setVisible(true);
 		if (Aeroport.getMode() == Mode.MANUEL) {
-			vueGenerale
-					.getZoneInfo()
-					.setText("Veuillez selectionner la destination suivante du chariot.");
+			vueGenerale.getZoneInfo()
+			           .setText("Veuillez selectionner la destination suivante du chariot.");
 		}
 	}
 

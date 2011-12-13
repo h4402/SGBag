@@ -238,7 +238,6 @@ public class Chariot {
 		Bagage b = bagage;
 		bagage = null;
 		chemin.clear();
-		nextNode = null;
 		return b;
 	}
 	

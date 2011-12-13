@@ -60,6 +60,11 @@ public class Rail {
 	private float longueur;
 	
 	/**
+	 * On freine ou pas?
+	 */
+	private boolean jeFreine;
+	
+	/**
 	 * Retourne la direction du rail.
 	 * (Recalculé à chaque appel)
 	 * 
@@ -85,6 +90,7 @@ public class Rail {
 		Point direction = getDirection();
 		longueur = (float) Math.sqrt(direction.x*direction.x + direction.y*direction.y);
 		vectUnitaire = new Point2D.Float(direction.x/longueur, direction.y/longueur);
+		jeFreine = false;
 	}
 	
 	/**
@@ -98,6 +104,7 @@ public class Rail {
 		this.noeudSortie = null;
 		vectUnitaire = new Point2D.Float();
 		longueur = 0;
+		jeFreine = false;
 	}
 	
 	/**
@@ -127,16 +134,11 @@ public class Rail {
 		    Chariot c = it.next();
 		    
 			float distChariot = c.calculerNouvPos();
-			/*
-			if(c.getId() == 0) {
-				if(c.getDestination() != null)
-					System.out.println("Dest de Chariot 0 : " + c.getDestination());
-			}
-			*/
 			/* 
 			 * Si il n'y a pas de chariot précédent, ou si on ne le dépasse pas.
 			 */
 			if(prev == null || distChariot+distSecu < prev.getDistance()) {
+				jeFreine = false;
 				/*
 				 * Si le chariot est toujours dans le rail,
 				 * on l'avance.
@@ -181,12 +183,6 @@ public class Rail {
 							if(c.getBagage() == null && Aeroport.getMode() == Aeroport.Mode.AUTO) {
 								c.calculerChemin(noeudSortie, Aeroport.garage.getNoeud());
 							}
-							else {
-								if(c.getBagage() != null) {
-									System.out.println("Je suis bloqué avec un bagage qui va a " + c.getBagage().getTogobban().getNoeud().getId());
-									System.out.println("Et moi je vais a " + c.getDestination().getId() + " et " +c.getProchainNoeud().getId());
-								}
-							}
 						}
 					}
 					/*
@@ -206,6 +202,7 @@ public class Rail {
 			}
 			
 			else {
+				jeFreine = true;
 				/*
 				 * Si on est la, c'est qu'on peut dépasser un chariot
 				 * On met alors notre chariot le plus près possible du précédent.
@@ -240,6 +237,15 @@ public class Rail {
 		else {
 			return false;
 		}
+	}
+	
+	/**
+	 * Retourne si le chariot freine ou non.
+	 * 
+	 * @return Freine ou non?
+	 */
+	public boolean getFreine() {
+		return jeFreine;
 	}
 	
 	/**

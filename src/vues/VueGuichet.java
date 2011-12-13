@@ -15,8 +15,8 @@ public class VueGuichet extends Vue {
 	private Guichet guichet;
 	
 	//TODO : set from xml
-	static private double hauteurReelle = 4;
-	static private double largeurReelle = 5.4;
+	static private double hauteurReelle = 2;
+	static private double largeurReelle = 2.7;
 
 	/**
 	 * Constructeur de la VueGuichet
