@@ -1,5 +1,7 @@
 package vues;
 
+import ihm.ImagesManager;
+
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
@@ -11,8 +13,7 @@ public abstract class Vue {
 	
 	protected VueGenerale vueGenerale; //name changed
 	protected Shape rectangle;
-	protected Image image;
-	protected Image imageSel;
+	protected ImagesManager imageManager;
 	protected int imageWidth;
 	protected int imageHeight;
 	protected Point posPixel;
@@ -23,10 +24,9 @@ public abstract class Vue {
 	 * @param vueGeneral
 	 * @param image
 	 */
-	public Vue(VueGenerale vueGeneral, Image image, Image imageSel){
+	public Vue(VueGenerale vueGeneral, ImagesManager imagesManager){
 		this.vueGenerale = vueGeneral;
-		this.image = image;
-		this.imageSel = imageSel;
+		this.imageManager = imagesManager;
 		this.selection = false;
 	}
 	

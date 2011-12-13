@@ -1,5 +1,7 @@
 package vues;
 
+import ihm.ImagesManager;
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -25,8 +27,8 @@ public class VueGuichet extends Vue {
 	 * @param imageSel
 	 * @param guichet
 	 */
-	public VueGuichet(VueGenerale vueGenerale, Image image, Image imageSel, Guichet guichet) {
-		super(vueGenerale, image, imageSel);
+	public VueGuichet(VueGenerale vueGenerale, ImagesManager imagesManager, Guichet guichet) {
+		super(vueGenerale, imagesManager);
 		this.guichet = guichet;
 		
 		this.imageWidth = (int)Math.round(largeurReelle*vueGenerale.getEchelle());
@@ -43,12 +45,10 @@ public class VueGuichet extends Vue {
 	void dessin(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
 		if(selection){
-			g2d.drawImage(imageSel, posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
-			//g2d.drawImage(imageSel, posPixel.x, posPixel.y,vueGenerale);
+			g2d.drawImage(imageManager.getImgGuichetSel(), posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
 		}
 		else{
-			g2d.drawImage(image, posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
-			//g2d.drawImage(image, posPixel.x, posPixel.y,vueGenerale);
+			g2d.drawImage(imageManager.getImgGuichet(), posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
 		}
 	}
 	

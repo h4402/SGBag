@@ -1,5 +1,7 @@
 package vues;
 
+import ihm.ImagesManager;
+
 import java.awt.Image;
 import java.awt.geom.AffineTransform;
 import java.awt.Graphics;
@@ -29,8 +31,8 @@ public class VueRail extends Vue {
 	 * @param imageSel
 	 * @param rail
 	 */
-	public VueRail(VueGenerale vueGenerale, Image image, Image imageSel, Rail rail) {
-		super(vueGenerale, image, imageSel);
+	public VueRail(VueGenerale vueGenerale, ImagesManager imagesManager, Rail rail) {
+		super(vueGenerale, imagesManager);
 		this.rail = rail;
 		
 		this.imageWidth = (int)Math.round(longueurReelleElem*vueGenerale.getEchelle());
@@ -57,10 +59,10 @@ public class VueRail extends Vue {
 
 		for (int i = 0; i < Math.round(Math.round(pointA.distance(pointB))/imageWidth); i++) {
 			if(selection){
-				g2d.drawImage(imageSel, pointA.x + i*imageWidth, pointA.y - imageHeight/2, imageWidth, imageHeight, vueGenerale);
+				g2d.drawImage(imageManager.getImgRailSel(), pointA.x + i*imageWidth, pointA.y - imageHeight/2, imageWidth, imageHeight, vueGenerale);
 			}
 			else{
-				g2d.drawImage(image, pointA.x + i*imageWidth, pointA.y - imageHeight/2, imageWidth, imageHeight, vueGenerale);
+				g2d.drawImage(imageManager.getImgRail(), pointA.x + i*imageWidth, pointA.y - imageHeight/2, imageWidth, imageHeight, vueGenerale);
 			}
 		}
 		g2d.rotate(-alpha, pointA.x, pointA.y);

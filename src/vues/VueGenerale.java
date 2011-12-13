@@ -55,36 +55,33 @@ public class VueGenerale extends JPanel {
 			
 			List<Chariot> listChariot = aeroport.getListChariots();
 			for(Chariot c: listChariot){
-				listVues.add(new VueChariot(this, imagesManager.getImgChariot(), imagesManager.getImgChariotSel(),
-						imagesManager.getImgChariotB(), imagesManager.getImgChariotBSel(), c));
+				listVues.add(new VueChariot(this, imagesManager, c));
 			}
 			
 			
 			List<Guichet> listGuichet = aeroport.getListGuichets();
 			for(Guichet g: listGuichet){
-				listVues.add(new VueGuichet(this, imagesManager.getImgGuichet(), imagesManager.getImgGuichetSel(), g));
+				listVues.add(new VueGuichet(this, imagesManager, g));
 			}
 			
 			List<Toboggan> listToboggan = aeroport.getListToboggans();
 			for(Toboggan t: listToboggan){
-				listVues.add(new VueToboggan(this, imagesManager.getImgToboggan(), imagesManager.getImgTobogganSel(), t));
+				listVues.add(new VueToboggan(this, imagesManager, t));
 			}
 			
 			List<Tapis> listTapis = aeroport.getListTapis();
 			for(Tapis p : listTapis){
-				listVues.add(new VueTapis(this, imagesManager.getImgTapis(), imagesManager.getImgTapisSel(), 
-						imagesManager.getImgTapisB(), imagesManager.getImgTapisBSel(), p));
+				listVues.add(new VueTapis(this, imagesManager, p));
 			}
 			
 			List<Noeud> listNoeuds = aeroport.getListNoeuds();
 			for(Noeud n: listNoeuds){
-				listVues.add(new VueNoeud(this, imagesManager.getImgNode(), imagesManager.getImgNodeSel(),
-						imagesManager.getImgNodeGarage(), imagesManager.getImgNodeGarageSel(), n));
+				listVues.add(new VueNoeud(this, imagesManager, n));
 			}
 			
 			List<Rail> listRail = aeroport.getListRails();
 			for(Rail r : listRail){
-				listVues.add(new VueRail(this,imagesManager.getImgRail(), imagesManager.getImgRailSel(), r));
+				listVues.add(new VueRail(this,imagesManager, r));
 			}
 			
 		}
