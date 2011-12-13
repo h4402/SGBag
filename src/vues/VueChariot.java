@@ -115,10 +115,12 @@ public class VueChariot extends Vue {
 		vueGenerale.getBandeauVitesseChariot().setVitesseChariot(
 				this.chariot.getVitesse());
 		vueGenerale.getBandeauVitesseChariot().setVisible(true);
+		vueGenerale.getZoneInfo()
+        .setText("Chariot n°" + chariot.getId() + " Destination Noeud n°" + 
+        						chariot.getDestination().getId());
 		if (Aeroport.getMode() == Mode.MANUEL) {
-			vueGenerale
-					.getZoneInfo()
-					.setText("Veuillez selectionner la destination suivante du chariot.");
+			vueGenerale.getZoneInfo()
+			           .setText("Veuillez selectionner la destination suivante du chariot.");
 		}
 	}
 

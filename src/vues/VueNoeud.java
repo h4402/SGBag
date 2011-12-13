@@ -52,14 +52,14 @@ public class VueNoeud extends Vue{
 
 	@Override
 	void dessin(Graphics g) {
+		Graphics2D g2d = (Graphics2D)g;
 		if(selection){
-			Graphics2D g2d = (Graphics2D)g;
 			g2d.drawImage(imageSel, posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
 		}
 		else{
-			Graphics2D g2d = (Graphics2D)g;
 			g2d.drawImage(image, posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
-		}	
+		}
+		g2d.drawString(Integer.toString(noeud.getId()), posPixel.x, posPixel.y);
 	}
 
 	@Override
