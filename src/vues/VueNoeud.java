@@ -69,7 +69,6 @@ public class VueNoeud extends Vue{
 			this.selectionner();
 			if(Aeroport.getMode() == Mode.MANUEL){
 				vueGenerale.getBandeauSortirChariot().setVisible(true);
-				vueGenerale.setNoeudCourant(this);
 			}
 			vueGenerale.getZoneInfo().setText("<html>Chariots presents : " + 
 					Aeroport.garage.getListChariotsVides().size()  + 

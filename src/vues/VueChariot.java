@@ -110,7 +110,6 @@ public class VueChariot extends Vue {
 		vueGenerale.setChariotCourant(this);
 		vueGenerale.setGuichetCourant(null);
 		vueGenerale.setTobogganCourant(null);
-		vueGenerale.setNoeudCourant(null);
 		vueGenerale.getBandeauVitesseChariot().setNumChariot(
 				this.chariot.getId());
 		vueGenerale.getBandeauVitesseChariot().setVitesseChariot(

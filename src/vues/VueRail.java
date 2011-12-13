@@ -72,7 +72,6 @@ public class VueRail extends Vue {
 		this.selectionner();
 		vueGenerale.setGuichetCourant(null);
 		vueGenerale.setTobogganCourant(null);
-		vueGenerale.setNoeudCourant(null);
 		if(vueGenerale.getChariotCourant()!=null) {
 			if(vueGenerale.getChariotCourant().getChariot().noeudElligible(rail.getNoeudSortie())){
 				vueGenerale.getChariotCourant().getChariot().ajouterNoeud(rail.getNoeudSortie());
