@@ -285,11 +285,21 @@ public class Chariot {
 			
 			chemin.addFirst(arrivee);
 			DijStuff dijCourant = graph.get(arrivee);
-			while(dijCourant.pred != depart) {
-				chemin.addFirst(dijCourant.pred);
-				// TODO NULLPOINTEREXCEPTION Des fois ici....
-				dijCourant = graph.get(dijCourant.pred);
-				
+			if(dijCourant != null) {
+			
+				while(dijCourant.pred != depart) {
+					chemin.addFirst(dijCourant.pred);
+					// TODO NULLPOINTEREXCEPTION Des fois ici....
+					dijCourant = graph.get(dijCourant.pred);
+					if(dijCourant == null) {
+						// Pas de solution
+						chemin.clear();
+						break;
+					}
+				}
+			}
+			else {
+				chemin.clear();
 			}
 			//chemin.addFirst(depart);
 			nextNode = depart;
