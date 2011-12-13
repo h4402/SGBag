@@ -59,7 +59,6 @@ public class VueGuichet extends Vue {
 	void action() {
 		this.selectionner();
 		vueGenerale.setChariotCourant(null);
-		vueGenerale.setNoeudCourant(null);
 		vueGenerale.setGuichetCourant(this);
 		if(vueGenerale.getTobogganCourant() != null){
 			vueGenerale.getTobogganCourant().selectionner();

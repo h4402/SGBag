@@ -26,7 +26,6 @@ public class VueGenerale extends JPanel {
 		private VueGuichet guichetCourant;
 		private VueToboggan tobogganCourant;
 		private VueChariot chariotCourant;
-		private VueNoeud noeudCourant;
 		private Aeroport aeroport;
 		private BandeauAjoutBagages bandeauAjoutBagages;
 		private BandeauVitesseChariot bandeauVitesseChariot;
@@ -157,14 +156,6 @@ public class VueGenerale extends JPanel {
 			return bandeauSortirChariot;
 		}
 
-		public VueNoeud getNoeudCourant() {
-			return noeudCourant;
-		}
-
-		public void setNoeudCourant(VueNoeud noeudCourant) {
-			this.noeudCourant = noeudCourant;
-		}
-
 		@Override
 		public void paintComponent(Graphics g) {
 			//super.paintComponent(g);
@@ -197,7 +188,6 @@ public class VueGenerale extends JPanel {
 				guichetCourant = null;
 				tobogganCourant = null;
 				chariotCourant = null;
-				noeudCourant = null;
 			}
 			
 			repaint();
@@ -217,7 +207,7 @@ public class VueGenerale extends JPanel {
 		}
 		
 		public void libererChariot() {
-			chariotCourant.getChariot().ajouterNoeud(noeudCourant.getNoeud().getListeRails().get(0).getNoeudSortie());
+			aeroport.appelChariotGarage();
 		}
 		
 		public void annulerLiberationChariot(){
