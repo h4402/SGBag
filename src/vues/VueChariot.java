@@ -79,7 +79,7 @@ public class VueChariot extends Vue {
 		g2d.rotate(alpha, posPixel.x + imageWidth / 2, posPixel.y
 					+ imageHeight / 2);
 		
-		if (chariot.getDestination() != null || chariot.getCoordonnees().x != 0
+		if (chariot.getCoordonnees().x != 0
 				|| chariot.getCoordonnees().y != 0) {
 			
 			if (selection) {

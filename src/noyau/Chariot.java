@@ -282,14 +282,13 @@ public class Chariot {
 					}
 				}
 			}
-			
+			chemin.clear();
 			chemin.addFirst(arrivee);
 			DijStuff dijCourant = graph.get(arrivee);
 			if(dijCourant != null) {
 			
 				while(dijCourant.pred != depart) {
 					chemin.addFirst(dijCourant.pred);
-					// TODO NULLPOINTEREXCEPTION Des fois ici....
 					dijCourant = graph.get(dijCourant.pred);
 					if(dijCourant == null) {
 						// Pas de solution
@@ -297,6 +296,7 @@ public class Chariot {
 						break;
 					}
 				}
+				
 			}
 			else {
 				chemin.clear();
