@@ -10,7 +10,14 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 public class FenetreAbout extends JPanel {
-    private JLabel labelTitle = new JLabel();
+	
+    /**
+	 * Serial version UID
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	
+	private JLabel labelTitle = new JLabel();
     private JLabel labelAuthor = new JLabel();
     private JLabel labelCopyright = new JLabel();
     private JLabel labelCompany = new JLabel();
@@ -28,7 +35,7 @@ public class FenetreAbout extends JPanel {
     private void jbInit() throws Exception {
         this.setLayout( layoutMain );
         this.setBorder( border );
-        labelTitle.setText( "SGBag ça déchire grâve" );
+        labelTitle.setText( "SGBaaaaaarrrhhhg" );
         labelAuthor.setText( "H4402" );
         labelCopyright.setText( "©H4402" );
         labelCompany.setText( "H4402 Corporation" );

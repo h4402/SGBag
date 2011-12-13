@@ -2,13 +2,10 @@ package ihm;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
-import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
@@ -45,16 +42,17 @@ import org.xml.sax.SAXException;
 import bibliotheques.SGBagFileFilter;
 
 /**
- * TODO: Gérer le rechargement du XML!
- */
-
-/**
  * 
  * @author jeremy
  *
  */
 public class FenetrePrincipale extends JFrame {
 	
+	/**
+	 * Defaut serial version UID
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * Vue générale
 	 */
@@ -183,7 +181,11 @@ public class FenetrePrincipale extends JFrame {
 		}
 	};
 	
-	
+	/**
+	 * Procedure appelée lors du changement de mode
+	 * Elle désactive le bouton de changement pour attendre que les opérations
+	 * de calcul de chemins dans le noyau soient terminés
+	 */
 	private void procedureChangerMode() {
 		boutonMode.setEnabled(false);
 		new Thread(){
@@ -194,7 +196,7 @@ public class FenetrePrincipale extends JFrame {
 					try {
 						Thread.sleep(2000);
 					} catch (InterruptedException e) {
-						System.out.println("Erreur threa.sleep");
+						System.out.println("Erreur thread.sleep");
 						e.printStackTrace();
 					}
 				};
@@ -249,12 +251,6 @@ public class FenetrePrincipale extends JFrame {
     private Timer horloge = new Timer(Aeroport.lapsTemps, taskPerformer);
 
     
-    /*
-     * public static int BOUTON_MODE_INACTIF = 2;
-     * private Timer idleBoutonMode = new Timer(BOUTON_MODE_INACTIF, listener)
-     */
-    
-
     
 	/**
 	 * Create the frame.
@@ -433,38 +429,7 @@ public class FenetrePrincipale extends JFrame {
         vueGenerale = new VueGenerale(bandeauAjoutBagages, 
         		bandeauVitesseChariot, bandeauSortirChariot, labelInfo, aeroport, imagesManager);
         
-        /*
-        labelInfo.setText("Bienvenue dans le système de gestion de bagages SGBag");
-        labelMode.setText(vueGenerale.getModeTexte());
-        // création des bandeaux qui ont besoin de la vue générale
-        bandeauAjoutBagages.setVueGenerale(vueGenerale);
-        bandeauVitesseChariot.setVueGenerale(vueGenerale);
-        // par sécurité
-        bandeauAjoutBagages.setVisible(false);
-		bandeauVitesseChariot.setVisible(false);
         
-        vueGenerale.addMouseListener(clicVueGenerale);
-        
-        // activation des boutons si chargement reussi
-        boutonLecture.setEnabled(true);
-        etat = etatsLecture.STOP;
-        boutonLecture.setText(playString);
-        boutonArretUrgence.setText(auString);
-        boutonArretUrgence.setEnabled(true);
-        boutonMode.setEnabled(true);
-        boutonMode.setText(vueGenerale.getModeBouton());
-        
-        container = new JPanel();
-		container.setLayout(new BorderLayout());
-		container.setBackground(Color.white);
-		container.add(panelBas, BorderLayout.SOUTH);
-		container.add(bandeauGeneral, BorderLayout.NORTH);
-        container.add(vueGenerale, BorderLayout.CENTER);
-    	setContentPane(container);
-        
-    	vueGenerale.repaint();
-    	*/
-    	
         return Aeroport.PARSE_OK;
     }
 	
