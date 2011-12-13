@@ -362,6 +362,11 @@ public class Aeroport {
 		Aeroport.mode = mode;
 	}
 	
+	
+	public void appelChariotGarage() {
+		garage.appelerChariot(null);
+	}
+	
 	public int getLongueur() {
 		return longueur;
 	}

@@ -109,6 +109,10 @@ public class Garage extends ES {
 	 */
 	public void appelerChariot(Noeud n) {
 		
+		if(n == null) {
+			n = noeud.getListeRails().get(0).getNoeudSortie();
+		}
+		
 		Chariot c = listChariotsVides.poll();
 		if(c != null) {
 			c.calculerChemin(this.getNoeud(), n);
