@@ -1,18 +1,12 @@
 package ihm;
 
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
-import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-
-import noyau.Chariot;
 
 import vues.VueGenerale;
 
@@ -23,6 +17,11 @@ import vues.VueGenerale;
  */
 
 public class BandeauVitesseChariot extends JPanel {
+
+	/**
+	 * Default serial version UID
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * La vue générale

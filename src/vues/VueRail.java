@@ -37,7 +37,6 @@ public class VueRail extends Vue {
 		this.imageHeight = (int)Math.round(largeurReelleElem*vueGenerale.getEchelle());
 		
 		constructionRectangle();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -76,11 +75,9 @@ public class VueRail extends Vue {
 			if(vueGenerale.getChariotCourant().getChariot().noeudElligible(rail.getNoeudSortie())){
 				vueGenerale.getChariotCourant().getChariot().ajouterNoeud(rail.getNoeudSortie());
 				vueGenerale.getZoneInfo().setText("Destination ajoutee, cliquez sur le prochain rail pour definir un chemin");
-				System.out.println("### Destination ajoutéeeee");
 			}
 			else{
 				vueGenerale.getZoneInfo().setText("Cette destination n'est pas valide!");
-				System.out.println("### Pas boooon");
 			}
 		}
 	}
