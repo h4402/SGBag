@@ -118,7 +118,10 @@ public class VueChariot extends Vue {
 			} else {
 				dessinNonSel(g2d);
 			}
-			
+			if(chariot.getFreine()){
+				g2d.drawImage(imageManager.getImgEtincelles(), posPixel.x - imageWidth/4, posPixel.y - imageHeight/3,
+						(int)Math.round(imageWidth*0.5), (int)Math.round(imageHeight*1.5), vueGenerale);
+			}
 		}
 		g2d.rotate(-alpha, posPixel.x + imageWidth / 2, posPixel.y
 				+ imageHeight / 2);
