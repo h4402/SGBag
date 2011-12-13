@@ -278,45 +278,49 @@ public class FenetrePrincipale extends JFrame{
 	 * Create the frame.
 	 */
 	public FenetrePrincipale() {
-		jInit(false);
-	}
-
-	private void jInit(boolean fichierCharge) {
+		this.setJMenuBar(menuBar);
+		// Menu Fichier
+		menuBar.add(fileMenu);
+		menuItemOuvrir.addActionListener(ouvrirListener);
+		menuItemOuvrir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,
+                KeyEvent.CTRL_MASK));
+		fileMenu.add(menuItemOuvrir);
+		menuItemQuitter.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q,
+                KeyEvent.CTRL_MASK));
+		menuItemQuitter.addActionListener(quitterListener);
+		fileMenu.add(menuItemQuitter);
 		
-		// 1er chargement
-		if (!fichierCharge) {
-			this.setJMenuBar(menuBar);
-			// Menu Fichier
-			menuBar.add(fileMenu);
-			menuItemOuvrir.addActionListener(ouvrirListener);
-			menuItemOuvrir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,
-	                KeyEvent.CTRL_MASK));
-			fileMenu.add(menuItemOuvrir);
-			menuItemQuitter.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q,
-	                KeyEvent.CTRL_MASK));
-			menuItemQuitter.addActionListener(quitterListener);
-			fileMenu.add(menuItemQuitter);
-			
-			// Menu Affichage
-			menuBar.add(affichageMenu);
-			menuItemChristmas.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E,
-	                KeyEvent.CTRL_MASK));
-			menuItemChristmas.addActionListener(eggListener);
-			affichageMenu.add(menuItemChristmas);
-			affichageMenu.setEnabled(false);
-			
-			// Menu Aide
-			menuBar.add(aideMenu);
-			menuItemAPropos.addActionListener(aboutListener);
-			aideMenu.add(menuItemAPropos);
-			
-		}
+		// Menu Affichage
+		menuBar.add(affichageMenu);
+		menuItemChristmas.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E,
+                KeyEvent.CTRL_MASK));
+		menuItemChristmas.addActionListener(eggListener);
+		affichageMenu.add(menuItemChristmas);
+		affichageMenu.setEnabled(false);
+		
+		// Menu Aide
+		menuBar.add(aideMenu);
+		menuItemAPropos.addActionListener(aboutListener);
+		aideMenu.add(menuItemAPropos);
 		
 		// Chargement des images
 		imagesManager = new ImagesManager(getToolkit(), 0);
 		christmasManager = new ImagesManager(getToolkit(), 1);
 		setIconImage(imagesManager.getImgIcon());
-					
+		
+		this.setTitle("SGBag - Simulation");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setLocationRelativeTo(null);
+		this.setBounds(100, 100, 1024, 768);
+		this.setResizable(false);
+		this.setFocusable(true);
+		this.requestFocus();
+		
+		jInit(false);
+	}
+
+	private void jInit(boolean fichierCharge) {
+		
 		// UI
 		container = new JPanel();
 		panelBas = new JPanel();
@@ -328,13 +332,6 @@ public class FenetrePrincipale extends JFrame{
 		// Frame properties
 		Dimension dimBandeau = new Dimension(this.getWidth(), 80);
 		Dimension dimPanelBas = new Dimension(this.getWidth(), 40);
-		this.setTitle("SGBag - Simulation");
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLocationRelativeTo(null);
-		this.setBounds(100, 100, 1024, 768);
-		this.setResizable(false);
-		this.setFocusable(true);
-		this.requestFocus();
 		
 		etat = etatsLecture.STOP;
 		
@@ -437,6 +434,9 @@ public class FenetrePrincipale extends JFrame{
 	 */
 	private void desactiveActions() {
 		jInit(false);
+		affichageMenu.setEnabled(false);
+		labelInfo.setText("Erreur lors du chargement du fichier de configuration");
+		labelMode.setText("");
 	}
 	
 	/**
