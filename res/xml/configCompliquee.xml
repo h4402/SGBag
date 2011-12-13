@@ -3,27 +3,6 @@
 <Aeroport longueur="60" largeur="60" vitesseAjoutBagageAuto="100" vitesseTapis="100" tempsEntreTicks="20" tailleBagage="1">
 	<Chariots nbChariots="10" noeudParDefaut="12" vitesseParDefaut="10" vitesseMinimum="5" vitesseMaximum="30"></Chariots>
 	
-	<Rails distanceSecurite="4">
-		<Rail id="1" noeudEntree="1" noeudSortie="2"></Rail>
-		<Rail id="2" noeudEntree="2" noeudSortie="3"></Rail>
-		<Rail id="3" noeudEntree="2" noeudSortie="4"></Rail>
-		<Rail id="4" noeudEntree="4" noeudSortie="1"></Rail>
-		<Rail id="5" noeudEntree="3" noeudSortie="4"></Rail>
-		<Rail id="6" noeudEntree="7" noeudSortie="3"></Rail>
-		<Rail id="7" noeudEntree="8" noeudSortie="7"></Rail>
-		<Rail id="8" noeudEntree="3" noeudSortie="6"></Rail>
-		<Rail id="9" noeudEntree="6" noeudSortie="8"></Rail>
-		<Rail id="10" noeudEntree="9" noeudSortie="8"></Rail>
-		<Rail id="11" noeudEntree="10" noeudSortie="9"></Rail>
-		<Rail id="12" noeudEntree="5" noeudSortie="10"></Rail>
-		<Rail id="13" noeudEntree="6" noeudSortie="5"></Rail>
-		<Rail id="14" noeudEntree="4" noeudSortie="5"></Rail>
-		<Rail id="15" noeudEntree="11" noeudSortie="4"></Rail>
-		<Rail id="16" noeudEntree="10" noeudSortie="11"></Rail>
-		<Rail id="17" noeudEntree="4" noeudSortie="12"></Rail>
-		<Rail id="18" noeudEntree="12" noeudSortie="1"></Rail>
-	</Rails>
-	
 	<Noeuds>
 		<Noeud id="1" posX="10" posY="50"></Noeud>
 		<Noeud id="2" posX="40" posY="50"></Noeud>
@@ -51,5 +30,26 @@
 		<Toboggan id="2" idNoeud = "10"></Toboggan>
 		<Toboggan id="3" idNoeud = "11"></Toboggan>
 	</TobogganSortie>
+	
+	<Rails distanceSecurite="4">
+		<Rail id="1" noeudEntree="1" noeudSortie="2"></Rail>
+		<Rail id="2" noeudEntree="2" noeudSortie="3"></Rail>
+		<Rail id="3" noeudEntree="2" noeudSortie="4"></Rail>
+		<Rail id="4" noeudEntree="4" noeudSortie="1"></Rail>
+		<Rail id="5" noeudEntree="3" noeudSortie="4"></Rail>
+		<Rail id="6" noeudEntree="7" noeudSortie="3"></Rail>
+		<Rail id="7" noeudEntree="8" noeudSortie="7"></Rail>
+		<Rail id="8" noeudEntree="3" noeudSortie="6"></Rail>
+		<Rail id="9" noeudEntree="6" noeudSortie="8"></Rail>
+		<Rail id="10" noeudEntree="9" noeudSortie="8"></Rail>
+		<Rail id="11" noeudEntree="10" noeudSortie="9"></Rail>
+		<Rail id="12" noeudEntree="5" noeudSortie="10"></Rail>
+		<Rail id="13" noeudEntree="6" noeudSortie="5"></Rail>
+		<Rail id="14" noeudEntree="4" noeudSortie="5"></Rail>
+		<Rail id="15" noeudEntree="11" noeudSortie="4"></Rail>
+		<Rail id="16" noeudEntree="10" noeudSortie="11"></Rail>
+		<Rail id="17" noeudEntree="4" noeudSortie="12"></Rail>
+		<Rail id="18" noeudEntree="12" noeudSortie="1"></Rail>
+	</Rails>
 	
 </Aeroport>
