@@ -70,9 +70,6 @@ public class FenetrePrincipale extends JFrame{
 	private JMenu fileMenu = new JMenu("Fichier");
 	private JMenuItem menuItemOuvrir = new JMenuItem("Ouvrir");
 	private JMenu affichageMenu = new JMenu("Affichage");
-	private JMenuItem menuItemZoom100 = new JMenuItem("Zoom 100%");
-	private JMenuItem menuItemZoomArriere = new JMenuItem("Zoom +");
-	private JMenuItem menuItemZoomAvant = new JMenuItem("Zoom -");
 	private JMenuItem menuItemChristmas = new JMenuItem("Xmas style !");
 	private JMenu aideMenu = new JMenu("Aide");
 	private JMenuItem menuItemAPropos = new JMenuItem("A propos");
@@ -306,15 +303,6 @@ public class FenetrePrincipale extends JFrame{
 	                KeyEvent.CTRL_MASK));
 			menuItemChristmas.addActionListener(eggListener);
 			affichageMenu.add(menuItemChristmas);
-			menuItemZoom100.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_0,
-	                KeyEvent.CTRL_MASK));
-			affichageMenu.add(menuItemZoom100);
-			menuItemZoomArriere.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_PLUS,
-	                KeyEvent.CTRL_MASK));
-			affichageMenu.add(menuItemZoomArriere);
-			menuItemZoomAvant.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_MINUS,
-	                KeyEvent.CTRL_MASK));
-			affichageMenu.add(menuItemZoomAvant);
 			
 			// Menu Aide
 			menuBar.add(aideMenu);
