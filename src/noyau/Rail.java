@@ -152,7 +152,7 @@ public class Rail {
 						else if(c.getDestination() instanceof NoeudToboggan) {
 							if(c.getBagage().getTogobban().getNoeud().equals(c.getDestination())) {
 								((NoeudToboggan)c.getDestination()).getToboggan().ajouterBagage((c.viderChariot()));
-								if(Aeroport.mode == Aeroport.Mode.AUTO) {
+								if(Aeroport.getMode() == Aeroport.Mode.AUTO) {
 									c.calculerChemin(noeudSortie, Aeroport.garage.getNoeud());
 								}
 								prev = c;

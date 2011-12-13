@@ -97,7 +97,7 @@ public class Aeroport {
 	 * manuel ou automatique.
 	 * Les traitements du top horloge ne sont pas les memes.
 	 */
-	public static Mode mode; 
+	private static Mode mode; 
 	
 	/**
 	 * Il n'y a qu'un garage qui est commun à tous 

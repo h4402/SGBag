@@ -72,7 +72,7 @@ public class Garage extends ES {
 	 * @param c Chariot vide.
 	 */
 	public void ajouterChariotVide(Chariot c) {
-		if(!listTapisARejoindre.isEmpty() && Aeroport.mode == Aeroport.Mode.AUTO) {
+		if(!listTapisARejoindre.isEmpty() && Aeroport.getMode() == Aeroport.Mode.AUTO) {
 			listChariotsVides.offerLast(c);
 			appelerChariot(listTapisARejoindre.poll());
 		}

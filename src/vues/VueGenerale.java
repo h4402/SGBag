@@ -229,16 +229,16 @@ public class VueGenerale extends JPanel {
 		}
 		
 		public void changerMode(){
-			if(Aeroport.mode == Mode.AUTO){
-				Aeroport.mode = Mode.MANUEL;
+			if(Aeroport.getMode() == Mode.AUTO){
+				Aeroport.setMode(Mode.MANUEL);
 			}
 			else{
-				Aeroport.mode = Mode.AUTO;
+				Aeroport.setMode(Mode.AUTO);
 			}
 		}
 		
 		public String getModeBouton(){
-			if(Aeroport.mode == Mode.AUTO){
+			if(Aeroport.getMode() == Mode.AUTO){
 				return "Passer en Manuel";
 			}
 			else{
@@ -247,7 +247,7 @@ public class VueGenerale extends JPanel {
 		}
 		
 		public String getModeTexte(){
-			if(Aeroport.mode == Mode.AUTO){
+			if(Aeroport.getMode() == Mode.AUTO){
 				return "Mode Auto";
 			}
 			else{

@@ -104,6 +104,11 @@ public class Tapis extends ES {
 					listBagages.set(j, listBagages.elementAt(j-1));
 				}
 				listBagages.set(0, null);
+				if(listBagages.elementAt(tailleTapis-1) != null) {
+					if(Aeroport.getMode() == Aeroport.Mode.AUTO) {
+						Aeroport.garage.appelerChariot(this.getNoeud());
+					}
+				}
 			}
 		}
 	}
@@ -119,9 +124,11 @@ public class Tapis extends ES {
 		if(listBagages.elementAt(0) != null) {
 			return false;
 		}
+		/*
 		if(Aeroport.mode == Aeroport.Mode.AUTO) {
 			Aeroport.garage.appelerChariot(this.getNoeud());
 		}
+		*/
 		listBagages.set(0, b);
 		return true;
 	}
