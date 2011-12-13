@@ -178,7 +178,6 @@ public class FenetrePrincipale extends JFrame {
 			bandeauVitesseChariot.setVisible(false);
 			bandeauAjoutBagages.setVisible(false);
 			bandeauSortirChariot.setVisible(false);
-			
 			procedureChangerMode();
 			
 		}
@@ -193,7 +192,7 @@ public class FenetrePrincipale extends JFrame {
 				while (Aeroport.enCalcul)
 				{
 					try {
-						Thread.sleep(1);
+						Thread.sleep(2000);
 					} catch (InterruptedException e) {
 						System.out.println("Erreur threa.sleep");
 						e.printStackTrace();
