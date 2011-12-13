@@ -23,7 +23,7 @@
 	</TobogganSortie>
 	
 	<Rails distanceSecurite="4">
-		
+		<Rail id="1" noeudEntree="7" noeudSortie="1"></Rail>
 		<Rail id="2" noeudEntree="1" noeudSortie="2"></Rail>
 		<Rail id="3" noeudEntree="2" noeudSortie="3"></Rail>
 		<Rail id="4" noeudEntree="3" noeudSortie="4"></Rail>

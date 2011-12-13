@@ -314,6 +314,12 @@ public class Aeroport {
 				}
 			}
 		}
+		else {
+			for (Guichet g : listGuichets) {
+				//System.out.println("On ajoute un bagage");
+				g.ajoutBagage(null);
+			}
+		}
 		
 		/*
 		 * On fait avancer les bagages sur les tapis. 

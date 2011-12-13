@@ -77,18 +77,16 @@ public class Guichet {
 		if(bPrio == null) {
 			if(b != null) {
 				if(!tapis.ajouterBagage(b)) {
-					listBagages.add(b);
+					listBagages.offerLast(b);
 				}
 			}
 		}
 		else {
-			if(!tapis.ajouterBagage(bPrio)) {
+			if(tapis.ajouterBagage(bPrio)) {
 				if(b != null) {
 					listBagages.offerLast(b);
 				}
-			}
-			else {
-				listBagages.addFirst(bPrio);
+				listBagages.poll();
 			}
 		}
 		
