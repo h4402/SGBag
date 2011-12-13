@@ -236,4 +236,10 @@ public class VueGenerale extends JPanel {
 			}
 		}
 		
+		public void setImagesManager(ImagesManager imagesManager){
+			for (Vue v : listVues ){
+				v.setImagesManager(imagesManager);
+			}
+		}
+		
 }

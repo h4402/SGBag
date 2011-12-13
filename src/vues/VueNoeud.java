@@ -54,18 +54,18 @@ public class VueNoeud extends Vue{
 		Graphics2D g2d = (Graphics2D)g;
 		if(selection){
 			if(noeud instanceof NoeudGarage){
-				g2d.drawImage(imageManager.getImgNodeGarageSel(), posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
+				g2d.drawImage(imagesManager.getImgNodeGarageSel(), posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
 			}
 			else{
-				g2d.drawImage(imageManager.getImgNodeSel(), posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
+				g2d.drawImage(imagesManager.getImgNodeSel(), posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
 			}
 		}
 		else{
 			if(noeud instanceof NoeudGarage){
-				g2d.drawImage(imageManager.getImgNodeGarage(), posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
+				g2d.drawImage(imagesManager.getImgNodeGarage(), posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
 			}
 			else{
-				g2d.drawImage(imageManager.getImgNode(), posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
+				g2d.drawImage(imagesManager.getImgNode(), posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
 			}
 		}
 		if(noeud.getId() < 10){

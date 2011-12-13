@@ -59,10 +59,10 @@ public class VueRail extends Vue {
 
 		for (int i = 0; i < Math.round(Math.round(pointA.distance(pointB))/imageWidth); i++) {
 			if(selection){
-				g2d.drawImage(imageManager.getImgRailSel(), pointA.x + i*imageWidth, pointA.y - imageHeight/2, imageWidth, imageHeight, vueGenerale);
+				g2d.drawImage(imagesManager.getImgRailSel(), pointA.x + i*imageWidth, pointA.y - imageHeight/2, imageWidth, imageHeight, vueGenerale);
 			}
 			else{
-				g2d.drawImage(imageManager.getImgRail(), pointA.x + i*imageWidth, pointA.y - imageHeight/2, imageWidth, imageHeight, vueGenerale);
+				g2d.drawImage(imagesManager.getImgRail(), pointA.x + i*imageWidth, pointA.y - imageHeight/2, imageWidth, imageHeight, vueGenerale);
 			}
 		}
 		g2d.rotate(-alpha, pointA.x, pointA.y);
