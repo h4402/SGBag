@@ -122,7 +122,7 @@ public class FenetrePrincipale extends JFrame{
 	 * ImagesManager
 	 */
 	private ImagesManager imagesManager;
-	private ChristmasImagesManager christmasManager;
+	private ImagesManager christmasManager;
 	
 	/**
 	 * Enumérations
@@ -142,18 +142,30 @@ public class FenetrePrincipale extends JFrame{
 		}
 	};
 	
+	private int setImage = 0;
 	
 	/**
 	 * Easter Egg !!!!
 	 */
 	private ActionListener eggListener = new ActionListener() {
 		public void actionPerformed(ActionEvent actionEvent) {
-			if (vueGenerale != null){
-				aboutActionPerformed(null);
-				
-			}
+			changeSkin();
 		}
 	};
+	
+	
+	private void changeSkin(){
+		if (vueGenerale != null){
+			if (setImage == 0) {
+				vueGenerale.setImagesManager(christmasManager);
+				setImage = 1;
+			} else if (setImage == 1){
+				vueGenerale.setImagesManager(imagesManager);
+				setImage = 0;
+			}
+			vueGenerale.repaint();
+		}
+	}
 	
 	/**
 	 * Clic sur A Propos : ouvre une fenetre d'a propos
@@ -310,12 +322,13 @@ public class FenetrePrincipale extends JFrame{
 			menuItemAPropos.addActionListener(aboutListener);
 			aideMenu.add(menuItemAPropos);
 			
-			// Chargement des images
-			imagesManager = new ImagesManager(getToolkit());
-			christmasManager = new ChristmasImagesManager(getToolkit());
-			setIconImage(imagesManager.getImgIcon());
 		}
 		
+		// Chargement des images
+		imagesManager = new ImagesManager(getToolkit(), 0);
+		christmasManager = new ImagesManager(getToolkit(), 1);
+		setIconImage(imagesManager.getImgIcon());
+					
 		// UI
 		container = new JPanel();
 		panelBas = new JPanel();

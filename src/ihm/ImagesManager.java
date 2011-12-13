@@ -30,30 +30,56 @@ public class ImagesManager {
     protected Image imgRail = null;
     protected Image imgRailSel = null;
     
-    protected final String PATH_IMAGE = "res/img/";
-    protected final String IMG_ICON = PATH_IMAGE+"icon_logo.png";
-    protected final String IMG_CHARIOT = PATH_IMAGE+"chariot.png";
-    protected final String IMG_CHARIOT_B = PATH_IMAGE+"chariot_b.png";
-    protected final String IMG_NODE = PATH_IMAGE+"node.png";
-    protected final String IMG_NODE_GARAGE = PATH_IMAGE+"node_garage.png";
-    protected final String IMG_GUICHET = PATH_IMAGE+"guichet.png";
-    protected final String IMG_TOBOGGAN = PATH_IMAGE+"toboggan.png";
-    protected final String IMG_TAPIS = PATH_IMAGE+"tapis.png";
-    protected final String IMG_TAPIS_B = PATH_IMAGE+"tapis_b.png";
-    protected final String IMG_RAIL = PATH_IMAGE+"rail.png";
-    protected final String IMG_CHARIOT_SEL = PATH_IMAGE+"chariot_sel.png";
-    protected final String IMG_CHARIOT_B_SEL = PATH_IMAGE+"chariot_b_sel.png";
-    protected final String IMG_ETINCELLES = PATH_IMAGE+"etoiles.png";
-    protected final String IMG_NODE_SEL = PATH_IMAGE+"node_sel.png";
-    protected final String IMG_NODE_GARAGE_SEL = PATH_IMAGE+"node_garage_sel.png";
-    protected final String IMG_GUICHET_SEL = PATH_IMAGE+"guichet_sel.png";
-    protected final String IMG_TOBOGGAN_SEL = PATH_IMAGE+"toboggan_sel.png";
-    protected final String IMG_TAPIS_SEL = PATH_IMAGE+"tapis_sel.png";
-    protected final String IMG_TAPIS_B_SEL = PATH_IMAGE+"tapis_b_sel.png";
-    protected final String IMG_RAIL_SEL = PATH_IMAGE+"rail_sel.png";
+    protected String PATH_IMAGE;
+    protected String IMG_ICON;
+    protected String IMG_CHARIOT;
+    protected String IMG_CHARIOT_B;
+    protected String IMG_NODE;
+    protected String IMG_NODE_GARAGE;
+	protected String IMG_GUICHET;
+	protected String IMG_TOBOGGAN;
+	protected String IMG_TAPIS;
+	protected String IMG_TAPIS_B;
+	protected String IMG_RAIL;
+	protected String IMG_CHARIOT_SEL;
+	protected String IMG_CHARIOT_B_SEL;
+	protected String IMG_ETINCELLES;
+	protected String IMG_NODE_SEL;
+	protected String IMG_NODE_GARAGE_SEL;
+	protected String IMG_GUICHET_SEL;
+	protected String IMG_TOBOGGAN_SEL;
+	protected String IMG_TAPIS_SEL;
+	protected String IMG_TAPIS_B_SEL;
+	protected String IMG_RAIL_SEL;
 	
-    public ImagesManager(Toolkit tk) {
-    	//Toolkit tk = Toolkit.getDefaultToolkit();
+    public ImagesManager(Toolkit tk, int styleId) {
+    	
+    	if (styleId == 0)
+    		PATH_IMAGE = "res/img/";
+    	else
+    		PATH_IMAGE = "res/img/christmas/";
+    	
+    	IMG_ICON = PATH_IMAGE+"icon_logo.png";
+        IMG_CHARIOT = PATH_IMAGE+"chariot.png";
+        IMG_CHARIOT_B = PATH_IMAGE+"chariot_b.png";
+        IMG_NODE = PATH_IMAGE+"node.png";
+        IMG_NODE_GARAGE = PATH_IMAGE+"node_garage.png";
+        IMG_GUICHET = PATH_IMAGE+"guichet.png";
+        IMG_TOBOGGAN = PATH_IMAGE+"toboggan.png";
+        IMG_TAPIS = PATH_IMAGE+"tapis.png";
+        IMG_TAPIS_B = PATH_IMAGE+"tapis_b.png";
+        IMG_RAIL = PATH_IMAGE+"rail.png";
+        IMG_CHARIOT_SEL = PATH_IMAGE+"chariot_sel.png";
+        IMG_CHARIOT_B_SEL = PATH_IMAGE+"chariot_b_sel.png";
+        IMG_ETINCELLES = PATH_IMAGE+"etoiles.png";
+        IMG_NODE_SEL = PATH_IMAGE+"node_sel.png";
+        IMG_NODE_GARAGE_SEL = PATH_IMAGE+"node_garage_sel.png";
+        IMG_GUICHET_SEL = PATH_IMAGE+"guichet_sel.png";
+        IMG_TOBOGGAN_SEL = PATH_IMAGE+"toboggan_sel.png";
+        IMG_TAPIS_SEL = PATH_IMAGE+"tapis_sel.png";
+        IMG_TAPIS_B_SEL = PATH_IMAGE+"tapis_b_sel.png";
+        IMG_RAIL_SEL = PATH_IMAGE+"rail_sel.png";
+    	
     	imgIcon = tk.getImage(IMG_ICON);
     	imgChariot = tk.getImage(IMG_CHARIOT);
     	imgChariotSel = tk.getImage(IMG_CHARIOT_SEL);
