@@ -68,11 +68,6 @@ public class VueNoeud extends Vue{
 		else{
 			if(noeud instanceof NoeudGarage){
 				g2d.drawImage(imagesManager.getImgNodeGarage(), posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
-				vueGenerale.getZoneInfo().setText("<html>Chariots presents : " + 
-						Aeroport.garage.getListChariotsVides().size()  + 
-						"<br>" + "Chariots en attente de depart : " + 
-						Aeroport.garage.getListChariotsPourPartir().size()+
-						"</html>");
 			}
 			else{
 				g2d.drawImage(imagesManager.getImgNode(), posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
