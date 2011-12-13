@@ -31,20 +31,6 @@ public class NoeudToboggan extends Noeud {
 		super(id, listRailsSortie, coordonnees);
 		this.sortie = sortie;
 	}
-
-	/**
-	 * TODO: A Supprimer?
-	 * 
-	 * Constructeur simple pour le XML.
-	 * 
-	 * @param id ID du noeud.
-	 * @param coordonnees Coordonnées du noeud.
-	 * @param sortie Toboggan du noeud.
-	 */
-	public NoeudToboggan(int id, Point coordonnees, Toboggan sortie) {
-		super(id, coordonnees);
-		this.sortie = sortie;
-	}
 	
 	/**
 	 * COnstructeur pour XML.

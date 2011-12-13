@@ -4,7 +4,6 @@ import java.awt.Point;
 import java.util.LinkedList;
 
 import org.w3c.dom.Element;
-import java.lang.Object;
 
 /**
  * Objet représentant un guichet,

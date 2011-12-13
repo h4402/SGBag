@@ -1,4 +1,6 @@
 package vues;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -59,7 +61,18 @@ public class VueNoeud extends Vue{
 		else{
 			g2d.drawImage(image, posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
 		}
-		g2d.drawString(Integer.toString(noeud.getId()), posPixel.x, posPixel.y);
+		if(noeud.getId() < 10){
+			Font f = new Font("Courier", Font.BOLD, imageWidth);
+			g2d.setFont(f);
+			g2d.setColor(Color.WHITE);
+			g2d.drawString(Integer.toString(noeud.getId()), (float)(posPixel.x + imageWidth/4), (float)(posPixel.y + imageHeight/1.25));
+		}
+		else{
+			Font f = new Font("Courier", Font.BOLD, (int)Math.round(imageWidth/1.5));
+			g2d.setFont(f);
+			g2d.setColor(Color.WHITE);
+			g2d.drawString(Integer.toString(noeud.getId()), (float)(posPixel.x + imageWidth/6), (float)(posPixel.y + imageHeight/1.5));
+		}
 	}
 
 	@Override
