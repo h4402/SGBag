@@ -450,13 +450,6 @@ public class Aeroport {
 		
 		//Si on est ici c'est qu'il est introuvable.
 		return null;
-		
-		
-		//TODO:trouver une meilleure solution, initialement :
-		//ici on retourne le noeud à la position id dans la liste, ce n'est
-		//pas forcément le noeud ayant pour id "id". J'ai modifié le add pour
-		//que ce soit le cas mais il faut faire gaffe.
-		//return this.listNoeuds.get(id);
 	}
 	
 	/**

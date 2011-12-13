@@ -8,8 +8,6 @@ import java.util.TreeMap;
 
 import org.w3c.dom.Element;
 
-// TODO: Mieux géré la destination.
-
 /**
  * Composante de l'application qui se déplace
  * d'un noeud à l'autre sur des rails et qui 
@@ -83,6 +81,11 @@ public class Chariot {
 	private Noeud prevNoeud;
 	
 	/**
+	 * Je freine ou pas?
+	 */
+	private boolean jeFreine;
+	
+	/**
 	 * Constructeur nécéssaire à GreenUML.
 	 * 
 	 * @param coordonnees Coordonnées initiale du chariot.
@@ -93,10 +96,7 @@ public class Chariot {
 	 * @param prevNoeud Noeud précédent.
 	 */
 	public Chariot(int id, Point2D.Float coordonnees, Bagage bagage, float vitesse,
-			LinkedList<Noeud> chemin, Noeud nextNode, Noeud prevNoeud) {
-		/* TODO : enlever le bagage en parametre du constructeur, et mettre
-		 * bagage = null ici
-		 */
+			LinkedList<Noeud> chemin, Noeud nextNode, Noeud prevNoeud, boolean jeFreine) {
 		super();
 		this.id = id;
 		this.coordonnees = coordonnees;
@@ -106,6 +106,7 @@ public class Chariot {
 		this.distanceDepuisNoeudDepart = 0;
 		this.nextNode = nextNode;
 		this.prevNoeud = prevNoeud;
+		this.jeFreine = jeFreine;
 	}
 	
 	/**
@@ -122,6 +123,25 @@ public class Chariot {
 		this.distanceDepuisNoeudDepart = 0;
 		this.nextNode = null;
 		this.prevNoeud = null;
+		this.jeFreine = false;
+	}
+	
+	/**
+	 * Change freine.
+	 * 
+	 * @param freine Freine ou pas?
+	 */
+	public void setFreine(boolean freine) {
+		this.jeFreine = freine;
+	}
+	
+	/**
+	 * Retourne si le chariot freine ou pas?
+	 * 
+	 * @return Freine ou pas?
+	 */
+	public boolean getFreine() {
+		return this.jeFreine;
 	}
 	
 	public float getVitesse() {
