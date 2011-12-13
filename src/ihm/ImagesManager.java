@@ -56,7 +56,7 @@ public class ImagesManager {
     	
     	if (styleId == 0)
     		PATH_IMAGE = "res/img/";
-    	else
+    	else if (styleId == 1)
     		PATH_IMAGE = "res/img/christmas/";
     	
     	IMG_ICON = PATH_IMAGE+"icon_logo.png";
