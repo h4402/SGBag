@@ -36,6 +36,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import noyau.Aeroport;
+import noyau.Chariot;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -177,6 +178,9 @@ public class FenetrePrincipale extends JFrame {
 			vueGenerale.changerMode();
 			boutonMode.setText(vueGenerale.getModeBouton());
 			labelMode.setText(vueGenerale.getModeTexte());
+			bandeauVitesseChariot.setVisible(false);
+			bandeauAjoutBagages.setVisible(false);
+			bandeauSortirChariot.setVisible(false);
 		}
 	};
 	
@@ -476,6 +480,8 @@ public class FenetrePrincipale extends JFrame {
             	        boutonArretUrgence.setEnabled(true);
             	        boutonMode.setEnabled(true);
             	        boutonMode.setText(vueGenerale.getModeBouton());
+            	        bandeauVitesseChariot.setValuesSlider(Chariot.VIT_MIN, 
+                            	Chariot.VIT_MAX);
                 	}
                 }
                 

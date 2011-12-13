@@ -127,6 +127,12 @@ public class Rail {
 		    Chariot c = it.next();
 		    
 			float distChariot = c.calculerNouvPos();
+			/*
+			if(c.getId() == 0) {
+				if(c.getDestination() != null)
+					System.out.println("Dest de Chariot 0 : " + c.getDestination());
+			}
+			*/
 			/* 
 			 * Si il n'y a pas de chariot précédent, ou si on ne le dépasse pas.
 			 */
@@ -136,10 +142,11 @@ public class Rail {
 				 * on l'avance.
 				 */
 				if(distChariot < longueur) {
-					c.setArret(false);
 					c.majPos(noeudEntree, getVectUnitaire(), distChariot);
 				}
 				else {
+					c.majPos(noeudEntree, getVectUnitaire(), longueur);
+				
 					if(noeudSortie.equals(c.getDestination())) {
 						if(c.getDestination() instanceof NoeudGarage) {
 							if(c.getBagage() == null) {
@@ -149,14 +156,15 @@ public class Rail {
 							}
 						}
 						else if(c.getDestination() instanceof NoeudToboggan) {
-							if(c.getBagage().getTogobban().getNoeud().equals(c.getDestination())) {
-								((NoeudToboggan)c.getDestination()).getToboggan().ajouterBagage((c.viderChariot()));
-								if(Aeroport.getMode() == Aeroport.Mode.AUTO) {
-									c.calculerChemin(noeudSortie, Aeroport.garage.getNoeud());
+							if(c.getBagage() != null) {
+								if(c.getBagage().getTogobban().getNoeud().equals(c.getDestination())) {
+									((NoeudToboggan)c.getDestination()).getToboggan().ajouterBagage((c.viderChariot()));
+									if(Aeroport.getMode() == Aeroport.Mode.AUTO) {
+										c.calculerChemin(noeudSortie, Aeroport.garage.getNoeud());
+									}
+									prev = c;
+									continue;
 								}
-								prev = c;
-								
-								continue;
 							}
 							 
 						}
@@ -170,12 +178,14 @@ public class Rail {
 					}
 					else {
 						if(noeudSortie instanceof NoeudToboggan) {
-							if(c.getBagage() != null) {
-							c.calculerChemin(noeudSortie, Aeroport.garage.getNoeud());
+							if(c.getBagage() == null && Aeroport.getMode() == Aeroport.Mode.AUTO) {
+								c.calculerChemin(noeudSortie, Aeroport.garage.getNoeud());
 							}
 							else {
-								// TODO Chariot bloqué avec un bagage
-								System.out.println("Un chariot est bloqué au toboggan de dest : " + c.getDestination().getId());
+								if(c.getBagage() != null) {
+									System.out.println("Je suis bloqué avec un bagage qui va a " + c.getBagage().getTogobban().getNoeud().getId());
+									System.out.println("Et moi je vais a " + c.getDestination().getId() + " et " +c.getProchainNoeud().getId());
+								}
 							}
 						}
 					}
@@ -188,13 +198,9 @@ public class Rail {
 					Rail r = c.getProchainRail(noeudSortie);
 					if(r != null) {
 						if (r.ajoutChariot(c)) {
-							c.setArret(false);
 							c.suppProchainRail();
 							it.remove();
 						}
-					}
-					else {
-						c.setArret(true);
 					}
 				}
 			}
@@ -206,7 +212,6 @@ public class Rail {
 				 */
 				if(prev.getDistance()-distSecu > 0) {
 					c.majPos(noeudEntree, getVectUnitaire(), prev.getDistance()-distSecu);
-					c.setArret(false);
 				}
 			}
 			prev = c;

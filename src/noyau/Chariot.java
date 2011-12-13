@@ -78,11 +78,6 @@ public class Chariot {
 	private Noeud nextNode;
 	
 	/**
-	 * Si le chariot est arrété.
-	 */
-	private boolean arret; 
-	
-	/**
 	 * Noeud précédent...
 	 */
 	private Noeud prevNoeud;
@@ -109,7 +104,6 @@ public class Chariot {
 		this.vitesse = vitesse;
 		this.chemin = chemin;
 		this.distanceDepuisNoeudDepart = 0;
-		this.arret = false;
 		this.nextNode = nextNode;
 		this.prevNoeud = prevNoeud;
 	}
@@ -126,7 +120,6 @@ public class Chariot {
 		this.vitesse = 0;
 		this.chemin = new LinkedList<Noeud>();
 		this.distanceDepuisNoeudDepart = 0;
-		this.arret = false;
 		this.nextNode = null;
 		this.prevNoeud = null;
 	}
@@ -282,14 +275,24 @@ public class Chariot {
 					}
 				}
 			}
-			
+			chemin.clear();
 			chemin.addFirst(arrivee);
 			DijStuff dijCourant = graph.get(arrivee);
-			while(dijCourant.pred != depart) {
-				chemin.addFirst(dijCourant.pred);
-				// TODO NULLPOINTEREXCEPTION Des fois ici....
-				dijCourant = graph.get(dijCourant.pred);
+			if(dijCourant != null) {
+			
+				while(dijCourant.pred != depart) {
+					chemin.addFirst(dijCourant.pred);
+					dijCourant = graph.get(dijCourant.pred);
+					if(dijCourant == null) {
+						// Pas de solution
+						chemin.clear();
+						break;
+					}
+				}
 				
+			}
+			else {
+				chemin.clear();
 			}
 			//chemin.addFirst(depart);
 			nextNode = depart;
@@ -337,7 +340,6 @@ public class Chariot {
 	 * @return Possible ou pas.
 	 */
 	public boolean noeudElligible(Noeud n) {
-		// TODO: ne pas rajouter un rail si on ne peut pas aller dessus!
 		if(chemin.isEmpty()) {
 			if(nextNode != null) {
 				for(Rail r : nextNode.getListeRails()) {
@@ -396,30 +398,12 @@ public class Chariot {
 	}
 	
 	/**
-	 * Retourne si le chariot est à l'arret ou non.
-	 * 
-	 * @return Arret ou pas.
-	 */
-	public boolean getArret() {
-		return arret;
-	}
-	
-	/**
 	 * Retourne le bagage du chariot si présent.
 	 * 
 	 * @return Le bagage du chariot, null sinon.
 	 */
 	public Bagage getBagage() {
 		return bagage;
-	}
-	
-	/**
-	 * Change l'état du chariot
-	 * 
-	 * @param arret Arreté ou pas.
-	 */
-	public void setArret(boolean arret) {
-		this.arret = arret;
 	}
 	
 	/**

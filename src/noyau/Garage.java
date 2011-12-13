@@ -77,9 +77,9 @@ public class Garage extends ES {
 			appelerChariot(listTapisARejoindre.poll());
 		}
 		else {
+			listChariotsVides.offerLast(c);
 			c.calculerChemin(null, null);
 			c.majPos(null,null,0);
-			listChariotsVides.offerLast(c);
 		}
 	}
 

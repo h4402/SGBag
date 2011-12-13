@@ -24,17 +24,11 @@ public class BandeauSortirChariot extends JPanel {
 	 */
 	VueGenerale vueGenerale = null;
 	
-	/**
-	 * Label
-	 */
-	private JLabel labelChariot = new JLabel();
-	
 	
 	/**
 	 * Bouton d'ajout de bagage
 	 */
-	private JButton boutonOui = new JButton();
-	private JButton boutonNon = new JButton();
+	private JButton boutonSortirChariot = new JButton();
 	
 	/**
 	 * Clic sur liberer chariot
@@ -63,16 +57,10 @@ public class BandeauSortirChariot extends JPanel {
 	 * Construit le bandeau sans valeur à mettre dedans
 	 */
 	public BandeauSortirChariot() {
-		labelChariot.setText("Faire sortir un chariot du garage ? ");
-		boutonOui.setText("Oui");
-		boutonOui.addActionListener(libererListener);
+		boutonSortirChariot.setText("Faire sortir un chariot du garage");
+		boutonSortirChariot.addActionListener(libererListener);
 		
-		boutonNon.setText("Non");
-		boutonNon.addActionListener(rienFaireListener);
-		
-		this.add(labelChariot);
-		this.add(boutonOui);
-		this.add(boutonNon);
+		this.add(boutonSortirChariot);
 		
 	}
 

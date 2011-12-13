@@ -163,6 +163,11 @@ public class Aeroport {
 	 * Le systeme est-il en AU?
 	 */
 	private boolean enAU;
+	
+	/**
+	 * En Cours de passage auto/manuel.
+	 */
+	public static boolean enCalcul = false;
 
 	/**
 	 * Constructeur permettant de se mettre d'accord avec 
@@ -178,7 +183,7 @@ public class Aeroport {
 			List<Toboggan> listToboggans, List<Tapis> listTapis,
 			List<Noeud> listNoeuds, List<Chariot> listChariots, 
 			int longueur, int largeur, int nbTopEnvoiBagage,
-			boolean enAU, int nbTopBagage, int lapsTemps) {
+			boolean enAU, int nbTopBagage, int lapsTemps, boolean enCalcul) {
 		super();
 		this.listRails = listRails;
 		this.listGuichets = listGuichets;
@@ -191,6 +196,7 @@ public class Aeroport {
 		this.longueur = longueur;
 		this.nbTopEnvoiBagage = nbTopEnvoiBagage;
 		this.enAU = enAU;
+		Aeroport.enCalcul = enCalcul;
 	}
 	
 	/**
@@ -209,6 +215,7 @@ public class Aeroport {
 		this.longueur = 0;
 		this.nbTopEnvoiBagage = 0;
 		this.enAU = false;
+		enCalcul = false;
 	}
 	
 	/**
@@ -334,6 +341,8 @@ public class Aeroport {
 
 	public void setMode(Mode mode) {
 		
+		enCalcul = true;
+		
 		if(mode == Mode.AUTO) {
 			for(Tapis t : listTapis) {
 				((NoeudTapis)t.getNoeud()).avertirChariotPlein();
@@ -360,6 +369,7 @@ public class Aeroport {
 		}
 		
 		Aeroport.mode = mode;
+		enCalcul = false;
 	}
 	
 	
@@ -465,6 +475,7 @@ public class Aeroport {
 		this.largeur = 0;
 		this.longueur = 0;
 		this.enAU = false;
+		enCalcul = false;
 	}
 	
 	public int construireAPartirDeXML(Element aeroportElement)
