@@ -127,6 +127,12 @@ public class Rail {
 		    Chariot c = it.next();
 		    
 			float distChariot = c.calculerNouvPos();
+			/*
+			if(c.getId() == 0) {
+				if(c.getDestination() != null)
+					System.out.println("Dest de Chariot 0 : " + c.getDestination());
+			}
+			*/
 			/* 
 			 * Si il n'y a pas de chariot précédent, ou si on ne le dépasse pas.
 			 */
@@ -143,6 +149,8 @@ public class Rail {
 					if(noeudSortie.equals(c.getDestination())) {
 						if(c.getDestination() instanceof NoeudGarage) {
 							if(c.getBagage() == null) {
+								if(c.getId() == 0)
+									System.out.println(" Bonjour je suis le bon chariot");
 								((NoeudGarage)c.getDestination()).getGarage().ajouterChariotVide(c);
 								it.remove();
 								continue;
