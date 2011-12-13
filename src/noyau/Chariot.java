@@ -287,7 +287,9 @@ public class Chariot {
 			DijStuff dijCourant = graph.get(arrivee);
 			while(dijCourant.pred != depart) {
 				chemin.addFirst(dijCourant.pred);
+				// TODO NULLPOINTEREXCEPTION Des fois ici....
 				dijCourant = graph.get(dijCourant.pred);
+				
 			}
 			//chemin.addFirst(depart);
 			nextNode = depart;

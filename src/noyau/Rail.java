@@ -169,9 +169,14 @@ public class Rail {
 						}
 					}
 					else {
-						if(noeudSortie instanceof NoeudToboggan
-								&& c.getBagage() == null) {
+						if(noeudSortie instanceof NoeudToboggan) {
+							if(c.getBagage() != null) {
 							c.calculerChemin(noeudSortie, Aeroport.garage.getNoeud());
+							}
+							else {
+								// TODO Chariot bloqué avec un bagage
+								System.out.println("Un chariot est bloqué au toboggan de dest : " + c.getDestination().getId());
+							}
 						}
 					}
 					/*
