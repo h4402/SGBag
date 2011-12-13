@@ -462,7 +462,6 @@ public class FenetrePrincipale extends JFrame {
                 		jInit(true);
                 		if (vueGenerale != null) {
             				vueGenerale.repaint();
-            				vueGenerale.addMouseListener(clicVueGenerale);
             			}
                 		labelInfo.setText("Bienvenue dans le système de gestion de bagages SGBag");
                         labelMode.setText(vueGenerale.getModeTexte());
