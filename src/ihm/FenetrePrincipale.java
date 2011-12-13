@@ -284,16 +284,16 @@ public class FenetrePrincipale extends JFrame{
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+			System.out.println("Erreur classe chargement theme systeme");
 			e.printStackTrace();
 		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
+			System.out.println("Erreur instanciation chargement theme systeme");
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
+			System.out.println("Erreur illegalAccess chargement theme systeme");
 			e.printStackTrace();
 		} catch (UnsupportedLookAndFeelException e) {
-			// TODO Auto-generated catch block
+			System.out.println("Erreur unsupportedTheme chargement theme systeme");
 			e.printStackTrace();
 		}
 		
