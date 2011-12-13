@@ -82,8 +82,12 @@ public class VueChariot extends Vue {
 		}
 		if(chariot.getDestination() !=  null){
 			vueGenerale.getZoneInfo()
-	        .setText("Chariot n°" + chariot.getId() + " Destination Noeud n°" + 
+	        .setText("Chariot " + chariot.getId() + " Destination Noeud " + 
 	        						chariot.getDestination().getId());
+		}
+		else{
+			vueGenerale.getZoneInfo()
+	        .setText("Chariot " + chariot.getId() + " Destination : inconnue");
 		}
 	}
 	
