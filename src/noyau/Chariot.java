@@ -156,6 +156,11 @@ public class Chariot {
 		return id;
 	}
 	
+	public void setProchainNoeud(Noeud n) {
+		prevNoeud = nextNode;
+		nextNode = n;
+	}
+	
 	/**
 	 * Retourne le noeud précédent.
 	 * 
