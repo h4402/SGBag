@@ -64,7 +64,7 @@ public class VueGuichet extends Vue {
 			vueGenerale.getTobogganCourant().selectionner();
 			vueGenerale.getZoneInfo().setText("Pour ajouter un bagage cliquez sur Valider");
 			vueGenerale.getBandeauAjoutBagages().setNumeros(vueGenerale.getGuichetCourant().getGuichet().getId(), 
-					vueGenerale.getTobogganCourant().getToboggan().getId());
+					vueGenerale.getTobogganCourant().getToboggan().getNoeud().getId());
 			vueGenerale.getBandeauAjoutBagages().setVisible(true);
 		}
 		else{

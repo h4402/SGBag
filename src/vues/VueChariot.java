@@ -95,7 +95,7 @@ public class VueChariot extends Vue {
 				vueGenerale.getZoneInfo()
 		        .setText("<html>Chariot " + chariot.getId() + " Destination Noeud " + 
 		        						chariot.getDestination().getId() + "<br> Bagage a destination du toboggan " + 
-		        		chariot.getBagage().getTogobban().getId() + "</html>");
+		        		chariot.getBagage().getTogobban().getNoeud().getId() + "</html>");
 			}
 			else{
 				vueGenerale.getZoneInfo()
