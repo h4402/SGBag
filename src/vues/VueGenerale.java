@@ -230,10 +230,10 @@ public class VueGenerale extends JPanel {
 		
 		public void changerMode(){
 			if(Aeroport.getMode() == Mode.AUTO){
-				Aeroport.setMode(Mode.MANUEL);
+				aeroport.setMode(Mode.MANUEL);
 			}
 			else{
-				Aeroport.setMode(Mode.AUTO);
+				aeroport.setMode(Mode.AUTO);
 			}
 		}
 		

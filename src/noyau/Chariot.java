@@ -421,6 +421,13 @@ public class Chariot {
 	public void suppProchainRail() {
 		nextNode = chemin.poll();
 	}
+
+	/**
+	 * Efface le chemin courant du chariot.
+	 */
+	public void effacerChemin() {
+		chemin.clear();
+	}
 }
 
 /**

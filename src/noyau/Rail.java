@@ -226,6 +226,15 @@ public class Rail {
 	}
 	
 	/**
+	 * Retourne la liste des chariots d'un rail.
+	 * 
+	 * @return Liste des chariots du rail.
+	 */
+	public LinkedList<Chariot> getListChariots() {
+		return listChariots;
+	}
+	
+	/**
 	 * Retourne le vecteur unitaire correspondant au rail.
 	 * @return Vecteur unitaire du rail.
 	 */

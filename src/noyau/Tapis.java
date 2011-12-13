@@ -138,4 +138,14 @@ public class Tapis extends ES {
 	public Vector<Bagage> getListBagages() {
 		return listBagages;
 	}
+	
+	/**
+	 * Appel un chariot pour le bagage en bout
+	 * de file en cas de changement de mode.
+	 */
+	public void appelerChariotBoutDeFile() {
+		if(listBagages.elementAt(tailleTapis-1) != null) {
+			Aeroport.garage.appelerChariot(this.getNoeud());
+		}
+	}
 }

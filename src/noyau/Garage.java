@@ -151,4 +151,11 @@ public class Garage extends ES {
 		return listChariotsPourPartir;
 	}
 
+	/**
+	 * Efface la liste des tapis ou aller.
+	 */
+	public void effacerAppels() {
+		this.listTapisARejoindre.clear();
+	}
+
 }

@@ -63,14 +63,6 @@ public class Aeroport {
 	public void setListTapis(List<Tapis> listTapis) {
 		this.listTapis = listTapis;
 	}
-	
-	public static Mode getMode() {
-		return mode;
-	}
-
-	public static void setMode(Mode mode) {
-		Aeroport.mode = mode;
-	}
 
 	/**
 	 * Temps entre chaque tick en millisecondes.
@@ -335,6 +327,39 @@ public class Aeroport {
 			garage.faireSortirAttente();
 		}
 		
+	}
+	
+	public static Mode getMode() {
+		return mode;
+	}
+
+	public void setMode(Mode mode) {
+		
+		if(mode == Mode.AUTO) {
+			for(Tapis t : listTapis) {
+				t.appelerChariotBoutDeFile();
+			}
+			for(Rail r : listRails) {
+				for(Chariot c : r.getListChariots()) {
+					if(c.getBagage() == null) {
+						c.calculerChemin(c.getDestination(), garage.getNoeud());
+					}
+					else {
+						c.calculerChemin(c.getDestination(), c.getBagage().getTogobban().getNoeud());
+					}
+				}
+			}
+		}
+		else {
+			garage.effacerAppels();
+			for(Rail r : listRails) {
+				for(Chariot c : r.getListChariots()) {
+					c.effacerChemin();
+				}
+			}
+		}
+		
+		Aeroport.mode = mode;
 	}
 	
 	public int getLongueur() {
