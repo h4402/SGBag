@@ -344,8 +344,12 @@ public class Aeroport {
 		enCalcul = true;
 		if(mode == Mode.AUTO) {
 			for(Tapis t : listTapis) {
+				/*
 				((NoeudTapis)t.getNoeud()).avertirChariotPlein();
 				t.appelerChariotBoutDeFile();
+				*/
+				((NoeudTapis)t.getNoeud()).avertirChariotPlein();
+				t.appelerChariot();
 			}
 			for(Rail r : listRails) {
 				for(Chariot c : r.getListChariots()) {
