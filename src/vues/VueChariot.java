@@ -90,6 +90,9 @@ public class VueChariot extends Vue {
 					g2d.drawImage(imageAvecBagageSel, posPixel.x, posPixel.y,
 							imageWidth, imageHeight, vueGenerale);
 				}
+				vueGenerale.getZoneInfo()
+		        .setText("Chariot n°" + chariot.getId() + " Destination Noeud n°" + 
+		        						chariot.getDestination().getId());
 			} else {
 				if (chariot.getBagage() == null) {
 					g2d.drawImage(image, posPixel.x, posPixel.y, imageWidth,
@@ -116,9 +119,8 @@ public class VueChariot extends Vue {
 				this.chariot.getVitesse());
 		vueGenerale.getBandeauVitesseChariot().setVisible(true);
 		if (Aeroport.getMode() == Mode.MANUEL) {
-			vueGenerale
-					.getZoneInfo()
-					.setText("Veuillez selectionner la destination suivante du chariot.");
+			vueGenerale.getZoneInfo()
+			           .setText("Veuillez selectionner la destination suivante du chariot.");
 		}
 	}
 
