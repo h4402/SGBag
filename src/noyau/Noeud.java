@@ -121,8 +121,6 @@ public class Noeud implements Comparable {
 		return id;
 	}
 	
-	// TODO : ajouter une methode ajouterRail
-	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
