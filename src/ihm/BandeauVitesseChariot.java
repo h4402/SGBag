@@ -23,6 +23,8 @@ public class BandeauVitesseChariot extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	private static final int NB_VALUES = 5;
+
 	/**
 	 * La vue générale
 	 */
@@ -62,10 +64,6 @@ public class BandeauVitesseChariot extends JPanel {
 	 */
 	public BandeauVitesseChariot() {
 		labelVitesse.setText("Vitesse chariot : ");
-		sliderVitesseChariot.setMajorTickSpacing(5);
-		sliderVitesseChariot.setMinorTickSpacing(1);
-		sliderVitesseChariot.setPaintTicks(true);
-		sliderVitesseChariot.setPaintLabels(true);
 		
 		sliderVitesseChariot.addChangeListener(stateChanged);
 		
@@ -104,8 +102,10 @@ public class BandeauVitesseChariot extends JPanel {
 	public void setValuesSlider(int vMin, int vMax){
 		sliderVitesseChariot.setMinimum(vMin);
 		sliderVitesseChariot.setMaximum(vMax);
-		sliderVitesseChariot.setMajorTickSpacing(5);
+		sliderVitesseChariot.setMajorTickSpacing((int)(vMax-vMin)/NB_VALUES);
 		sliderVitesseChariot.setMinorTickSpacing(1);
+		sliderVitesseChariot.setPaintTicks(true);
+		sliderVitesseChariot.setPaintLabels(true);
 	}
 	
 	
