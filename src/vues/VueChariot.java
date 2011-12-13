@@ -77,10 +77,10 @@ public class VueChariot extends Vue {
 
 	private void dessinSel(Graphics2D g2d){
 		if (chariot.getBagage() == null) {
-			g2d.drawImage(imageManager.getImgChariotSel(), posPixel.x, posPixel.y, imageWidth,
+			g2d.drawImage(imagesManager.getImgChariotSel(), posPixel.x, posPixel.y, imageWidth,
 					imageHeight, vueGenerale);
 		} else {
-			g2d.drawImage(imageManager.getImgChariotBSel(), posPixel.x, posPixel.y,
+			g2d.drawImage(imagesManager.getImgChariotBSel(), posPixel.x, posPixel.y,
 					imageWidth, imageHeight, vueGenerale);
 		}
 		if(chariot.getDestination() !=  null){
@@ -96,10 +96,10 @@ public class VueChariot extends Vue {
 	
 	private void dessinNonSel(Graphics2D g2d){
 		if (chariot.getBagage() == null) {
-			g2d.drawImage(imageManager.getImgChariot(), posPixel.x, posPixel.y, imageWidth,
+			g2d.drawImage(imagesManager.getImgChariot(), posPixel.x, posPixel.y, imageWidth,
 					imageHeight, vueGenerale);
 		} else {
-			g2d.drawImage(imageManager.getImgChariotB(), posPixel.x, posPixel.y,
+			g2d.drawImage(imagesManager.getImgChariotB(), posPixel.x, posPixel.y,
 					imageWidth, imageHeight, vueGenerale);
 		}
 	}
@@ -119,7 +119,7 @@ public class VueChariot extends Vue {
 				dessinNonSel(g2d);
 			}
 			if(chariot.getFreine()){
-				g2d.drawImage(imageManager.getImgEtincelles(), posPixel.x - imageWidth/4, posPixel.y - imageHeight/3,
+				g2d.drawImage(imagesManager.getImgEtincelles(), posPixel.x - imageWidth/4, posPixel.y - imageHeight/3,
 						(int)Math.round(imageWidth*0.5), (int)Math.round(imageHeight*1.5), vueGenerale);
 			}
 		}

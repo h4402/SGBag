@@ -13,7 +13,7 @@ public abstract class Vue {
 	
 	protected VueGenerale vueGenerale; //name changed
 	protected Shape rectangle;
-	protected ImagesManager imageManager;
+	protected ImagesManager imagesManager;
 	protected int imageWidth;
 	protected int imageHeight;
 	protected Point posPixel;
@@ -26,7 +26,7 @@ public abstract class Vue {
 	 */
 	public Vue(VueGenerale vueGeneral, ImagesManager imagesManager){
 		this.vueGenerale = vueGeneral;
-		this.imageManager = imagesManager;
+		this.imagesManager = imagesManager;
 		this.selection = false;
 	}
 	
@@ -53,6 +53,14 @@ public abstract class Vue {
 		selection = false;
 	}
 	
+	public ImagesManager getImagesManager() {
+		return imagesManager;
+	}
+
+	public void setImagesManager(ImagesManager imagesManager) {
+		this.imagesManager = imagesManager;
+	}
+
 	/**
 	 * D�tecte si un clic de souris est effectu� sur la vue
 	 * @param x

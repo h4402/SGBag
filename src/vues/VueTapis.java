@@ -51,15 +51,15 @@ public class VueTapis extends Vue {
 		for (int i = 0; i < tapis.getListBagages().size(); i++) {
 			if(tapis.getListBagages().elementAt(i) == null){
 				if(selection)
-					g2d.drawImage(imageManager.getImgTapisSel(), pointA.x + i*imageWidth, pointA.y - imageHeight/2, imageWidth, imageHeight, vueGenerale);
+					g2d.drawImage(imagesManager.getImgTapisSel(), pointA.x + i*imageWidth, pointA.y - imageHeight/2, imageWidth, imageHeight, vueGenerale);
 				else
-					g2d.drawImage(imageManager.getImgTapis(), pointA.x + i*imageWidth, pointA.y - imageHeight/2, imageWidth, imageHeight, vueGenerale);
+					g2d.drawImage(imagesManager.getImgTapis(), pointA.x + i*imageWidth, pointA.y - imageHeight/2, imageWidth, imageHeight, vueGenerale);
 			}
 			else{
 				if(selection)
-					g2d.drawImage(imageManager.getImgTapisBSel(), pointA.x + i*imageWidth, pointA.y - imageHeight/2, imageWidth, imageHeight, vueGenerale);
+					g2d.drawImage(imagesManager.getImgTapisBSel(), pointA.x + i*imageWidth, pointA.y - imageHeight/2, imageWidth, imageHeight, vueGenerale);
 				else
-					g2d.drawImage(imageManager.getImgTapisB(), pointA.x + i*imageWidth, pointA.y - imageHeight/2, imageWidth, imageHeight, vueGenerale);
+					g2d.drawImage(imagesManager.getImgTapisB(), pointA.x + i*imageWidth, pointA.y - imageHeight/2, imageWidth, imageHeight, vueGenerale);
 			}
 		}
 		g2d.rotate(-alpha, pointA.x, pointA.y);
