@@ -142,11 +142,9 @@ public class Rail {
 				 * on l'avance.
 				 */
 				if(distChariot < longueur) {
-					c.setArret(false);
 					c.majPos(noeudEntree, getVectUnitaire(), distChariot);
 				}
 				else {
-					c.setArret(false);
 					c.majPos(noeudEntree, getVectUnitaire(), longueur);
 				
 					if(noeudSortie.equals(c.getDestination())) {
@@ -200,13 +198,9 @@ public class Rail {
 					Rail r = c.getProchainRail(noeudSortie);
 					if(r != null) {
 						if (r.ajoutChariot(c)) {
-							c.setArret(false);
 							c.suppProchainRail();
 							it.remove();
 						}
-					}
-					else {
-						c.setArret(true);
 					}
 				}
 			}
@@ -218,7 +212,6 @@ public class Rail {
 				 */
 				if(prev.getDistance()-distSecu > 0) {
 					c.majPos(noeudEntree, getVectUnitaire(), prev.getDistance()-distSecu);
-					c.setArret(false);
 				}
 			}
 			prev = c;
