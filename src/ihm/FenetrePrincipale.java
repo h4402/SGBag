@@ -20,7 +20,6 @@ import javax.swing.Timer;
 import vues.VueGenerale;
 
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
@@ -47,7 +46,7 @@ import bibliotheques.SGBagFileFilter;
  * @author jeremy
  *
  */
-public class FenetrePrincipale extends JFrame {
+public class FenetrePrincipale extends JFrame{
 	
 	/**
 	 * Defaut serial version UID
@@ -74,6 +73,7 @@ public class FenetrePrincipale extends JFrame {
 	private JMenuItem menuItemZoom100 = new JMenuItem("Zoom 100%");
 	private JMenuItem menuItemZoomArriere = new JMenuItem("Zoom +");
 	private JMenuItem menuItemZoomAvant = new JMenuItem("Zoom -");
+	private JMenuItem menuItemChristmas = new JMenuItem("Xmas style !");
 	private JMenu aideMenu = new JMenu("Aide");
 	private JMenuItem menuItemAPropos = new JMenuItem("A propos");
 	private JMenuItem menuItemQuitter = new JMenuItem("Quitter");
@@ -119,9 +119,10 @@ public class FenetrePrincipale extends JFrame {
 	String sortirChariot = "Sortir un chariot";
 
 	/**
-	 * ImageManager
+	 * ImagesManager
 	 */
 	private ImagesManager imagesManager;
+	private ChristmasImagesManager christmasManager;
 	
 	/**
 	 * Enumérations
@@ -138,6 +139,19 @@ public class FenetrePrincipale extends JFrame {
 	private ActionListener ouvrirListener = new ActionListener() {
 		public void actionPerformed(ActionEvent actionEvent) {
 			chargerConfiguration();
+		}
+	};
+	
+	
+	/**
+	 * Easter Egg !!!!
+	 */
+	private ActionListener eggListener = new ActionListener() {
+		public void actionPerformed(ActionEvent actionEvent) {
+			if (vueGenerale != null){
+				aboutActionPerformed(null);
+				
+			}
 		}
 	};
 	
@@ -252,30 +266,6 @@ public class FenetrePrincipale extends JFrame {
     private Timer horloge = new Timer(Aeroport.lapsTemps, taskPerformer);
 
 
-    private KeyListener eggListener = new KeyListener() {
-		
-		@Override
-		public void keyTyped(KeyEvent keyId) {
-			if (keyId.getKeyChar() == 'e'){
-				aboutActionPerformed(null);
-			}
-			
-		}
-		
-		@Override
-		public void keyReleased(KeyEvent arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void keyPressed(KeyEvent arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-	};
-    
-    
 	/**
 	 * Create the frame.
 	 */
@@ -284,9 +274,6 @@ public class FenetrePrincipale extends JFrame {
 	}
 
 	private void jInit(boolean fichierCharge) {
-		
-		// Easter egg !
-		this.addKeyListener(eggListener);
 		
 		// 1er chargement
 		if (!fichierCharge) {
@@ -304,6 +291,10 @@ public class FenetrePrincipale extends JFrame {
 			
 			// Menu Affichage
 			menuBar.add(affichageMenu);
+			menuItemChristmas.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E,
+	                KeyEvent.CTRL_MASK));
+			menuItemChristmas.addActionListener(eggListener);
+			affichageMenu.add(menuItemChristmas);
 			menuItemZoom100.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_0,
 	                KeyEvent.CTRL_MASK));
 			affichageMenu.add(menuItemZoom100);
@@ -319,6 +310,10 @@ public class FenetrePrincipale extends JFrame {
 			menuItemAPropos.addActionListener(aboutListener);
 			aideMenu.add(menuItemAPropos);
 			
+			// Chargement des images
+			imagesManager = new ImagesManager(getToolkit());
+			christmasManager = new ChristmasImagesManager(getToolkit());
+			setIconImage(imagesManager.getImgIcon());
 		}
 		
 		// UI
@@ -337,16 +332,14 @@ public class FenetrePrincipale extends JFrame {
         this.setLocationRelativeTo(null);
 		this.setBounds(100, 100, 1024, 768);
 		this.setResizable(false);
+		this.setFocusable(true);
+		this.requestFocus();
 		
 		etat = etatsLecture.STOP;
 		
 		bandeauGeneral.setVisible(true);
 		bandeauGeneral.setPreferredSize(dimBandeau);
 		bandeauGeneral.setLayout(new BorderLayout());
-		
-		// Chargement des images
-		imagesManager = new ImagesManager(getToolkit());
-		setIconImage(imagesManager.getImgIcon());
 		
 		GridLayout gridBoutons = new GridLayout(1, 3, 5, 3);
 		panelBoutons.setLayout(gridBoutons);
@@ -541,6 +534,5 @@ public class FenetrePrincipale extends JFrame {
 			}
 		});
 	}
-	
-	
+
 }
