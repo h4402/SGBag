@@ -342,7 +342,6 @@ public class Aeroport {
 	public void setMode(Mode mode) {
 		
 		enCalcul = true;
-		
 		if(mode == Mode.AUTO) {
 			for(Tapis t : listTapis) {
 				((NoeudTapis)t.getNoeud()).avertirChariotPlein();
