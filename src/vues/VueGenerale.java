@@ -184,6 +184,8 @@ public class VueGenerale extends JPanel {
 			aeroport.ajouterBagage(guichetCourant.getGuichet(), tobogganCourant.getToboggan());
 			bandeauAjoutBagages.setVisible(false);
 			zoneInfo.setText("");
+			guichetCourant.deselectionner();
+			tobogganCourant.deselectionner();
 			guichetCourant = null;
 			tobogganCourant = null;
 		}
