@@ -212,6 +212,14 @@ public class Rail {
 							it.remove();
 						}
 					}
+					else {
+						if(noeudSortie.getListeRails().size() == 1) {
+							if (noeudSortie.getListeRails().get(0).ajoutChariot(c)) {
+								c.setProchainNoeud(noeudSortie.getListeRails().get(0).getNoeudSortie());
+								it.remove();
+							}
+						}
+					}
 				}
 			}
 			
