@@ -49,17 +49,17 @@ public class VueToboggan extends Vue {
 		else{
 			g2d.drawImage(imagesManager.getImgToboggan(), posPixel.x, posPixel.y, imageWidth, imageHeight, vueGenerale);
 		}
-		if(toboggan.getNoeud().getId() < 10){
+		if(toboggan.getId() < 10){
 			Font f = new Font("Courier", Font.BOLD, imageWidth);
 			g2d.setFont(f);
 			g2d.setColor(Color.WHITE);
-			g2d.drawString(Integer.toString(toboggan.getNoeud().getId()), (float)(posPixel.x + imageWidth/4), (float)(posPixel.y + imageHeight/1.25));
+			g2d.drawString(Integer.toString(toboggan.getId()), (float)(posPixel.x + imageWidth/4), (float)(posPixel.y + imageHeight/1.25));
 		}
 		else{
 			Font f = new Font("Courier", Font.BOLD, (int)Math.round(imageWidth/1.5));
 			g2d.setFont(f);
 			g2d.setColor(Color.WHITE);
-			g2d.drawString(Integer.toString(toboggan.getNoeud().getId()), (float)(posPixel.x + imageWidth/6), (float)(posPixel.y + imageHeight/1.5));
+			g2d.drawString(Integer.toString(toboggan.getId()), (float)(posPixel.x + imageWidth/6), (float)(posPixel.y + imageHeight/1.5));
 		}
 	}
 	
