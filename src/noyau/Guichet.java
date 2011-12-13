@@ -73,25 +73,15 @@ public class Guichet {
 	 * et on ajoute le bagage de parametre en fin de file.
 	 */
 	public void ajoutBagage(Bagage b) {
+		if(b != null) {
+			listBagages.offerLast(b);
+		}
 		Bagage bPrio = listBagages.peek();
-		if(bPrio == null) {
-			if(b != null) {
-				if(!tapis.ajouterBagage(b)) {
-					listBagages.add(b);
-				}
+		if(bPrio != null) {
+			if(tapis.ajouterBagage(bPrio)) {	
+				listBagages.poll();
 			}
 		}
-		else {
-			if(!tapis.ajouterBagage(bPrio)) {
-				if(b != null) {
-					listBagages.offerLast(b);
-				}
-			}
-			else {
-				listBagages.addFirst(bPrio);
-			}
-		}
-		
 	}
 	
 	/**
