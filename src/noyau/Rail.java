@@ -146,11 +146,12 @@ public class Rail {
 					c.majPos(noeudEntree, getVectUnitaire(), distChariot);
 				}
 				else {
+					c.setArret(false);
+					c.majPos(noeudEntree, getVectUnitaire(), longueur);
+				
 					if(noeudSortie.equals(c.getDestination())) {
 						if(c.getDestination() instanceof NoeudGarage) {
 							if(c.getBagage() == null) {
-								if(c.getId() == 0)
-									System.out.println(" Bonjour je suis le bon chariot");
 								((NoeudGarage)c.getDestination()).getGarage().ajouterChariotVide(c);
 								it.remove();
 								continue;
