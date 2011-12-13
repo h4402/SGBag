@@ -20,6 +20,7 @@ import javax.swing.Timer;
 import vues.VueGenerale;
 
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
@@ -250,6 +251,29 @@ public class FenetrePrincipale extends JFrame {
      */
     private Timer horloge = new Timer(Aeroport.lapsTemps, taskPerformer);
 
+
+    private KeyListener eggListener = new KeyListener() {
+		
+		@Override
+		public void keyTyped(KeyEvent keyId) {
+			if (keyId.getKeyChar() == 'e'){
+				aboutActionPerformed(null);
+			}
+			
+		}
+		
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public void keyPressed(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+	};
     
     
 	/**
@@ -260,6 +284,9 @@ public class FenetrePrincipale extends JFrame {
 	}
 
 	private void jInit(boolean fichierCharge) {
+		
+		// Easter egg !
+		this.addKeyListener(eggListener);
 		
 		// 1er chargement
 		if (!fichierCharge) {
