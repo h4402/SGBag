@@ -76,10 +76,20 @@ public class VueRail extends Vue {
 		if(vueGenerale.getChariotCourant()!=null) {
 			if(vueGenerale.getChariotCourant().getChariot().noeudElligible(rail.getNoeudSortie())){
 				vueGenerale.getChariotCourant().getChariot().ajouterNoeud(rail.getNoeudSortie());
-				vueGenerale.getZoneInfo().setText("Destination ajoutee, cliquez sur le prochain rail pour definir un chemin");
+				if(vueGenerale.getChariotCourant().getChariot().getBagage() != null){
+					vueGenerale.getZoneInfo().setText("<html>Destination ajoutee, cliquez sur le prochain rail pour definir un chemin <br>" +
+							"Chariot " + vueGenerale.getChariotCourant().getChariot().getId() +
+							" Bagage a destination du toboggan " + vueGenerale.getChariotCourant().getChariot()
+																			 .getBagage().getTogobban().getId() + "</html>");
+				}
+				else{
+					vueGenerale.getZoneInfo().setText("<html>Destination ajoutee, cliquez sur le prochain rail pour definir un chemin <br>" +
+							"Chariot " + vueGenerale.getChariotCourant().getChariot().getId() + "</html>");
+				}
 			}
 			else{
-				vueGenerale.getZoneInfo().setText("Cette destination n'est pas valide!");
+				vueGenerale.getZoneInfo().setText("<html>Cette destination n'est pas valide! <br> " +
+						"Cliquez sur un rail consécutif et dans la bonne direction pour definir un chemin</html>");
 			}
 		}
 	}
