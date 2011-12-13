@@ -1,11 +1,9 @@
 package ihm;
 
-import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import vues.VueGenerale;
@@ -19,6 +17,12 @@ import vues.VueGenerale;
 public class BandeauSortirChariot extends JPanel {
 
 	
+	/**
+	 * Defaut serial version UID
+	 */
+	private static final long serialVersionUID = 1L;
+
+
 	/**
 	 * La vue Générale
 	 */
@@ -41,18 +45,6 @@ public class BandeauSortirChariot extends JPanel {
 	};
 	
 	
-	/**
-	 * Clic sur annuler
-	 */
-	private ActionListener rienFaireListener = new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-			if (vueGenerale != null)
-				vueGenerale.annulerLiberationChariot();
-			
-		}
-	};
-	
-
 	/**
 	 * Construit le bandeau sans valeur à mettre dedans
 	 */
