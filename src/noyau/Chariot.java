@@ -274,6 +274,10 @@ public class Chariot {
 			chemin.clear();
 			nextNode = null;
 		}
+		else if(depart == arrivee) {
+			chemin.clear();
+			nextNode = depart;
+		}
 		else {
 			TreeMap<Noeud, DijStuff> graph = new TreeMap<Noeud, DijStuff>();
 			
