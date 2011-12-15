@@ -3,56 +3,56 @@ package vues;
 import ihm.ImagesManager;
 
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.Shape;
 
-
 public abstract class Vue {
-	
-	protected VueGenerale vueGenerale; //name changed
+
+	protected VueGenerale vueGenerale;
 	protected Shape rectangle;
 	protected ImagesManager imagesManager;
 	protected int imageWidth;
 	protected int imageHeight;
 	protected Point posPixel;
 	protected boolean selection;
-	
+
 	/**
-	 * Constructeur present uniquement pour des raisons de factorisation du code.
+	 * Constructeur present uniquement pour des raisons de factorisation du
+	 * code.
+	 * 
 	 * @param vueGeneral
-	 * @param image
+	 * @param imagesManager
 	 */
-	public Vue(VueGenerale vueGeneral, ImagesManager imagesManager){
+	public Vue(VueGenerale vueGeneral, ImagesManager imagesManager) {
 		this.vueGenerale = vueGeneral;
 		this.imagesManager = imagesManager;
 		this.selection = false;
 	}
-	
+
 	/**
-	 * Test l'appartenance d'un point au rectangle de position de l'objet. 
+	 * Test l'appartenance d'un point au rectangle de position de l'objet.
+	 * 
 	 * @param posClic
 	 * @return
 	 */
-	boolean dansRectangle(Point posClic){
+	boolean dansRectangle(Point posClic) {
 		return rectangle.contains(posClic);
 	}
-	
+
 	/**
-	 * Passe la vue en mode selection�
+	 * Passe la vue en mode selectionee
 	 */
-	void selectionner(){
+	void selectionner() {
 		selection = true;
 	}
-	
+
 	/**
-	 * Passe la vue en mod d�selection�
+	 * Passe la vue en mod deselectionee
 	 */
-	void deselectionner(){
+	void deselectionner() {
 		selection = false;
 	}
-	
+
 	public ImagesManager getImagesManager() {
 		return imagesManager;
 	}
@@ -62,25 +62,25 @@ public abstract class Vue {
 	}
 
 	/**
-	 * D�tecte si un clic de souris est effectu� sur la vue
+	 * Detecte si un clic de souris est effectue sur la vue
+	 * 
 	 * @param x
 	 * @param y
 	 * @return
 	 */
 	abstract boolean clic(int x, int y);
-	
+
 	/**
 	 * Dessine l'objet sur le graphics
+	 * 
 	 * @param g
 	 */
 	abstract void dessin(Graphics g);
-	
+
 	/**
-	 * Action cons�cutive au clic, est toujour appell�e sur l'objet qui
-	 * a �t� cliqu�.
+	 * Action consecutive au clic, est toujours appellee sur l'objet qui a ete
+	 * clique
 	 */
-	abstract void action(); //Effectue l'action consécutive au clic sur l'objet
-	
-	
+	abstract void action(); // Effectue l'action consecutive au clic sur l'objet
 
 }

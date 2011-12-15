@@ -35,6 +35,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import noyau.Aeroport;
+import noyau.Aeroport.Mode;
 import noyau.Chariot;
 
 import org.w3c.dom.Document;
@@ -46,10 +47,10 @@ import bibliotheques.SGBagFileFilter;
 /**
  * 
  * @author jeremy
- *
+ * 
  */
-public class FenetrePrincipale extends JFrame{
-	
+public class FenetrePrincipale extends JFrame {
+
 	/**
 	 * Defaut serial version UID
 	 */
@@ -59,12 +60,12 @@ public class FenetrePrincipale extends JFrame{
 	 * Vue générale
 	 */
 	private VueGenerale vueGenerale;
-	
+
 	/**
 	 * Fichiers
 	 */
 	private JFileChooser jFileChooserXML = new JFileChooser();
-	
+
 	/**
 	 * Menu
 	 */
@@ -77,7 +78,7 @@ public class FenetrePrincipale extends JFrame{
 	private JMenuItem menuItemAPropos = new JMenuItem("A propos");
 	private JMenuItem menuItemQuitter = new JMenuItem("Quitter");
 
-	/** 
+	/**
 	 * Panels
 	 */
 	private JPanel container = new JPanel();
@@ -89,49 +90,53 @@ public class FenetrePrincipale extends JFrame{
 	private BandeauSortirChariot bandeauSortirChariot = new BandeauSortirChariot();
 	private JPanel panelBas = new JPanel();
 	private JPanel panelBoutons = new JPanel();
-    private JPanel panelLabelInfo = new JPanel();
-    
+	private JPanel panelLabelInfo = new JPanel();
+
 	/**
 	 * Boutons
 	 */
 	private JButton boutonLecture = new JButton();
 	private JButton boutonArretUrgence = new JButton();
 	private JButton boutonMode = new JButton();
-	
+
 	/**
 	 * Label d'info
 	 */
 	private JLabel labelInfo = new JLabel("Label Info");
-	
+
 	/**
 	 * Label Mode en cours
 	 */
 	private JLabel labelMode = new JLabel();
-	
+
 	/**
 	 * Constantes
 	 */
-	String playString = "Play";
-	String pauseString = "Pause";
-	String auString = "Arret d'urgence";
-	String repriseAuString = "Reprise AU";
-	String sortirChariot = "Sortir un chariot";
+	String PLAY_STRING = "Play";
+	String PAUSE_STRING = "Pause";
+	String AU_STRING = "Arret d'urgence";
+	String REPRISE_AU_STRING = "Reprise AU";
+	String SORTIR_CHARIOT = "Sortir un chariot";
+	String BOUTON_MANUEL = "Passer en auto";
+	String LABEL_MANUEL = "Mode Manuel";
+	String BOUTON_AUTO = "Passer en manuel";
+	String LABEL_AUTO = "Mode Auto";
 
 	/**
 	 * ImagesManager
 	 */
 	private ImagesManager imagesManager;
 	private ImagesManager christmasManager;
-	
+
 	/**
 	 * Enumérations
 	 */
 	private enum etatsLecture {
-        PLAY, STOP
-    }
-	
+		PLAY, STOP
+	}
+
 	private etatsLecture etat = etatsLecture.STOP;
-	
+
 	/**
 	 * Clic sur Ouvrir : charge le fichier de configuration
 	 */
@@ -140,9 +145,9 @@ public class FenetrePrincipale extends JFrame{
 			chargerConfiguration();
 		}
 	};
-	
+
 	private int setImage = 0;
-	
+
 	/**
 	 * Easter Egg !!!!
 	 */
@@ -151,20 +156,20 @@ public class FenetrePrincipale extends JFrame{
 			changeSkin();
 		}
 	};
-	
-	private void changeSkin(){
-		if (vueGenerale != null){
+
+	private void changeSkin() {
+		if (vueGenerale != null) {
 			if (setImage == 0) {
 				vueGenerale.setImagesManager(christmasManager);
 				setImage = 1;
-			} else if (setImage == 1){
+			} else if (setImage == 1) {
 				vueGenerale.setImagesManager(imagesManager);
 				setImage = 0;
 			}
 			vueGenerale.repaint();
 		}
 	}
-	
+
 	/**
 	 * Clic sur A Propos : ouvre une fenetre d'a propos
 	 */
@@ -173,7 +178,7 @@ public class FenetrePrincipale extends JFrame{
 			aboutActionPerformed(actionEvent);
 		}
 	};
-	
+
 	/**
 	 * Quitte l'application
 	 */
@@ -182,7 +187,7 @@ public class FenetrePrincipale extends JFrame{
 			System.exit(0);
 		}
 	};
-	
+
 	/**
 	 * Clic sur bouton play/pause
 	 */
@@ -191,8 +196,7 @@ public class FenetrePrincipale extends JFrame{
 			playPauseActionPerformed();
 		}
 	};
-	
-	
+
 	/**
 	 * Clic sur bouton du choix du mode
 	 */
@@ -202,52 +206,56 @@ public class FenetrePrincipale extends JFrame{
 			bandeauAjoutBagages.setVisible(false);
 			bandeauSortirChariot.setVisible(false);
 			procedureChangerMode();
-			
+
 		}
 	};
-	
+
 	/**
-	 * Procedure appelée lors du changement de mode
-	 * Elle désactive le bouton de changement pour attendre que les opérations
-	 * de calcul de chemins dans le noyau soient terminés
+	 * Procedure appelée lors du changement de mode Elle désactive le bouton
+	 * de changement pour attendre que les opérations de calcul de chemins dans
+	 * le noyau soient terminés
 	 */
 	private void procedureChangerMode() {
 		boutonMode.setEnabled(false);
-		new Thread(){
+		new Thread() {
 			@Override
 			public void run() {
-				while (Aeroport.enCalcul)
-				{
+				while (Aeroport.enCalcul) {
 					try {
 						Thread.sleep(2000);
 					} catch (InterruptedException e) {
 						System.out.println("Erreur thread.sleep");
 						e.printStackTrace();
 					}
-				};
+				}
+				;
 				vueGenerale.changerMode();
 				boutonMode.setEnabled(true);
-				boutonMode.setText(vueGenerale.getModeBouton());
-				labelMode.setText(vueGenerale.getModeTexte());
+				if (Aeroport.getMode() == Mode.MANUEL) {
+					boutonMode.setText(BOUTON_MANUEL);
+					labelMode.setText(LABEL_MANUEL);
+				} else {
+					boutonMode.setText(BOUTON_AUTO);
+					labelMode.setText(LABEL_AUTO);
+				}
 			}
 		}.start();
-		
+
 	}
-	
-	
+
 	/**
 	 * Clic sur Arret d'urgence
 	 */
 	private ActionListener arretUrgenceListener = new ActionListener() {
 		public void actionPerformed(ActionEvent actionEvent) {
 			vueGenerale.toggleAU();
-			if (boutonArretUrgence.getText().equals(auString))
-				boutonArretUrgence.setText(repriseAuString);
+			if (boutonArretUrgence.getText().equals(AU_STRING))
+				boutonArretUrgence.setText(REPRISE_AU_STRING);
 			else
-				boutonArretUrgence.setText(auString);
+				boutonArretUrgence.setText(AU_STRING);
 		}
 	};
-	
+
 	/**
 	 * Listener sur Panel général
 	 */
@@ -256,31 +264,28 @@ public class FenetrePrincipale extends JFrame{
 			clicSurVueGenerale(e);
 		}
 	};
-	
-	
+
 	/**
 	 * Timer du tick d'horloge
 	 */
 	private ActionListener taskPerformer = new ActionListener() {
 
-        public void actionPerformed(ActionEvent evt) {
-        	vueGenerale.avancerTemps();
-        	vueGenerale.repaint();
-        }
-    };
+		public void actionPerformed(ActionEvent evt) {
+			vueGenerale.avancerTemps();
+			vueGenerale.repaint();
+		}
+	};
 
-    
-    /**
-     * Le Timer pour faire avancer la simulation
-     */
-    private Timer horloge = new Timer(Aeroport.lapsTemps, taskPerformer);
-
+	/**
+	 * Le Timer pour faire avancer la simulation
+	 */
+	private Timer horloge = new Timer(Aeroport.lapsTemps, taskPerformer);
 
 	/**
 	 * Create the frame.
 	 */
 	public FenetrePrincipale() {
-		
+
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (ClassNotFoundException e) {
@@ -293,99 +298,101 @@ public class FenetrePrincipale extends JFrame{
 			System.out.println("Erreur illegalAccess chargement theme systeme");
 			e.printStackTrace();
 		} catch (UnsupportedLookAndFeelException e) {
-			System.out.println("Erreur unsupportedTheme chargement theme systeme");
+			System.out
+					.println("Erreur unsupportedTheme chargement theme systeme");
 			e.printStackTrace();
 		}
-		
+
 		this.setJMenuBar(menuBar);
 		// Menu Fichier
 		menuBar.add(fileMenu);
 		menuItemOuvrir.addActionListener(ouvrirListener);
 		menuItemOuvrir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,
-                KeyEvent.CTRL_MASK));
+				KeyEvent.CTRL_MASK));
 		fileMenu.add(menuItemOuvrir);
 		menuItemQuitter.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q,
-                KeyEvent.CTRL_MASK));
+				KeyEvent.CTRL_MASK));
 		menuItemQuitter.addActionListener(quitterListener);
 		fileMenu.add(menuItemQuitter);
-		
+
 		// Menu Affichage
 		menuBar.add(affichageMenu);
 		menuItemChristmas.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E,
-                KeyEvent.CTRL_MASK));
+				KeyEvent.CTRL_MASK));
 		menuItemChristmas.addActionListener(eggListener);
 		affichageMenu.add(menuItemChristmas);
 		affichageMenu.setEnabled(false);
-		
+
 		// Menu Aide
 		menuBar.add(aideMenu);
 		menuItemAPropos.addActionListener(aboutListener);
 		aideMenu.add(menuItemAPropos);
-		
+
 		// Chargement des images
 		imagesManager = new ImagesManager(getToolkit(), 0);
 		christmasManager = new ImagesManager(getToolkit(), 1);
 		setIconImage(imagesManager.getImgIcon());
-		
+
 		this.setTitle("SGBag - Simulation");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLocationRelativeTo(null);
+		this.setLocationRelativeTo(null);
 		this.setBounds(100, 100, 1024, 768);
 		this.setResizable(false);
 		this.setFocusable(true);
 		this.requestFocus();
-		
+
 		jInit(false);
 	}
 
 	private void jInit(boolean fichierCharge) {
-		
+
 		// UI
 		container = new JPanel();
 		panelBas = new JPanel();
 		panelBoutons = new JPanel();
-	    boutonLecture = new JButton();
+		boutonLecture = new JButton();
 		boutonArretUrgence = new JButton();
 		boutonMode = new JButton();
-		
+
 		// Frame properties
 		Dimension dimBandeau = new Dimension(this.getWidth(), 80);
 		Dimension dimPanelBas = new Dimension(this.getWidth(), 40);
-		
+
 		etat = etatsLecture.STOP;
-		
+
 		bandeauGeneral.setVisible(true);
 		bandeauGeneral.setPreferredSize(dimBandeau);
 		bandeauGeneral.setLayout(new BorderLayout());
-		
+
 		GridLayout gridBoutons = new GridLayout(1, 3, 5, 3);
 		panelBoutons.setLayout(gridBoutons);
 		// Bouton d'arret d'urgence
-		boutonArretUrgence.setText(auString);
+		boutonArretUrgence.setText(AU_STRING);
 		boutonArretUrgence.addActionListener(arretUrgenceListener);
 		boutonArretUrgence.setEnabled(false);
 		panelBoutons.add(boutonArretUrgence);
-		
+
 		// Bouton de lecture
 		boutonLecture.setText("Play");
 		boutonLecture.addActionListener(playPauseListener);
 		boutonLecture.setEnabled(false);
 		panelBoutons.add(boutonLecture);
-		
+
 		// Bouton du choix du mode
 		boutonMode.setText("Mode");
 		boutonMode.addActionListener(modeListener);
 		boutonMode.setEnabled(false);
 		panelBoutons.add(boutonMode);
-		
-		labelInfo.setText("Bienvenue dans le système de gestion de bagages SGBag");
+
+		labelInfo
+				.setText("Bienvenue dans le système de gestion de bagages SGBag");
 		panelLabelInfo.add(labelInfo);
-		
+
 		panelBas.setLayout(new GridLayout());
 		panelBas.add(panelBoutons, BorderLayout.WEST);
 		panelBas.add(panelLabelInfo, BorderLayout.EAST);
 		panelBas.setPreferredSize(dimPanelBas);
-		
+
 		// Panel Parametres
 		bandeauAjoutBagages.setVisible(false);
 		bandeauVitesseChariot.setVisible(false);
@@ -394,12 +401,12 @@ public class FenetrePrincipale extends JFrame{
 		bandeauActions.add(bandeauAjoutBagages);
 		bandeauActions.add(bandeauVitesseChariot);
 		bandeauActions.add(bandeauSortirChariot);
-		
+
 		bandeauTexteMode.add(labelMode);
-		
+
 		bandeauGeneral.add(bandeauTexteMode, BorderLayout.NORTH);
 		bandeauGeneral.add(bandeauActions, BorderLayout.CENTER);
-		
+
 		// Ajout des panels, structuration de la fenetre
 		container.setLayout(new BorderLayout());
 		container.setBackground(Color.white);
@@ -409,19 +416,22 @@ public class FenetrePrincipale extends JFrame{
 			vueGenerale.addMouseListener(clicVueGenerale);
 			container.add(vueGenerale, BorderLayout.CENTER);
 		}
-		
+
 		this.setContentPane(container);
-		
+
 	}
-	
+
 	/**
 	 * Clic sur A Propos
-	 * @param e : actionEvent
+	 * 
+	 * @param e
+	 *            : actionEvent
 	 */
 	private void aboutActionPerformed(ActionEvent ae) {
-        JOptionPane.showMessageDialog(this, new FenetreAbout(), "A Propos", JOptionPane.PLAIN_MESSAGE);
-    }
-	
+		JOptionPane.showMessageDialog(this, new FenetreAbout(), "A Propos",
+				JOptionPane.PLAIN_MESSAGE);
+	}
+
 	/**
 	 * Appui sur bouton play/pause
 	 */
@@ -429,129 +439,135 @@ public class FenetrePrincipale extends JFrame{
 		if (etat == etatsLecture.PLAY) {
 			horloge.stop();
 			etat = etatsLecture.STOP;
-			boutonLecture.setText(playString);
+			boutonLecture.setText(PLAY_STRING);
 		} else if (etat == etatsLecture.STOP) {
 			horloge.start();
 			etat = etatsLecture.PLAY;
-			boutonLecture.setText(pauseString);
+			boutonLecture.setText(PAUSE_STRING);
 		}
 	}
-	
+
 	/**
 	 * Clic sur le panel vueGenerale
-	 * @param e : mouseEvent pour récupérer la position du clic
+	 * 
+	 * @param e
+	 *            : mouseEvent pour récupérer la position du clic
 	 */
-	
+
 	private void clicSurVueGenerale(MouseEvent e) {
 		if (vueGenerale != null)
 			vueGenerale.clic(e.getX(), e.getY());
 	}
-	
-	
+
 	/**
 	 * Désactivation des actions (boutons, bandeaux, ...)
 	 */
 	private void desactiveActions() {
 		jInit(false);
 		affichageMenu.setEnabled(false);
-		labelInfo.setText("Erreur lors du chargement du fichier de configuration");
+		labelInfo
+				.setText("Erreur lors du chargement du fichier de configuration");
 		labelMode.setText("");
 	}
-	
+
 	/**
 	 * Réinitialisation de certains composants
 	 */
 	private void reInitAppli() {
-		labelInfo.setText("Bienvenue dans le système de gestion de bagages SGBag");
-        labelMode.setText(vueGenerale.getModeTexte());
+		labelInfo
+				.setText("Bienvenue dans le système de gestion de bagages SGBag");
+		if (Aeroport.getMode() == Mode.MANUEL) {
+			boutonMode.setText(BOUTON_MANUEL);
+			labelMode.setText(LABEL_MANUEL);
+		} else {
+			boutonMode.setText(BOUTON_AUTO);
+			labelMode.setText(LABEL_AUTO);
+		}
 		bandeauAjoutBagages.setVueGenerale(vueGenerale);
-        bandeauVitesseChariot.setVueGenerale(vueGenerale);
-        bandeauSortirChariot.setVueGenerale(vueGenerale);
-        boutonLecture.setEnabled(true);
-        etat = etatsLecture.STOP;
-        boutonLecture.setText(playString);
-        boutonArretUrgence.setText(auString);
-        boutonArretUrgence.setEnabled(true);
-        boutonMode.setEnabled(true);
-        boutonMode.setText(vueGenerale.getModeBouton());
-        bandeauVitesseChariot.setValuesSlider(Chariot.VIT_MIN, 
-            	Chariot.VIT_MAX);
-        affichageMenu.setEnabled(true);
+		bandeauVitesseChariot.setVueGenerale(vueGenerale);
+		bandeauSortirChariot.setVueGenerale(vueGenerale);
+		boutonLecture.setEnabled(true);
+		etat = etatsLecture.STOP;
+		boutonLecture.setText(PLAY_STRING);
+		boutonArretUrgence.setText(AU_STRING);
+		boutonArretUrgence.setEnabled(true);
+		boutonMode.setEnabled(true);
+		bandeauVitesseChariot.setValuesSlider(Chariot.VIT_MIN, Chariot.VIT_MAX);
+		affichageMenu.setEnabled(true);
 	}
-	
+
 	/**
 	 * 
 	 * @param vueCadreDOMElement
 	 * @return
 	 */
-	public int construireToutAPartirDeXML(Element aeroportElement)
-	{
+	public int construireToutAPartirDeXML(Element aeroportElement) {
 		// On crée l'élément Aéroport et la vue qui lui est associée
 		Aeroport aeroport = new Aeroport();
 
-        if (aeroport.construireAPartirDeXML(aeroportElement) != Aeroport.PARSE_OK)
-        {
-            return Aeroport.PARSE_ERROR;
-        }
-        
-        vueGenerale = new VueGenerale(bandeauAjoutBagages, 
-        		bandeauVitesseChariot, bandeauSortirChariot, labelInfo, aeroport, imagesManager);
-        horloge.stop();
-        
-        return Aeroport.PARSE_OK;
-    }
-	
+		if (aeroport.construireAPartirDeXML(aeroportElement) != Aeroport.PARSE_OK) {
+			return Aeroport.PARSE_ERROR;
+		}
+
+		vueGenerale = new VueGenerale(bandeauAjoutBagages,
+				bandeauVitesseChariot, bandeauSortirChariot, labelInfo,
+				aeroport, imagesManager);
+		horloge.stop();
+
+		return Aeroport.PARSE_OK;
+	}
+
 	/**
 	 * Chargement de la configuration
 	 */
-	public void chargerConfiguration()
-	{
-        SGBagFileFilter filter = new SGBagFileFilter();
-        filter.addExtension("xml");
-        filter.setDescription("Fichier XML");
-        jFileChooserXML.setFileFilter(filter);
-        jFileChooserXML.setFileSelectionMode(JFileChooser.FILES_ONLY);
+	public void chargerConfiguration() {
+		SGBagFileFilter filter = new SGBagFileFilter();
+		filter.addExtension("xml");
+		filter.setDescription("Fichier XML");
+		jFileChooserXML.setFileFilter(filter);
+		jFileChooserXML.setFileSelectionMode(JFileChooser.FILES_ONLY);
 
-        int returnVal = jFileChooserXML.showOpenDialog(null);
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            try {
-                DocumentBuilderFactory fabrique = DocumentBuilderFactory.newInstance();
-                DocumentBuilder constructeur = fabrique.newDocumentBuilder();
-                File xml = new File(jFileChooserXML.getSelectedFile().getAbsolutePath());
-                Document document = constructeur.parse(xml);
+		int returnVal = jFileChooserXML.showOpenDialog(null);
+		if (returnVal == JFileChooser.APPROVE_OPTION) {
+			try {
+				DocumentBuilderFactory fabrique = DocumentBuilderFactory
+						.newInstance();
+				DocumentBuilder constructeur = fabrique.newDocumentBuilder();
+				File xml = new File(jFileChooserXML.getSelectedFile()
+						.getAbsolutePath());
+				Document document = constructeur.parse(xml);
 
-                Element racine = document.getDocumentElement();
+				Element racine = document.getDocumentElement();
 
-                if (racine.getNodeName().equals("Aeroport"))
-                {
-                	try {
-	                	if (construireToutAPartirDeXML(racine) == Aeroport.PARSE_OK) {
-	                		jInit(true);
-	                		if (vueGenerale != null) {
-	            				vueGenerale.repaint();
-	            				reInitAppli();
-	                		}
-	                	}
-                	}
-                	catch (Exception e) {
-                		desactiveActions();
-                		labelInfo.setText("Erreur lors du chargement XML");
-                	}
-                }
-                
-            } catch (ParserConfigurationException pce) {
-                System.out.println("Erreur de configuration du parseur DOM");
-                System.out.println("lors de l'appel a fabrique.newDocumentBuilder();");
-            } catch (SAXException se) {
-                System.out.println("Erreur lors du parsing du document");
-                System.out.println("lors de l'appel a construteur.parse(xml)");
-            } catch (IOException ioe) {
-                System.out.println("Erreur d'entree/sortie");
-                System.out.println("lors de l'appel a construteur.parse(xml)");
-            }
-        }  
+				if (racine.getNodeName().equals("Aeroport")) {
+					try {
+						if (construireToutAPartirDeXML(racine) == Aeroport.PARSE_OK) {
+							jInit(true);
+							if (vueGenerale != null) {
+								vueGenerale.repaint();
+								reInitAppli();
+							}
+						}
+					} catch (Exception e) {
+						desactiveActions();
+						labelInfo.setText("Erreur lors du chargement XML");
+					}
+				}
+
+			} catch (ParserConfigurationException pce) {
+				System.out.println("Erreur de configuration du parseur DOM");
+				System.out
+						.println("lors de l'appel a fabrique.newDocumentBuilder();");
+			} catch (SAXException se) {
+				System.out.println("Erreur lors du parsing du document");
+				System.out.println("lors de l'appel a construteur.parse(xml)");
+			} catch (IOException ioe) {
+				System.out.println("Erreur d'entree/sortie");
+				System.out.println("lors de l'appel a construteur.parse(xml)");
+			}
+		}
 	}
-	
+
 	/**
 	 * Launch the application.
 	 */
