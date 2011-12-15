@@ -27,15 +27,55 @@ import noyau.Toboggan;
 public class VueGenerale extends JPanel {
 
 	private static final long serialVersionUID = -7005589055229257737L;
+
+	/**
+	 * Vue du guichet selectione
+	 */
 	private VueGuichet guichetCourant;
+
+	/**
+	 * Vue du toboggan selectione
+	 */
 	private VueToboggan tobogganCourant;
+
+	/**
+	 * Vue du chariot selectione
+	 */
 	private VueChariot chariotCourant;
+
+	/**
+	 * Aeroport contenant les objets noyau
+	 */
 	private Aeroport aeroport;
+
+	/**
+	 * Bandeau qui permet l'appel d'ajouterBaggage
+	 */
 	private BandeauAjoutBagages bandeauAjoutBagages;
+
+	/**
+	 * Bandeau qui permet l'appel de setVitesseChariot
+	 */
 	private BandeauVitesseChariot bandeauVitesseChariot;
+
+	/**
+	 * Bandeau qui permet l'appel de libererChariot
+	 */
 	private BandeauSortirChariot bandeauSortirChariot;
+
+	/**
+	 * Zone d'affichage des infos d'aide pour l'interface
+	 */
 	private JLabel zoneInfo;
+
+	/**
+	 * Echelle de correspondance pixels/metres permet de faire un zoom
+	 */
 	private double echelle;
+
+	/**
+	 * Liste des vues representant l'aeroport
+	 */
 	private ArrayList<Vue> listVues;
 
 	/**
@@ -48,11 +88,11 @@ public class VueGenerale extends JPanel {
 	 * @param bandeauSortirChariot
 	 *            : Bandeau qui permet l'appel de libererChariot
 	 * @param zoneInfo
-	 *            : zone d'affichage des infos d'aide pour l'interface
+	 *            : Zone d'affichage des infos d'aide pour l'interface
 	 * @param aeroport
-	 *            : aeroport a modeliser
+	 *            : Aeroport a modeliser
 	 * @param imagesManager
-	 *            : contient les images utilisees pour dessiner les Vues
+	 *            : Contient les images utilisees pour dessiner les Vues
 	 */
 	public VueGenerale(BandeauAjoutBagages bandeauAjoutBagages,
 			BandeauVitesseChariot bandeauVitesseChariot,

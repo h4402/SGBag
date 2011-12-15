@@ -13,20 +13,48 @@ import noyau.Tapis;
 
 public class VueTapis extends Vue {
 
+	/**
+	 * Objet Tapis du noyau a representer
+	 */
 	private Tapis tapis;
+
+	/**
+	 * Position superieur du tapis
+	 */
 	private Point pointA;
+
+	/**
+	 * Position inferieur du tapis
+	 */
 	private Point pointB;
+
+	/**
+	 * Angle avec lequel il faut dessiner le tapis
+	 */
 	private double alpha;
 
+	/**
+	 * Largeur en metre de la representation tapis Sert de base de reference
+	 * pour le calcul avec l'echelle
+	 */
 	static private double largeurReelleElem = 1.1 * Bagage.TAILLE_BAGAGE;
+
+	/**
+	 * Hauteur en metre de la representation tapis Sert de base de reference
+	 * pour le calcul avec l'echelle
+	 */
 	static private double longueurReelleElem = Bagage.TAILLE_BAGAGE;
 
 	/**
 	 * Constructeur de la VueTapis
 	 * 
 	 * @param vueGeneral
+	 *            : VueGenerale qui possede les informations sur l'etat de
+	 *            l'interface
 	 * @param imagesManager
+	 *            : Gestionnaire des images utilisees pour dessiner les Vues
 	 * @param tapis
+	 *            : Objet Tapis du noyau a representer
 	 */
 	public VueTapis(VueGenerale vueGeneral, ImagesManager imagesManager,
 			Tapis tapis) {

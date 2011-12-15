@@ -15,18 +15,34 @@ import noyau.Noeud;
 
 public class VueChariot extends Vue {
 
+	/**
+	 * Objet Chariot du noyau a representer
+	 */
 	private Chariot chariot;
+
+	/**
+	 * Angle avec lequel il faut dessiner le chariot
+	 */
 	private double alpha;
 
+	/**
+	 * Largeur en metre de la representation chariot Sert de base de reference
+	 * pour le calcul avec l'echelle
+	 */
 	static private double longueurReelle = 1.5;
+
+	/**
+	 * Hauteur en metre de la representation chariot Sert de base de reference
+	 * pour le calcul avec l'echelle
+	 */
 	static private double largeurReelle = 3;
 
 	/**
 	 * Constructeur de la VueChariot
 	 * 
-	 * @param vueGenerale
-	 * @param imagesManager
-	 * @param chariot
+	 * @param vueGenerale : VueGenerale qui possede les informations sur l'etat de l'interface
+	 * @param imagesManager : Gestionnaire des images utilisees pour dessiner les Vues
+	 * @param chariot : Objet Chariot du noyau a representer 
 	 */
 	public VueChariot(VueGenerale vueGenerale, ImagesManager imagesManager,
 			Chariot chariot) {

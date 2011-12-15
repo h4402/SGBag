@@ -15,16 +15,22 @@ import noyau.Toboggan;
 
 public class VueToboggan extends Vue {
 
+	/**
+	 * Objet Toboggan du noyau a representer
+	 */
 	private Toboggan toboggan;
+	
+	/**
+	 * Taille en metre de la representation Toboggan Sert de base de reference
+	 * pour le calcul avec l'echelle
+	 */
 	static private int tailleReelle = 2;
 
 	/**
-	 * Constructeur de la VueToboggan
-	 * 
-	 * @param vueGenerale
-	 * @param image
-	 * @param imageSel
-	 * @param toboggan
+	 * Constructeur de VueToboggan
+	 * @param vueGenerale : VueGenerale qui possede les informations sur l'etat de l'interface
+	 * @param imagesManager : Gestionnaire des images utilisees pour dessiner les Vues
+	 * @param toboggan : Objet Toboggan du noyau a representer 
 	 */
 	public VueToboggan(VueGenerale vueGenerale, ImagesManager imagesManager,
 			Toboggan toboggan) {

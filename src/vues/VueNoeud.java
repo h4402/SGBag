@@ -16,16 +16,23 @@ import noyau.NoeudGarage;
 
 public class VueNoeud extends Vue {
 
+	/**
+	 * Objet Noeud du noyau a representer
+	 */
 	private Noeud noeud;
 
+	/**
+	 * Taille en metre de la representation noeud Sert de base de reference
+	 * pour le calcul avec l'echelle
+	 */
 	static private int tailleReelle = 2;
 
 	/**
 	 * Constructeur de la vueNoeud
 	 * 
-	 * @param vueGenerale
-	 * @param imagesManager
-	 * @param noeud
+	 * @param vueGenerale : VueGenerale qui possede les informations sur l'etat de l'interface
+	 * @param imagesManager : Gestionnaire des images utilisees pour dessiner les Vues
+	 * @param noeud : Objet Noeud du noyau a representer 
 	 */
 	public VueNoeud(VueGenerale vueGenerale, ImagesManager imagesManager,
 			Noeud noeud) {

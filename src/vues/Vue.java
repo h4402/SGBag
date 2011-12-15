@@ -8,12 +8,39 @@ import java.awt.Shape;
 
 public abstract class Vue {
 
+	/**
+	 * VueGenerale qui possede les informations sur l'etat de l'interface
+	 */
 	protected VueGenerale vueGenerale;
+
+	/**
+	 * Rectangle de detection du clic
+	 */
 	protected Shape rectangle;
+
+	/**
+	 * Gestionnaire des images utilisees pour dessiner les Vues
+	 */
 	protected ImagesManager imagesManager;
+
+	/**
+	 * Taille de dessin de la vue en largeur
+	 */
 	protected int imageWidth;
+
+	/**
+	 * Taille de dessin de la vue en hauteur
+	 */
 	protected int imageHeight;
+
+	/**
+	 * Position de l'objet a dessiner en pixels
+	 */
 	protected Point posPixel;
+
+	/**
+	 * Determine si l'objet est selectionne ou non
+	 */
 	protected boolean selection;
 
 	/**
@@ -21,7 +48,10 @@ public abstract class Vue {
 	 * code.
 	 * 
 	 * @param vueGeneral
+	 *            : VueGenerale qui possede les informations sur l'etat de
+	 *            l'interface
 	 * @param imagesManager
+	 *            : Gestionnaire des images utilisees pour dessiner les Vues
 	 */
 	public Vue(VueGenerale vueGeneral, ImagesManager imagesManager) {
 		this.vueGenerale = vueGeneral;

@@ -14,20 +14,48 @@ import noyau.Rail;
 
 public class VueRail extends Vue {
 
+	/**
+	 * Objet Rail du noyau a representer
+	 */
 	private Rail rail;
+
+	/**
+	 * Position superieur du rail
+	 */
 	private Point pointA;
+
+	/**
+	 * Position inferieur du rail
+	 */
 	private Point pointB;
+
+	/**
+	 * Angle avec lequel il faut dessiner le rail
+	 */
 	private double alpha;
 
+	/**
+	 * Largeur en metre de la representation rail Sert de base de reference pour
+	 * le calcul avec l'echelle
+	 */
 	static private double largeurReelleElem = 1.1;
+
+	/**
+	 * Hauteur en metre de la representation rail Sert de base de reference pour
+	 * le calcul avec l'echelle
+	 */
 	static private double longueurReelleElem = 1;
 
 	/**
 	 * Constructeur de la VueRail
 	 * 
 	 * @param vueGenerale
+	 *            : VueGenerale qui possede les informations sur l'etat de
+	 *            l'interface
 	 * @param imagesManager
+	 *            : Gestionnaire des images utilisees pour dessiner les Vues
 	 * @param rail
+	 *            : Objet Rail du noyau a representer
 	 */
 	public VueRail(VueGenerale vueGenerale, ImagesManager imagesManager,
 			Rail rail) {
@@ -41,7 +69,7 @@ public class VueRail extends Vue {
 
 		constructionRectangle();
 	}
-	
+
 	@Override
 	boolean clic(int x, int y) {
 		if (Aeroport.getMode() == Mode.MANUEL) { // Un rail ne se selectionne

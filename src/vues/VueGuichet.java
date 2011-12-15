@@ -13,17 +13,33 @@ import noyau.Aeroport.Mode;
 
 public class VueGuichet extends Vue {
 
+	/**
+	 * Objet Guichet du noyau a representer
+	 */
 	private Guichet guichet;
 
+	/**
+	 * Largeur en metre de la representation chariot Sert de base de reference
+	 * pour le calcul avec l'echelle
+	 */
 	static private double hauteurReelle = 2;
+
+	/**
+	 * Hauteur en metre de la representation chariot Sert de base de reference
+	 * pour le calcul avec l'echelle
+	 */
 	static private double largeurReelle = 2.7;
 
 	/**
 	 * Constructeur de la VueGuichet
 	 * 
 	 * @param vueGenerale
+	 *            : VueGenerale qui possede les informations sur l'etat de
+	 *            l'interface
 	 * @param imagesManager
+	 *            :Gestionnaire des images utilisees pour dessiner les Vues
 	 * @param guichet
+	 *            : Objet Guichet du noyau a representer
 	 */
 	public VueGuichet(VueGenerale vueGenerale, ImagesManager imagesManager,
 			Guichet guichet) {
@@ -57,9 +73,8 @@ public class VueGuichet extends Vue {
 	}
 
 	/**
-	 * Action effectuee après le clic sur le toboggan.
-	 * Si un toboggan est selectione:
-	 * Affiche le bandeau d'ajout de bagage
+	 * Action effectuee après le clic sur le toboggan. Si un toboggan est
+	 * selectione: Affiche le bandeau d'ajout de bagage
 	 */
 	@Override
 	void action() {
